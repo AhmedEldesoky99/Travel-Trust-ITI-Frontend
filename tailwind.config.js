@@ -12,6 +12,13 @@ export default {
         'lg': '1024px',
         'xl': '1280px',
         '2xl': '1536px'
+      },
+      colors: {
+        'primary-green': '#009EB7',
+        'secondary-yellow': '#FFD766',
+        'tertiary-red': '#DB3A34',
+        'light-gray': '#585858',
+        'glass-gray': '#767676'
       }
     },
   },
