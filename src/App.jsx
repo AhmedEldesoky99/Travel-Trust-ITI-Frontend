@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 
 import Navbar from "./components/shared/Navbar";
 import CustomInput from "./components/shared/FormComponents/CustomInput";
+import TourCard from "./components/shared/TourCard";
 
 //style
 import "react-toastify/dist/ReactToastify.css";
@@ -20,6 +21,7 @@ function App() {
       <div className="app">
         <Navbar />
         <CustomInput />
+        <TourCard />
         <RouterProvider router={router} />
         <ToastContainer autoClose={2000} />
       </div>
