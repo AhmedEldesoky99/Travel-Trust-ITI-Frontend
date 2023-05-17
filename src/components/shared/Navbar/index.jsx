@@ -11,6 +11,8 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 
+import Logo from "../../../assets/images/Logo/Logo.svg"
+
 const Navbar = () => {
   return (
     <>
@@ -85,7 +87,7 @@ const Navbar = () => {
         {/* Navbar Center */}
 
         <div className="navbar-center md:hidden lg:flex 2xs:flex">
-          <img src="/src/assets/images/logo/Logo.svg" alt="TravelTrust Logo" />
+          <img src={Logo} alt="TravelTrust Logo" />
         </div>
 
         {/* Navbar End */}
