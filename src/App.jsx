@@ -5,12 +5,12 @@ import { router } from "./routes";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 import Navbar from "./components/shared/Navbar";
-import CustomInput from "./components/shared/FormComponent/CustomInput";
+import CustomInput from "./components/shared/FormComponents/CustomInput";
 
 //style
 import "react-toastify/dist/ReactToastify.css";
 import "antd/dist/reset.css";
-import "./style.css";
+import "./index.css";
 
 const queryClient = new QueryClient();
 
