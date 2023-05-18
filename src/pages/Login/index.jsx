@@ -9,7 +9,7 @@ const Login = () => {
                     <div className="absolute top-10 left-5 bg-logo-join bg-cover h-[5rem] w-[6.2rem]"></div>
                 </div>
             </div>
-            <div className="flex flex-col justify-center items-center lg:w-[50vw] 2xs:w-[100vw] xl:mt-0 md:mt-[10%] 2xs:mt-[20%]">
+            <div className="flex flex-col justify-center items-center lg:w-[50vw] 2xs:w-[100vw] xl:mt-0 my-auto h-[100vh]">
                 <h1 className="md:text-4xl 2xs:text-3xl">Welcome</h1>
                 <p className="text-lg mb-5">Please enter your details below</p>
                 <button className="btn btn-wide bg-white text-gray-700 border-gray-500 mb-4"> <img src={Google} className="h-5 pr-2 mb-1" /> sign up with google</button>
