@@ -4,6 +4,10 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",],
   theme: {
     extend: {
+      fontFamily:{
+        "inter":['inter'],
+        "header":['Hachi Maru Pop','cursive']
+      },
       screens: {
         '2xs': '320px',
         'xs': '480px',
@@ -13,6 +17,12 @@ export default {
         'xl': '1280px',
         '2xl': '1536px'
       }
+    },
+    backgroundImage: {
+      'join-us': "url('./src/assets/images/joinbg.jpg')",
+      'login-user': "url('./src/assets/images/login user.jpg')",
+      'sign-up-user': "url('./src/assets/images/signup user.jpg')",
+      'logo-join': "url('./src/assets/images/Logo/logo.png')",
     },
   },
   plugins: [require("daisyui")],

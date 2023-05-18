@@ -4,8 +4,10 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./routes";
 import { ReactQueryDevtools } from "react-query/devtools";
 
-import Navbar from "./components/shared/Navbar";
-import CustomInput from "./components/shared/FormComponents/CustomInput";
+// import Navbar from "./components/shared/Navbar";
+// import CustomInput from "./components/shared/FormComponents/CustomInput";
+// import JoinUs from "./pages/Join us";
+// import Login from "./pages/Login";
 
 //style
 import "react-toastify/dist/ReactToastify.css";
@@ -18,8 +20,8 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="app">
-        <Navbar />
-        <CustomInput />
+        {/* <Navbar /> */}
+        {/* <CustomInput /> */}
         <RouterProvider router={router} />
         <ToastContainer autoClose={2000} />
       </div>
