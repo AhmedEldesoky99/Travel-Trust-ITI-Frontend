@@ -23,6 +23,7 @@ export default {
       'login-user': "url('./src/assets/images/login user.jpg')",
       'sign-up-user': "url('./src/assets/images/signup user.jpg')",
       'logo-join': "url('./src/assets/images/Logo/logo.png')",
+      'g-logo': "url('./src/assets/images/Logo/g-logo.png')",
     },
   },
   plugins: [require("daisyui")],
