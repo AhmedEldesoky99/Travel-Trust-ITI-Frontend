@@ -1,6 +1,6 @@
 // import React from "react";
 import CustomInput from '../../components/shared/FormComponents/CustomInput';
-
+import Google from "../../assets/images/Logo/Google.svg";
 const Login = () => {
     return (
         <div className="flex flex-row 2xs:">
@@ -12,7 +12,7 @@ const Login = () => {
             <div className="flex flex-col justify-center items-center lg:w-[50vw] 2xs:w-[100vw] xl:mt-0 md:mt-[10%] 2xs:mt-[20%]">
                 <h1 className="text-4xl">Welcome</h1>
                 <p className="text-lg mb-5">Please enter your details below</p>
-                <button className="btn btn-wide bg-white text-gray-700 border-gray-500 mb-4">  sign up with google</button>
+                <button className="btn btn-wide bg-white text-gray-700 border-gray-500 mb-4"> <img src={Google} className="h-5 pr-2 mb-1" /> sign up with google</button>
                 <div className='flex flex-row items-center'>
                     <hr className='h-px bg-gray-600 border-0 w-14' />
                     <p className='px-5 text-md'>or with</p>
