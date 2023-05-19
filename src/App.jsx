@@ -24,11 +24,11 @@ function App() {
       <div className="app">
 
 
-//         <Navbar />
-//         <CustomInput />
-//         <TourCard />
+         {/* <Navbar /> */}
+         {/* <CustomInput /> */}
+         {/* <TourCard /> */}
         <RouterProvider router={router} />
-        <Footer/>
+        {/* <Footer/> */}
         <ToastContainer autoClose={2000} />
       </div>
       <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
