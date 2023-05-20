@@ -33,9 +33,9 @@ const CustomInput = ({ type, name, label, rule, register, errors }) => {
             className="absolute top-1/2 right-[2%] translate-x-0 -translate-y-[50%]"
           >
             {showPassword ? (
-              <EyeOutlined className="text-lg" />
+              <EyeOutlined className="text-xl" />
             ) : (
-              <EyeInvisibleOutlined className="text-lg" />
+              <EyeInvisibleOutlined className="text-xl" />
             )}
           </button>
         )}

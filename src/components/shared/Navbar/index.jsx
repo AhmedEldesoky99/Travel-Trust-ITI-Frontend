@@ -21,7 +21,7 @@ const Navbar = () => {
 
         <div className="flex-1">
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost md:hidden">
+            <label tabIndex={0} className="btn btn-ghost md:hidden btn-lg">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -41,17 +41,17 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <a>Home</a>
+              <li >
+                <a className="text-lg">Home</a>
               </li>
               <li>
-                <a>Destination</a>
+                <a className="text-lg">Destination</a>
               </li>
               <li>
-                <a>Offers</a>
+                <a className="text-lg">Offers</a>
               </li>
               <li>
-                <a>Get the app</a>
+                <a className="text-lg">Get the app</a>
               </li>
             </ul>
           </div>
@@ -119,7 +119,7 @@ const Navbar = () => {
 
           {/* // Show only from xs to md */}
           <div className="dropdown dropdown-end md:hidden ">
-            <label tabIndex={0} className="btn btn-ghost btn-circle ">
+            <label tabIndex={0} className="btn btn-ghost btn-circle text-xl">
               <div className="w-10 rounded-full flex justify-center items-center">
                 <UserOutlined className="p-0 hover:bg-transparent" />
               </div>
@@ -129,13 +129,13 @@ const Navbar = () => {
               className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
             >
               <li>
-                <a>Trips</a>
+                <a className="text-lg">Trips</a>
               </li>
               <li>
-                <a>Card</a>
+                <a className="text-lg">Card</a>
               </li>
               <li>
-                <a>Help</a>
+                <a className="text-lg">Help</a>
               </li>
             </ul>
           </div>
