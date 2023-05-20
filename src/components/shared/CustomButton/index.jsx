@@ -3,7 +3,7 @@ import React from "react";
 const CustomButton = ({
   value,
   type = "primary",
-  width,
+  width ='full',
   isLoading,
   onClick = () => {},
 }) => {
@@ -14,8 +14,8 @@ const CustomButton = ({
     quadruple: `btn bg-white text-black border-white hover:bg-black hover:text-white hover:border-black`,
   };
   return (
-    <button className="btn bg-primary-green border-primary-green normal-case px-[18px]">
-      {text}
+    <button className={`${buttonTypes[type]} w-${width}`}>
+      {value}
     </button>
   );
 };
