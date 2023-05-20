@@ -16,7 +16,7 @@ import Logo from "../../../assets/images/Logo/Logo.svg"
 const Navbar = () => {
   return (
     <>
-      <div className="navbar justify-between bg-slate-300 text-sm">
+      <div className="navbar justify-between bg-slate-300">
         {/* Navbar Start */}
 
         <div className="flex-1">
@@ -56,7 +56,7 @@ const Navbar = () => {
             </ul>
           </div>
 
-          <ul className="menu menu-horizontal hidden md:flex">
+          <ul className="menu menu-horizontal hidden md:flex text-xl">
             <li className="p-3">
               <HomeOutlined className="p-1 hover:bg-transparent" />
               <a className="hover:bg-transparent active:bg-transparent active:text-black p-1 pl-2">
@@ -93,7 +93,7 @@ const Navbar = () => {
         {/* Navbar End */}
 
         <div className="flex-1 justify-end">
-          <ul className="menu menu-horizontal hidden md:flex">
+          <ul className="menu menu-horizontal hidden md:flex text-xl">
             <li className="p-3">
               <HeartOutlined className="p-1 hover:bg-transparent" />
               <a className="hover:bg-transparent active:bg-transparent active:text-black p-1">
