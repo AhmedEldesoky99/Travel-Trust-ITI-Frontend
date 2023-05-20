@@ -2,8 +2,8 @@ import React from "react";
 
 const CustomButton = ({
   value,
-  type = "primary",
-  width,
+  type ,
+  width ,
   isLoading,
   onClick = () => {},
 }) => {
