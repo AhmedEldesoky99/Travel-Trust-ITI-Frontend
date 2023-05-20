@@ -109,7 +109,13 @@ const TourCard = () => {
               </span>
             </div>
           </div>
-          <CustomButton text="View more" />
+          <CustomButton
+            value="View more"
+            type="primary"
+            // width="w-full"
+            // onClick={() => {}}
+            // isLoading
+          />
         </div>
       </div>
     </div>
