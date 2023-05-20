@@ -27,8 +27,9 @@ const Login = () => {
                     <span className='text-sm'>remember me</span>
                     <a href="" className='text-sm pl-5 text-cyan-600'>forgot password?</a>
                 </div>
-                <button className='btn btn-wide bg-black text-white hover:bg-white hover:text-black hover:border-none mb-3'>Log in</button>
-                <CustomButton text='Log in' style='bg-black btn-wide'/>
+                <div className='w-80 mb-5'>
+                    <CustomButton value='Log in' type='ternary' width='w-full'/>
+                </div>
                 <p className='text-sm'>Don’t have an account?<a href="" className='text-sm pl-1 text-cyan-600'>Sign up for FREE</a></p>
             </div>
         </div>

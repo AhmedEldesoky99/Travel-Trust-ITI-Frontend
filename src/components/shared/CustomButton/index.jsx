@@ -2,8 +2,8 @@ import React from "react";
 
 const CustomButton = ({
   value,
-  type = "primary",
-  width ='full',
+  type ,
+  width ,
   isLoading,
   onClick = () => {},
 }) => {
@@ -14,7 +14,13 @@ const CustomButton = ({
     quadruple: `btn bg-white text-black border-white hover:bg-black hover:text-white hover:border-black`,
   };
   return (
-    <button className={`${buttonTypes[type]} w-${width}`}>
+    <button
+      disabled={isLoading}
+      onClick={onClick}
+      className={`btn normal-case px-[1.125rem] ${width} ${buttonTypes[type]} ${
+        isLoading && "loading"
+      } `}
+    >
       {value}
     </button>
   );
