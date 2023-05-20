@@ -41,10 +41,10 @@ const Footer = () => {
 
         <div className="flex flex-col space-y-2 text-sm">
           <span className="footer-title opacity-100 mb-0">Get the app</span>
-          <button className="btn bg-white text-black text-xs flex items-center space-x-1 normal-case">
+          <button className="w-[11rem] bg-white text-black text-xs flex justify-center items-center space-x-1 p-2 rounded-lg font-bold normal-case">
             <DownloadOutlined className="text-xl leading-none" />
             <div className="flex flex-col">
-              <span className="text-xs">Download the app on </span>
+              <span>Download the app on </span>
               <span className="text-sm">Windows - Mac</span>
             </div>
           </button>
@@ -60,7 +60,7 @@ const Footer = () => {
           <p>Copyright © 2023 - All rights reserved by Travel Trust</p>
         </div>
 
-        <div className=" space-x-2">
+        <div className="flex items-center justify-center space-x-2">
         <span>Professionally designed by Travel Trust team</span>
         <HeartFilled/> 
         </div>
