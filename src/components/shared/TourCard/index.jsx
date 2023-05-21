@@ -59,7 +59,7 @@ const TourCard = () => {
               className="w-20 rounded-full relative"
             />
           </a>
-          <span className="badge text-base p-4 -ml-3 bg-tertiary-red border-tertiary-red">
+          <span className="badge 2xs:text-base 2xl:text-lg p-4 -ml-3 bg-tertiary-red border-tertiary-red">
             likely to sellout
           </span>
         </div>
@@ -67,7 +67,7 @@ const TourCard = () => {
         <div className="absolute top-2 right-2 bg-glass-gray opacity-50 py-2 px-4 rounded-lg">
           <button onClick={toggleFavorites}>
             <HeartFilled
-              className={`text-xl hover:scale-110 transition-all duration-200 ease-out ${
+              className={`2xs:text-xl 2xl:text-2xl hover:scale-110 transition-all duration-200 ease-out ${
                 checked ? "text-[#ff0000]" : "text-white"
               }`}
             />
@@ -79,17 +79,17 @@ const TourCard = () => {
       <div className="card-body !pt-12 space-y-3 gap-0">
         <div className="flex justify-between items-center">
           <div className="flex justify-center items-center space-x-2">
-            <EnvironmentOutlined className="text-base" />
-            <span className="text-base text-light-gray h-5">Alexandria</span>
+            <EnvironmentOutlined className="2xs:text-base 2xl:text-lg" />
+            <span className="2xs:text-base 2xl:text-lg text-light-gray h-5">Alexandria</span>
           </div>
           <div className="flex justify-center items-center space-x-1">
-            <span className="text-3xl font-bold">$2,900</span>{" "}
+            <span className="2xs:text-2xl 2xl:text-3xl font-bold">$2,900</span>{" "}
             <span className="">/</span>
             <UserOutlined className="text-xl" />
           </div>
         </div>
 
-        <h2 className="card-title text-2xl">
+        <h2 className="card-title 2xs:text-lg 2xl:text-xl">
           Cairo In One Day guided ya mai Sightseeing Tour ya hager{" "}
         </h2>
 

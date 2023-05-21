@@ -11,36 +11,3 @@ html{
 font-size: 100%;
 }
 
-@media screen and (min-width: 320px) {
-    html {
-        font-size: 60%;
-    }
-}
-
-/* For screen sizes from 480px to 768px */
-@media screen and (min-width: 480px) {
-    html {
-        font-size: 65%;
-    }
-}
-
-/* For screen sizes from 768px to 1280px */
-@media screen and (min-width: 768px) {
-    html {
-        font-size: 70%;
-    }
-}
-
-/* For screen sizes from 1280px to 1536px */
-@media screen and (min-width: 1280px) {
-    html {
-        font-size:75%;
-    }
-}
-
-/* For screen sizes larger than 1536px */
-@media screen and (min-width: 1536px) {
-    html {
-        font-size: 80%;
-    }
-}
