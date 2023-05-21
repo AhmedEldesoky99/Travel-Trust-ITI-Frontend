@@ -11,7 +11,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 
-import Logo from "../../../assets/images/Logo/Logo.svg"
+import Logo from "../../../assets/images/Logo/Logo.svg";
 
 const Navbar = () => {
   return (
@@ -20,8 +20,9 @@ const Navbar = () => {
         {/* Navbar Start */}
 
         <div className="flex-1">
+          {/* // Show only from xs to md */}
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost md:hidden">
+            <label tabIndex={0} className="btn btn-ghost md:hidden btn-md">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -56,7 +57,7 @@ const Navbar = () => {
             </ul>
           </div>
 
-          <ul className="menu menu-horizontal hidden md:flex text-xl">
+          <ul className="menu menu-horizontal hidden md:flex lg:text-base 2xl:text-xl ">
             <li className="p-3">
               <HomeOutlined className="p-1 hover:bg-transparent" />
               <a className="hover:bg-transparent active:bg-transparent active:text-black p-1 pl-2">
@@ -93,7 +94,7 @@ const Navbar = () => {
         {/* Navbar End */}
 
         <div className="flex-1 justify-end">
-          <ul className="menu menu-horizontal hidden md:flex text-xl">
+          <ul className="menu menu-horizontal hidden md:flex lg:text-base 2xl:text-xl">
             <li className="p-3">
               <HeartOutlined className="p-1 hover:bg-transparent" />
               <a className="hover:bg-transparent active:bg-transparent active:text-black p-1">
@@ -119,7 +120,7 @@ const Navbar = () => {
 
           {/* // Show only from xs to md */}
           <div className="dropdown dropdown-end md:hidden ">
-            <label tabIndex={0} className="btn btn-ghost btn-circle ">
+            <label tabIndex={0} className="btn btn-ghost btn-circle text-xl">
               <div className="w-10 rounded-full flex justify-center items-center">
                 <UserOutlined className="p-0 hover:bg-transparent" />
               </div>

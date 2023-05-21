@@ -139,3 +139,4 @@ const privacyPolicy = () => {
   );
 };
 export default privacyPolicy;
+
