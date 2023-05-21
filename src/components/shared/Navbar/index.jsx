@@ -11,7 +11,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 
-import Logo from "../../../assets/images/Logo/Logo.svg"
+import Logo from "../../../assets/images/Logo/Logo.svg";
 
 const Navbar = () => {
   return (
@@ -20,8 +20,9 @@ const Navbar = () => {
         {/* Navbar Start */}
 
         <div className="flex-1">
+          {/* // Show only from xs to md */}
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost md:hidden btn-lg">
+            <label tabIndex={0} className="btn btn-ghost md:hidden btn-md">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -41,22 +42,22 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li >
-                <a className="text-lg">Home</a>
+              <li>
+                <a>Home</a>
               </li>
               <li>
-                <a className="text-lg">Destination</a>
+                <a>Destination</a>
               </li>
               <li>
-                <a className="text-lg">Offers</a>
+                <a>Offers</a>
               </li>
               <li>
-                <a className="text-lg">Get the app</a>
+                <a>Get the app</a>
               </li>
             </ul>
           </div>
 
-          <ul className="menu menu-horizontal hidden md:flex text-xl">
+          <ul className="menu menu-horizontal hidden md:flex lg:text-base 2xl:text-xl ">
             <li className="p-3">
               <HomeOutlined className="p-1 hover:bg-transparent" />
               <a className="hover:bg-transparent active:bg-transparent active:text-black p-1 pl-2">
@@ -93,7 +94,7 @@ const Navbar = () => {
         {/* Navbar End */}
 
         <div className="flex-1 justify-end">
-          <ul className="menu menu-horizontal hidden md:flex text-xl">
+          <ul className="menu menu-horizontal hidden md:flex lg:text-base 2xl:text-xl">
             <li className="p-3">
               <HeartOutlined className="p-1 hover:bg-transparent" />
               <a className="hover:bg-transparent active:bg-transparent active:text-black p-1">
@@ -129,13 +130,13 @@ const Navbar = () => {
               className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
             >
               <li>
-                <a className="text-lg">Trips</a>
+                <a>Trips</a>
               </li>
               <li>
-                <a className="text-lg">Card</a>
+                <a>Card</a>
               </li>
               <li>
-                <a className="text-lg">Help</a>
+                <a>Help</a>
               </li>
             </ul>
           </div>
