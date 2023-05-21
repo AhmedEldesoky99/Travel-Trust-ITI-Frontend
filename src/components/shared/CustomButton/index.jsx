@@ -18,7 +18,7 @@ const CustomButton = ({
     <button
       disabled={isLoading}
       onClick={onClick}
-      className={`btn 2xs:text-base 2xl:text-lg normal-case px-[1.125rem] ${width} ${
+      className={`btn 2xs:text-sm 2xl:text-lg normal-case px-[1.125rem] ${width} ${
         buttonTypes[type]
       } ${isLoading && "loading"} `}
     >
