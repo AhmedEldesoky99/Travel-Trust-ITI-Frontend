@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import {
   DownloadOutlined,
   HeartFilled,
@@ -15,7 +17,9 @@ const Footer = () => {
     <>
       <div className="grid grid-cols-5 2xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5  space-y-5 p-10 bg-[#0b0b0b] text-white">
         <div className="mt-5 ">
-          <img src={Logo} alt="Travel Trust Logo" />
+          <Link to="/">
+            <img src={Logo} alt="Travel Trust Logo" />
+          </Link>
           <p className="mt-2 pr-[20%] 2xs:text-sm 2xl:text-base">
             Discover some of Egypt’s antiquateson private tours with an egyptian
             guide .
@@ -32,49 +36,51 @@ const Footer = () => {
           <span className="footer-title opacity-100 mb-0 2xs:text-base 2xl:text-lg">
             Quick Links
           </span>
-          <a className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
+          <Link to="" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
             Home
-          </a>
-          <a className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
+          </Link>
+          <Link to="" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
             Destinations
-          </a>
-          <a className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
+          </Link>
+          <Link to="" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
             Offers
-          </a>
-          <a className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
+          </Link>
+          <Link to="" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
             Join us
-          </a>
+          </Link>
         </div>
 
         <div className="flex flex-col space-y-2">
           <span className="footer-title opacity-100 mb-0 2xs:text-base 2xl:text-lg">
             Top destinations
           </span>
-          <a className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
+          <Link to="" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
             Dahab
-          </a>
-          <a className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
+          </Link>
+          <Link to="" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
             Fayoum
-          </a>
-          <a className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
+          </Link>
+          <Link to="" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
             Cairo
-          </a>
-          <a className="cursor-pointer hover:text-primary-green transition-all text-base 2xl:text-base">
+          </Link>
+          <Link to="" className="cursor-pointer hover:text-primary-green transition-all text-base 2xl:text-base">
             Hurghada
-          </a>
+          </Link>
         </div>
 
         <div className="flex flex-col space-y-2">
-          <span className="footer-title opacity-100 mb-0 2xs:text-base 2xl:text-lg">Support</span>
-          <a className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
+          <span className="footer-title opacity-100 mb-0 2xs:text-base 2xl:text-lg">
+            Support
+          </span>
+          <Link to="" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
             About us
-          </a>
-          <a className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
+          </Link>
+          <Link to="" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
             Privacy policy
-          </a>
-          <a className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
+          </Link>
+          <Link to="" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
             FAQ
-          </a>
+          </Link>
         </div>
 
         <div className="flex flex-col space-y-2">
@@ -87,7 +93,7 @@ const Footer = () => {
               <span className="2xs:text-xs">Download the app on </span>
               <span className="2xs:text-xs">Windows - Mac</span>
             </div>
-          <div className="absolute top-2 left-1 outline-2 outline-white outline h-12 w-[11rem] rounded-lg group-hover:hidden"></div>
+            <div className="absolute top-2 left-1 outline-2 outline-white outline h-12 w-[11rem] rounded-lg group-hover:hidden"></div>
           </button>
         </div>
       </div>
