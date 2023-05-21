@@ -27,10 +27,11 @@ const TourCard = () => {
 
   return (
     <div className="card card-compact w-96 shadow-xl group">
+
       <figure className="relative overflow-visible">
         <img src={CardImage} alt="Tour Image" />
 
-        <div className="group-hover:translate-y-0 group-hover:opacity-30 translate-y-[50%] opacity-0 absolute top-0 w-full h-full bg-black rounded-t-[18px] transition-all duration-500 ease-out flex items-start flex-col">
+        <div className="group-hover:translate-y-0 group-hover:opacity-30 opacity-0 absolute top-0 w-full h-full bg-black rounded-t-[18px] transition-all duration-500 ease-out flex items-start flex-col">
           <div className="flex flex-col ml-5 mt-6 space-y-4">
             <img
               className="hover:rotate-12 transition-all duration-300 ease-out"
@@ -58,7 +59,7 @@ const TourCard = () => {
               className="w-20 rounded-full relative"
             />
           </a>
-          <span className="badge p-4 -ml-3 bg-tertiary-red border-tertiary-red">
+          <span className="badge text-base p-4 -ml-3 bg-tertiary-red border-tertiary-red">
             likely to sellout
           </span>
         </div>
@@ -72,6 +73,7 @@ const TourCard = () => {
             />
           </button>
         </div>
+
       </figure>
 
       <div className="card-body !pt-12 space-y-3 gap-0">
@@ -81,19 +83,19 @@ const TourCard = () => {
             <span className="text-base text-light-gray h-5">Alexandria</span>
           </div>
           <div className="flex justify-center items-center space-x-1">
-            <span className="text-xl font-bold">$2,900</span>{" "}
+            <span className="text-3xl font-bold">$2,900</span>{" "}
             <span className="">/</span>
-            <UserOutlined className="text-base" />
+            <UserOutlined className="text-xl" />
           </div>
         </div>
 
-        <h2 className="card-title">
+        <h2 className="card-title text-2xl">
           Cairo In One Day guided ya mai Sightseeing Tour ya hager{" "}
         </h2>
 
         <div className="flex items-center space-x-2">
           <Rate disabled defaultValue={2} />
-          <span className="text-base h-5">2</span>
+          <span className="text-xl">2</span>
         </div>
 
         <div className="card-actions justify-between">
@@ -118,6 +120,8 @@ const TourCard = () => {
           />
         </div>
       </div>
+
+
     </div>
   );
 };
