@@ -1,4 +1,5 @@
-// import React from "react";
+/* eslint-disable no-unused-vars */
+import React from "react";
 import CustomInput from '../../components/shared/FormComponents/CustomInput';
 import CustomButton from '../../components/shared/CustomButton/index';
 import Google from "../../assets/images/Logo/Google.svg";
@@ -14,7 +15,7 @@ const Login = () => {
             <div className="flex flex-col justify-center items-center lg:w-[50vw] 2xs:w-[100vw] xl:mt-0 my-auto h-[100vh]">
                 <h1 className="md:text-3xl 2xs:text-2xl">Welcome</h1>
                 <p className="text-lg mb-8">Please enter your details below</p>
-                <button className="btn btn-wide bg-white text-gray-700 border-gray-500 mb-4 h-[65px] max-w-[570px] hover:text-white hover:bg-black"> <img src={Google} className="h-5 pr-2 mb-1" /> sign up with google</button>
+                <button className="btn btn-wide bg-white text-gray-700 border-gray-500 mb-4 max-w-[570px] hover:text-white hover:bg-black"> <img src={Google} className="h-5 pr-2 mb-1" /> sign up with google</button>
                 <div className='flex flex-row items-center'>
                     <hr className='h-px bg-gray-600 border-0 w-28' />
                     <p className='px-5 text-lg'>or with</p>
