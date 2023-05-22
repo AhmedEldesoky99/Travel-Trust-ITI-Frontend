@@ -87,13 +87,13 @@ const Footer = () => {
           <span className="footer-title opacity-100 mb-0 2xs:text-base 2xl:text-lg">
             Get the app
           </span>
-          <button className="group relative w-[11rem] bg-white text-black flex justify-center items-center space-x-1 p-2 rounded-lg font-bold normal-case hover:bg-black hover:text-white hover:border-white hover:border transition duration-300">
+          <button className="group relative 2xs:w-[12rem] xs:w-[11rem] bg-white text-black flex justify-center items-center space-x-1 p-2 rounded-lg font-bold normal-case hover:bg-black hover:text-white hover:border-white hover:border transition duration-300">
             <DownloadOutlined className="text-xl leading-none" />
             <div className="flex flex-col">
               <span className="2xs:text-xs">Download the app on </span>
               <span className="2xs:text-xs">Windows - Mac</span>
             </div>
-            <div className="absolute top-2 left-1 outline-2 outline-white outline h-12 w-[11rem] rounded-lg group-hover:hidden"></div>
+            <div className="absolute top-2 left-1 outline-2 outline-white outline h-12 2xs:w-[12rem] xs:w-[11rem] rounded-lg group-hover:hidden"></div>
           </button>
         </div>
       </div>
