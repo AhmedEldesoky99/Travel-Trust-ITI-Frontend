@@ -1,5 +1,4 @@
 import { animated, useScroll, useInView, useSpring } from "@react-spring/web";
-import Navbar from "../../components/shared/Navbar";
 import Footer from "../../components/shared/Footer";
 import { Breadcrumb } from "antd";
 
@@ -26,12 +25,11 @@ const privacyPolicy = () => {
 
   return (
     <>
-      <Navbar />
       <Breadcrumb
         className="ml-20 mt-10 mb-10"
         items={[
           {
-            title: <a href="http://localhost:5173/">Home</a>,
+            title: <a href="https://travel-trust-iti.vercel.app/">Home</a>,
           },
           {
             title: "Privacy and Policy",
