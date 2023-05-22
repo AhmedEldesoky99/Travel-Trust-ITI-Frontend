@@ -32,7 +32,8 @@ export default {
       'logo-join': "url('/src/assets/images/Logo/logo.png')",
       'g-logo': "url('/src/assets/images/Logo/g-logo.png')",
       'eachGovernorateBG': "url('/src/assets/images/EachGovernorate/EachGovernorateBG.png')",
-      'fish': "url('/src/assets/images/EachGovernorate/Fish.png')"
+      'fish': "url('/src/assets/images/EachGovernorate/Fish.png')",
+      'salesBG':"url('/src/assets/images/Sales/SalesBG.png')"
     },
   },
   plugins: [require("daisyui")],

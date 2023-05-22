@@ -6,18 +6,18 @@ const About = () => {
   return (
     <section className="pt-32">
       <div className="container mx-auto">
-        <div className="max-w-[50%]">
-          <p className="2xs:text-base lg:text-lg">
+        <div className="2xs:max-w-xs sm:max-w-sm md:max-w-[50%]">
+          <h2 className="2xs:text-base lg:text-lg">
             <span className="text-5xl text-primary-green">D</span>ahab is a
             small Egyptian town on the southeast coast of the Sinai Peninsula in
             Egypt, approximately 80 km northeast of Sharm el-Sheikh. Formerly a
             Bedouin fishing village, Dahab is now considered to be one of Egypt'
             most treasured diving destinations.
-          </p>
+          </h2>
         </div>
 
         <div>
-          <p className="2xs:text-xl lg:text-2xl 2xl:text-3xl mt-14 mb-4">Dahab Tours </p>
+          <h3 className="2xs:text-xl lg:text-2xl 2xl:text-3xl mt-14 mb-4">Dahab Tours </h3>
         </div>
 
         <div className="container grid gap-4 2xs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

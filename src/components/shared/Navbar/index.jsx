@@ -84,25 +84,37 @@ const Navbar = () => {
           <ul className="menu menu-horizontal hidden md:flex lg:text-base 2xl:text-xl ">
             <li className="p-3 hover:text-secondary-yellow">
               <HomeOutlined className="p-1 hover:bg-transparent" />
-              <Link to="/" className="hover:bg-transparent active:bg-transparent active:text-black p-1 pl-2">
+              <Link
+                to="/"
+                className="hover:bg-transparent active:bg-transparent active:text-black p-1 pl-2"
+              >
                 Home
               </Link>
             </li>
             <li className="p-3 hover:text-secondary-yellow">
               <RocketOutlined className="p-1 hover:bg-transparent" />
-              <Link to="" className="hover:bg-transparent active:bg-transparent active:text-black p-1">
+              <Link
+                to=""
+                className="hover:bg-transparent active:bg-transparent active:text-black p-1"
+              >
                 Destinations
               </Link>
             </li>
             <li className="p-3 hover:text-secondary-yellow">
               <WalletOutlined className="p-1 hover:bg-transparent" />
-              <Link to="" className="hover:bg-transparent active:bg-transparent active:text-black p-1 pr-0">
+              <Link
+                to=""
+                className="hover:bg-transparent active:bg-transparent active:text-black p-1 pr-0"
+              >
                 Offers
               </Link>
             </li>
             <li className="p-3 hover:text-secondary-yellow">
               <MobileOutlined className="p-1 hover:bg-transparent" />
-              <Link to="" className="hover:bg-transparent active:bg-transparent active:text-black p-1 pr-0">
+              <Link
+                to=""
+                className="hover:bg-transparent active:bg-transparent active:text-black p-1 pr-0"
+              >
                 Get the app
               </Link>
             </li>
@@ -112,7 +124,9 @@ const Navbar = () => {
         {/* Navbar Center */}
 
         <div className="navbar-center md:hidden lg:flex 2xs:flex">
-          <img src={Logo} alt="TravelTrust Logo" />
+          <Link to="/">
+            <img src={Logo} alt="TravelTrust Logo" />
+          </Link>
         </div>
 
         {/* Navbar End */}
@@ -121,19 +135,28 @@ const Navbar = () => {
           <ul className="menu menu-horizontal hidden md:flex lg:text-base 2xl:text-xl">
             <li className="p-3 hover:text-secondary-yellow">
               <HeartOutlined className="p-1 hover:bg-transparent" />
-              <Link to="" className="hover:bg-transparent active:bg-transparent active:text-black p-1">
+              <Link
+                to=""
+                className="hover:bg-transparent active:bg-transparent active:text-black p-1"
+              >
                 Trips
               </Link>
             </li>
             <li className="p-3 hover:text-secondary-yellow">
               <ShoppingCartOutlined className="p-1 hover:bg-transparent" />
-              <Link to="" className="hover:bg-transparent active:bg-transparent active:text-black p-1">
+              <Link
+                to=""
+                className="hover:bg-transparent active:bg-transparent active:text-black p-1"
+              >
                 Cart
               </Link>
             </li>
             <li className="p-3 hover:text-secondary-yellow">
               <QuestionCircleOutlined className="p-1 hover:bg-transparent" />
-              <Link to="" className="hover:bg-transparent active:bg-transparent active:text-black p-1">
+              <Link
+                to=""
+                className="hover:bg-transparent active:bg-transparent active:text-black p-1"
+              >
                 Help
               </Link>
             </li>
@@ -157,17 +180,26 @@ const Navbar = () => {
               className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link to="" className="text-black active:bg-transparent active:text-secondary-yellow">
+                <Link
+                  to=""
+                  className="text-black active:bg-transparent active:text-secondary-yellow"
+                >
                   Trips
                 </Link>
               </li>
               <li>
-                <Link to="" className="text-black active:bg-transparent active:text-secondary-yellow">
+                <Link
+                  to=""
+                  className="text-black active:bg-transparent active:text-secondary-yellow"
+                >
                   Card
                 </Link>
               </li>
               <li>
-                <Link to="" className="text-black active:bg-transparent active:text-secondary-yellow">
+                <Link
+                  to=""
+                  className="text-black active:bg-transparent active:text-secondary-yellow"
+                >
                   Help
                 </Link>
               </li>

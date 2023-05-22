@@ -12,11 +12,11 @@ const CheckDestenations = () => {
   return (
     <section className="py-14">
       <div className="container mx-auto">
-        <div className="flex justify-between">
-          <p className="2xs:text-xl lg:text-2xl 2xl:text-3xl mb-4">
+        <div className="flex 2xs:flex-col 2xs:items-start xs:flex-row xs:items-center justify-between ">
+          <h3 className="2xs:text-lg xs:text-xl lg:text-2xl 2xl:text-3xl xs:mb-4">
             Check out other destinations
-          </p>
-          <Link to="" className="text-primary-green hover:underline">
+          </h3>
+          <Link to="" className="2xs:mb-2 xs:mb-4 md:text-lg 2xl:text-xl text-primary-green hover:underline">
             View all destinations
           </Link>
         </div>

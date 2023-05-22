@@ -7,6 +7,7 @@ import TourCard from "../../components/shared/TourCard";
 import Footer from "../../components/shared/Footer";
 import CustomButton from "../../components/shared/CustomButton";
 import EachGovernorate from "../EachGovernorate";
+import Sales from "../Sales";
 
 const SharedComponents = () => {
   const {
@@ -24,7 +25,8 @@ const SharedComponents = () => {
   return (
     <>
       <Navbar />
-      <EachGovernorate />
+      <Sales />
+      {/* <EachGovernorate /> */}
       {/* <form onSubmit={handleSubmit(registerHandler)}>
         <CustomInput
           type="password"
