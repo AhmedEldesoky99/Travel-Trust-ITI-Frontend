@@ -19,19 +19,19 @@ const CheckDestenations = () => {
         <div className="container grid gap-2 2xs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           <CheckDestCard
             city="Aswan"
-            url="/src/assets/images/CheckDestinations/Aswan.png"
+            url="../../../../src/assets/images/CheckDestinations/Aswan.png"
           />
           <CheckDestCard
             city="Luxor"
-            url="/src/assets/images/CheckDestinations/Luxor.png"
+            url="../../../../src/assets/images/CheckDestinations/Luxor.png"
           />
           <CheckDestCard
             city="Nouba"
-            url="/src/assets/images/CheckDestinations/Nouba.png"
+            url="../../../../src/assets/images/CheckDestinations/Nouba.png"
           />
           <CheckDestCard
             city="Alex"
-            url="/src/assets/images/CheckDestinations/Alex.png"
+            url="../../../../src/assets/images/CheckDestinations/Alex.png"
           />
         </div>
       </div>
