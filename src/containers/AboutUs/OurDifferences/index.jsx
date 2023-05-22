@@ -65,9 +65,7 @@ const OurDifferences = () => {
 
           <div>
             <div className="h-56 lg:border-l-2 border-gray-400 mt-10 mb-10">
-              <h2 className="font-header ml-[80px] lg:ml-6 text-[20px] md:text-[24px]">
-                Key Facts
-              </h2>
+            
               <div className="grid grid-cols-3 grid-rows-2 ">
                 {icons.map(({ icon, title, subTitle }, index) => (
                   <KeyIcon
