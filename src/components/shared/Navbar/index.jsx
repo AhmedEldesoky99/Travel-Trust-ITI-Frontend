@@ -17,7 +17,7 @@ import Logo from "../../../assets/images/Logo/Logo.svg";
 const Navbar = () => {
   return (
     <>
-      <div className="navbar justify-betwee fixed bg-transparent text-white">
+      <nav className="navbar justify-between fixed z-50 bg-transparent text-white">
         {/* Navbar Start */}
 
         <div className="flex-1">
@@ -209,7 +209,7 @@ const Navbar = () => {
           {/* <Link to="" className="mr-3 cursor-pointer hover:text-secondary-yellow">Login</Link>
           <Link to="" className="btn btn-sm bg-transparent outline outline-white outline-1 normal-case hover:bg-secondary-yellow hover:outline-secondary-yellow outline-offset-0 border-none hover:text-black">Sign up</Link> */}
         </div>
-      </div>
+      </nav>
     </>
   );
 };

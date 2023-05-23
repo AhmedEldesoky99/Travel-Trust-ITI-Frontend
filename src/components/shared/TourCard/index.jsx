@@ -29,7 +29,7 @@ const TourCard = () => {
     <div className="card card-compact shadow-xl group">
 
       <figure className="relative overflow-visible">
-        <img className="w-full object-cover" src={CardImage} alt="Tour Image" />
+        <img className="w-full object-cover rounded-t-[14px]" src={CardImage} alt="Tour Image" />
 
         <div className="group-hover:translate-y-0 group-hover:opacity-30 opacity-0 absolute top-0 w-full h-full bg-black rounded-t-[14px] transition-all duration-500 ease-out flex items-start flex-col">
           <div className="flex flex-col ml-5 mt-6 gap-3">
@@ -95,7 +95,7 @@ const TourCard = () => {
 
         <div className="flex items-center space-x-2">
           <Rate disabled defaultValue={2} />
-          <span className="text-xl">2</span>
+          <span className="2xs:text-base xl:text-lg 2xl:text-xl">2</span>
         </div>
 
         <div className="card-actions justify-between">
