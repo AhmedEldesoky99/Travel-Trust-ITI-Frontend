@@ -14,9 +14,9 @@ import Logo from "../../../assets/images/Logo/Logo.svg";
 
 const Footer = () => {
   return (
-    <>
-      <div className="grid grid-cols-5 2xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5  space-y-5 p-10 bg-[#0b0b0b] text-white">
-        <div className="mt-5 ">
+    <footer>
+      <div className="grid 2xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 space-y-5 p-10 bg-[#0b0b0b] text-white">
+        <div className="mt-5 lg:col-span-2">
           <Link to="/">
             <img src={Logo} alt="Travel Trust Logo" />
           </Link>
@@ -114,7 +114,7 @@ const Footer = () => {
           <HeartFilled />
         </div>
       </div>
-    </>
+    </footer>
   );
 };
 
