@@ -16,6 +16,7 @@ const AccordionFAQ = () => {
         defaultActiveKey={['1']}
         onChange={onChange}
         expandIconPosition='end'
+        className='w-[100%]'
       >
         <Panel header={
         <div className='flex flex-row items-center'>
