@@ -37,9 +37,9 @@ const Favorite = () => {
       ) : (
         <div className="flex flex-col">
           <div className="flex flex-col h-[60vh] w-full justify-center items-center">
-            <div className="bg-emptyFav  max-h-[382px] max-w-[621px] w-full h-full mb-3"></div>
-            <p className="text-4xl">Your favorites does not have anything yet !</p>
-            <p className="text-xl text-center">When there is something you want to save, just click the heart icon shown on each tour. <br />
+            <div className="bg-emptyFav bg-contain bg-no-repeat  max-h-[382px] max-w-[621px] w-full h-full mb-3"></div>
+            <p className="xl:text-4xl lg:text-2xl 2xs:text-xl text-center">Your favorites does not have anything yet !</p>
+            <p className="xl:text-lg lg:text-base 2xs:text-sm text-center">When there is something you want to save, just click the heart icon shown on each tour. <br />
 You will find all the tours you&apos;ve saved here.</p>
           </div>
           <div>
