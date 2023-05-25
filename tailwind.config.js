@@ -4,9 +4,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",],
   theme: {
     extend: {
-      fontFamily:{
-        "inter":['inter'],
-        "header":['Hachi Maru Pop','cursive']
+      fontFamily: {
+        "inter": ['inter'],
+        "header": ['Hachi Maru Pop', 'cursive']
       },
       screens: {
         '2xs': '320px',
@@ -31,6 +31,9 @@ export default {
       'sign-up-user': "url('/src/assets/images/signup user.jpg')",
       'logo-join': "url('/src/assets/images/Logo/logo.png')",
       'g-logo': "url('/src/assets/images/Logo/g-logo.png')",
+      'eachGovernorateBG': "url('/src/assets/images/EachGovernorate/EachGovernorateBG.png')",
+      'fish': "url('/src/assets/images/EachGovernorate/Fish.png')",
+      'salesBG':"url('/src/assets/images/Sales/SalesBG.png')"
     },
   },
   plugins: [require("daisyui")],

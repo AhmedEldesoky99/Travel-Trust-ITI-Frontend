@@ -7,6 +7,8 @@ import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
 import Faq from "./pages/FAQ";
 import SharedComponents from "./pages/SharedComponents";
+import PrivacyPolicy from "./pages/PrivacyPolicy"
+import AboutUs from "./pages/AboutUs";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -15,4 +17,8 @@ export const router = createBrowserRouter([
   { path: "/signup", element: <SignUp /> },
   { path: "/shared", element: <SharedComponents /> },
   { path: "/faq", element:<Faq/>}
+  { path: "/privacy", element: <PrivacyPolicy /> },
+  { path: "/Aboutus", element: <AboutUs /> },
+
+
 ]);

@@ -26,13 +26,13 @@ const TourCard = () => {
   };
 
   return (
-    <div className="card card-compact w-96 shadow-xl group">
+    <div className="card card-compact shadow-xl group">
 
       <figure className="relative overflow-visible">
-        <img src={CardImage} alt="Tour Image" />
+        <img className="w-full object-cover rounded-t-[14px]" src={CardImage} alt="Tour Image" />
 
-        <div className="group-hover:translate-y-0 group-hover:opacity-30 opacity-0 absolute top-0 w-full h-full bg-black rounded-t-[18px] transition-all duration-500 ease-out flex items-start flex-col">
-          <div className="flex flex-col ml-5 mt-6 space-y-4">
+        <div className="group-hover:translate-y-0 group-hover:opacity-30 opacity-0 absolute top-0 w-full h-full bg-black rounded-t-[14px] transition-all duration-500 ease-out flex items-start flex-col">
+          <div className="flex flex-col ml-5 mt-6 gap-3">
             <img
               className="hover:rotate-12 transition-all duration-300 ease-out"
               src={SkateIcon}
@@ -56,10 +56,10 @@ const TourCard = () => {
             <img
               src={AdminImage}
               alt="Tour Creator"
-              className="w-20 rounded-full relative"
+              className="2xs:w-16 xs:w-20 sm:w-20 md:w-16 lg: xl: 2xl:  rounded-full relative"
             />
           </a>
-          <span className="badge text-base p-4 -ml-3 bg-tertiary-red border-tertiary-red">
+          <span className="badge 2xs:text-sm 2xl:text-lg p-4 -ml-3 bg-tertiary-red border-tertiary-red">
             likely to sellout
           </span>
         </div>
@@ -67,7 +67,7 @@ const TourCard = () => {
         <div className="absolute top-2 right-2 bg-glass-gray opacity-50 py-2 px-4 rounded-lg">
           <button onClick={toggleFavorites}>
             <HeartFilled
-              className={`text-xl hover:scale-110 transition-all duration-200 ease-out ${
+              className={`2xs:text-xl 2xl:text-2xl hover:scale-110 transition-all duration-200 ease-out ${
                 checked ? "text-[#ff0000]" : "text-white"
               }`}
             />
@@ -79,23 +79,23 @@ const TourCard = () => {
       <div className="card-body !pt-12 space-y-3 gap-0">
         <div className="flex justify-between items-center">
           <div className="flex justify-center items-center space-x-2">
-            <EnvironmentOutlined className="text-base" />
-            <span className="text-base text-light-gray h-5">Alexandria</span>
+            <EnvironmentOutlined className="2xs:text-base 2xl:text-lg" />
+            <span className="2xs:text-base 2xl:text-lg text-light-gray h-5">Alexandria</span>
           </div>
           <div className="flex justify-center items-center space-x-1">
-            <span className="text-3xl font-bold">$2,900</span>{" "}
+            <span className="2xs:text-2xl md:text-xl xl:text-2xl font-bold">$2,900</span>{" "}
             <span className="">/</span>
-            <UserOutlined className="text-xl" />
+            <UserOutlined className="2xs:text-xl md:text-lg" />
           </div>
         </div>
 
-        <h2 className="card-title text-2xl">
-          Cairo In One Day guided ya mai Sightseeing Tour ya hager{" "}
+        <h2 className="card-title 2xs:text-lg 2xl:text-xl">
+        Giza in 6 days explore egypt  
         </h2>
 
         <div className="flex items-center space-x-2">
           <Rate disabled defaultValue={2} />
-          <span className="text-xl">2</span>
+          <span className="2xs:text-base xl:text-lg 2xl:text-xl">2</span>
         </div>
 
         <div className="card-actions justify-between">
@@ -114,7 +114,7 @@ const TourCard = () => {
           <CustomButton
             value="View more"
             type="primary"
-            // width="w-full"
+            width="sm:w-full xl:w-fit"
             // onClick={() => {}}
             // isLoading
           />

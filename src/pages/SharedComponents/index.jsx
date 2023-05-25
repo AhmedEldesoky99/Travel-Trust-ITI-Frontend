@@ -6,7 +6,9 @@ import CustomInput from "../../components/shared/FormComponents/CustomInput";
 import TourCard from "../../components/shared/TourCard";
 import Footer from "../../components/shared/Footer";
 import CustomButton from "../../components/shared/CustomButton";
-
+import EachGovernorate from "../EachGovernorate";
+import Sales from "../Sales";
+import TourWideCard from "../../components/shared/TourWideCard";
 
 const SharedComponents = () => {
   const {
@@ -23,8 +25,11 @@ const SharedComponents = () => {
 
   return (
     <>
-      <Navbar />
-      <form onSubmit={handleSubmit(registerHandler)}>
+      {/* <Navbar /> */}
+      <TourWideCard />
+      {/* <Sales /> */}
+      {/* <EachGovernorate /> */}
+      {/* <form onSubmit={handleSubmit(registerHandler)}>
         <CustomInput
           type="password"
           label="Password"
@@ -47,8 +52,8 @@ const SharedComponents = () => {
         ) : null}
         <CustomButton value="Sign up" type="primary" />
       </form>
-      <TourCard />
-      <Footer />
+      <TourCard /> */}
+      {/* <Footer /> */}
     </>
   );
 };
