@@ -35,6 +35,8 @@ export default {
       'fish': "url('/src/assets/images/EachGovernorate/Fish.png')",
       'salesBG':"url('/src/assets/images/Sales/SalesBG.png')",
       'emptyCart':"url('/src/assets/images/Cart/emptyCart.png')",
+      'emptyFav':"url('/src/assets/images/Favorite/emptyFav.png')",
+
     },
   },
   plugins: [require("daisyui")],
