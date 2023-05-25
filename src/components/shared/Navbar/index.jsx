@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import {
   HomeOutlined,
@@ -11,17 +12,21 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 
-import Logo from "../../../assets/images/Logo/Logo.svg"
+import Logo from "../../../assets/images/Logo/Logo.svg";
 
 const Navbar = () => {
   return (
     <>
-      <div className="navbar justify-between bg-slate-300">
+      <nav className="navbar justify-between fixed z-50 bg-transparent text-white">
         {/* Navbar Start */}
 
         <div className="flex-1">
+          {/* // Show only from xs to md */}
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost md:hidden btn-lg">
+            <label
+              tabIndex={0}
+              className="btn btn-ghost md:hidden btn-md active:text-secondary-yellow"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -41,45 +46,77 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li >
-                <a className="text-lg">Home</a>
+              <li>
+                <Link
+                  to="/"
+                  className="text-black active:bg-transparent active:text-secondary-yellow"
+                >
+                  Home
+                </Link>
               </li>
               <li>
-                <a className="text-lg">Destination</a>
+                <Link
+                  to=""
+                  className="text-black active:bg-transparent active:text-secondary-yellow"
+                >
+                  Destination
+                </Link>
               </li>
               <li>
-                <a className="text-lg">Offers</a>
+                <Link
+                  to=""
+                  className="text-black active:bg-transparent active:text-secondary-yellow"
+                >
+                  Offers
+                </Link>
               </li>
               <li>
-                <a className="text-lg">Get the app</a>
+                <Link
+                  to=""
+                  className="text-black active:bg-transparent active:text-secondary-yellow"
+                >
+                  Get the app
+                </Link>
               </li>
             </ul>
           </div>
 
-          <ul className="menu menu-horizontal hidden md:flex text-xl">
-            <li className="p-3">
+          <ul className="menu menu-horizontal hidden md:flex lg:text-base 2xl:text-xl ">
+            <li className="p-3 hover:text-secondary-yellow">
               <HomeOutlined className="p-1 hover:bg-transparent" />
-              <a className="hover:bg-transparent active:bg-transparent active:text-black p-1 pl-2">
+              <Link
+                to="/"
+                className="hover:bg-transparent active:bg-transparent active:text-black p-1 pl-2"
+              >
                 Home
-              </a>
+              </Link>
             </li>
-            <li className="p-3">
+            <li className="p-3 hover:text-secondary-yellow">
               <RocketOutlined className="p-1 hover:bg-transparent" />
-              <a className="hover:bg-transparent active:bg-transparent active:text-black p-1">
+              <Link
+                to=""
+                className="hover:bg-transparent active:bg-transparent active:text-black p-1"
+              >
                 Destinations
-              </a>
+              </Link>
             </li>
-            <li className="p-3">
+            <li className="p-3 hover:text-secondary-yellow">
               <WalletOutlined className="p-1 hover:bg-transparent" />
-              <a className="hover:bg-transparent active:bg-transparent active:text-black p-1 pr-0">
+              <Link
+                to=""
+                className="hover:bg-transparent active:bg-transparent active:text-black p-1 pr-0"
+              >
                 Offers
-              </a>
+              </Link>
             </li>
-            <li className="p-3">
+            <li className="p-3 hover:text-secondary-yellow">
               <MobileOutlined className="p-1 hover:bg-transparent" />
-              <a className="hover:bg-transparent active:bg-transparent active:text-black p-1 pr-0">
+              <Link
+                to=""
+                className="hover:bg-transparent active:bg-transparent active:text-black p-1 pr-0"
+              >
                 Get the app
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -87,39 +124,53 @@ const Navbar = () => {
         {/* Navbar Center */}
 
         <div className="navbar-center md:hidden lg:flex 2xs:flex">
-          <img src={Logo} alt="TravelTrust Logo" />
+          <Link to="/">
+            <img src={Logo} alt="TravelTrust Logo" />
+          </Link>
         </div>
 
         {/* Navbar End */}
 
         <div className="flex-1 justify-end">
-          <ul className="menu menu-horizontal hidden md:flex text-xl">
-            <li className="p-3">
+          <ul className="menu menu-horizontal hidden md:flex lg:text-base 2xl:text-xl">
+            <li className="p-3 hover:text-secondary-yellow">
               <HeartOutlined className="p-1 hover:bg-transparent" />
-              <a className="hover:bg-transparent active:bg-transparent active:text-black p-1">
+              <Link
+                to=""
+                className="hover:bg-transparent active:bg-transparent active:text-black p-1"
+              >
                 Trips
-              </a>
+              </Link>
             </li>
-            <li className="p-3">
+            <li className="p-3 hover:text-secondary-yellow">
               <ShoppingCartOutlined className="p-1 hover:bg-transparent" />
-              <a className="hover:bg-transparent active:bg-transparent active:text-black p-1">
+              <Link
+                to=""
+                className="hover:bg-transparent active:bg-transparent active:text-black p-1"
+              >
                 Cart
-              </a>
+              </Link>
             </li>
-            <li className="p-3">
+            <li className="p-3 hover:text-secondary-yellow">
               <QuestionCircleOutlined className="p-1 hover:bg-transparent" />
-              <a className="hover:bg-transparent active:bg-transparent active:text-black p-1">
+              <Link
+                to=""
+                className="hover:bg-transparent active:bg-transparent active:text-black p-1"
+              >
                 Help
-              </a>
+              </Link>
             </li>
-            <li className="p-3">
+            <li className="p-3 hover:text-secondary-yellow">
               <UserOutlined className="p-1 hover:bg-transparent" />
             </li>
           </ul>
 
           {/* // Show only from xs to md */}
           <div className="dropdown dropdown-end md:hidden ">
-            <label tabIndex={0} className="btn btn-ghost btn-circle text-xl">
+            <label
+              tabIndex={0}
+              className="btn btn-ghost btn-circle text-xl active:text-secondary-yellow"
+            >
               <div className="w-10 rounded-full flex justify-center items-center">
                 <UserOutlined className="p-0 hover:bg-transparent" />
               </div>
@@ -129,21 +180,36 @@ const Navbar = () => {
               className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
             >
               <li>
-                <a className="text-lg">Trips</a>
+                <Link
+                  to=""
+                  className="text-black active:bg-transparent active:text-secondary-yellow"
+                >
+                  Trips
+                </Link>
               </li>
               <li>
-                <a className="text-lg">Card</a>
+                <Link
+                  to=""
+                  className="text-black active:bg-transparent active:text-secondary-yellow"
+                >
+                  Card
+                </Link>
               </li>
               <li>
-                <a className="text-lg">Help</a>
+                <Link
+                  to=""
+                  className="text-black active:bg-transparent active:text-secondary-yellow"
+                >
+                  Help
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* <a className="mr-2 cursor-pointer">Login</a>
-          <a className="btn btn-sm btn-outline normal-case">Sign up</a> */}
+          {/* <Link to="" className="mr-3 cursor-pointer hover:text-secondary-yellow">Login</Link>
+          <Link to="" className="btn btn-sm bg-transparent outline outline-white outline-1 normal-case hover:bg-secondary-yellow hover:outline-secondary-yellow outline-offset-0 border-none hover:text-black">Sign up</Link> */}
         </div>
-      </div>
+      </nav>
     </>
   );
 };
