@@ -10,6 +10,7 @@ import SharedComponents from "./pages/SharedComponents";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import AboutUs from "./pages/AboutUs";
 import Cart from "./pages/Cart";
+import Favorite from "./pages/Favorite";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -21,4 +22,6 @@ export const router = createBrowserRouter([
   { path: "/privacy", element: <PrivacyPolicy /> },
   { path: "/Aboutus", element: <AboutUs /> },
   { path: "/cart", element: <Cart /> },
+  { path: "/favorite", element: <Favorite /> },
+
 ]);
