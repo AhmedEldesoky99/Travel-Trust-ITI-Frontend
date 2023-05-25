@@ -10,6 +10,8 @@ import EachGovernorate from "../EachGovernorate";
 import Sales from "../Sales";
 import TourWideCard from "../../components/shared/TourWideCard";
 import TourDetails from "../TourDetails";
+import CustomMap from "../../components/shared/Map";
+
 
 const SharedComponents = () => {
   const {
@@ -26,8 +28,9 @@ const SharedComponents = () => {
 
   return (
     <>
-      <Navbar />
       <TourDetails />
+      {/* <Navbar /> */}
+      <CustomMap height="15rem" setLocation={console.log} />
       {/* <TourWideCard /> */}
       {/* <Sales /> */}
       {/* <EachGovernorate /> */}
