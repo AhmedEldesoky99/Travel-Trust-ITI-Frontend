@@ -63,7 +63,7 @@ const Footer = () => {
           <Link to="" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
             Cairo
           </Link>
-          <Link to="" className="cursor-pointer hover:text-primary-green transition-all text-base 2xl:text-base">
+          <Link to="" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
             Hurghada
           </Link>
         </div>
@@ -93,7 +93,7 @@ const Footer = () => {
               <span className="2xs:text-xs">Download the app on </span>
               <span className="2xs:text-xs">Windows - Mac</span>
             </div>
-            <div className="absolute top-2 left-1 outline-2 outline-white outline h-12 2xs:w-[12rem] xs:w-[11rem] rounded-lg group-hover:hidden"></div>
+            <div className="absolute top-2 left-1 outline-2 outline-white outline min-h-12 2xs:w-[12rem] xs:w-[11rem] rounded-lg group-hover:hidden"></div>
           </button>
         </div>
       </div>
