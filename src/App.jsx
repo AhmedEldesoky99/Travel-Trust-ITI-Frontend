@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 //style
 import "react-toastify/dist/ReactToastify.css";
 import "antd/dist/reset.css";
+import "mapbox-gl/dist/mapbox-gl.css";
 import "./index.css";
 
 const queryClient = new QueryClient();

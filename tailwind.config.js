@@ -35,8 +35,16 @@ export default {
       'fish': "url('/src/assets/images/EachGovernorate/Fish.png')",
       'salesBG':"url('/src/assets/images/Sales/SalesBG.png')",
       'signup-admin': "url('/src/assets/images/Admin/admin-signUp.png')",
-      'login-admin': "url('/src/assets/images/Admin/admin-logIn.png')"
+      'login-admin': "url('/src/assets/images/Admin/admin-logIn.png')",
+      'salesBG': "url('/src/assets/images/Sales/SalesBG.png')",
+      'tourDetailsBG': "url('/src/assets/images/TourDetails/TourDetailsBG.png')"
+    }, height: {
+      'inherit': "inherit",
+      'fit': 'fit-content'
     },
+    minHeight: {
+      'inherit': "inherit"
+    }
   },
   plugins: [require("daisyui")],
   daisyui: {
