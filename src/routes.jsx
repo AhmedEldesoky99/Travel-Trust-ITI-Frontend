@@ -23,5 +23,4 @@ export const router = createBrowserRouter([
   { path: "/Aboutus", element: <AboutUs /> },
   { path: "/cart", element: <Cart /> },
   { path: "/favorite", element: <Favorite /> },
-
 ]);
