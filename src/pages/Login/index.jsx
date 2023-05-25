@@ -4,6 +4,7 @@ import CustomInput from '../../components/shared/FormComponents/CustomInput';
 import CustomButton from '../../components/shared/CustomButton/index';
 import Google from "../../assets/images/Logo/Google.svg";
 import Logo from '../../assets/images/Logo/Tlogo.svg';
+
 const Login = () => {
     return (
         <div className="flex flex-row 2xs:">
@@ -21,7 +22,7 @@ const Login = () => {
                     <p className='px-5 text-lg'>or with</p>
                     <hr className='h-px bg-gray-600 border-0 w-28'/>
                 </div>
-                <CustomInput/>
+                <CustomInput />
                 <CustomInput/>
                 <div className='flex flex-row mt-2 mb-6'>
                     <input type="checkbox" name="" id="" />
