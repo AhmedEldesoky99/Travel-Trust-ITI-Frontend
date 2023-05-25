@@ -8,12 +8,15 @@ import SignUp from "./pages/Signup";
 import Faq from "./pages/FAQ";
 import SharedComponents from "./pages/SharedComponents";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
-
 import AboutUs from "./pages/AboutUs";
 import EachGovernorate from "./pages/EachGovernorate";
 import Sales from "./pages/Sales";
 import TourDetails from "./pages/TourDetails";
 import SharedComponents from "./pages/SharedComponents";
+
+// Admin components
+import AdminSignUp from "./pages/Admin/adminSignup";
+import AdminLogin from "./pages/Admin/adminLogin";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -27,4 +30,8 @@ export const router = createBrowserRouter([
   { path: "/faq", element: <Faq /> },
   { path: "/privacy", element: <PrivacyPolicy /> },
   { path: "/Aboutus", element: <AboutUs /> },
+  //admin
+  { path: "/admin/signup", element: <AdminSignUp /> },
+  { path: "/admin/login", element: <AdminLogin /> },
+
 ]);
