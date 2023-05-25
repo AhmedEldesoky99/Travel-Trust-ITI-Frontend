@@ -33,8 +33,15 @@ export default {
       'g-logo': "url('/src/assets/images/Logo/g-logo.png')",
       'eachGovernorateBG': "url('/src/assets/images/EachGovernorate/EachGovernorateBG.png')",
       'fish': "url('/src/assets/images/EachGovernorate/Fish.png')",
-      'salesBG':"url('/src/assets/images/Sales/SalesBG.png')"
+      'salesBG': "url('/src/assets/images/Sales/SalesBG.png')",
+      'tourDetailsBG': "url('/src/assets/images/TourDetails/TourDetailsBG.png')"
+    }, height: {
+      'inherit': "inherit",
+      'fit': 'fit-content'
     },
+    minHeight: {
+      'inherit': "inherit"
+    }
   },
   plugins: [require("daisyui")],
   daisyui: {
