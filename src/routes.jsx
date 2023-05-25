@@ -12,7 +12,7 @@ import AboutUs from "./pages/AboutUs";
 import EachGovernorate from "./pages/EachGovernorate";
 import Sales from "./pages/Sales";
 import TourDetails from "./pages/TourDetails";
-import SharedComponents from "./pages/SharedComponents";
+
 
 // Admin components
 import AdminSignUp from "./pages/Admin/adminSignup";
