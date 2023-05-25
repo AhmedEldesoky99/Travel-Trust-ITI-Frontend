@@ -9,6 +9,7 @@ import CustomButton from "../../components/shared/CustomButton";
 import EachGovernorate from "../EachGovernorate";
 import Sales from "../Sales";
 import TourWideCard from "../../components/shared/TourWideCard";
+import CustomMap from "../../components/shared/Map";
 
 const SharedComponents = () => {
   const {
@@ -26,7 +27,8 @@ const SharedComponents = () => {
   return (
     <>
       {/* <Navbar /> */}
-      <TourWideCard />
+      <CustomMap height="15rem" setLocation={console.log} />
+      {/* <TourWideCard /> */}
       {/* <Sales /> */}
       {/* <EachGovernorate /> */}
       {/* <form onSubmit={handleSubmit(registerHandler)}>
