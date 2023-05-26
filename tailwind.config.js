@@ -40,7 +40,8 @@ export default {
         'signup-admin': "url('/src/assets/images/Admin/admin-signUp.png')",
         'login-admin': "url('/src/assets/images/Admin/admin-logIn.png')",
         'salesBG': "url('/src/assets/images/Sales/SalesBG.png')",
-        'tourDetailsBG': "url('/src/assets/images/TourDetails/TourDetailsBG.png')"
+        'tourDetailsBG': "url('/src/assets/images/TourDetails/TourDetailsBG.png')",
+        'allToursBG': "url('/src/assets/images/AllTours/AllToursBG.png')",
       },
     },
 
