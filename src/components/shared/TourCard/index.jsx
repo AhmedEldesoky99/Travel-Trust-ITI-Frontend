@@ -117,11 +117,11 @@ const TourCard = () => {
             </div>
           </div>
           <CustomButton
+            // onClick={() => {}}
+            // isLoading
             value="View more"
             type="primary"
             width="sm:w-full xl:w-fit"
-            // onClick={() => {}}
-            // isLoading
           />
         </div>
       </div>
