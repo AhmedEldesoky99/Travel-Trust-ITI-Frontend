@@ -1,6 +1,7 @@
 import Icon from "../../../utils/icons";
 import { Link } from "react-router-dom";
-
+//assets
+import JoinUsImage from "../../../assets/images/Home/JoinUs/JoinUs.png";
 const JoinUs = () => {
   return (
     <>
@@ -34,7 +35,7 @@ const JoinUs = () => {
             <div className="relative w-full h-full  xl:w-[55%] overflow-hidden rounded-xl">
               <img
                 className="w-full h-full transition duration-700 transform ease-in-out cursor-pointer hover:scale-125 object-cover rounded-xl "
-                src="src/assets/images/Home/JoinUs/JoinUs.png"
+                src={JoinUsImage}
                 alt="Dahab"
               />
               <div className="absolute left-2 bottom-2 ">
