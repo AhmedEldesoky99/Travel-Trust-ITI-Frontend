@@ -22,38 +22,35 @@ export default {
         "tertiary-red": "#DB3A34",
         "light-gray": "#585858",
         "glass-gray": "#767676",
+      }, backgroundImage: {
+        "join-us": "url('/src/assets/images/joinbg.jpg')",
+        "login-user": "url('/src/assets/images/login user.jpg')",
+        "sign-up-user": "url('/src/assets/images/signup user.jpg')",
+        "logo-join": "url('/src/assets/images/Logo/logo.png')",
+        "g-logo": "url('/src/assets/images/Logo/g-logo.png')",
+        eachGovernorateBG:
+          "url('/src/assets/images/EachGovernorate/EachGovernorateBG.png')",
+        fish: "url('/src/assets/images/EachGovernorate/Fish.png')",
+        salesBG: "url('/src/assets/images/Sales/SalesBG.png')",
+        homeHeader: "url('/src/assets/images/Home/Header/Header.jpg')",
+        salesHeader: "url('/src/assets/images/Home/SalesHeader/SalesHeader.png')",
+        egyptionPharaoh:
+          "url('/src/assets/images/Home/VideoSection/EgyptionPharaoh.png')",
+        joinUsHome: "url('/src/assets/images/Home/JoinUs/JoinUs.png')",
+        emptyCart: "url('/src/assets/images/Cart/emptyCart.png')",
+        emptyFav: "url('/src/assets/images/Favorite/emptyFav.png')",
+        "signup-admin": "url('/src/assets/images/Admin/admin-signUp.png')",
+        "login-admin": "url('/src/assets/images/Admin/admin-logIn.png')",
+        tourDetailsBG: "url('/src/assets/images/TourDetails/TourDetailsBG.png')",
+        allToursBG: "url('/src/assets/images/AllTours/AllToursBG.png')",
+      }, height: {
+        inherit: "inherit",
+        fit: "fit-content",
+      },
+      minHeight: {
+        inherit: "inherit",
       },
     },
-    backgroundImage: {
-      "join-us": "url('/src/assets/images/joinbg.jpg')",
-      "login-user": "url('/src/assets/images/login user.jpg')",
-      "sign-up-user": "url('/src/assets/images/signup user.jpg')",
-      "logo-join": "url('/src/assets/images/Logo/logo.png')",
-      "g-logo": "url('/src/assets/images/Logo/g-logo.png')",
-      eachGovernorateBG:
-        "url('/src/assets/images/EachGovernorate/EachGovernorateBG.png')",
-      fish: "url('/src/assets/images/EachGovernorate/Fish.png')",
-      salesBG: "url('/src/assets/images/Sales/SalesBG.png')",
-      homeHeader: "url('/src/assets/images/Home/Header/Header.jpg')",
-      salesHeader: "url('/src/assets/images/Home/SalesHeader/SalesHeader.png')",
-      egyptionPharaoh:
-        "url('/src/assets/images/Home/VideoSection/EgyptionPharaoh.png')",
-      joinUsHome: "url('/src/assets/images/Home/JoinUs/JoinUs.png')",
-      emptyCart: "url('/src/assets/images/Cart/emptyCart.png')",
-      emptyFav: "url('/src/assets/images/Favorite/emptyFav.png')",
-      "signup-admin": "url('/src/assets/images/Admin/admin-signUp.png')",
-      "login-admin": "url('/src/assets/images/Admin/admin-logIn.png')",
-      tourDetailsBG: "url('/src/assets/images/TourDetails/TourDetailsBG.png')",
-      allToursBG: "url('/src/assets/images/AllTours/AllToursBG.png')",
-    },
-  },
-
-  height: {
-    inherit: "inherit",
-    fit: "fit-content",
-  },
-  minHeight: {
-    inherit: "inherit",
   },
 
   plugins: [require("daisyui")],

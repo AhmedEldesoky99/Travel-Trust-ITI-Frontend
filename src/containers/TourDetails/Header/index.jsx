@@ -5,7 +5,7 @@ import "./RateStyle.css";
 
 const Header = () => {
   return (
-    <header className="hero min-h-[570px] bg-tourDetailsBG bg-bottom">
+    <header className="hero min-h-[55vh] bg-tourDetailsBG bg-bottom">
       <div className="hero-overlay bg-black/[0.3]"></div>
       <div className="container">
         <div className="hero-content mx-auto p-0 justify-center text-white">
