@@ -9,8 +9,7 @@ import {
 } from "@ant-design/icons";
 
 import CustomButton from "../CustomButton";
-
-import CardImage from "../../../assets/images/TourCard/tour1.png";
+import CardImage from "../../../assets/images/AboutUs/PeopleCamping.jpg";
 import AdminImage from "../../../assets/images/TourCard/admin.jpeg";
 import ShipIcon from "../../../assets/images/TourCard/ship.svg";
 import SkateIcon from "../../../assets/images/TourCard/skate.svg";

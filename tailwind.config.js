@@ -33,8 +33,11 @@ export default {
       'g-logo': "url('/src/assets/images/Logo/g-logo.png')",
       'eachGovernorateBG': "url('/src/assets/images/EachGovernorate/EachGovernorateBG.png')",
       'fish': "url('/src/assets/images/EachGovernorate/Fish.png')",
-      'salesBG':"url('/src/assets/images/Sales/SalesBG.png')"
-    },
+      'salesBG':"url('/src/assets/images/Sales/SalesBG.png')",
+      'homeHeader':"url('src/assets/images/Home/Header/Header.jpg')",
+      'salesHeader':"url('src/assets/images/Home/SalesHeader/SalesHeader.png')",
+      'egyptionPharaoh':"url('src/assets/images/Home/VideoSection/EgyptionPharaoh.png')",
+    },'joinUsHome' : "url('src/assets/images/Home/JoinUs/JoinUs.png')"
   },
   plugins: [require("daisyui")],
   daisyui: {
