@@ -12,7 +12,7 @@ const HeaderSection = () => {
             className="lg:hero-content justify-start md:gap-24 items-start"
           >
             <div>
-              <div className="hidden lg:flex flex-col gap-8 items-center mt-2 ">
+              <div className="hidden lg:flex flex-col gap-8 items-center -mt-12 ">
                 <Icon name="instagram" />
                 <Icon name="facebook" />
                 <Icon name="twitter" />

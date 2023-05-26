@@ -10,48 +10,49 @@ const CustomSearch = () => (
     <div className=" md:w-[61.2%] mt-8">
       <div className="relative flex flex-col justify-between">
         <div>
-        <Select
-    mode="multiple"
-    style={{
-      width: '100%',
-    }}
-    placeholder="where are you travelling?"
-    onChange={handleChange}
-    optionLabelProp="label"
-  >
-    <Option value="china" label="China">
-      <Space>
-        <span role="img" aria-label="China">
-          🇨🇳
-        </span>
-        China (中国)
-      </Space>
-    </Option>
-    <Option value="usa" label="USA">
-      <Space>
-        <span role="img" aria-label="USA">
-          🇺🇸
-        </span>
-        USA (美国)
-      </Space>
-    </Option>
-    <Option value="japan" label="Japan">
-      <Space>
-        <span role="img" aria-label="Japan">
-          🇯🇵
-        </span>
-        Japan (日本)
-      </Space>
-    </Option>
-    <Option value="korea" label="Korea">
-      <Space>
-        <span role="img" aria-label="Korea">
-          🇰🇷
-        </span>
-        Korea (韩国)
-      </Space>
-    </Option>
-  </Select>
+          <Select
+            className="custom-search"
+            mode="multiple"
+            style={{
+              width: "100%",
+            }}
+            placeholder="where are you travelling?"
+            onChange={handleChange}
+            optionLabelProp="label"
+          >
+            <Option value="china" label="China">
+              <Space>
+                <span role="img" aria-label="China">
+                  🇨🇳
+                </span>
+                China (中国)
+              </Space>
+            </Option>
+            <Option value="usa" label="USA">
+              <Space>
+                <span role="img" aria-label="USA">
+                  🇺🇸
+                </span>
+                USA (美国)
+              </Space>
+            </Option>
+            <Option value="japan" label="Japan">
+              <Space>
+                <span role="img" aria-label="Japan">
+                  🇯🇵
+                </span>
+                Japan (日本)
+              </Space>
+            </Option>
+            <Option value="korea" label="Korea">
+              <Space>
+                <span role="img" aria-label="Korea">
+                  🇰🇷
+                </span>
+                Korea (韩国)
+              </Space>
+            </Option>
+          </Select>
         </div>
         <div>
           <button
