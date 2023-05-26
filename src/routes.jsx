@@ -12,6 +12,7 @@ import AboutUs from "./pages/AboutUs";
 import EachGovernorate from "./pages/EachGovernorate";
 import Sales from "./pages/Sales";
 import TourDetails from "./pages/TourDetails";
+import AllTours from "./pages/AllTours";
 
 
 // Admin components
@@ -30,6 +31,7 @@ export const router = createBrowserRouter([
   { path: "/faq", element: <Faq /> },
   { path: "/privacy", element: <PrivacyPolicy /> },
   { path: "/Aboutus", element: <AboutUs /> },
+  { path: "/all-tours", element: <AllTours /> },
   //admin
   { path: "/admin/signup", element: <AdminSignUp /> },
   { path: "/admin/login", element: <AdminLogin /> },
