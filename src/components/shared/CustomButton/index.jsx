@@ -3,7 +3,7 @@ import React from "react";
 
 const CustomButton = ({
   value,
-  type ,
+  type = 'primary' ,
   width ,
   isLoading,
   onClick = () => {},
@@ -18,7 +18,7 @@ const CustomButton = ({
     <button
       disabled={isLoading}
       onClick={onClick}
-      className={`btn text-lg normal-case px-[1.125rem] ${width} ${
+      className={`btn 2xs:text-sm md:text-base 2xl:text-lg normal-case px-[1.125rem] ${width} ${
         buttonTypes[type]
       } ${isLoading && "loading"} `}
     >

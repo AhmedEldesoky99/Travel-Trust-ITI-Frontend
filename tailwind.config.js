@@ -4,9 +4,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",],
   theme: {
     extend: {
-      fontFamily:{
-        "inter":['inter'],
-        "header":['Hachi Maru Pop','cursive']
+      fontFamily: {
+        "inter": ['inter'],
+        "header": ['Hachi Maru Pop', 'cursive']
       },
       screens: {
         '2xs': '320px',
@@ -31,7 +31,34 @@ export default {
       'sign-up-user': "url('/src/assets/images/signup user.jpg')",
       'logo-join': "url('/src/assets/images/Logo/logo.png')",
       'g-logo': "url('/src/assets/images/Logo/g-logo.png')",
+      'eachGovernorateBG': "url('/src/assets/images/EachGovernorate/EachGovernorateBG.png')",
+      'fish': "url('/src/assets/images/EachGovernorate/Fish.png')",
+      'salesBG':"url('/src/assets/images/Sales/SalesBG.png')",
+      'emptyCart':"url('/src/assets/images/Cart/emptyCart.png')",
+      'emptyFav':"url('/src/assets/images/Favorite/emptyFav.png')",
+
+      }, height: {
+        'inherit': "inherit",
+        'fit': 'fit-content'
+      }, minHeight: {
+        'inherit': "inherit"
+      }, backgroundImage: {
+        'join-us': "url('/src/assets/images/joinbg.jpg')",
+        'login-user': "url('/src/assets/images/login user.jpg')",
+        'sign-up-user': "url('/src/assets/images/signup user.jpg')",
+        'logo-join': "url('/src/assets/images/Logo/logo.png')",
+        'g-logo': "url('/src/assets/images/Logo/g-logo.png')",
+        'eachGovernorateBG': "url('/src/assets/images/EachGovernorate/EachGovernorateBG.png')",
+        'fish': "url('/src/assets/images/EachGovernorate/Fish.png')",
+        'salesBG': "url('/src/assets/images/Sales/SalesBG.png')",
+        'signup-admin': "url('/src/assets/images/Admin/admin-signUp.png')",
+        'login-admin': "url('/src/assets/images/Admin/admin-logIn.png')",
+        'salesBG': "url('/src/assets/images/Sales/SalesBG.png')",
+        'tourDetailsBG': "url('/src/assets/images/TourDetails/TourDetailsBG.png')",
+        'allToursBG': "url('/src/assets/images/AllTours/AllToursBG.png')",
+      },
     },
+
   },
   plugins: [require("daisyui")],
   daisyui: {
