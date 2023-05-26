@@ -26,9 +26,12 @@ const TourCard = () => {
 
   return (
     <div className="card card-compact shadow-xl group">
-
       <figure className="relative overflow-visible">
-        <img className="w-full object-cover rounded-t-[14px]" src={CardImage} alt="Tour Image" />
+        <img
+          className="w-full object-cover rounded-t-[14px]"
+          src={CardImage}
+          alt="Tour Image"
+        />
 
         <div className="group-hover:translate-y-0 group-hover:opacity-30 opacity-0 absolute top-0 w-full h-full bg-black rounded-t-[14px] transition-all duration-500 ease-out flex items-start flex-col">
           <div className="flex flex-col ml-5 mt-6 gap-3">
@@ -72,24 +75,27 @@ const TourCard = () => {
             />
           </button>
         </div>
-
       </figure>
 
       <div className="card-body !pt-12 space-y-3 gap-0">
         <div className="flex justify-between items-center">
           <div className="flex justify-center items-center space-x-2">
             <EnvironmentOutlined className="2xs:text-base 2xl:text-lg" />
-            <span className="2xs:text-base 2xl:text-lg text-light-gray h-5">Alexandria</span>
+            <span className="2xs:text-base 2xl:text-lg text-light-gray h-5">
+              Alexandria
+            </span>
           </div>
           <div className="flex justify-center items-center space-x-1">
-            <span className="2xs:text-2xl md:text-xl xl:text-2xl font-bold">$2,900</span>{" "}
+            <span className="2xs:text-2xl md:text-xl xl:text-2xl font-bold">
+              $2,900
+            </span>{" "}
             <span className="">/</span>
             <UserOutlined className="2xs:text-xl md:text-lg" />
           </div>
         </div>
 
         <h2 className="card-title 2xs:text-lg 2xl:text-xl">
-        Giza in 6 days explore egypt  
+          Giza in 6 days explore egypt
         </h2>
 
         <div className="flex items-center space-x-2">
@@ -119,8 +125,6 @@ const TourCard = () => {
           />
         </div>
       </div>
-
-
     </div>
   );
 };
