@@ -5,7 +5,6 @@ import {
   ClockCircleOutlined,
   CalendarOutlined,
   UserOutlined,
-  CheckSquareOutlined,
 } from "@ant-design/icons";
 
 import CardImage from "../../../assets/images/TourCard/tour1.png";
