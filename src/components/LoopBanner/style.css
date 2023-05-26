@@ -1,8 +1,9 @@
-.ant-alert {
+ .ant-alert {
     padding: 3rem 0rem !important;
     background-color: #eaeaea !important;
     opacity: 90% !important;
 }
-.anticon  {
+
+.bannerLoop .ant-alert-warning .ant-alert-icon  {
     display: none !important;
 }

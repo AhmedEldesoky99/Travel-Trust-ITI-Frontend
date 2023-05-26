@@ -5,7 +5,7 @@ import  "../LoopBanner/style.css"
 import Icon from "../../utils/icons";
 
 const LoopBanner = () => (
-  <div className="w-full min-h-[540px] flex flex-col justify-center">
+  <div className="w-full min-h-[540px] flex flex-col justify-center bannerLoop">
     <Alert
       banner
       message={
