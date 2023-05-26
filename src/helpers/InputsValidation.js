@@ -1,21 +1,48 @@
+import { emailPattern } from "./regex";
+import { phonePatterm } from "./regex";
+import { nationalIdPattern } from "./regex";
+
 export const ruleValidation = {
-    username: {
-      required: "Name is required",
-      minLength: { value: 5, message: "Min length is 5" },
-      maxLength: { value: 20, message: "Max length is 20" },
+  username: {
+    required: "Name is required",
+    minLength: {
+      value: 3,
+      message: "your name should contain at least 3 characters",
     },
-    email: {
-      required: "Email is required",
-      pattern: {
-        value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-        message: "Please enter a valid email format",
-      },
+    maxLength: {
+      value: 20,
+      message: "your name exceed maximum length of 20 characters",
     },
-    password: {
-      required: "Password is required",
-      minLength: { value: 5, message: "Min length is 5" },
+  },
+  email: {
+    required: "Email is required",
+    pattern: {
+      value: emailPattern,
+      message: "Please enter a valid email format",
     },
-    confirm_password: {
-      required: "Confirm Password is required",
+  },
+  phone_Num: {
+    required: "Phone number is required",
+    pattern: {
+      value: phonePatterm,
+      message: "Please enter a valid phone number",
     },
-  };
+  },
+  national_ID: {
+    required: "National Id is required",
+    pattern: {
+      value: nationalIdPattern,
+      message: "Please enter a valid National Id",
+    },
+  },
+  password: {
+    required: "Password is required",
+    minLength: {
+      value: 5,
+      message: "your password should contain at least 5 characters",
+    },
+  },
+  confirm_password: {
+    required: "Confirm Password is required",
+  },
+};

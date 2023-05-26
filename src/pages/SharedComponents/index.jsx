@@ -9,6 +9,10 @@ import CustomButton from "../../components/shared/CustomButton";
 import EachGovernorate from "../EachGovernorate";
 import Sales from "../Sales";
 import TourWideCard from "../../components/shared/TourWideCard";
+import TourDetails from "../TourDetails";
+import CustomMap from "../../components/shared/Map";
+import AllTours from './../AllTours/index';
+
 
 const SharedComponents = () => {
   const {
@@ -25,11 +29,13 @@ const SharedComponents = () => {
 
   return (
     <>
-      {/* <Navbar /> */}
-      <TourWideCard />
+      <Navbar />
+      {/* <TourDetails /> */}
+      {/* <CustomMap height="15rem" setLocation={console.log} /> */}
+      {/* <TourWideCard /> */}
       {/* <Sales /> */}
       {/* <EachGovernorate /> */}
-      {/* <form onSubmit={handleSubmit(registerHandler)}>
+      {/* <form className="mt-20" onSubmit={handleSubmit(registerHandler)}>
         <CustomInput
           type="password"
           label="Password"
@@ -51,9 +57,10 @@ const SharedComponents = () => {
           <p className="text-red-600">Password doesn't match</p>
         ) : null}
         <CustomButton value="Sign up" type="primary" />
-      </form>
-      <TourCard /> */}
-      {/* <Footer /> */}
+      </form> */}
+      {/* <TourCard /> */}
+      <AllTours/>
+      <Footer />
     </>
   );
 };
