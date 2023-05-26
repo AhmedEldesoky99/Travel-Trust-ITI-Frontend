@@ -37,7 +37,23 @@ export default {
       'homeHeader':"url('src/assets/images/Home/Header/Header.jpg')",
       'salesHeader':"url('src/assets/images/Home/SalesHeader/SalesHeader.png')",
       'egyptionPharaoh':"url('src/assets/images/Home/VideoSection/EgyptionPharaoh.png')",
-    },'joinUsHome' : "url('src/assets/images/Home/JoinUs/JoinUs.png')"
+      'joinUsHome' : "url('src/assets/images/Home/JoinUs/JoinUs.png')"
+      'emptyCart':"url('/src/assets/images/Cart/emptyCart.png')",
+      'emptyFav':"url('/src/assets/images/Favorite/emptyFav.png')",
+        'signup-admin': "url('/src/assets/images/Admin/admin-signUp.png')",
+        'login-admin': "url('/src/assets/images/Admin/admin-logIn.png')",
+        'tourDetailsBG': "url('/src/assets/images/TourDetails/TourDetailsBG.png')",
+        'allToursBG': "url('/src/assets/images/AllTours/AllToursBG.png')",
+    },
+
+      }, height: {
+        'inherit': "inherit",
+        'fit': 'fit-content'
+      }, minHeight: {
+        'inherit': "inherit"
+      }, 
+    },
+
   },
   plugins: [require("daisyui")],
   daisyui: {

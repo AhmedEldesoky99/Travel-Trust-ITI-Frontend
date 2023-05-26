@@ -19,7 +19,7 @@ const CustomInput = ({ type, name, label, rule, register, errors }) => {
           type={showPassword ? "text" : type}
           id={label}
           name={name}
-          className={`block  px-2.5 pb-2.5 pt-4 w-full text-black bg-transparent rounded-lg border border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer ${
+          className={`2xl:h-[4rem] block px-2.5 pb-2.5 pt-4 w-full text-black bg-transparent rounded-lg border border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer ${
             errors[name] &&
             "border border-tertiary-red focus:border-tertiary-red focus:outline-none"
           }`}
@@ -42,7 +42,7 @@ const CustomInput = ({ type, name, label, rule, register, errors }) => {
 
         <label
           htmlFor={label}
-          className={`absolute 2xs:text-sm 2xl:text-lg text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1 ${
+          className={`absolute 2xs:text-sm 2xl:text-lg text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-black peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 2xl:peer-focus:-translate-y-5 left-1 ${
             errors[name] && "text-tertiary-red peer-focus:text-tertiary-red"
           }`}
         >
