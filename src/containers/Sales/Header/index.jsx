@@ -2,7 +2,7 @@ import React from "react";
 
 const Header = () => {
   return (
-    <header className="hero min-h-[70vh] bg-salesBG">
+    <header className="hero min-h-[570px] bg-salesBG">
       <div className="hero-overlay bg-black/[0.6]"></div>
       <div className="container">
         <div className="hero-content p-0 justify-start text-white mb-2">

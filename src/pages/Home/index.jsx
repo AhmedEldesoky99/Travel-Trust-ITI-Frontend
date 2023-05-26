@@ -1,7 +1,34 @@
-// import React from "react";
+import Categories from "../../containers/Home/Categories";
+import HeaderSection from "../../containers/Home/Header";
+import Recommended from "../../containers/Home/Recommendation";
+import Sales from "../../containers/Home/Sales";
+import TopDestinations from "../../containers/Home/TopDestinations";
+import Footer from "../../components/shared/Footer"
+import DreamTour from "../../containers/Home/DreamTour";
+import VideoSection from "../../containers/Home/VideoSection";
+import Testimonials from "../../containers/Home/Testimonials";
+import JoinUs from "../../containers/Home/JoinUs";
+import Partners from "../../containers/Home/Partners";
+import Navbar from "../../components/shared/Navbar"
+
 
 const Home = () => {
-  return <div>home</div>;
+  return (
+    <>
+    <Navbar/>
+    <HeaderSection/>
+    <Recommended/>
+    <Categories/>
+    <TopDestinations/>
+    <Sales/>
+    <DreamTour/>
+    <VideoSection/>
+    <Testimonials/>
+    <JoinUs/>
+    <Partners/>
+    <Footer/>
+    </>
+  )
 };
 
 export default Home;

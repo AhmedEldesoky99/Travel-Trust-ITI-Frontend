@@ -9,6 +9,8 @@ import Faq from "./pages/FAQ";
 import SharedComponents from "./pages/SharedComponents";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import AboutUs from "./pages/AboutUs";
+import Cart from "./pages/Cart";
+import Favorite from "./pages/Favorite";
 import EachGovernorate from "./pages/EachGovernorate";
 import Sales from "./pages/Sales";
 import TourDetails from "./pages/TourDetails";
@@ -32,6 +34,8 @@ export const router = createBrowserRouter([
   { path: "/faq", element: <Faq /> },
   { path: "/privacy", element: <PrivacyPolicy /> },
   { path: "/Aboutus", element: <AboutUs /> },
+  { path: "/cart", element: <Cart /> },
+  { path: "/favorite", element: <Favorite /> },
   { path: "/all-tours", element: <AllTours /> },
   { path: "/user-profile/:id", element: <UserProfile /> },
   //admin
