@@ -4,7 +4,8 @@ import { useForm } from "react-hook-form";
 import CustomInput from "../../components/shared/FormComponents/CustomInput";
 import CustomButton from "../../components/shared/CustomButton/index";
 import Google from "../../assets/images/Logo/Google.svg";
-import Logo from '../../assets/images/Logo/Tlogo.svg';
+import Logo from "../../assets/images/Logo/Tlogo.svg";
+
 
 const Login = () => {
   const {
