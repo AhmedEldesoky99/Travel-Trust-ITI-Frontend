@@ -12,11 +12,12 @@ import AboutUs from "./pages/AboutUs";
 import EachGovernorate from "./pages/EachGovernorate";
 import Sales from "./pages/Sales";
 import TourDetails from "./pages/TourDetails";
-import SharedComponents from "./pages/SharedComponents";
+
 
 // Admin components
 import AdminSignUp from "./pages/Admin/adminSignup";
 import AdminLogin from "./pages/Admin/adminLogin";
+import DashBoard from "./pages/Admin/DashBoard";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -31,7 +32,7 @@ export const router = createBrowserRouter([
   { path: "/privacy", element: <PrivacyPolicy /> },
   { path: "/Aboutus", element: <AboutUs /> },
   //admin
+  { path: "/admin", element: <DashBoard /> },
   { path: "/admin/signup", element: <AdminSignUp /> },
   { path: "/admin/login", element: <AdminLogin /> },
-
 ]);
