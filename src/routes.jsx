@@ -16,6 +16,7 @@ import EachGovernorate from "./pages/EachGovernorate";
 import Sales from "./pages/Sales";
 import TourDetails from "./pages/TourDetails";
 import AllTours from "./pages/AllTours";
+import UserProfile from "./pages/UserProfile";
 import AdminSignUp from "./pages/Admin/adminSignup";
 import AdminLogin from "./pages/Admin/adminLogin";
 
@@ -25,9 +26,9 @@ export const router = createBrowserRouter([
   { path: "/join", element: <JoinUs /> },
   { path: "/login", element: <Login /> },
   { path: "/signup", element: <SignUp /> },
-  { path: "/each-governorate", element: <EachGovernorate /> },
+  { path: "/each-governorate/:id", element: <EachGovernorate /> },
   { path: "/sales", element: <Sales /> },
-  { path: "/tour-details", element: <TourDetails /> },
+  { path: "/tour-details/:id", element: <TourDetails /> },
   { path: "/shared", element: <SharedComponents /> },
   { path: "/faq", element: <Faq /> },
   { path: "/privacy", element: <PrivacyPolicy /> },
@@ -36,6 +37,8 @@ export const router = createBrowserRouter([
   { path: "/favorite", element: <Favorite /> },
   { path: "/search", element: <Search /> },
   { path: "/all-tours", element: <AllTours /> },
+  { path: "/user-profile/:id", element: <UserProfile /> },
+  //admin
   { path: "/admin/signup", element: <AdminSignUp /> },
   { path: "/admin/login", element: <AdminLogin /> },
 ]);
