@@ -14,13 +14,17 @@ import Favorite from "./pages/Favorite";
 import EachGovernorate from "./pages/EachGovernorate";
 import Sales from "./pages/Sales";
 import TourDetails from "./pages/TourDetails";
+
+
 import AllTours from "./pages/AllTours";
 import UserProfile from "./pages/UserProfile";
+
 
 
 // Admin components
 import AdminSignUp from "./pages/Admin/adminSignup";
 import AdminLogin from "./pages/Admin/adminLogin";
+import DashBoard from "./pages/Admin/DashBoard";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -39,7 +43,7 @@ export const router = createBrowserRouter([
   { path: "/all-tours", element: <AllTours /> },
   { path: "/user-profile/:id", element: <UserProfile /> },
   //admin
+  { path: "/admin", element: <DashBoard /> },
   { path: "/admin/signup", element: <AdminSignUp /> },
   { path: "/admin/login", element: <AdminLogin /> },
-
 ]);
