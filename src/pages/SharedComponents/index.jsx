@@ -11,6 +11,8 @@ import Sales from "../Sales";
 import TourWideCard from "../../components/shared/TourWideCard";
 import TourDetails from "../TourDetails";
 import CustomMap from "../../components/shared/Map";
+import AllTours from './../AllTours/index';
+import UserProfile from "../UserProfile";
 
 
 const SharedComponents = () => {
@@ -28,9 +30,9 @@ const SharedComponents = () => {
 
   return (
     <>
-      <TourDetails />
-      {/* <Navbar /> */}
-      <CustomMap height="15rem" setLocation={console.log} />
+      <Navbar />
+      {/* <TourDetails /> */}
+      {/* <CustomMap height="15rem" setLocation={console.log} /> */}
       {/* <TourWideCard /> */}
       {/* <Sales /> */}
       {/* <EachGovernorate /> */}
@@ -58,6 +60,8 @@ const SharedComponents = () => {
         <CustomButton value="Sign up" type="primary" />
       </form> */}
       {/* <TourCard /> */}
+      {/* <AllTours/> */}
+      <UserProfile/>
       <Footer />
     </>
   );

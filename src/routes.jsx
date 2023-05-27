@@ -9,9 +9,16 @@ import Faq from "./pages/FAQ";
 import SharedComponents from "./pages/SharedComponents";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import AboutUs from "./pages/AboutUs";
+import Cart from "./pages/Cart";
+import Favorite from "./pages/Favorite";
 import EachGovernorate from "./pages/EachGovernorate";
 import Sales from "./pages/Sales";
 import TourDetails from "./pages/TourDetails";
+
+
+import AllTours from "./pages/AllTours";
+import UserProfile from "./pages/UserProfile";
+
 
 
 // Admin components
@@ -24,13 +31,17 @@ export const router = createBrowserRouter([
   { path: "/join", element: <JoinUs /> },
   { path: "/login", element: <Login /> },
   { path: "/signup", element: <SignUp /> },
-  { path: "/each-governorate", element: <EachGovernorate /> },
+  { path: "/each-governorate/:id", element: <EachGovernorate /> },
   { path: "/sales", element: <Sales /> },
-  { path: "/tour-details", element: <TourDetails /> },
+  { path: "/tour-details/:id", element: <TourDetails /> },
   { path: "/shared", element: <SharedComponents /> },
   { path: "/faq", element: <Faq /> },
   { path: "/privacy", element: <PrivacyPolicy /> },
   { path: "/Aboutus", element: <AboutUs /> },
+  { path: "/cart", element: <Cart /> },
+  { path: "/favorite", element: <Favorite /> },
+  { path: "/all-tours", element: <AllTours /> },
+  { path: "/user-profile/:id", element: <UserProfile /> },
   //admin
   { path: "/admin", element: <DashBoard /> },
   { path: "/admin/signup", element: <AdminSignUp /> },

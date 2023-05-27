@@ -22,7 +22,7 @@ export default {
         "tertiary-red": "#DB3A34",
         "light-gray": "#585858",
         "glass-gray": "#767676",
-        
+
       }, backgroundImage: {
         "join-us": "url('/src/assets/images/joinbg.jpg')",
         "login-user": "url('/src/assets/images/login user.jpg')",
