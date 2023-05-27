@@ -35,7 +35,7 @@ const VideoSection = () => {
     <div className="hero min-h-[720px] bg-cover bg-center mb-24 relative">
       <video
         ref={videoRef}
-        className={`absolute inset-0 object-cover w-full  ${
+        className={`absolute inset-0 object-cover w-full h-full ${
           isPlaying ? "" : "brightness-[0.6]"
         }`}
         autoPlay={false}
