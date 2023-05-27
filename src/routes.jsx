@@ -11,6 +11,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import AboutUs from "./pages/AboutUs";
 import Cart from "./pages/Cart";
 import Favorite from "./pages/Favorite";
+import Search from "./pages/Search";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -23,4 +24,5 @@ export const router = createBrowserRouter([
   { path: "/Aboutus", element: <AboutUs /> },
   { path: "/cart", element: <Cart /> },
   { path: "/favorite", element: <Favorite /> },
+  { path: "/search", element: <Search /> },
 ]);

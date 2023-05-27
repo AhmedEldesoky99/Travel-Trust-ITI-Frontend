@@ -7,6 +7,7 @@ import CheckDestenations from "../../containers/EachGovernorate/CheckDestenation
 
 const Favorite = () => {
   const [items] = useState(0);
+  const [recommended] = useState(4);
   const tourCards = [];
   for (let i = 0; i < items; i += 4) {
     const row = [];
@@ -18,6 +19,22 @@ const Favorite = () => {
       );
     }
     tourCards.push(
+      <div key={i} className="flex md:flex-row 2xs:flex-col gap-5">
+        {row}
+      </div>
+    );
+  }
+  const recommendedCards = [];
+  for (let i = 0; i < recommended; i += 4) {
+    const row = [];
+    for (let j = 0; j < 4 && i + j < recommended; j++) {
+      row.push(
+        <div key={i + j} className="max-h-[534px] max-w-[404px]">
+          <TourCard />
+        </div>
+      );
+    }
+    recommendedCards.push(
       <div key={i} className="flex md:flex-row 2xs:flex-col gap-5">
         {row}
       </div>
@@ -42,8 +59,14 @@ const Favorite = () => {
             <p className="xl:text-lg lg:text-base 2xs:text-sm text-center">When there is something you want to save, just click the heart icon shown on each tour. <br />
 You will find all the tours you&apos;ve saved here.</p>
           </div>
-          <div>
-            <CheckDestenations />
+          <div className="flex flex-col ">
+            <div className="flex flex-row ">
+              <p className="text-3xl">Check out these Recommended Tours</p>
+              <a href="" className="text-xl underline font-medium text-[#009EB7]">Find more things to do</a>
+            </div>
+            <div className="flex justify-center">
+              {recommendedCards}
+            </div>
           </div>
         </div>
       )}
