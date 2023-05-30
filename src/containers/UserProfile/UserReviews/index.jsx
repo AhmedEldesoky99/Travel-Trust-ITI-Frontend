@@ -8,11 +8,14 @@ const UserReviews = () => {
       <div className="2xs:col-span-1 lg:col-span-8">
         <div className="border border-solid border-black/10 rounded-2xl shadow-md p-8 flex flex-col justify-center gap-4">
           <div>
-            <Link className="hover:text-primary-green" to="">
+            <div className="flex xs:flex-row xs:justify-between xs:items-center 2xs:flex-col 2xs:items-start">
               <p className="font-bold 2xs:text-sm sm:text-base lg:text-lg 2xl:text-2xl">
                 Giza in 6 days explore egypt
               </p>
-            </Link>
+              <Link to="" className="hover:text-primary-green">
+                <span className="underline 2xs:text-sm md:text-base 2xl:text-lg">View Details</span>
+              </Link>
+            </div>
             <Rate disabled defaultValue={2} />
           </div>
           <div>
