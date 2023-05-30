@@ -13,6 +13,7 @@ import TourDetails from "../TourDetails";
 import CustomMap from "../../components/shared/Map";
 import AllTours from './../AllTours/index';
 import UserProfile from "../UserProfile";
+import AdminProfileForUser from "../AdminProfileForUser";
 
 
 const SharedComponents = () => {
@@ -61,7 +62,8 @@ const SharedComponents = () => {
       </form> */}
       {/* <TourCard /> */}
       {/* <AllTours/> */}
-      <UserProfile/>
+      {/* <UserProfile/> */}
+      <AdminProfileForUser/>
       <Footer />
     </>
   );
