@@ -5,7 +5,7 @@ const Destinations = () => {
   return (
     <>
       <Header />
-      <div className="xs:container xs:mx-auto ">
+      <div className="xs:container xs:mx-auto">
         <Regions />
       </div>
       <Footer />
