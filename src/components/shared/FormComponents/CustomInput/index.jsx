@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import { ruleValidation } from "../../../../helpers/InputsValidation";
+import { ruleEditValidation } from "../../../../helpers/EditFormValidations";
 
-const CustomInput = ({ type, name, label, rule, register, errors }) => {
+const CustomInput = ({ edit, type, name, label, rule, register, errors }) => {
   // ------- State -------
   const [showPassword, setShowPassword] = useState(false);
 
@@ -15,7 +16,10 @@ const CustomInput = ({ type, name, label, rule, register, errors }) => {
     <>
       <div className="relative">
         <input
-          {...register(name, ruleValidation[rule])}
+          {...register(
+            name,
+            edit ? ruleEditValidation[rule] : ruleValidation[rule]
+          )}
           type={showPassword ? "text" : type}
           id={label}
           name={name}
@@ -49,7 +53,7 @@ const CustomInput = ({ type, name, label, rule, register, errors }) => {
           {label}
         </label>
       </div>
-      <p className="text-tertiary-red mt-1">{errors[name]?.message}</p>
+      <p className="text-tertiary-red mt-1 mb-2">{errors[name]?.message}</p>
     </>
   );
 };
