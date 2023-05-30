@@ -9,13 +9,11 @@ import VideoSection from "../../containers/Home/VideoSection";
 import Testimonials from "../../containers/Home/Testimonials";
 import JoinUs from "../../containers/Home/JoinUs";
 import Partners from "../../containers/Home/Partners";
-import Navbar from "../../components/shared/Navbar"
 
 
 const Home = () => {
   return (
     <>
-    <Navbar/>
     <HeaderSection/>
     <Recommended/>
     <Categories/>
