@@ -41,8 +41,6 @@
     color: white;
 }
 
-
-
-
-
-.ant-tabs-dropdown {}
+.my-custom-tabs .ant-steps-item-finish>.ant-steps-item-container>.ant-steps-item-tail::after {
+    background-color: #009EB7;
+}

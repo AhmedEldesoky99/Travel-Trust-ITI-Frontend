@@ -14,7 +14,7 @@ import {
 } from "@ant-design/icons";
 
 import Icon from "./../../../utils/icons";
-import "./TabsStyle.css";
+import "./TourTabsStyle.css";
 
 const TourTabs = () => {
   const items = [
