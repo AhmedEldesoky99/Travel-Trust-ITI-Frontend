@@ -17,6 +17,7 @@ import TourDetails from "./pages/TourDetails";
 
 
 import AllTours from "./pages/AllTours";
+import Destinations from "./pages/Destinations";
 import UserProfile from "./pages/UserProfile";
 
 
@@ -41,6 +42,7 @@ export const router = createBrowserRouter([
   { path: "/cart", element: <Cart /> },
   { path: "/favorite", element: <Favorite /> },
   { path: "/all-tours", element: <AllTours /> },
+  { path: "/destinations", element: <Destinations/> },
   { path: "/user-profile/:id", element: <UserProfile /> },
   //admin
   { path: "/admin", element: <DashBoard /> },
