@@ -1,0 +1,27 @@
+.my-custom-pftabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: black;
+}
+
+.my-custom-pftabs .ant-tabs-ink-bar {
+    background-color: #009EB7;
+}
+
+.my-custom-btn.ant-btn-default:not(:disabled):hover {
+    color: #009EB7;
+    border-color: #009EB7;
+}
+
+.my-custom-pftabs .ant-tabs-tab:hover {
+    color: #009EB7;
+}
+
+.my-custom-pagination .ant-pagination-item-active,
+.my-custom-pagination .ant-pagination-item-active:hover {
+    border-color: #009EB7;
+}
+
+
+.my-custom-pagination .ant-pagination-item-active a,
+.my-custom-pagination .ant-pagination-item-active:hover a {
+    color: #009EB7;
+}

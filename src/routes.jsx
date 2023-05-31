@@ -16,11 +16,16 @@ import EachGovernorate from "./pages/EachGovernorate";
 import Sales from "./pages/Sales";
 import TourDetails from "./pages/TourDetails";
 import AllTours from "./pages/AllTours";
+import Destinations from "./pages/Destinations";
 import UserProfile from "./pages/UserProfile";
-import AdminSignUp from "./pages/Admin/adminSignup";
-import AdminLogin from "./pages/Admin/adminLogin";
 import ContactUs from "./pages/ContactUs";
 
+
+
+// Admin components
+import AdminSignUp from "./pages/Admin/adminSignup";
+import AdminLogin from "./pages/Admin/adminLogin";
+import DashBoard from "./pages/Admin/DashBoard";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -38,9 +43,11 @@ export const router = createBrowserRouter([
   { path: "/favorite", element: <Favorite /> },
   { path: "/search", element: <Search /> },
   { path: "/all-tours", element: <AllTours /> },
+  { path: "/destinations", element: <Destinations/> },
   { path: "/user-profile/:id", element: <UserProfile /> },
   { path: "/contact-us", element: <ContactUs /> },
   //admin
+  { path: "/admin", element: <DashBoard /> },
   { path: "/admin/signup", element: <AdminSignUp /> },
   { path: "/admin/login", element: <AdminLogin /> },
 ]);
