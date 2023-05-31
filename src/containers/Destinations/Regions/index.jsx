@@ -5,7 +5,7 @@ import Cairo from "../../../assets/images/Destinations/cairo.png";
 import Giza from "../../../assets/images/Destinations/giza.jpg"
 import Qalubia from "../../../assets/images/Destinations/Qalubia.jpg";
 import Cairoo from "../../../assets/images/Destinations/egyptCairo.jpg";
-import Behira from "../../../assets/images/Destinations/behira.jpg";
+import Behira from "../../../assets/images/Destinations/Behira.jpg";
 import Matrouh from "../../../assets/images/Destinations/Matrouh.jpg";
 import Damietta from "../../../assets/images/Destinations/damietta.jpg";
 import Monufia from "../../../assets/images/Destinations/Monufia.jpg";
