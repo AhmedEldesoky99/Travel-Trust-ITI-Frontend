@@ -43,7 +43,7 @@ const SignUp = () => {
           <p className="px-5 text-lg">or with</p>
           <hr className="h-px bg-gray-600 border-0 w-28" />
         </div>
-        <form form onSubmit={handleSubmit(registerHandler)} className="max-w-[547px] xl:w-full flex flex-col justify-center gap-4">
+        <form onSubmit={handleSubmit(registerHandler)} className="max-w-[547px] xl:w-full flex flex-col justify-center gap-4">
             <CustomInput
             type="text"
             name="Username"

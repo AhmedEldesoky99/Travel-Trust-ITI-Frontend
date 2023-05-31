@@ -19,6 +19,7 @@ import AllTours from "./pages/AllTours";
 import UserProfile from "./pages/UserProfile";
 import AdminSignUp from "./pages/Admin/adminSignup";
 import AdminLogin from "./pages/Admin/adminLogin";
+import ContactUs from "./pages/ContactUs";
 
 
 export const router = createBrowserRouter([
@@ -38,6 +39,7 @@ export const router = createBrowserRouter([
   { path: "/search", element: <Search /> },
   { path: "/all-tours", element: <AllTours /> },
   { path: "/user-profile/:id", element: <UserProfile /> },
+  { path: "/contact-us", element: <ContactUs /> },
   //admin
   { path: "/admin/signup", element: <AdminSignUp /> },
   { path: "/admin/login", element: <AdminLogin /> },
