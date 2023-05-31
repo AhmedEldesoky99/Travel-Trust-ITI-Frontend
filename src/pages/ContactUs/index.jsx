@@ -118,7 +118,7 @@ const ContactUs = () => {
           </h2>
           <form
             onSubmit={handleSubmit(registerHandler)}
-            className="p-16 gap-4 border-2 border-gray-600 flex flex-col max-w-[998px] max-h-[672px] w-screen"
+            className="p-16 gap-4 border-2 border-gray-600 rounded-2xl flex flex-col max-w-[998px] max-h-[672px] w-screen"
           >
             <div className="flex w-full gap-5 justify-between">
                 <div className="w-full">
@@ -164,11 +164,11 @@ const ContactUs = () => {
                     />
                     </div>
             </div>
-            <div className="max-h-[287px] ">
+            <div className="max-h-[287px] h-screen ">
             <textarea className="w-full h-full rounded-lg border-2 border-black"></textarea>
             </div>
             <div className="w-full flex justify-end mt-9">
-                <CustomButton value='Submit' type='secondary'width='max-w-[263px] w-full'/>
+                <CustomButton value='Submit' type='secondary'width='max-w-[263px] w-full h-full'/>
             </div>
           </form>
         </div>
