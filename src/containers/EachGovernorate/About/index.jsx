@@ -1,4 +1,5 @@
 import React from "react";
+import { Pagination } from "antd";
 
 import TourCard from "./../../../components/shared/TourCard/index";
 
@@ -31,6 +32,16 @@ const About = () => {
       <div className="bg-fish bg-cover bg-center h-[19rem] mt-14">
         <div className="bg-black/[0.25] h-full w-full"></div>
       </div>
+
+      <Pagination
+        className="my-custom-pagination text-center mb-10"
+        current={page}
+        onChange={(page) => {
+          setPage(page);
+        }}
+        pageSize={12}
+        total={50}
+      />
     </section>
   );
 };
