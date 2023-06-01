@@ -183,7 +183,6 @@ const AdminAllTours = () => {
             <div className=" lg:col-span-12">
               <DataGrid data={data} columns={columns} />{" "}
             </div>
-           
           </div>
         </div>
       </div>

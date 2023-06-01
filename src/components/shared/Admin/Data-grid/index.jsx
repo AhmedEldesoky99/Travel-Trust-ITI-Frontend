@@ -4,7 +4,7 @@ import "./style.css"
 const DataGrid = ({ data, columns }) => {
   return (
     <>
-    <div className="mt-10 ">
+    <div className="mt-10">
       <Table
       className="custom-table"
         rowSelection={{}}
