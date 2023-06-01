@@ -3,8 +3,8 @@ import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import { ruleValidation } from "../../../../helpers/InputsValidation";
 import { ruleEditValidation } from "../../../../helpers/EditFormValidations";
 
-
 const CustomInput = ({
+  edit,
   type,
   name,
   label,
@@ -14,9 +14,6 @@ const CustomInput = ({
   value,
   onChange,
 }) => {
-
-const CustomInput = ({ edit, type, name, label, rule, register, errors }) => {
-
   // ------- State -------
   const [showPassword, setShowPassword] = useState(false);
 
