@@ -122,6 +122,7 @@ const AddTourPage = () => {
                   onClick={handlePrev}
                 />
               )}
+              
               <CustomButton
                 type="secondary"
                 value="Next"
