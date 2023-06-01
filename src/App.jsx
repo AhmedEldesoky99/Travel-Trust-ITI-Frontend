@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "antd/dist/reset.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./index.css";
+import { AddTourFormProvider } from "./context/AddTourFormContext";
 
 const queryClient = new QueryClient();
 
@@ -16,8 +17,10 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="app">
-        <RouterProvider router={router} />
-        <ToastContainer autoClose={2000} />
+      {/* <AddTourFormProvider></AddTourFormProvider> */}
+          <RouterProvider router={router} />
+          <ToastContainer autoClose={2000} />
+    
       </div>
       <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </QueryClientProvider>

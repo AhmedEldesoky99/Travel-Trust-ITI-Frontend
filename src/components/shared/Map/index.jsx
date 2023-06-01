@@ -26,7 +26,10 @@ function CustomMap({
   });
 
   useEffect(() => {
-    setLocation({ longitude, latitude });
+    setLocation({
+      longitude: viewState.longitude,
+      latitude: viewState.latitude,
+    });
   }, [viewState.latitude, viewState.longitude]);
 
   return (

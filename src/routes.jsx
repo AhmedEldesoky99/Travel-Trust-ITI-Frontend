@@ -14,17 +14,15 @@ import Favorite from "./pages/Favorite";
 import EachGovernorate from "./pages/EachGovernorate";
 import Sales from "./pages/Sales";
 import TourDetails from "./pages/TourDetails";
-
-
 import AllTours from "./pages/AllTours";
 import UserProfile from "./pages/UserProfile";
-
-
 
 // Admin components
 import AdminSignUp from "./pages/Admin/adminSignup";
 import AdminLogin from "./pages/Admin/adminLogin";
 import DashBoard from "./pages/Admin/DashBoard";
+import AddTourPage from "./pages/Admin/addTour";
+import { AddTourFormProvider } from "./context/AddTourFormContext";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -42,8 +40,19 @@ export const router = createBrowserRouter([
   { path: "/favorite", element: <Favorite /> },
   { path: "/all-tours", element: <AllTours /> },
   { path: "/user-profile/:id", element: <UserProfile /> },
+
   //admin
   { path: "/admin", element: <DashBoard /> },
   { path: "/admin/signup", element: <AdminSignUp /> },
   { path: "/admin/login", element: <AdminLogin /> },
+  //----Add tour
+
+  {
+    path: "/admin/addTour",
+    element: (
+      <AddTourFormProvider>
+        <AddTourPage />
+      </AddTourFormProvider>
+    ),
+  },
 ]);
