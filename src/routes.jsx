@@ -19,6 +19,8 @@ import AllTours from "./pages/AllTours";
 import Destinations from "./pages/Destinations";
 import UserProfile from "./pages/UserProfile";
 import ContactUs from "./pages/ContactUs";
+import History from "./pages/History";
+
 
 
 
@@ -46,6 +48,7 @@ export const router = createBrowserRouter([
   { path: "/destinations", element: <Destinations/> },
   { path: "/user-profile/:id", element: <UserProfile /> },
   { path: "/contact-us", element: <ContactUs /> },
+  { path: "/history", element: <History /> },
   //admin
   { path: "/admin", element: <DashBoard /> },
   { path: "/admin/signup", element: <AdminSignUp /> },
