@@ -23,6 +23,10 @@ import UserProfile from "./pages/UserProfile";
 import AdminSignUp from "./pages/Admin/adminSignup";
 import AdminLogin from "./pages/Admin/adminLogin";
 import DashBoard from "./pages/Admin/DashBoard";
+import AddTourPage from "./pages/Admin/addTour";
+import { AddTourFormProvider } from "./context/AddTourFormContext";
+
+
 import AdminAllTours from "./pages/Admin/AdminAllTours";
 import AdminReviews from "./pages/AdminReviews";
 
@@ -55,6 +59,14 @@ export const router = createBrowserRouter([
       { path: "admin/login", element: <AdminLogin /> },
       { path: "admin/alltours", element: <AdminAllTours/> },
       { path: "admin/reviews", element: <AdminReviews/>},
+  {
+    path: "admin/addTour",
+    element: (
+      <AddTourFormProvider>
+        <AddTourPage />
+      </AddTourFormProvider>
+    )}
     ],
+
   },
 ]);
