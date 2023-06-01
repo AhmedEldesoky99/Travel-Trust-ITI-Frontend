@@ -12,7 +12,7 @@ const ReviewCard = () => {
         <div className="avatar">
           <div className="2xs:w-24 lg:w-full rounded-full">
             <Link to="">
-              <img src={AdminImage} />
+              <img className="object-cover" src={AdminImage} />
             </Link>
           </div>
         </div>

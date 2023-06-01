@@ -22,7 +22,7 @@ export default {
         "tertiary-red": "#DB3A34",
         "light-gray": "#585858",
         "glass-gray": "#767676",
-
+        "lighter-gray":"#D9D9D9"
       }, backgroundImage: {
         "join-us": "url('/src/assets/images/joinbg.jpg')",
         "login-user": "url('/src/assets/images/login user.jpg')",
@@ -44,6 +44,7 @@ export default {
         "login-admin": "url('/src/assets/images/Admin/admin-logIn.png')",
         tourDetailsBG: "url('/src/assets/images/TourDetails/TourDetailsBG.png')",
         allToursBG: "url('/src/assets/images/AllTours/AllToursBG.png')",
+        DestinationsBg: "url('/src/assets/images/Destinations/Egypt-Felucca-on-the-Nile.jpg')",
       }, height: {
         inherit: "inherit",
         fit: "fit-content",

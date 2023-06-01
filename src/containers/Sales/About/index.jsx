@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Breadcrumb } from "antd";
+import { Breadcrumb, Pagination } from "antd";
 
 import TourCard from "../../../components/shared/TourCard";
 
 const About = () => {
+  const [page, setPage] = useState(1);
+  
   return (
     <section>
       <Breadcrumb
@@ -29,6 +31,16 @@ const About = () => {
         <TourCard />
         <TourCard />
       </div>
+
+      <Pagination
+        className="my-custom-pagination text-center mb-10"
+        current={page}
+        onChange={(page) => {
+          setPage(page);
+        }}
+        pageSize={12}
+        total={50}
+      />
     </section>
   );
 };
