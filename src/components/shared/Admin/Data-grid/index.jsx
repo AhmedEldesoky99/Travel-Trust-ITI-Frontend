@@ -10,7 +10,7 @@ const DataGrid = ({ data, columns }) => {
         rowSelection={{}}
         columns={columns}
         dataSource={data}
-        // size="middle"
+        size="middle"
         scroll={{
           x: "calc(700px + 50%)",
           y: 240,
