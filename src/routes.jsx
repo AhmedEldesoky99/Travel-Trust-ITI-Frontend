@@ -26,6 +26,7 @@ import UserProfile from "./pages/UserProfile";
 import AdminSignUp from "./pages/Admin/adminSignup";
 import AdminLogin from "./pages/Admin/adminLogin";
 import DashBoard from "./pages/Admin/DashBoard";
+import AdminAllTours from "./pages/Admin/AdminAllTours";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -48,4 +49,5 @@ export const router = createBrowserRouter([
   { path: "/admin", element: <DashBoard /> },
   { path: "/admin/signup", element: <AdminSignUp /> },
   { path: "/admin/login", element: <AdminLogin /> },
+  { path: "/admin/all-tours", element: <AdminAllTours /> },
 ]);
