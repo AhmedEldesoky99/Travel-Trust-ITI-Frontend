@@ -106,7 +106,7 @@ const AddTourPage = () => {
         <div className="w-full container mx-auto w-">
           <SubNavBar />
           <CustomSteps items={items} stepState={stepState} />
-          {/* <AddTourFormProvider> */}
+          
           {step === 1 && <AddOverview onhandleSubmit={onhandleSubmit} />}
           {step === 2 && <AddPlan onhandleSubmit={onhandleSubmit} />}
           {step === 3 && <AddGallery />}
@@ -130,7 +130,7 @@ const AddTourPage = () => {
               />
             </div>
           )}
-          {/* </AddTourFormProvider> */}
+         
         </div>
       </div>
     </>
