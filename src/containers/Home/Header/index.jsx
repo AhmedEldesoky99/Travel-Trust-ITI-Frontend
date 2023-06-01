@@ -7,7 +7,7 @@ const HeaderSection = () => {
     <>
       <div className="hero bg-homeHeader min-h-screen bg-cover bg-center">
         <div className="hero-overlay bg-black/[0.7]"></div>
-        <div className="lg:container ">
+        <div className="lg:container">
           <div
             className="lg:hero-content justify-start md:gap-24 items-start"
           >

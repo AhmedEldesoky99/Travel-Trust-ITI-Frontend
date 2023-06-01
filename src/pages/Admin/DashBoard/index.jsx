@@ -158,7 +158,6 @@ const DashBoard = () => {
         <NavBar />
         <div className="w-full container mx-auto">
           <SubNavBar />
-
           <div className="grid lg:grid-cols-6 lg:grid-flow-row auto-rows-max w-full  gap-5 h-fill md:mt-8 mt-32 ">
             <div className="col-span-6 lg:col-span-4  flex justify-between items-center  p-10 rounded-2xl shadow-md">
               <div>

@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Icon from "../../../utils/icons";
 import CustomButton from "./../../../components/shared/CustomButton/index";
 
-
 const CheckoutCard = () => {
+  const [persons, setPersons] = useState(1);
+
+  const handleIncrement = () => {
+    setPersons(persons + 1);
+  };
+
+  const handleDecrement = () => {
+    setPersons(persons === 1 ? persons : persons - 1);
+  };
+
   return (
     <>
       <div className="flex flex-col justify-center items-center gap-4 border border-solid border-black/10 rounded-2xl shadow-md 2xs:p-8 sm:px-28 md:px-36 lg:p-8">
@@ -23,15 +32,15 @@ const CheckoutCard = () => {
         <div className="min-w-[10rem] text-center ">
           <p className="lg:text-base 2xl:text-xl">Select Participants</p>
           <div className="flex justify-between items-center mt-2">
-            <button>
+            <button onClick={handleDecrement}>
               <div className="shadow-md p-3 rounded-lg">
                 <Icon name="userDelete" />
               </div>
             </button>
 
-            <span className="text-lg 2xl:text-2xl">2</span>
+            <span className="text-lg 2xl:text-2xl">{persons}</span>
 
-            <button>
+            <button onClick={handleIncrement}>
               <div className="shadow-md p-3 rounded-lg">
                 <Icon name="userAdd" />
               </div>

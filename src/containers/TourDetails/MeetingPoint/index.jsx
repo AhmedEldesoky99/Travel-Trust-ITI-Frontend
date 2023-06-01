@@ -1,11 +1,13 @@
 import React from "react";
+
 import CheckoutCard from "../../../components/shared/CheckoutCard";
+import CustomMap from "../../../components/shared/Map";
 
 const MeetingPoint = () => {
   return (
     <section className="container grid lg:grid-cols-12">
       <div className="lg:col-span-8">
-        <div>
+        <div className="mb-5">
           <h3 className="font-bold mb-2 2xs:text-base sm:text-lg 2xl:text-2xl ">
             Where will we meet
           </h3>
@@ -14,6 +16,8 @@ const MeetingPoint = () => {
             the experience will start.
           </h3>
         </div>
+
+        <CustomMap />
       </div>
 
       <div className="lg:col-span-1"></div>

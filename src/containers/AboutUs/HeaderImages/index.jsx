@@ -2,7 +2,7 @@ const HeroImages = () => {
   return (
     <>
       <section className="z-0">
-        <div className="w-full mx-auto grid-cols-1 grid lg:grid-cols-3 h-[600px] overflow-hidden relative">
+        <div className="w-full mx-auto grid-cols-1 grid lg:grid-cols-3 h-[722px] overflow-hidden relative">
           <div
             className="p-6 bg-cover bg-center transition duration-300 transform brightness-75 hover:brightness-100  cursor-pointer"
             style={{
