@@ -14,7 +14,7 @@ import {
 
 import Logo from "../../../assets/images/Logo/Logo.svg";
 
-const Navbar = () => {
+const Navbar = ({ pathBackgroundIncluded }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const changeNavbarBackground = () => {
@@ -27,13 +27,16 @@ const Navbar = () => {
 
   window.addEventListener("scroll", changeNavbarBackground);
 
-
   return (
     <>
       <nav
-        className={`navbar justify-between fixed z-50 text-white shadow-md transition-all duration-500 ${
-          isScrolled ? "bg-black" : "bg-transparent"
-        }`}
+        className={`navbar justify-between fixed top-0 z-50 text-white shadow-md transition-all duration-500  ${
+          pathBackgroundIncluded
+            ? "bg-[#0B0B0B]"
+            : isScrolled
+            ? "bg-[#0B0B0B]"
+            : "bg-transparent"
+        } `}
       >
         {/* Navbar Start */}
 
@@ -64,7 +67,7 @@ const Navbar = () => {
               className="menu menu-compact dropdown-content mt-3 p-4 shadow bg-base-100 rounded-box w-40"
             >
               <li className="flex flex-row">
-                <HomeOutlined className="text-black p-0 active:bg-transparent active:text-primary-green"/>
+                <HomeOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
                   to="/"
                   className="text-black active:bg-transparent  active:text-primary-green"
@@ -73,7 +76,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="flex flex-row">
-                <RocketOutlined className="text-black p-0 active:bg-transparent active:text-primary-green"/>
+                <RocketOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
                   to=""
                   className="text-black active:bg-transparent  active:text-primary-green"
@@ -82,7 +85,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="flex flex-row">
-                <WalletOutlined className="text-black p-0 active:bg-transparent active:text-primary-green"/>
+                <WalletOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
                   to=""
                   className="text-black active:bg-transparent  active:text-primary-green"
@@ -91,7 +94,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="flex flex-row">
-                <MobileOutlined className="text-black p-0 active:bg-transparent active:text-primary-green"/>
+                <MobileOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
                   to=""
                   className="text-black active:bg-transparent  active:text-primary-green"
@@ -201,7 +204,7 @@ const Navbar = () => {
               className="mt-3 p-4 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-40"
             >
               <li className="flex flex-row items-center">
-                <HeartOutlined className="text-black p-0 active:bg-transparent active:text-primary-green"/>
+                <HeartOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
                   to=""
                   className="text-black active:bg-transparent  active:text-primary-green"
@@ -210,7 +213,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="flex flex-row items-center">
-                <ShoppingCartOutlined className="text-black p-0 active:bg-transparent active:text-primary-green"/>
+                <ShoppingCartOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
                   to=""
                   className="text-black active:bg-transparent  active:text-primary-green"
@@ -219,7 +222,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="flex flex-row items-center">
-                <QuestionCircleOutlined className="text-black p-0 active:bg-transparent active:text-primary-green"/>
+                <QuestionCircleOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
                   to=""
                   className="text-black active:bg-transparent  active:text-primary-green"

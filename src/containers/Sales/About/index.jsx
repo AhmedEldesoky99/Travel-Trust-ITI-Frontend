@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Breadcrumb, Pagination } from "antd";
 
 import TourCard from "../../../components/shared/TourCard";
 
 const About = () => {
+  const [page, setPage] = useState(1);
+  
   return (
     <section>
       <Breadcrumb

@@ -1,5 +1,4 @@
 import React from "react";
-import { Pagination } from "antd";
 
 import TourCard from "./../../../components/shared/TourCard/index";
 
@@ -18,7 +17,9 @@ const About = () => {
         </div>
 
         <div>
-          <h3 className="2xs:text-xl lg:text-2xl 2xl:text-3xl mt-14 mb-4">Dahab Tours </h3>
+          <h3 className="2xs:text-xl lg:text-2xl 2xl:text-3xl mt-14 mb-4">
+            Dahab Tours{" "}
+          </h3>
         </div>
 
         <div className="container grid gap-4 2xs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -32,16 +33,6 @@ const About = () => {
       <div className="bg-fish bg-cover bg-center h-[19rem] mt-14">
         <div className="bg-black/[0.25] h-full w-full"></div>
       </div>
-
-      <Pagination
-        className="my-custom-pagination text-center mb-10"
-        current={page}
-        onChange={(page) => {
-          setPage(page);
-        }}
-        pageSize={12}
-        total={50}
-      />
     </section>
   );
 };
