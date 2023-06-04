@@ -90,7 +90,7 @@ const AdminProfile = () => {
                   >
                     Edit profile
                   </button>
-                  <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                  <Modal title="Edit Profile" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                     <EditProfile/>
                   </Modal>
                 </div>
