@@ -1,5 +1,4 @@
 import { animated, useScroll, useInView, useSpring } from "@react-spring/web";
-import Footer from "../../components/shared/Footer";
 import { Breadcrumb } from "antd";
 
 const privacyPolicy = () => {
@@ -132,7 +131,6 @@ const privacyPolicy = () => {
           </p>
         </div>
       </animated.div>
-      <Footer />
     </>
   );
 };
