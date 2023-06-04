@@ -18,7 +18,7 @@ const EditProfile = () => {
   };
   return (
     <>
-      <div className="">
+      <div className="max-w-[973px] w-screen">
         <div className="flex flex-col max-w-[973px] max-h-[210px] w-screen h-screen bg-[#D9D9D9] justify-center">
             <div className="mx-auto">
                 <UploadCoverImg />

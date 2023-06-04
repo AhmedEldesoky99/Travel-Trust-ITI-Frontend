@@ -1,6 +1,6 @@
 import Table from "../../components/History/Table";
 
-const historyLog =[{date:'Wednesday, 24 May, 2023',logs:[{time:'12:30',title:'2 nights in cairo',isFavorite:false},{time:'12:30',title:'Alexandria is awesome',isFavorite:true},{time:'12:30',title:'Dahab is a must visit',isFavorite:false}]}];
+const historyLog =[{date:'Wednesday, 24 May, 2023',logs:[{time:'12:30',title:'2 nights in cairo',isFavorite:false},{time:'12:30',title:'Alexandria is awesome',isFavorite:true}]},{date:'Wednesday, 24 May, 2023',logs:[{time:'12:30',title:'2 nights in cairo',isFavorite:false},{time:'12:30',title:'Alexandria is awesome',isFavorite:true},{time:'12:30',title:'Dahab is a must visit',isFavorite:false}]}];
 
 const History = () => {
   return (

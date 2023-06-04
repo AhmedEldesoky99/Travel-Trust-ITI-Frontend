@@ -11,8 +11,21 @@ import email from "../../../assets/images/Admin/AdminProfile/email.svg";
 import location from "../../../assets/images/Admin/AdminProfile/location.svg";
 import ssn from "../../../assets/images/Admin/AdminProfile/ssn.svg";
 import role from "../../../assets/images/Admin/AdminProfile/role.svg";
+import { Modal } from "antd";
+import { useState } from "react";
+import './app.css';
 
 const AdminProfile = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   return (
     <>
       <div className="flex flex-row  ">
@@ -70,12 +83,16 @@ const AdminProfile = () => {
                   </div>
                 </div>
                 <div className="flex flex-col  justify-end">
-                  <a
+                  <button
                     href=""
                     className="text-xl underline py-6 px-7 text-[#9A9999]"
+                    onClick={showModal}
                   >
                     Edit profile
-                  </a>
+                  </button>
+                  <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                    <EditProfile/>
+                  </Modal>
                 </div>
               </div>
               <div className="flex flex-row w-screen max-w-[1558px] gap-5">
@@ -129,7 +146,6 @@ const AdminProfile = () => {
           </div>
         </div>
       </div>
-      <EditProfile/>
     </>
   );
 };

@@ -99,7 +99,7 @@ const ContactUs = () => {
             </div>
           </div>
         </div>
-        <div className="w-full max-h-[370px] bg-parallax flex h-screen items-center justify-center bg-fixed mb-12">
+        <div className="w-full max-h-[370px] bg-parallax bg-no-repeat bg-cover bg-center flex h-screen items-center justify-center bg-fixed mb-12">
           {/* img + parallax */}
           <div className=" m-auto">
             <p className="h-full font-semibold text-2xl text-white text-center max-w-[1114px]">
