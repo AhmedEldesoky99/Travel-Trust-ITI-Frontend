@@ -17,7 +17,9 @@ const About = () => {
         </div>
 
         <div>
-          <h3 className="2xs:text-xl lg:text-2xl 2xl:text-3xl mt-14 mb-4">Dahab Tours </h3>
+          <h3 className="2xs:text-xl lg:text-2xl 2xl:text-3xl mt-14 mb-4">
+            Dahab Tours{" "}
+          </h3>
         </div>
 
         <div className="container grid gap-4 2xs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

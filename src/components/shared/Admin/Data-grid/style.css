@@ -1,0 +1,11 @@
+.custom-table .ant-table-wrapper .ant-table-thead > tr > td {
+  background-color: blue !important;
+  border-bottom: 1px solid !important;
+}
+.custom-table span .ant-table-wrapper .ant-table-column-title {
+  font-weight: bold !important;
+  font-size: large !important;
+}
+/* .custom-table{
+    background-color: blue;
+} */
