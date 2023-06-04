@@ -14,16 +14,16 @@ const TopDestinations = () => {
         <div className="container">
           <div className="mx-8  text-center md:text-start flex items-center justify-between ">
             <div className="w-full lg:w-auto">
-              <p className="hidden lg:block md:text-[20]px] lg:text-[24px] font-header">
+              <p className="hidden lg:block md:text-[18]px] 2xl:text-[22px] font-header">
                 Explore our Destinations
               </p>
-              <h2 className="text-[#2B2B2B] text-[30px] md:text-4xl lg:text-5xl font-bold md:mt-4 capitalize text-center md-text-start w-full">
+              <h2 className="text-[#2B2B2B] text-[30px] md:text-3xl xl:text-4xl 2xl:text-5xl font-bold md:mt-4 capitalize text-center md-text-start w-full">
                 Top Destinations
               </h2>
             </div>
             <Link
               to=""
-              className="hidden lg:flex border-[1.4px] border-gray-600  md:text-[20]px] lg:text-[24px] px-6 py-4 rounded-lg capitalize transition-all duration-700 hover:bg-black hover:text-white hover:border-transparent"
+              className="hidden lg:flex border-[1.4px] border-gray-600 md:text-[20]px] 2xl:text-[24px] px-6 py-4 rounded-lg capitalize transition-all duration-700 hover:bg-black hover:text-white hover:border-transparent"
             >
               View all destinations
             </Link>
