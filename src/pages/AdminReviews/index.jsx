@@ -1,6 +1,5 @@
 import { Table, Tag } from "antd";
 
-import Footer from "../../components/shared/Footer/index.jsx";
 import AdminReviewCard from "../../components/AdminReviewCard/index.jsx";
 import NavBar from "../../components/shared/Admin/Admin-NavBar/index.jsx";
 import DataGrid from "../../components/shared/Admin/Data-grid/index.jsx";
@@ -207,7 +206,6 @@ const AdminReviews = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
