@@ -1,8 +1,19 @@
 import { useState } from "react";
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import { ruleValidation } from "../../../../helpers/InputsValidation";
+import { ruleEditValidation } from "../../../../helpers/EditFormValidations";
 
-const CustomInput = ({ type, name, label, rule, register, errors }) => {
+const CustomInput = ({
+  edit,
+  type,
+  name,
+  label,
+  rule,
+  register,
+  errors,
+  value,
+  onChange,
+}) => {
   // ------- State -------
   const [showPassword, setShowPassword] = useState(false);
 
@@ -15,10 +26,15 @@ const CustomInput = ({ type, name, label, rule, register, errors }) => {
     <>
       <div className="relative">
         <input
-          {...register(name, ruleValidation[rule])}
+          {...register(
+            name,
+            edit ? ruleEditValidation[rule] : ruleValidation[rule]
+          )}
           type={showPassword ? "text" : type}
           id={label}
           name={name}
+          value={value}
+          onChange={onChange}
           className={`2xl:h-[4rem] block px-2.5 pb-2.5 pt-4 w-full text-black bg-transparent rounded-lg border border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer ${
             errors[name] &&
             "border border-tertiary-red focus:border-tertiary-red focus:outline-none"
@@ -49,7 +65,7 @@ const CustomInput = ({ type, name, label, rule, register, errors }) => {
           {label}
         </label>
       </div>
-      <p className="text-tertiary-red mt-1">{errors[name]?.message}</p>
+      <p className="text-tertiary-red mt-1 mb-2">{errors[name]?.message}</p>
     </>
   );
 };

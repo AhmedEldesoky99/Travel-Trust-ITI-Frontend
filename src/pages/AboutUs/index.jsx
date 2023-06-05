@@ -1,4 +1,3 @@
- import Footer from "../../components/shared/Footer";
 import AboutIntro from "../../containers/AboutUs/Intro";
 import HeroImages from "../../containers/AboutUs/HeaderImages";
 import SplictScreen from "../../containers/AboutUs/SplitScreenImages";
@@ -11,7 +10,6 @@ const AboutUs = () => {
       <AboutIntro />
       <SplictScreen />
       <OurDifferences/>
-      <Footer/>
     </>
   );
 };
