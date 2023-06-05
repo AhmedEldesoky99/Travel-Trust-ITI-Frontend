@@ -11,13 +11,14 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import AboutUs from "./pages/AboutUs";
 import Cart from "./pages/Cart";
 import Favorite from "./pages/Favorite";
+import Search from "./pages/Search";
 import EachGovernorate from "./pages/EachGovernorate";
 import Sales from "./pages/Sales";
 import TourDetails from "./pages/TourDetails";
-
 import AllTours from "./pages/AllTours";
 import Destinations from "./pages/Destinations";
 import UserProfile from "./pages/UserProfile";
+
 
 // Admin components
 import AdminSignUp from "./pages/Admin/adminSignup";
@@ -32,8 +33,8 @@ import { AddTourFormProvider } from "./context/AddTourFormContext";
 
 import Layout from "./layout";
 
+
 export const router = createBrowserRouter([
-  {
     path: "/",
     element: <Layout />,
     children: [
@@ -46,6 +47,7 @@ export const router = createBrowserRouter([
       { path: "tour-details/:id", element: <TourDetails /> },
       { path: "shared", element: <SharedComponents /> },
       { path: "faq", element: <Faq /> },
+      { path: "/search", element: <Search /> },
       { path: "privacy", element: <PrivacyPolicy /> },
       { path: "Aboutus", element: <AboutUs /> },
       { path: "cart", element: <Cart /> },
@@ -53,6 +55,8 @@ export const router = createBrowserRouter([
       { path: "all-tours", element: <AllTours /> },
       { path: "destinations", element: <Destinations /> },
       { path: "user-profile/:id", element: <UserProfile /> },
+      { path: "/sales", element: <Sales /> },
+        
       //admin
       { path: "admin", element: <DashBoard /> },
       { path: "admin/signup", element: <AdminSignUp /> },
