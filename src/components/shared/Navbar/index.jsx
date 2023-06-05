@@ -78,7 +78,7 @@ const Navbar = ({ pathBackgroundIncluded }) => {
               <li className="flex flex-row">
                 <RocketOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
-                  to=""
+                  to="/destinations"
                   className="text-black active:bg-transparent  active:text-primary-green"
                 >
                   Destination
@@ -87,7 +87,7 @@ const Navbar = ({ pathBackgroundIncluded }) => {
               <li className="flex flex-row">
                 <WalletOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
-                  to=""
+                  to="/sales"
                   className="text-black active:bg-transparent  active:text-primary-green"
                 >
                   Offers
@@ -96,7 +96,7 @@ const Navbar = ({ pathBackgroundIncluded }) => {
               <li className="flex flex-row">
                 <MobileOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
-                  to=""
+                  to="/"
                   className="text-black active:bg-transparent  active:text-primary-green"
                 >
                   Get the app
@@ -118,7 +118,7 @@ const Navbar = ({ pathBackgroundIncluded }) => {
             <li className="p-3 hover:text-primary-green">
               <RocketOutlined className="p-1 hover:bg-transparent active:bg-transparent active:text-primary-green" />
               <Link
-                to=""
+                to="/destinations"
                 className="hover:bg-transparent active:bg-transparent  active:text-primary-green p-1"
               >
                 Destinations
@@ -127,7 +127,7 @@ const Navbar = ({ pathBackgroundIncluded }) => {
             <li className="p-3 hover:text-primary-green">
               <WalletOutlined className="p-1 hover:bg-transparent active:bg-transparent active:text-primary-green" />
               <Link
-                to=""
+                to="/sales"
                 className="hover:bg-transparent active:bg-transparent  active:text-primary-green p-1 pr-0"
               >
                 Offers
@@ -136,7 +136,7 @@ const Navbar = ({ pathBackgroundIncluded }) => {
             <li className="p-3 hover:text-primary-green">
               <MobileOutlined className="p-1 hover:bg-transparent active:bg-transparent active:text-primary-green" />
               <Link
-                to=""
+                to="/"
                 className="hover:bg-transparent active:bg-transparent  active:text-primary-green p-1 pr-0"
               >
                 Get the app
@@ -160,7 +160,7 @@ const Navbar = ({ pathBackgroundIncluded }) => {
             <li className="p-3 hover:text-primary-green">
               <HeartOutlined className="p-1 hover:bg-transparent active:bg-transparent active:text-primary-green" />
               <Link
-                to=""
+                to="/favorite"
                 className="hover:bg-transparent active:bg-transparent  active:text-primary-green p-1"
               >
                 Trips
@@ -169,7 +169,7 @@ const Navbar = ({ pathBackgroundIncluded }) => {
             <li className="p-3 hover:text-primary-green">
               <ShoppingCartOutlined className="p-1 hover:bg-transparent active:bg-transparent active:text-primary-green" />
               <Link
-                to=""
+                to="/cart"
                 className="hover:bg-transparent active:bg-transparent  active:text-primary-green p-1"
               >
                 Cart
@@ -178,7 +178,7 @@ const Navbar = ({ pathBackgroundIncluded }) => {
             <li className="p-3 hover:text-primary-green">
               <QuestionCircleOutlined className="p-1 hover:bg-transparent active:bg-transparent active:text-primary-green" />
               <Link
-                to=""
+                to="/faq"
                 className="hover:bg-transparent active:bg-transparent  active:text-primary-green p-1"
               >
                 Help
@@ -206,7 +206,7 @@ const Navbar = ({ pathBackgroundIncluded }) => {
               <li className="flex flex-row items-center">
                 <HeartOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
-                  to=""
+                  to="/favorite"
                   className="text-black active:bg-transparent  active:text-primary-green"
                 >
                   Trips
@@ -215,7 +215,7 @@ const Navbar = ({ pathBackgroundIncluded }) => {
               <li className="flex flex-row items-center">
                 <ShoppingCartOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
-                  to=""
+                  to="/cart"
                   className="text-black active:bg-transparent  active:text-primary-green"
                 >
                   Card
@@ -224,7 +224,7 @@ const Navbar = ({ pathBackgroundIncluded }) => {
               <li className="flex flex-row items-center">
                 <QuestionCircleOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
-                  to=""
+                  to="/faq"
                   className="text-black active:bg-transparent  active:text-primary-green"
                 >
                   Help
@@ -233,8 +233,8 @@ const Navbar = ({ pathBackgroundIncluded }) => {
             </ul>
           </div>
 
-          {/* <Link to="" className="mr-3 cursor-pointer hover:text-primary-green">Login</Link>
-          <Link to="" className="btn btn-sm bg-transparent outline outline-white outline-1 normal-case hover:bg-secondary-yellow hover:outline-secondary-yellow outline-offset-0 border-none hover:text-black">Sign up</Link> */}
+          {/* <Link to="/login" className="mr-3 cursor-pointer hover:text-primary-green">Login</Link>
+          <Link to="/signup" className="btn btn-sm bg-transparent outline outline-white outline-1 normal-case hover:bg-secondary-yellow hover:outline-secondary-yellow outline-offset-0 border-none hover:text-black">Sign up</Link> */}
         </div>
       </nav>
     </>
