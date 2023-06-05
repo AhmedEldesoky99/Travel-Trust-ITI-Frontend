@@ -71,7 +71,7 @@ const Cart = () => {
         </div>
       ) : (
         <div className="flex flex-col">
-          <div className="flex flex-col h-[60vh] w-full justify-center items-center">
+          <div className="flex flex-col h-[60vh] w-full justify-center items-center text-center">
             <div className="bg-emptyCart max-h-[268px] max-w-[252px] w-full h-full mb-3"></div>
             <p className="text-4xl">Your cart looks empty</p>
             <p className="text-xl">What are you waiting for?</p>
