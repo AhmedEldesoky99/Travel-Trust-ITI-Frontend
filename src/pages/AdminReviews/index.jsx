@@ -1,5 +1,6 @@
 import { Table, Tag } from "antd";
 
+import Footer from "../../components/shared/Footer/index.jsx";
 import AdminReviewCard from "../../components/AdminReviewCard/index.jsx";
 import NavBar from "../../components/shared/Admin/Admin-NavBar/index.jsx";
 import DataGrid from "../../components/shared/Admin/Data-grid/index.jsx";
@@ -7,14 +8,17 @@ import SubNavBar from "../../components/shared/Admin/SubNavBar.jsx";
 import useModal from "../../hooks/useModal.jsx";
 import useSearchDatagrid from "../../hooks/useSearchDataGrid.jsx";
 import Icon from "../../utils/icons.jsx";
-import CustomModal from "../../components/shared/Admin/CustomModal/index.jsx";
 import Avatar from "../../components/Avatar/index.jsx";
 import AdminReviewModal from "../../components/AdminReviewModal/index.jsx";
+import { useState } from "react";
 
 const AdminReviews = () => {
   //custom hook
   const { getColumnSearchProps } = useSearchDatagrid();
   const { loading, open, showModal, handleOk, handleCancel } = useModal();
+
+  const [selected,setSelected] = useState({});
+
 
   const data = [
     {
@@ -134,7 +138,19 @@ const AdminReviews = () => {
         } else if (Rating < 4) {
           color = "#81CCD8";
         }
-        return <Tag color={color}>{Rating}</Tag>;
+        return (
+          <Tag
+            style={{
+              width: "100px",
+              fontSize: "16px",
+              padding: "6px",
+              textAlign: "center",
+            }}
+            color={color}
+          >
+            {Rating}
+          </Tag>
+        );
       },
     },
     {
@@ -146,7 +162,6 @@ const AdminReviews = () => {
       //action icons
       render: (_, record) => (
         <>
-          {/* {console.log({ key: record.key })} */}
           <button
             onClick={showModal}
             className="flex justify-center items-center "
@@ -178,18 +193,21 @@ const AdminReviews = () => {
     <>
       <div className="flex flex-row">
         <NavBar />
-        <div className="w-full container mx-auto ">
+        <div className="w-full mx-auto ">
           <SubNavBar />
-          <div className="lg:grid lg:grid-cols-12 gap-6">
-            <div className="col-span-12 2xl:col-span-8">
-              <DataGrid data={data} columns={columns} />{" "}
-            </div>
-            <div className="col-span-12 lg:col-span-4">
-              <AdminReviewCard />
+          <div className="container mx-auto">
+            <div className="md:grid md:grid-cols-12 gap-4">
+              <div className="col-span-12 2xl:col-span-9 ">
+                <DataGrid data={data} columns={columns} />
+              </div>
+              <div className="col-span-12 2xl:col-span-3">
+                <AdminReviewCard />
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

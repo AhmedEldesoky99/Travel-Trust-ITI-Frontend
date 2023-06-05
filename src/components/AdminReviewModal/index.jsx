@@ -31,13 +31,7 @@ const AdminReviewModal = ({
           Delete
         </Button>,
       ]}
-      style={
-        {
-          // display:"flex",
-          // justifyContent:"center",
-          // alignItems:"center"
-        }
-      }
+
     >
       <div className="2xs:col-span-1 lg:col-span-1 ">
         <div className="avatar">
