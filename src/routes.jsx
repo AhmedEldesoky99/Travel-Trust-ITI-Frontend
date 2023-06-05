@@ -19,7 +19,6 @@ import AllTours from "./pages/AllTours";
 import Destinations from "./pages/Destinations";
 import UserProfile from "./pages/UserProfile";
 
-
 // Admin components
 import AdminSignUp from "./pages/Admin/adminSignup";
 import AdminLogin from "./pages/Admin/adminLogin";
@@ -29,12 +28,10 @@ import AdminReviews from "./pages/AdminReviews";
 import AddTourPage from "./pages/Admin/addTour";
 import { AddTourFormProvider } from "./context/AddTourFormContext";
 
-
-
 import Layout from "./layout";
 
-
 export const router = createBrowserRouter([
+  {
     path: "/",
     element: <Layout />,
     children: [
@@ -56,22 +53,21 @@ export const router = createBrowserRouter([
       { path: "destinations", element: <Destinations /> },
       { path: "user-profile/:id", element: <UserProfile /> },
       { path: "/sales", element: <Sales /> },
-        
+
       //admin
       { path: "admin", element: <DashBoard /> },
       { path: "admin/signup", element: <AdminSignUp /> },
       { path: "admin/login", element: <AdminLogin /> },
-      { path: "admin/alltours", element: <AdminAllTours/> },
-      { path: "admin/reviews", element: <AdminReviews/>},
-  {
-    path: "admin/addTour",
-    element: (
-      <AddTourFormProvider>
-        <AddTourPage />
-      </AddTourFormProvider>
-    )}
+      { path: "admin/alltours", element: <AdminAllTours /> },
+      { path: "admin/reviews", element: <AdminReviews /> },
+      {
+        path: "admin/addTour",
+        element: (
+          <AddTourFormProvider>
+            <AddTourPage />
+          </AddTourFormProvider>
+        ),
+      },
     ],
-
   },
-
 ]);
