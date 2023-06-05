@@ -4,13 +4,13 @@ import "./style.css"
 const DataGrid = ({ data, columns }) => {
   return (
     <>
-    <div className="mt-10 ">
+    <div className="mt-10">
       <Table
       className="custom-table"
         rowSelection={{}}
         columns={columns}
         dataSource={data}
-        // size="middle"
+        size="middle"
         scroll={{
           x: "calc(700px + 50%)",
           y: 240,

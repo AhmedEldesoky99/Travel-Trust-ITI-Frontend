@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Pagination } from "antd";
 
 import CheckDestCard from "../../../components/CheckDestCard";
 
@@ -9,6 +10,8 @@ import Image3 from "../../../assets/images/CheckDestinations/Nouba.png";
 import Image4 from "../../../assets/images/CheckDestinations/Alex.png";
 
 const CheckDestenations = () => {
+  const [page, setPage] = useState(1);
+
   return (
     <section className="py-14">
       <div className="container mx-auto">
@@ -16,7 +19,10 @@ const CheckDestenations = () => {
           <h3 className="2xs:text-lg xs:text-xl lg:text-2xl 2xl:text-3xl xs:mb-4">
             Check out other destinations
           </h3>
-          <Link to="" className="2xs:mb-2 xs:mb-4 md:text-lg 2xl:text-xl text-primary-green hover:underline">
+          <Link
+            to=""
+            className="2xs:mb-2 xs:mb-4 md:text-lg 2xl:text-xl text-primary-green hover:underline"
+          >
             View all destinations
           </Link>
         </div>
@@ -28,6 +34,16 @@ const CheckDestenations = () => {
           <CheckDestCard city="Alex" url={Image4} />
         </div>
       </div>
+
+      <Pagination
+        className="my-custom-pagination text-center mt-14"
+        current={page}
+        onChange={(page) => {
+          setPage(page);
+        }}
+        pageSize={12}
+        total={50}
+      />
     </section>
   );
 };

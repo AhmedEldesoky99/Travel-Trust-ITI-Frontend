@@ -2,7 +2,7 @@ const DestinationCard = ({url,city,tours}) => {
   return (
     <>
     <div style={{ backgroundImage: `url(${url})` }}
-      className={` min-h-[30rem] w-full md:w-[20.3rem] bg-cover bg-center rounded-2xl `}
+      className={` min-h-[30rem] w-full md:w-[20.3rem] bg-cover bg-center rounded-2xl`}
       >
         <div className="w-full h-full  bg-black/[0.4] hover:bg-black/[0.2] rounded-2xl transition-all duration-500 ease-in-out cursor-pointer ">
           <div className="flex justify-between items-end h-full px-4 pb-8">

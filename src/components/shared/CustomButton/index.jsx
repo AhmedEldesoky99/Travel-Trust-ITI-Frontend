@@ -1,4 +1,3 @@
-
 import React from "react";
 
 const CustomButton = ({
@@ -6,6 +5,7 @@ const CustomButton = ({
   type = 'primary' ,
   submit,
   width ,
+
   isLoading,
   onClick = () => {},
 }) => {
@@ -22,6 +22,7 @@ const CustomButton = ({
       className={`btn 2xs:text-sm md:text-base 2xl:text-lg normal-case px-[1.125rem] ${width} ${
         buttonTypes[type]
       } ${isLoading && "loading"} `}
+    
     >
       {value}
     </button>

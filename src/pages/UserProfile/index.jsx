@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
 
 import Header from "../../containers/UserProfile/Header";
 import ProfileTabs from "../../containers/UserProfile/ProfileTabs";
@@ -21,26 +21,31 @@ const UserProfile = () => {
     formState: { errors },
   } = useForm();
 
-  const {
-    userImageUrl,
-    userCoverUrl,
-    userImageRef,
-    userCoverRef,
-    handleButtonClick,
-    onImageChange,
-  } = useUploadImage();
+  const { userImageUrl, userCoverUrl, onImageChange } = useUploadImage();
 
   // --------- States -----------
   const [openModal, setOpenModal] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
   // --------- Handlers -----------
-  const showModal = () => {
-    setOpenModal(true);
+  const showModal = (type) => {
+    type === "delete" ? setOpenDeleteModal(true) : setOpenModal(true);
   };
 
   const handleCancel = () => {
     setOpenModal(false);
+  };
+
+  const handleDeleteCancel = () => {
+    setOpenDeleteModal(false);
+  };
+
+  const handleOk = () => {
+    setLoading(true);
+    //Call Api
+    // setLoading(false);
+    // setOpenDeleteModal(false);
   };
 
   const editProfileHandler = (data) => {
@@ -66,7 +71,7 @@ const UserProfile = () => {
       >
         <form onSubmit={handleSubmit(editProfileHandler)}>
           <div
-            className={`relative hero place-items-start min-h-[10rem] ${
+            className={`relative hero place-items-start min-h-[10rem] bg-cover bg-center ${
               !userCoverUrl ? "bg-lighter-gray" : ""
             }`}
             style={{
@@ -76,23 +81,24 @@ const UserProfile = () => {
             <div className="h-full w-full flex justify-center items-center">
               <div>
                 <input
-                  {...register("user-cover")}
+                  {...register("user-cover", {
+                    onChange: (e) => onImageChange(e, "userCover"),
+                  })}
                   id="coverImage"
                   className="hidden"
                   type="file"
                   accept="image/*"
                   name="user-cover"
-                  onChange={(e) => onImageChange(e, "userCover")}
                 />
-                <Button
-                  icon={<Icon name="addImage" />}
-                  onClick={() => handleButtonClick("coverBtn")}
-                  className="my-custom-btn flex justify-center items-center gap-2 border-none shadow-none"
+                <label
+                  htmlFor="coverImage"
+                  className="cursor-pointer flex justify-center items-center gap-2 hover:text-primary-green transition duration-300"
                 >
+                  <Icon name="addImage" />
                   <span className="2xs:text-sm sm:text-base 2xl:text-xl">
                     Add cover photo
                   </span>
-                </Button>
+                </label>
               </div>
             </div>
 
@@ -104,19 +110,21 @@ const UserProfile = () => {
                 />
               </div>
               <input
-                {...register("user-image")}
+                {...register("user-image", {
+                  onChange: (e) => onImageChange(e, "userImage"),
+                })}
                 id="profileImage"
                 className="hidden"
                 type="file"
                 accept="image/*"
                 name="user-image"
-                onChange={(e) => onImageChange(e, "userImage")}
               />
-              <Button
-                icon={<Icon name="camera" />}
-                onClick={() => handleButtonClick("imgBtn")}
-                className="my-custom-btn absolute bottom-0 right-0 translate-y-1/4 flex justify-center items-center bg-white p-4 rounded-full"
-              ></Button>
+              <label
+                htmlFor="profileImage"
+                className="cursor-pointer absolute bottom-0 right-0 translate-y-1/4 bg-white p-2 shadow-md rounded-full hover:text-primary-green transition duration-300"
+              >
+                <Icon name="camera" />
+              </label>
             </div>
           </div>
 
@@ -161,7 +169,6 @@ const UserProfile = () => {
                 value="Cancel"
               />
               <CustomButton
-                // onClick={handleOk}
                 submit="submit"
                 type="secondary"
                 value="Save"
@@ -170,6 +177,38 @@ const UserProfile = () => {
             </div>
           </div>
         </form>
+      </Modal>
+
+      <Modal
+        title={
+          <span className="2xs:text-base md:text-lg 2xl:text-xl">
+            Are you sure you want to delete this item?
+          </span>
+        }
+        open={openDeleteModal}
+        onCancel={handleDeleteCancel}
+        footer={null}
+        centered
+      >
+        <p className="2xs:text-sm sm:text-base 2xl:text-lg">
+          This will delete the item permanently
+        </p>
+        <div className="flex justify-end gap-2 mt-5">
+          <button
+            onClick={handleDeleteCancel}
+            className="2xs:text-sm md:text-base 2xl:text-lg normal-case btn bg-transparent h-[2.5rem] min-h-[2.5rem] border border-solid border-black text-black py-1 px-2 rounded-lg hover:bg-black hover:text-white transition duration-300"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleOk}
+            className={` ${
+              loading ? "loading" : ""
+            } font-semibold 2xs:text-base md:text-lg 2xl:text-xl normal-case btn bg-transparent h-[2.5rem] min-h-[2.5rem] border border-solid border-tertiary-red text-tertiary-red py-1 px-3 rounded-lg hover:bg-tertiary-red hover:border-tertiary-red hover:text-white transition duration-300`}
+          >
+            Yes
+          </button>
+        </div>
       </Modal>
     </>
   );

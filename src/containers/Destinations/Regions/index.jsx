@@ -2,7 +2,7 @@ import DestinationCard from "../../../components/DestinationCard";
 import RegionCard from "../../../components/RegionCard";
 
 import Cairo from "../../../assets/images/Destinations/cairo.png";
-import Giza from "../../../assets/images/Destinations/giza.jpg"
+import Giza from "../../../assets/images/Destinations/giza.jpg";
 import Qalubia from "../../../assets/images/Destinations/Qalubia.jpg";
 import Cairoo from "../../../assets/images/Destinations/egyptCairo.jpg";
 import Behira from "../../../assets/images/Destinations/Behira.jpg";
@@ -71,24 +71,24 @@ const regions = [
     name: "North Upper Egypt Region",
     destinations: [
       { tours: "2", city: "Bani Sweif", url: BaniSweif },
-      { tours: "3", city: "Minya", url: Minya},
+      { tours: "3", city: "Minya", url: Minya },
       { tours: "10", city: "Fayoum", url: Fayoum },
     ],
   },
   {
     name: "Central Upper Egypt Region",
     destinations: [
-      { tours: "2", city: "Asyut ", url:Asyut },
-      { tours: "4", city: "new valley", url:NewValley },
+      { tours: "2", city: "Asyut ", url: Asyut },
+      { tours: "4", city: "new valley", url: NewValley },
     ],
   },
   {
     name: "Southern Upper Egypt Region",
     destinations: [
-      { tours: "12", city: "souhag", url: Souhag},
+      { tours: "12", city: "souhag", url: Souhag },
       { tours: "4", city: "qena", url: Qena },
       { tours: "5", city: "al-aqasr", url: AlAqasr },
-      { tours: "8", city: "red sea", url:RedSea },
+      { tours: "8", city: "red sea", url: RedSea },
       { tours: "", city: "aswan", url: Aswan },
     ],
   },
@@ -96,13 +96,17 @@ const regions = [
 
 const Regions = () => {
   return (
-    <div className="my-32  grid lg:grid-cols-12 gap-10 w-full">
-      <div className="lg:col-span-4">
+    <div className="my-32 grid lg:grid-cols-12 gap-10">
+      <div className="sm:col-span-12 xl:col-span-4">
         <RegionCard />
       </div>
-      <div className="lg:col-span-8 md:pl-[3.6rem] lg:pl-40 xl:pl-0 px-6 xs:px-0">
+      <div className="sm:col-span-12 xl:col-span-8 px-6 xs:px-0 ">
         {regions.map((region) => (
-          <div key={region.name} id={region.name} className="mb-16 text-center md:text-start">
+          <div
+            key={region.name}
+            id={region.name}
+            className="mb-16 text-center md:text-start"
+          >
             <h2 className="text-[2.3rem] mb-8 font-medium">{region.name}</h2>
             <div className="flex gap-4 flex-wrap">
               {region.destinations.map(({ tours, city, url }, index) => (
