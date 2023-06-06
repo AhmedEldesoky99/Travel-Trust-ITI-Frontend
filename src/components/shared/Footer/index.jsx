@@ -36,16 +36,16 @@ const Footer = () => {
           <span className="footer-title opacity-100 mb-0 2xs:text-base 2xl:text-lg">
             Quick Links
           </span>
-          <Link to="" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
+          <Link to="/" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
             Home
           </Link>
-          <Link to="" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
+          <Link to="/destinations" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
             Destinations
           </Link>
-          <Link to="" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
+          <Link to="/sales" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
             Offers
           </Link>
-          <Link to="" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
+          <Link to="/join" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
             Join us
           </Link>
         </div>
@@ -72,13 +72,13 @@ const Footer = () => {
           <span className="footer-title opacity-100 mb-0 2xs:text-base 2xl:text-lg">
             Support
           </span>
-          <Link to="" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
+          <Link to="/Aboutus" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
             About us
           </Link>
-          <Link to="" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
+          <Link to="/privacy" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
             Privacy policy
           </Link>
-          <Link to="" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
+          <Link to="/faq" className="cursor-pointer hover:text-primary-green transition-all 2xs:text-sm 2xl:text-base">
             FAQ
           </Link>
         </div>

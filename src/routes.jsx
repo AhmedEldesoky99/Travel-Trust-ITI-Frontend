@@ -22,10 +22,12 @@ import ContactUs from "./pages/ContactUs";
 import History from "./pages/History";
 
 
-
 // Admin components
 import AdminSignUp from "./pages/Admin/adminSignup";
 import AdminLogin from "./pages/Admin/adminLogin";
+
+import ContactUs from "./pages/ContactUs";
+
 import DashBoard from "./pages/Admin/DashBoard";
 import AdminAllTours from "./pages/Admin/AdminAllTours";
 import AdminReviews from "./pages/AdminReviews";
@@ -33,11 +35,32 @@ import AddTourPage from "./pages/Admin/addTour";
 import { AddTourFormProvider } from "./context/AddTourFormContext";
 
 
-
 import Layout from "./layout";
 
-
 export const router = createBrowserRouter([
+
+  { path: "/", element: <Home /> },
+  { path: "/join", element: <JoinUs /> },
+  { path: "/login", element: <Login /> },
+  { path: "/signup", element: <SignUp /> },
+  { path: "/each-governorate/:id", element: <EachGovernorate /> },
+  { path: "/sales", element: <Sales /> },
+  { path: "/tour-details/:id", element: <TourDetails /> },
+  { path: "/shared", element: <SharedComponents /> },
+  { path: "/faq", element: <Faq /> },
+  { path: "/privacy", element: <PrivacyPolicy /> },
+  { path: "/Aboutus", element: <AboutUs /> },
+  { path: "/cart", element: <Cart /> },
+  { path: "/favorite", element: <Favorite /> },
+  { path: "/search", element: <Search /> },
+  { path: "/all-tours", element: <AllTours /> },
+  { path: "/user-profile/:id", element: <UserProfile /> },
+  { path: "/contact-us", element: <ContactUs /> },
+  //admin
+  { path: "/admin/signup", element: <AdminSignUp /> },
+  { path: "/admin/login", element: <AdminLogin /> },
+
+  {
     path: "/",
     element: <Layout />,
     children: [
@@ -62,21 +85,20 @@ export const router = createBrowserRouter([
       { path: "/contact-us", element: <ContactUs /> },
       { path: "/history", element: <History /> },
       
-        
       //admin
       { path: "admin", element: <DashBoard /> },
       { path: "admin/signup", element: <AdminSignUp /> },
       { path: "admin/login", element: <AdminLogin /> },
-      { path: "admin/alltours", element: <AdminAllTours/> },
-      { path: "admin/reviews", element: <AdminReviews/>},
-  {
-    path: "admin/addTour",
-    element: (
-      <AddTourFormProvider>
-        <AddTourPage />
-      </AddTourFormProvider>
-    )}
+      { path: "admin/alltours", element: <AdminAllTours /> },
+      { path: "admin/reviews", element: <AdminReviews /> },
+      {
+        path: "admin/addTour",
+        element: (
+          <AddTourFormProvider>
+            <AddTourPage />
+          </AddTourFormProvider>
+        ),
+      },
     ],
-
   },
 ]);
