@@ -26,7 +26,6 @@ import History from "./pages/History";
 import AdminSignUp from "./pages/Admin/adminSignup";
 import AdminLogin from "./pages/Admin/adminLogin";
 
-import ContactUs from "./pages/ContactUs";
 
 import DashBoard from "./pages/Admin/DashBoard";
 import AdminProfile from "./pages/Admin/adminProfile";
