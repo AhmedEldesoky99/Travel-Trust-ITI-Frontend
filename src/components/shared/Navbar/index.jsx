@@ -14,7 +14,7 @@ import {
 
 import Logo from "../../../assets/images/Logo/Logo.svg";
 
-const Navbar = () => {
+const Navbar = ({ pathBackgroundIncluded }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const changeNavbarBackground = () => {
@@ -27,13 +27,16 @@ const Navbar = () => {
 
   window.addEventListener("scroll", changeNavbarBackground);
 
-
   return (
     <>
       <nav
-        className={`navbar justify-between fixed z-50 text-white shadow-md transition-all duration-500 ${
-          isScrolled ? "bg-black" : "bg-transparent"
-        }`}
+        className={`navbar justify-between fixed top-0 z-50 text-white shadow-md transition-all duration-500  ${
+          pathBackgroundIncluded
+            ? "bg-[#0B0B0B]"
+            : isScrolled
+            ? "bg-[#0B0B0B]"
+            : "bg-transparent"
+        } `}
       >
         {/* Navbar Start */}
 
@@ -64,7 +67,7 @@ const Navbar = () => {
               className="menu menu-compact dropdown-content mt-3 p-4 shadow bg-base-100 rounded-box w-40"
             >
               <li className="flex flex-row">
-                <HomeOutlined className="text-black p-0 active:bg-transparent active:text-primary-green"/>
+                <HomeOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
                   to="/"
                   className="text-black active:bg-transparent  active:text-primary-green"
@@ -73,27 +76,27 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="flex flex-row">
-                <RocketOutlined className="text-black p-0 active:bg-transparent active:text-primary-green"/>
+                <RocketOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
-                  to=""
+                  to="/destinations"
                   className="text-black active:bg-transparent  active:text-primary-green"
                 >
                   Destination
                 </Link>
               </li>
               <li className="flex flex-row">
-                <WalletOutlined className="text-black p-0 active:bg-transparent active:text-primary-green"/>
+                <WalletOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
-                  to=""
+                  to="/sales"
                   className="text-black active:bg-transparent  active:text-primary-green"
                 >
                   Offers
                 </Link>
               </li>
               <li className="flex flex-row">
-                <MobileOutlined className="text-black p-0 active:bg-transparent active:text-primary-green"/>
+                <MobileOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
-                  to=""
+                  to="/"
                   className="text-black active:bg-transparent  active:text-primary-green"
                 >
                   Get the app
@@ -115,7 +118,7 @@ const Navbar = () => {
             <li className="p-3 hover:text-primary-green">
               <RocketOutlined className="p-1 hover:bg-transparent active:bg-transparent active:text-primary-green" />
               <Link
-                to=""
+                to="/destinations"
                 className="hover:bg-transparent active:bg-transparent  active:text-primary-green p-1"
               >
                 Destinations
@@ -124,7 +127,7 @@ const Navbar = () => {
             <li className="p-3 hover:text-primary-green">
               <WalletOutlined className="p-1 hover:bg-transparent active:bg-transparent active:text-primary-green" />
               <Link
-                to=""
+                to="/sales"
                 className="hover:bg-transparent active:bg-transparent  active:text-primary-green p-1 pr-0"
               >
                 Offers
@@ -133,7 +136,7 @@ const Navbar = () => {
             <li className="p-3 hover:text-primary-green">
               <MobileOutlined className="p-1 hover:bg-transparent active:bg-transparent active:text-primary-green" />
               <Link
-                to=""
+                to="/"
                 className="hover:bg-transparent active:bg-transparent  active:text-primary-green p-1 pr-0"
               >
                 Get the app
@@ -157,7 +160,7 @@ const Navbar = () => {
             <li className="p-3 hover:text-primary-green">
               <HeartOutlined className="p-1 hover:bg-transparent active:bg-transparent active:text-primary-green" />
               <Link
-                to=""
+                to="/favorite"
                 className="hover:bg-transparent active:bg-transparent  active:text-primary-green p-1"
               >
                 Trips
@@ -166,7 +169,7 @@ const Navbar = () => {
             <li className="p-3 hover:text-primary-green">
               <ShoppingCartOutlined className="p-1 hover:bg-transparent active:bg-transparent active:text-primary-green" />
               <Link
-                to=""
+                to="/cart"
                 className="hover:bg-transparent active:bg-transparent  active:text-primary-green p-1"
               >
                 Cart
@@ -175,7 +178,7 @@ const Navbar = () => {
             <li className="p-3 hover:text-primary-green">
               <QuestionCircleOutlined className="p-1 hover:bg-transparent active:bg-transparent active:text-primary-green" />
               <Link
-                to=""
+                to="/faq"
                 className="hover:bg-transparent active:bg-transparent  active:text-primary-green p-1"
               >
                 Help
@@ -201,27 +204,27 @@ const Navbar = () => {
               className="mt-3 p-4 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-40"
             >
               <li className="flex flex-row items-center">
-                <HeartOutlined className="text-black p-0 active:bg-transparent active:text-primary-green"/>
+                <HeartOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
-                  to=""
+                  to="/favorite"
                   className="text-black active:bg-transparent  active:text-primary-green"
                 >
                   Trips
                 </Link>
               </li>
               <li className="flex flex-row items-center">
-                <ShoppingCartOutlined className="text-black p-0 active:bg-transparent active:text-primary-green"/>
+                <ShoppingCartOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
-                  to=""
+                  to="/cart"
                   className="text-black active:bg-transparent  active:text-primary-green"
                 >
                   Card
                 </Link>
               </li>
               <li className="flex flex-row items-center">
-                <QuestionCircleOutlined className="text-black p-0 active:bg-transparent active:text-primary-green"/>
+                <QuestionCircleOutlined className="text-black p-0 active:bg-transparent active:text-primary-green" />
                 <Link
-                  to=""
+                  to="/faq"
                   className="text-black active:bg-transparent  active:text-primary-green"
                 >
                   Help
@@ -230,8 +233,8 @@ const Navbar = () => {
             </ul>
           </div>
 
-          {/* <Link to="" className="mr-3 cursor-pointer hover:text-primary-green">Login</Link>
-          <Link to="" className="btn btn-sm bg-transparent outline outline-white outline-1 normal-case hover:bg-secondary-yellow hover:outline-secondary-yellow outline-offset-0 border-none hover:text-black">Sign up</Link> */}
+          {/* <Link to="/login" className="mr-3 cursor-pointer hover:text-primary-green">Login</Link>
+          <Link to="/signup" className="btn btn-sm bg-transparent outline outline-white outline-1 normal-case hover:bg-secondary-yellow hover:outline-secondary-yellow outline-offset-0 border-none hover:text-black">Sign up</Link> */}
         </div>
       </nav>
     </>

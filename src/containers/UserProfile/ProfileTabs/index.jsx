@@ -15,7 +15,7 @@ import "./ProfileTabsStyle.css";
 const ProfileTabs = ({ showModal }) => {
   const operations = (
     <Button
-      onClick={showModal}
+      onClick={() => showModal("edit")}
       className="my-custom-btn flex justify-center items-center 2xs:text-sm 2xl:text-xl"
     >
       Edit Profile
@@ -54,7 +54,7 @@ const ProfileTabs = ({ showModal }) => {
           </span>
         </span>
       ),
-      children: <Booked />,
+      children: <Booked showModal={showModal} />,
     },
     {
       key: "4",
@@ -97,7 +97,7 @@ const ProfileTabs = ({ showModal }) => {
               <div>
                 <Button
                   icon={<PlusOutlined />}
-                  onClick={showModal}
+                  onClick={() => showModal("edit")}
                   className="my-custom-btn flex items-center gap-2 2xs:text-sm sm:text-base 2xl:text-xl border-none shadow-none p-0"
                 >
                   Add your phone number
@@ -106,7 +106,7 @@ const ProfileTabs = ({ showModal }) => {
               <div>
                 <Button
                   icon={<PlusOutlined />}
-                  onClick={showModal}
+                  onClick={() => showModal("edit")}
                   className="my-custom-btn flex items-center gap-2 2xs:text-sm sm:text-base 2xl:text-xl border-none shadow-none p-0"
                 >
                   Add your current city
@@ -115,7 +115,7 @@ const ProfileTabs = ({ showModal }) => {
               <div>
                 <Button
                   icon={<PlusOutlined />}
-                  onClick={showModal}
+                  onClick={() => showModal("edit")}
                   className="my-custom-btn flex items-center gap-2 2xs:text-sm sm:text-base 2xl:text-xl border-none shadow-none p-0"
                 >
                   Write some details about yourself

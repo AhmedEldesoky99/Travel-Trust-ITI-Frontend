@@ -11,10 +11,10 @@ const Testimonials = () => {
           <div className="container mx-auto">
             <div className="mx-8">
               <div className="text-center lg:text-start">
-                <p className="hidden lg:flex md:text-[18]px] lg:text-[22px] font-header">
+                <p className="hidden lg:flex md:text-[18]px] 2xl:text-[22px] font-header">
                   explore our stories
                 </p>
-                <h2 className="text-[#2B2B2B] text-[30px] md:text-4xl lg:text-5xl font-bold md:mt-4 capitalize text-center lg:text-start">
+                <h2 className="text-[#2B2B2B] text-[30px] md:text-3xl xl:text-4xl 2xl:text-5xl font-bold md:mt-4 capitalize text-center lg:text-start">
                   Our Impact Stories
                 </h2>
               </div>

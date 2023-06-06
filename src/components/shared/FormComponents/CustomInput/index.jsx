@@ -3,7 +3,17 @@ import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import { ruleValidation } from "../../../../helpers/InputsValidation";
 import { ruleEditValidation } from "../../../../helpers/EditFormValidations";
 
-const CustomInput = ({ edit, type, name, label, rule, register, errors }) => {
+const CustomInput = ({
+  edit,
+  type,
+  name,
+  label,
+  rule,
+  register,
+  errors,
+  value,
+  onChange,
+}) => {
   // ------- State -------
   const [showPassword, setShowPassword] = useState(false);
 
@@ -23,6 +33,8 @@ const CustomInput = ({ edit, type, name, label, rule, register, errors }) => {
           type={showPassword ? "text" : type}
           id={label}
           name={name}
+          value={value}
+          onChange={onChange}
           className={`2xl:h-[4rem] block px-2.5 pb-2.5 pt-4 w-full text-black bg-transparent rounded-lg border border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer ${
             errors[name] &&
             "border border-tertiary-red focus:border-tertiary-red focus:outline-none"
