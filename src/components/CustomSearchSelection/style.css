@@ -1,15 +1,23 @@
-
+.CustomBtn {
+  @media (min-width: 768px) and (max-width: 769px) {
+    padding-top: 11px !important;
+    padding-bottom: 7px !important;
+  }
+}
  .custom-search {
   border-radius: 20px !important;
+
 }
 .custom-search .ant-select-arrow {
   display: none !important;
+
 }
 .custom-search .ant-select-selection-overflow {
   box-sizing: border-box;
   height: max-content !important;
   padding: 1.7rem 0.8rem !important;
   border-radius: 10px !important;
+
 }
 
 .custom-search .ant-select-selection-item {
@@ -29,12 +37,25 @@
 
   }
 }
-@media (max-width: 767px) {
-  .ant-select-selection-overflow {
+@media (max-width: 500px) {
+  .custom-search .ant-select-selection-placeholder {
+    font-size: 16px !important;
+    padding: 1.2rem 0.8rem !important;
+
+  }
+}
+@media (max-width: 768px) {
+  .custom-search .ant-select-selection-overflow {
     box-sizing: border-box;
     height: max-content !important;
-    padding: 1.4rem 0.8rem !important;
+    padding: 1rem 0.8rem !important;
     border-radius: 10px !important;
+  }
+}
+@media (max-width: 767px) {
+  .custom-search .ant-select-selection-overflow{
+    padding: 1rem 0.8rem !important;
+
   }
 }
 
