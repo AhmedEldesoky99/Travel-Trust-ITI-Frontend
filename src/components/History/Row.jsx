@@ -10,14 +10,14 @@ const Row = ({ time, title, isFavorite }) => {
   return (
     <>
       <div className="flex flex-row justify-between " key={time}>
-        <div className="flex flex-row gap-6">
+        <div className="flex flex-row md:gap-6 2xs:gap-1 justify-center">
           <Checkbox />
-          <p className="text-xl">{time}</p>
-          <p className="ml-6 text-xl">{title}</p>
+          <p className="2xl:text-xl lg:text-lg 2xs:text-base">{time}</p>
+          <p className="ml-6 2xl:text-xl lg:text-lg 2xs:text-base max-w-[130px]">{title}</p>
         </div>
-        <div className="flex flex-row gap-9 items-center">
-          {isFavorite && <img src={heart} />}
-          <div>
+        <div className="flex flex-row md:gap-9  items-center">
+          {isFavorite && <img className="md:block 2xs:hidden" src={heart} />}
+          <div >
             <img
               src={options}
               onClick={() => {

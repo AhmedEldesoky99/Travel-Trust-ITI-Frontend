@@ -25,24 +25,24 @@ const ContactUs = () => {
     <>
       <div className="flex flex-col w-full">
         <div className="bg-contactUs bg-cover w-full max-h-[470px] h-[100vh] flex flex-col mb-[72px]">
-          <div className="bg-black bg-opacity-40 h-[100vh] flex flex-col w-full items-center justify-center gap-4">
+          <div className="bg-black bg-opacity-40 h-[100vh] flex flex-col w-full items-center justify-center gap-4 text-center">
             {/* img + get in touch +let’s have a talk together */}
-            <h1 className="font-header text-white text-[40px]">Get In Touch</h1>
-            <p className="text-white text-5xl font-medium">
+            <h1 className="font-header text-white 2xl:text-[40px] lg:text-2xl 2xs:text-xl">Get In Touch</h1>
+            <p className="text-white 2xl:text-5xl lg:text-4xl 2xs:text-3xl font-medium">
               Let&apos;s Have A Talk Together
             </p>
           </div>
         </div>
         <div className="flex flex-col w-full container mx-auto mb-12">
           {/* TravelTrust + description */}
-          <h1 className="text-5xl text-black mb-4 font-medium">Travel Trust</h1>
-          <p className="mx-auto text-center text-2xl max-w-[1114px]">
+          <h1 className="2xl:text-5xl lg:text-4xl 2xs:text-3xl text-black mb-4 font-medium text-center">Travel Trust</h1>
+          <p className="mx-auto text-center 2xl:text-2xl lg:text-xl 2xs:text-lg max-w-[1114px]">
             Aute irure dolor in reprehenderit in voluptate velit esse cillum
             dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
             non proident, sunt in culpa qui officia deserunt mollit anim id est
             laborum.
           </p>
-          <div className="flex flex-row mt-10 gap-5">
+          <div className="flex flex-row mt-10 gap-5 lg:flex-nowrap  2xs:flex-wrap justify-center max-w-[1680px] w-sc">
             {/* cards phone mail address */}
             <ContactCard
               icon={phone}
@@ -64,11 +64,11 @@ const ContactUs = () => {
             />
           </div>
         </div>
-        <div className="flex flex-col justify-center items-center container mx-auto">
-          <h2 className="font-header text-4xl mb-4">Our Team</h2>
-          <h1 className="font-medium text-5xl mb-12">Get To Know Us Closer</h1>
+        <div className="flex flex-col justify-center items-center container mx-auto text-center">
+          <h2 className="font-header 2xl:text-4xl lg:text-2xl 2xs:text-xl mb-4">Our Team</h2>
+          <h1 className="font-medium 2xl:text-5xl lg:text-4xl 2xs:text-3xl mb-12">Get To Know Us Closer</h1>
           <div className="flex flex-col gap-20  mb-32">
-            <div className="flex justify-center items-center gap-20">
+            <div className="flex justify-center items-center gap-20 flex-wrap">
               <TeamCard
                 name="Ahmed El Desoky"
                 img={member}
@@ -85,7 +85,7 @@ const ContactUs = () => {
                 title="Full Stack Developer"
               />
             </div>
-            <div className="flex justify-center items-center gap-20">
+            <div className="flex justify-center items-center gap-20 flex-wrap">
               <TeamCard
                 name="Ahmed El Desoky"
                 img={member}
@@ -99,10 +99,10 @@ const ContactUs = () => {
             </div>
           </div>
         </div>
-        <div className="w-full max-h-[370px] bg-parallax flex h-screen items-center justify-center bg-fixed mb-12">
+        <div className="w-full max-h-[370px] bg-parallax bg-no-repeat bg-cover bg-center flex h-screen items-center justify-center bg-fixed mb-12">
           {/* img + parallax */}
           <div className=" m-auto">
-            <p className="h-full font-semibold text-2xl text-white text-center max-w-[1114px]">
+            <p className="h-full font-semibold 2xl:text-2xl lg:text-xl 2xs:text-lg text-white text-center max-w-[1114px]">
               Aute irure dolor in reprehenderit in voluptate velit esse cillum
               dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
               non proident, sunt in culpa qui officia deserunt mollit anim id
@@ -110,19 +110,18 @@ const ContactUs = () => {
             </p>
           </div>
         </div>
-        <div className="flex flex-col justify-center items-center w-full">
+        <div className="flex flex-col justify-center items-center w-full text-center">
           {/* form */}
-          <h1 className="font-header text-4xl mb-5">Get In Touch</h1>
-          <h2 className="text-5xl font-medium mb-10">
+          <h1 className="font-header 2xl:text-4xl lg:text-2xl 2xs:text-xl mb-5">Get In Touch</h1>
+          <h2 className="2xl:text-5xl lg:text-4xl 2xs:text-3xl font-medium mb-10">
             Feel Free To Contact With Us
           </h2>
           <form
             onSubmit={handleSubmit(registerHandler)}
-            className="p-16 gap-4 border-2 border-gray-600 rounded-2xl flex flex-col max-w-[998px] max-h-[672px] w-screen"
-
+            className="p-16 gap-4 border-2 md:border-gray-600 2xs:border-none rounded-2xl flex flex-col max-w-[998px] max-h-[672px] w-screen"
 
           >
-            <div className="flex w-full gap-5 justify-between">
+            <div className="flex md:flex-row 2xs:flex-col w-full gap-5 justify-between">
                 <div className="w-full">
                 <CustomInput
                     type="text"
@@ -144,7 +143,7 @@ const ContactUs = () => {
                 />
                 </div>
             </div>
-            <div className="flex gap-5 justify-between">
+            <div className="flex gap-5 justify-between md:flex-row 2xs:flex-col">
                 <div className="w-full">
                 <CustomInput
                     type="text"
@@ -167,7 +166,7 @@ const ContactUs = () => {
                     </div>
             </div>
             <div className="max-h-[287px] h-screen ">
-            <textarea className="w-full h-full rounded-lg border-2 border-black"></textarea>
+            <textarea className="w-full h-full rounded-lg border-2 border-glass-gray"></textarea>
             </div>
             <div className="w-full flex justify-end mt-9">
                 <CustomButton value='Submit' type='secondary'width='max-w-[263px] w-full h-full'/>

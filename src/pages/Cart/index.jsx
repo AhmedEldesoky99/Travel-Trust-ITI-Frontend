@@ -41,8 +41,8 @@ const Cart = () => {
               {tourCards}
             </div>
           </div>
-          <div className="border border-gray-200 max-w-[405px] max-h-[413px] w-full h-full flex flex-col gap-2 justify-center p-6 rounded-2xl">
-            <p className="text-2xl mb-6 mt-6">Order Summary</p>
+          <div className="md:border-2 max-w-[405px] max-h-[413px] w-full h-full flex flex-col gap-2 justify-center md:p-6 rounded-2xl">
+            <p className="text-2xl my-6">Order Summary</p>
             <div className="flex justify-between text-base">
               <p>booking fee</p>
               <p>0.00 EGP</p>
@@ -71,7 +71,7 @@ const Cart = () => {
         </div>
       ) : (
         <div className="flex flex-col">
-          <div className="flex flex-col h-[60vh] w-full justify-center items-center">
+          <div className="flex flex-col h-[60vh] w-full justify-center items-center text-center">
             <div className="bg-emptyCart max-h-[268px] max-w-[252px] w-full h-full mb-3"></div>
             <p className="text-4xl">Your cart looks empty</p>
             <p className="text-xl">What are you waiting for?</p>
