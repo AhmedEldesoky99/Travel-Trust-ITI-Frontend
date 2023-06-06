@@ -18,6 +18,9 @@ import TourDetails from "./pages/TourDetails";
 import AllTours from "./pages/AllTours";
 import Destinations from "./pages/Destinations";
 import UserProfile from "./pages/UserProfile";
+import ContactUs from "./pages/ContactUs";
+import History from "./pages/History";
+
 
 // Admin components
 import AdminSignUp from "./pages/Admin/adminSignup";
@@ -79,7 +82,9 @@ export const router = createBrowserRouter([
       { path: "destinations", element: <Destinations /> },
       { path: "user-profile/:id", element: <UserProfile /> },
       { path: "/sales", element: <Sales /> },
-
+      { path: "/contact-us", element: <ContactUs /> },
+      { path: "/history", element: <History /> },
+      
       //admin
       { path: "admin", element: <DashBoard /> },
       { path: "admin/signup", element: <AdminSignUp /> },
@@ -96,5 +101,4 @@ export const router = createBrowserRouter([
       },
     ],
   },
-
 ]);
