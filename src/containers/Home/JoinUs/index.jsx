@@ -26,7 +26,7 @@ const JoinUs = () => {
                 small-group experiences.
               </p>
               <Link
-                to=""
+                to="/join"
                 className=" bg-white text-[18px] md:text-[21px] xl:text-[22px]  py-2 lg:py-4 rounded-lg  text-center px-[40px] lg:px-20 font-inter  font-semibold text-[#2B2B2B] hover:bg-primary-green hover:text-white transition-all duration-500 ease-in-out"
               >
                 Join us

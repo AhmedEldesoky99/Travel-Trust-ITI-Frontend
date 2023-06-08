@@ -1,23 +1,29 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+
 import CustomInput from "../../../components/shared/FormComponents/CustomInput";
-import CustomButton from "../../../components/shared/CustomButton/index";
+import CustomButton from "../../../components/shared/CustomButton";
+
 import Google from "../../../assets/images/Logo/Google.svg";
 import Logo from "../../../assets/images/Logo/Tlogo.svg";
-import { Link } from "react-router-dom";
+
+import useAdminAuth from "../../../services/useAdminAuth";
 
 const AdminLogin = () => {
   const {
     handleSubmit,
     register,
     formState: { errors },
-    watch,
-    getValues,
   } = useForm();
+
+  const { adminLoginMutation } = useAdminAuth();
+  const { mutate, isLoading } = adminLoginMutation();
 
   const registerHandler = (data) => {
     console.log(data);
+    mutate(data);
   };
   return (
     <div className="flex 2xs:flex-col lg:flex-row ">
@@ -34,7 +40,10 @@ const AdminLogin = () => {
         <h1 className="md:text-3xl 2xs:text-3xl font-bold">Welcome</h1>
         <p className="text-xl mb-8 mt-2">Please enter your details below</p>
         <button className="btn btn-wide bg-white text-gray-700 border-gray-500 mb-4 max-w-[547px] 2xs:w-full h-16  hover:text-white hover:bg-black">
-          <img src={Google} className="h-5 pr-2 mb-1" /> sign up with google
+          <img src={Google} className="h-5 pr-2 mb-1" />{" "}
+          <span className="normal-case 2xs:text-sm sm:text-base 2xl:text-xl">
+            Sign up with google
+          </span>
         </button>
         <div className="flex flex-row items-center mb-4">
           <hr className="h-px bg-gray-600 border-0 w-28" />
@@ -47,15 +56,15 @@ const AdminLogin = () => {
         >
           <CustomInput
             type="email"
-            name="E-mail"
-            label="E-mail *"
+            name="email"
+            label="Email*"
             rule="email"
             register={register}
             errors={errors}
           />
           <CustomInput
             type="password"
-            label="Password *"
+            label="Password*"
             name="password"
             rule="password"
             register={register}
@@ -82,7 +91,13 @@ const AdminLogin = () => {
               </a>
             </div>
             <div className="w-80 mt-8 mb-8 text-center flex items-center justify-center">
-              <CustomButton value="Log in" type="ternary" width="w-[100%]" />
+              <CustomButton
+                submit="submit"
+                isLoading={isLoading}
+                value="Login"
+                type="ternary"
+                width="w-[100%]"
+              />
             </div>
           </div>
         </form>

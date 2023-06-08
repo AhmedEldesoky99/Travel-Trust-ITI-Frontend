@@ -39,31 +39,11 @@ import { AddTourFormProvider } from "./context/AddTourFormContext";
 import Layout from "./layout";
 
 
+import { UserIdProvider } from './context/UserIdContext';
+
+
+
 export const router = createBrowserRouter([
-
-  { path: "/", element: <Home /> },
-  { path: "/join", element: <JoinUs /> },
-  { path: "/login", element: <Login /> },
-  { path: "/signup", element: <SignUp /> },
-  { path: "/each-governorate/:id", element: <EachGovernorate /> },
-  { path: "/sales", element: <Sales /> },
-  { path: "/tour-details/:id", element: <TourDetails /> },
-  { path: "/shared", element: <SharedComponents /> },
-  { path: "/faq", element: <Faq /> },
-  { path: "/privacy", element: <PrivacyPolicy /> },
-  { path: "/Aboutus", element: <AboutUs /> },
-  { path: "/cart", element: <Cart /> },
-  { path: "/favorite", element: <Favorite /> },
-  { path: "/search", element: <Search /> },
-  { path: "/all-tours", element: <AllTours /> },
-  { path: "/user-profile/:id", element: <UserProfile /> },
-  { path: "/contact-us", element: <ContactUs /> },
-  //admin
-  { path: "/admin/signup", element: <AdminSignUp /> },
-  { path: "/admin/login", element: <AdminLogin /> },
-  { path: "/admin/:id", element: <AdminProfile /> },
-
-
 
   {
     path: "/",
@@ -72,13 +52,20 @@ export const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "join", element: <JoinUs /> },
       { path: "login", element: <Login /> },
-      { path: "signup", element: <SignUp /> },
+      {
+        path: "signup",
+        element: (
+          <UserIdProvider>
+            <SignUp />
+          </UserIdProvider>
+        ),
+      },
       { path: "each-governorate/:id", element: <EachGovernorate /> },
       { path: "sales", element: <Sales /> },
       { path: "tour-details/:id", element: <TourDetails /> },
       { path: "shared", element: <SharedComponents /> },
       { path: "faq", element: <Faq /> },
-      { path: "/search", element: <Search /> },
+      { path: "search", element: <Search /> },
       { path: "privacy", element: <PrivacyPolicy /> },
       { path: "Aboutus", element: <AboutUs /> },
       { path: "cart", element: <Cart /> },
@@ -86,10 +73,14 @@ export const router = createBrowserRouter([
       { path: "all-tours", element: <AllTours /> },
       { path: "destinations", element: <Destinations /> },
       { path: "user-profile/:id", element: <UserProfile /> },
-      { path: "/sales", element: <Sales /> },
-      { path: "/contact-us", element: <ContactUs /> },
-      { path: "/history", element: <History /> },
+
+
+
+      { path: "sales", element: <Sales /> },
+      { path: "contact-us", element: <ContactUs /> },
+      { path: "history", element: <History /> },
       
+
       //admin
       { path: "admin", element: <DashBoard /> },
       { path: "admin/signup", element: <AdminSignUp /> },
@@ -104,6 +95,7 @@ export const router = createBrowserRouter([
           </AddTourFormProvider>
         ),
       },
+      { path: "admin/:id", element: <AdminProfile /> },
     ],
   },
 ]);
