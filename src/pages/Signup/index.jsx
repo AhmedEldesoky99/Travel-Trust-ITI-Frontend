@@ -58,6 +58,7 @@ const SignUp = () => {
           <p className="px-5 2xs:text-md sm:text-lg">or with</p>
           <hr className="h-px bg-gray-600 border-0 w-28" />
         </div>
+
         <form
           onSubmit={handleSubmit(registerHandler)}
           className="max-w-[547px] w-full flex flex-col justify-center space-y-2"

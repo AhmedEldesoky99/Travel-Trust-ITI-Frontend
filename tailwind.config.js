@@ -44,7 +44,11 @@ export default {
         "login-admin": "url('/src/assets/images/Admin/admin-logIn.png')",
         tourDetailsBG: "url('/src/assets/images/TourDetails/TourDetailsBG.png')",
         allToursBG: "url('/src/assets/images/AllTours/AllToursBG.png')",
+        contactUs: "url('/src/assets/images/Contact/Contact.png')",
+        parallax: "url('/src/assets/images/Contact/parallax.png')",
+
         DestinationsBg: "url('/src/assets/images/Destinations/Egypt-Felucca-on-the-Nile.jpg')",
+
       }, height: {
         inherit: "inherit",
         fit: "fit-content",
