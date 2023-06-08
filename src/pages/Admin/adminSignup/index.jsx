@@ -1,11 +1,15 @@
 // import React from "react";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+
 import CustomInput from "../../../components/shared/FormComponents/CustomInput";
+import CustomButton from "../../../components/shared/CustomButton";
+
 import Google from "../../../assets/images/Logo/Google.svg";
 import Logo from "../../../assets/images/Logo/Tlogo.svg";
-import CustomButton from "../../../components/shared/CustomButton";
-import { Link } from "react-router-dom";
+
+import useAdminAuth from "../../../services/useAdminAuth";
 
 const AdminSignUp = () => {
   const {
@@ -15,9 +19,16 @@ const AdminSignUp = () => {
     watch,
     getValues,
   } = useForm();
+
+
+  const { adminSignupMutation } = useAdminAuth();
+  const { mutate, isLoading } = adminSignupMutation();
+
   const registerHandler = (data) => {
     console.log(data);
+    mutate(data);
   };
+
   return (
     <div className="flex 2xs:flex-col lg:flex-row ">
       <div className="relative 2xs:h-[20vh] 2xs:w-[100vw] lg:w-[50vw] lg:h-[100vh]  sm:block 2xs:bg-login-admin bg-cover bg-left bg-no-repeat">
@@ -34,7 +45,7 @@ const AdminSignUp = () => {
           Create an account
         </h1>
         <button className="btn btn-wide bg-white text-gray-700 border-gray-500 mb-4 max-w-[547px] 2xs:w-full h-16  hover:text-white hover:bg-black">
-          <img src={Google} className="h-5 pr-2 mb-1" /> sign up with google
+          <img src={Google} className="h-5 pr-2 mb-1" /> <span className="normal-case 2xs:text-sm sm:text-base 2xl:text-xl">Sign up with google</span>
         </button>
         <div className="flex flex-row items-center mb-4">
           <hr className="h-px bg-gray-600 border-0 w-28" />
@@ -42,53 +53,52 @@ const AdminSignUp = () => {
           <hr className="h-px bg-gray-600 border-0 w-28" />
         </div>
         <form
-          form
           onSubmit={handleSubmit(registerHandler)}
           className="max-w-[547px] w-full flex flex-col justify-center space-y-2"
         >
           <CustomInput
             type="text"
-            name="Username"
-            label="Username *"
+            name="username"
+            label="Username*"
             rule="username"
             register={register}
             errors={errors}
           />
           <CustomInput
             type="email"
-            name="E-mail"
-            label="E-mail *"
+            name="email"
+            label="Email*"
             rule="email"
             register={register}
             errors={errors}
           />
           <CustomInput
             type="number"
-            name="Phone number"
-            label="Phone number *"
+            name="phone"
+            label="Phone Number*"
             rule="phone_Num"
             register={register}
             errors={errors}
           />
           <CustomInput
             type="number"
-            name="National ID"
-            label="National ID *"
+            name="ssn"
+            label="National ID*"
             rule="national_ID"
             register={register}
             errors={errors}
           />
           <CustomInput
             type="password"
-            label="Password *"
-            name="Password"
+            label="Password*"
+            name="password"
             rule="password"
             register={register}
             errors={errors}
           />
           <CustomInput
             type="password"
-            label="Confirm Password *"
+            label="Confirm Password*"
             name="confirm_password"
             rule="confirm_password"
             register={register}
@@ -119,8 +129,14 @@ const AdminSignUp = () => {
                 forgot password ?
               </a>
             </div>
-            <div className="w-80 mt-8 mb-8 text-center flex items-center justify-center">
-              <CustomButton value="Sign up" type="ternary" width="w-[100%]" />
+            <div className="w-80 mt-8 mb-3 text-center flex items-center justify-center">
+              <CustomButton
+                submit="submit"
+                isLoading={isLoading}
+                value="Sign up"
+                type="ternary"
+                width="w-[100%]"
+              />
             </div>
           </div>
         </form>

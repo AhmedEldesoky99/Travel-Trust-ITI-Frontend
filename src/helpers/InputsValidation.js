@@ -38,12 +38,12 @@ export const ruleValidation = {
   password: {
     required: "Password is required",
     minLength: {
-      value: 5,
-      message: "your password should contain at least 5 characters",
+      value: 6,
+      message: "your password should contain at least 6 characters",
     },
   },
   confirm_password: {
-    required: "Confirm Password is required",
+    required: "Confirm password is required",
   },
   title: {
     required: "title is required",

@@ -30,6 +30,10 @@ import { AddTourFormProvider } from "./context/AddTourFormContext";
 
 import Layout from "./layout";
 
+import { UserIdProvider } from './context/UserIdContext';
+
+
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -38,13 +42,20 @@ export const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "join", element: <JoinUs /> },
       { path: "login", element: <Login /> },
-      { path: "signup", element: <SignUp /> },
+      {
+        path: "signup",
+        element: (
+          <UserIdProvider>
+            <SignUp />
+          </UserIdProvider>
+        ),
+      },
       { path: "each-governorate/:id", element: <EachGovernorate /> },
       { path: "sales", element: <Sales /> },
       { path: "tour-details/:id", element: <TourDetails /> },
       { path: "shared", element: <SharedComponents /> },
       { path: "faq", element: <Faq /> },
-      { path: "/search", element: <Search /> },
+      { path: "search", element: <Search /> },
       { path: "privacy", element: <PrivacyPolicy /> },
       { path: "Aboutus", element: <AboutUs /> },
       { path: "cart", element: <Cart /> },
@@ -52,7 +63,6 @@ export const router = createBrowserRouter([
       { path: "all-tours", element: <AllTours /> },
       { path: "destinations", element: <Destinations /> },
       { path: "user-profile/:id", element: <UserProfile /> },
-      { path: "/sales", element: <Sales /> },
 
       //admin
       { path: "admin", element: <DashBoard /> },

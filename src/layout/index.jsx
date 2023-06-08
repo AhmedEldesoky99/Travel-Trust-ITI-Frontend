@@ -4,6 +4,9 @@ import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../components/shared/Navbar";
 import Footer from "../components/shared/Footer";
 
+
+import { UserIdProvider } from "../context/UserIdContext";
+
 const Layout = () => {
   const location = useLocation();
   const pathsToHide = [
@@ -13,6 +16,9 @@ const Layout = () => {
     "/admin",
     "/admin/login",
     "/admin/signup",
+    "/admin/alltours",
+    "/admin/reviews",
+    "/admin/addTour",
   ];
   const pathsForBackground = ["/favorite", "/cart", "/faq", "/privacy"];
 
@@ -22,7 +28,9 @@ const Layout = () => {
   return (
     <>
       {!pathIncluded && (
-        <Navbar pathBackgroundIncluded={pathBackgroundIncluded} />
+        <UserIdProvider>
+          <Navbar pathBackgroundIncluded={pathBackgroundIncluded} />
+        </UserIdProvider>
       )}
       <Outlet />
       {!pathIncluded && <Footer />}
