@@ -36,20 +36,20 @@ const AdminProfile = () => {
             <div className="flex flex-col gap-8">
               <div className="flex md:flex-row 2xs:flex-col justify-between md:max-h-[283px] max-w-[1558px] rounded-2xl shadow-lg w-screen h-screen">
                 {/* user card + edit profile */}
-                <div className="flex md:flex-row 2xs:flex-col gap-5 mx-auto">
+                <div className="flex md:flex-row 2xs:flex-col gap-5 lg:mx-0 2xs:mx-auto">
                   <div className="max-h-[283px] md:max-w-[283px] w-full md:px-4">
                     <img
                       src={profileImg}
-                      className="rounded-2xl  h-full"
+                      className="rounded-2xl object-cover  h-full"
                     />
                   </div>
-                  <div className="flex flex-col justify-between md:px-5 py-6 mx-auto ">
+                  <div className="flex flex-col justify-between md:px-5 py-6 lg:mx-0 2xs:mx-auto ">
                     <div className="flex flex-col  gap-4 2xs:mb-8 md:mb-0">
-                      <h1 className="text-3xl font-medium text-[#585858]">
-                        Name
+                      <h1 className="md:text-3xl 2xs:text-2xl font-medium text-[#585858]">
+                        Ahmed Eldesoky
                       </h1>
-                      <h2 className="text-2xl font-medium text-[#585858]">
-                        title
+                      <h2 className="md:text-2xl 2xs:text-lg font-medium text-[#585858]">
+                        Full-Stack Developer
                       </h2>
                     </div>
                     <div className="flex md:flex-row 2xs:flex-col md:gap-16 2xs:gap-12">
@@ -95,7 +95,7 @@ const AdminProfile = () => {
                   </Modal>
                 </div>
               </div>
-              <div className="flex md:flex-row 2xs:flex-col  w-screen max-w-[1558px] gap-5">
+              <div className="flex md:flex-row 2xs:flex-col  w-screen max-w-[1558px] gap-5 2xs:flex-wrap :flex-nowrap">
                 <div className="flex flex-col flex-wrap bg-white justify-center items-center max-h-[515px] md:max-w-[283px] py-[100px]  shadow-xl rounded-2xl w-screen gap-10">
                   <div className="flex flex-row gap-12">
                     <Statistics num="6" stat="Tours Created" />
