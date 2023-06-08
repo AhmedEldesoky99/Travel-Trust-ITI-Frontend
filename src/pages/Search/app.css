@@ -1,0 +1,18 @@
+
+
+.peep .ant-collapse-header-text{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.poop .ant-collapse-header{
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+}
+
+.ant-collapse-expand-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

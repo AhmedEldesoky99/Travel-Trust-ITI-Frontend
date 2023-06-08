@@ -7,7 +7,7 @@ const Options = ['Cruise', 'Hiking', 'Food','Art','Religion','Diving','Medical',
 const FilterCheckbox = () => {
     const checkboxes = Array.from({ length: Options.length }, (_, index) => (
         <div key={index} className='flex gap-1'>
-            <Checkbox options={Options[index]} onChange={onChange}/> <p>{Options[index]}</p>
+            <Checkbox options={Options[index]} onChange={onChange}/> <p className='text-xl'>{Options[index]}</p>
         </div>
       ));
     return (

@@ -28,23 +28,23 @@ const AdminProfile = () => {
   };
   return (
     <>
-      <div className="flex flex-row  ">
+      <div className="flex flex-row">
         <NavBar />
-        <div className="w-full container mx-auto">
+        <div className="w-full container ">
           <SubNavBar />
           <div className="grid lg:grid-cols-6 lg:grid-flow-row auto-rows-max w-full  gap-5 h-fill md:mt-8 mt-32 ">
             <div className="flex flex-col gap-8">
               <div className="flex md:flex-row 2xs:flex-col justify-between md:max-h-[283px] max-w-[1558px] rounded-2xl shadow-lg w-screen h-screen">
                 {/* user card + edit profile */}
-                <div className="flex md:flex-row 2xs:flex-col  gap-5">
-                  <div className="max-h-[283px] md:max-w-[283px] w-full px-4">
+                <div className="flex md:flex-row 2xs:flex-col gap-5 mx-auto">
+                  <div className="max-h-[283px] md:max-w-[283px] w-full md:px-4">
                     <img
                       src={profileImg}
-                      className="rounded-2xl w-full h-full"
+                      className="rounded-2xl  h-full"
                     />
                   </div>
-                  <div className="flex flex-col justify-between px-5 py-6">
-                    <div className="flex flex-col  gap-4">
+                  <div className="flex flex-col justify-between md:px-5 py-6 mx-auto ">
+                    <div className="flex flex-col  gap-4 2xs:mb-8 md:mb-0">
                       <h1 className="text-3xl font-medium text-[#585858]">
                         Name
                       </h1>
@@ -52,8 +52,8 @@ const AdminProfile = () => {
                         title
                       </h2>
                     </div>
-                    <div className="flex md:flex-row 2xs:flex-col gap-16">
-                      <div className="flex flex-col gap-4">
+                    <div className="flex md:flex-row 2xs:flex-col md:gap-16 2xs:gap-12">
+                      <div className="flex flex-col md:gap-4 2xs:gap-2">
                         <div className="flex flex-row items-center gap-7">
                           <img src={location} />
                           <p className="text-xl text-[#9A9999]">Alexandria</p>
@@ -69,7 +69,7 @@ const AdminProfile = () => {
                           </p>
                         </div>
                       </div>
-                      <div className="flex flex-col gap-4 justify-end">
+                      <div className="flex flex-col md:gap-4 2xs:gap-2 justify-end">
                         <div className="flex flex-row items-center gap-7">
                           <img src={ssn} />
                           <p className="text-xl text-[#9A9999]">+123-456-789</p>
@@ -82,10 +82,10 @@ const AdminProfile = () => {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col  justify-end ">
+                <div className="hidden md:flex flex-col  justify-end ">
                   <button
                     href=""
-                    className="text-xl underline py-6 px-7 text-[#9A9999]"
+                    className="text-xl underline py-6 md:px-7 text-[#9A9999]"
                     onClick={showModal}
                   >
                     Edit profile
@@ -96,7 +96,7 @@ const AdminProfile = () => {
                 </div>
               </div>
               <div className="flex md:flex-row 2xs:flex-col  w-screen max-w-[1558px] gap-5">
-                <div className="flex flex-col flex-wrap bg-white justify-center items-center max-h-[515px] md:max-w-[283px] py-[100px] px-auto shadow-xl rounded-2xl w-screen gap-10">
+                <div className="flex flex-col flex-wrap bg-white justify-center items-center max-h-[515px] md:max-w-[283px] py-[100px]  shadow-xl rounded-2xl w-screen gap-10">
                   <div className="flex flex-row gap-12">
                     <Statistics num="6" stat="Tours Created" />
                     <Statistics num="50" stat="Tours Favorite" />
@@ -110,10 +110,10 @@ const AdminProfile = () => {
                     <Statistics num="5k" stat="Rating" />
                   </div>
                 </div>
-                <div className="flex flex-col max-w-[830px] bg-white shadow-xl rounded-2xl w-screen p-5 pt-6 gap-4">
+                <div className="flex flex-col max-w-[830px] bg-white shadow-xl rounded-2xl w-screen md:px-5 py-6 gap-4 container flex-wrap px-4">
                   {/* about + Governorate of expertise tags + Language tags */}
                   <h3 className="text-[#9A9999] font-semibold text-xl mb-4">About</h3>
-                  <p className="text-xl mb-6">
+                  <p className="text-xl mb-6 flex flex-wrap">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus.
                   </p>
                   <h4 className="text-[#9A9999] font-semibold text-xl">Governorate of expertise</h4>
@@ -123,7 +123,7 @@ const AdminProfile = () => {
                     </div>
                   </div>
                   <h4 className="text-[#9A9999] font-semibold text-xl">Language</h4>
-                  <div className="flex md:flex-row 2xs:flex-col gap-2 items-center max-w-[121px]">
+                  <div className="flex flex-row gap-2 items-center max-w-[121px]">
                     <div className="py-3 px-5 bg-[#D9D9D9] rounded-lg flex items-center">
                       Arabic
                     </div>
