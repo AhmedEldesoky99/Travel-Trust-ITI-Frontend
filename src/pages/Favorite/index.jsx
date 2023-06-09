@@ -9,6 +9,7 @@ const Favorite = () => {
   const [recommended] = useState(4);
   const tourCards = [];
   for (let i = 0; i < items; i += 4) {
+    // map
     const row = [];
     for (let j = 0; j < 4 && i + j < items; j++) {
       row.push(
@@ -28,7 +29,7 @@ const Favorite = () => {
     const row = [];
     for (let j = 0; j < 4 && i + j < recommended; j++) {
       row.push(
-        <div key={i + j} className="max-h-[534px] max-w-[404px]">
+        <div key={i + j} className="max-h-[534px] max-w-[404px] sm:mb-6 2xs:mb-3">
           <TourCard />
         </div>
       );
@@ -83,6 +84,7 @@ const Favorite = () => {
             <div className="flex justify-center mx-auto">{recommendedCards}</div>
           </div>
         </div>
+        // link center
       )}
     </>
   );
