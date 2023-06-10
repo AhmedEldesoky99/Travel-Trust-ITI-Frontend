@@ -5,36 +5,27 @@ import CheckDestenations from "../../containers/EachGovernorate/CheckDestenation
 import { Link } from "react-router-dom";
 
 const Favorite = () => {
-  const [items] = useState(0);
+  const [items] = useState(10);
   const [recommended] = useState(4);
-  const tourCards = [];
-  for (let i = 0; i < items; i += 4) {
-    // map
-    const row = [];
-    for (let j = 0; j < 4 && i + j < items; j++) {
-      row.push(
-        <div key={i + j} className="max-h-[534px] max-w-[404px]">
-          <TourCard />
-        </div>
-      );
-    }
-    tourCards.push(
-      <div key={i} className="flex md:flex-row 2xs:flex-col gap-5">
+  const tourCards = Array.from({ length: Math.ceil(items / 4) }, (_, i) => {
+    const row = Array.from({ length: Math.min(items - i * 4, 4) }, (_, j) => (
+      <div key={i * 4 + j} className="max-h-[534px] max-w-[404px]">
+        <TourCard />
+      </div>
+    ));
+    return (
+      <div key={i} className="container grid gap-4 grid-cols-1  md:grid-cols-2  lg:grid-cols-2 xl:grid-cols-4">
         {row}
       </div>
     );
-  }
-  const recommendedCards = [];
-  for (let i = 0; i < recommended; i += 4) {
-    const row = [];
-    for (let j = 0; j < 4 && i + j < recommended; j++) {
-      row.push(
-        <div key={i + j} className="max-h-[534px] max-w-[404px] sm:mb-6 2xs:mb-3">
-          <TourCard />
-        </div>
-      );
-    }
-    recommendedCards.push(
+  });
+  const recommendedCards = Array.from({ length: Math.ceil(recommended / 4) }, (_, i) => {
+    const row = Array.from({ length: Math.min(recommended - i * 4, 4) }, (_, j) => (
+      <div key={i * 4 + j} className="max-h-[534px] max-w-[404px] sm:mb-6 2xs:mb-3">
+        <TourCard />
+      </div>
+    ));
+    return (
       <div
         key={i}
         className="container grid gap-4 grid-cols-1  md:grid-cols-2  lg:grid-cols-2 xl:grid-cols-4 mt-12"
@@ -42,7 +33,7 @@ const Favorite = () => {
         {row}
       </div>
     );
-  }
+  });
   return (
     <>
       {/* <Navbar/> */}
