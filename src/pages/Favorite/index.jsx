@@ -5,7 +5,7 @@ import CheckDestenations from "../../containers/EachGovernorate/CheckDestenation
 import { Link } from "react-router-dom";
 
 const Favorite = () => {
-  const [items] = useState(10);
+  const [items] = useState(0);
   const [recommended] = useState(4);
   const tourCards = Array.from({ length: Math.ceil(items / 4) }, (_, i) => {
     const row = Array.from({ length: Math.min(items - i * 4, 4) }, (_, j) => (
@@ -73,6 +73,14 @@ const Favorite = () => {
               </div>
             </div>
             <div className="flex justify-center mx-auto">{recommendedCards}</div>
+            <div className="lg:mt-0 lg:mb-0 mt-10 mb-5">
+            <Link
+                  to=""
+                  className="lg:hidden flex items-center justify-center underline font-medium text-[#009EB7]  md:text-[20px] lg:text-[24px] "
+                >
+                  Find more things to do
+                </Link>
+            </div>
           </div>
         </div>
         // link center
