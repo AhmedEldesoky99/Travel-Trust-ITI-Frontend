@@ -1,5 +1,4 @@
 import { animated, useScroll, useInView, useSpring } from "@react-spring/web";
-import Footer from "../../components/shared/Footer";
 import { Breadcrumb } from "antd";
 
 const privacyPolicy = () => {
@@ -26,7 +25,7 @@ const privacyPolicy = () => {
   return (
     <>
       <Breadcrumb
-        className="ml-20 mt-10 mb-10"
+        className="ml-20 mt-10 mb-10 text-xl"
         items={[
           {
             title: <a href="https://travel-trust-iti.vercel.app/">Home</a>,
@@ -46,7 +45,7 @@ const privacyPolicy = () => {
             <h1 className=" text-[#2B2B2B] text-[30px] md:text-4xl lg:text-5xl font-bold">
               Privacy Policy
             </h1>
-            <p className="mt-2 md:mt-10 text-[17px] md:text-[21px] ">
+            <p className="mt-2 md:mt-10 text-[20px] md:text-[24px] ">
               Welcome to Travel Trust’s Privacy Policy. When you use our
               services, you're trusting us with your <br /> information. This
               Privacy Policy will inform you as to how we look after your
@@ -63,10 +62,10 @@ const privacyPolicy = () => {
       </div>
       <animated.div  style={springProps} className="mx-20 mt-16 flex flex-col gap-8">
         <div >
-          <h2 className="text-[26px] md:text[28px] lg:text-[34px] text-[#0f0f0f] font-medium">
+          <h2 className="text-[28px] md:text[32px] lg:text-[36px] text-[#0f0f0f] font-medium">
             Your personal data and our promises to you
           </h2>
-          <div className="md:mt-10 text-[17px] md:text-[21px] mt-6">
+          <div className="md:mt-10 text-[20px] md:text-[24px] mt-6">
             Your personal data is very important to us. Whenever you use our
             website or app, we’re
             <br /> committed to these four privacy promises:
@@ -93,10 +92,10 @@ const privacyPolicy = () => {
           </div>
         </div>
         <div>
-          <h2 className="text-[26px] md:text[28px] lg:text-[34px] text-[#0f0f0f]">
+          <h2 className="text-[28px] md:text[32px] lg:text-[36px] text-[#0f0f0f]">
             Personal data you give us
           </h2>
-          <div className="md:mt-10 text-[17px] md:text-[21px] mt-6">
+          <div className="md:mt-10 text-[20px] md:text-[24px] mt-6">
             You may need to give us your personal data to use our services and
             book tickets – more <br />
             on that below. Personal data is anything that helps identify. It’s
@@ -119,10 +118,10 @@ const privacyPolicy = () => {
           </div>
         </div>
         <div className="mb-20">
-          <h2 className="text-[26px] md:text[28px] lg:text-[34px] text-[#0f0f0f]">
+          <h2 className="text-[28px] md:text[32px] lg:text-[36px] text-[#0f0f0f]">
             Personal data you give us about others
           </h2>
-          <p className="md:mt-10 text-[17px] md:text-[21px] ">
+          <p className="md:mt-10 text-[20px] md:text-[24px] ">
             You may be doing a trip with other guests whose details we may also
             need in order for them
             <br /> to travel. By entering someone else’s personal data, you
@@ -132,8 +131,8 @@ const privacyPolicy = () => {
           </p>
         </div>
       </animated.div>
-      <Footer />
     </>
   );
 };
 export default privacyPolicy;
+

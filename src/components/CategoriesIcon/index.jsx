@@ -7,7 +7,7 @@ const CategoryIcon = ({title}) => {
         <div>
         <Icon name={title}/>
         </div>
-         <div className="font-inter text-[24px] md:text-[30px] lg:text-4xl">
+         <div className="font-inter text-[20px] md:text-[22px] lg:text-2xl 2xl:text-3xl">
             <p>{title}</p>
          </div>
       </div>

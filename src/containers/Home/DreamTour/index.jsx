@@ -9,21 +9,21 @@ const DreamTour = () => {
           <div className="mx-8 mb-24 text-center md:text-start ">
             <div className="flex items-center justify-between">
             <div className="w-full lg:w-auto">
-              <p className="hidden lg:flex md:text-[18]px] lg:text-[22px] font-header">
+              <p className="hidden lg:flex md:text-[18]px] 2xl:text-[22px] font-header">
                 Explore our Tour list
               </p>
-              <h2 className="text-[#2B2B2B] text-[30px] md:text-4xl lg:text-5xl font-bold md:mt-4 capitalize min-w-full text-center lg:text-start">
+              <h2 className="text-[#2B2B2B] text-[30px] md:text-3xl xl:text-4xl 2xl:text-5xl font-bold md:mt-4 capitalize min-w-full text-center lg:text-start">
                 find your Dream tour
               </h2>
             </div>
             <Link
               to=""
-              className="hidden lg:flex border-[1.4px] border-gray-600 transition-all duration-700 hover:bg-black hover:text-white hover:border-transparent md:text-[20]px] lg:text-[24px] px-6 py-4 rounded-lg"
+              className="hidden lg:flex border-[1.4px] border-gray-600 transition-all duration-700 hover:bg-black hover:text-white hover:border-transparent md:text-[20]px] 2xl:text-[24px] px-6 py-4 rounded-lg"
             >
               View all tours
             </Link>
             </div>
-            <div className="container grid gap-4 grid-cols-1  md:grid-cols-2  lg:grid-cols-2 xl:grid-cols-4 mt-12">
+            <div className="container grid gap-4 2xs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2  md:grid-cols-2  lg:grid-cols-3 2xl:grid-cols-4 mt-12">
               <TourCard />
               <TourCard />
               <TourCard />

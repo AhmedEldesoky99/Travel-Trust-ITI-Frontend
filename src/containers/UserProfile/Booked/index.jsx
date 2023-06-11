@@ -5,9 +5,9 @@ import { UserOutlined } from "@ant-design/icons";
 import Icon from "./../../../utils/icons";
 import TourImage from "../../../assets/images/TourCard/tour1.png";
 
-const Booked = () => {
+const Booked = ({ showModal }) => {
   const columns = [
-    { key: "1", title: "Tour", dataIndex: "tour" , width:100},
+    { key: "1", title: "Tour", dataIndex: "tour", width: 100 },
     { key: "2", title: "Location", dataIndex: "location" },
     { key: "3", title: "Start Date", dataIndex: "startDate" },
     { key: "4", title: "Duration", dataIndex: "duration" },
@@ -32,7 +32,7 @@ const Booked = () => {
       cost: <span className="font-bold">EGP 1000</span>,
       admin: "Osama",
       icon: (
-        <button>
+        <button onClick={()=>showModal('delete')}>
           <Icon name="delete" />
         </button>
       ),
