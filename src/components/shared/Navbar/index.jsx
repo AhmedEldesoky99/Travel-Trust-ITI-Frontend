@@ -42,7 +42,7 @@ const Navbar = ({ pathBackgroundIncluded }) => {
 
   const userId = localStorage.getItem("userId");
   const { data } = getUserData(userId);
-  console.log(data);
+  // console.log(data);
 
   const logout = () => {
     navigate("/login");

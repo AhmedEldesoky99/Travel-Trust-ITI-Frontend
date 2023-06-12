@@ -9,22 +9,21 @@ import Testimonials from "../../containers/Home/Testimonials";
 import JoinUs from "../../containers/Home/JoinUs";
 import Partners from "../../containers/Home/Partners";
 
-
 const Home = () => {
   return (
     <>
-    <HeaderSection/>
-    <Recommended/>
-    <Categories/>
-    <TopDestinations/>
-    <Sales/>
-    <DreamTour/>
-    <VideoSection/>
-    <Testimonials/>
-    <JoinUs/>
-    <Partners/>
+      <HeaderSection />
+      <Recommended />
+      <Categories />
+      <TopDestinations />
+      <Sales />
+      <DreamTour />
+      <VideoSection />
+      <Testimonials />
+      <JoinUs />
+      <Partners />
     </>
-  )
+  );
 };
 
 export default Home;

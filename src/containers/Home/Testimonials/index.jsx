@@ -1,12 +1,16 @@
 import TestimonialCard from "../../../components/TestimonialCard";
-import Girl from "../../../assets/images/Home/Testimonials/Girl.jpg";
-import Blonde from "../../../assets/images/Home/Testimonials/Blonde.jpg";
-import Man from "../../../assets/images/Home/Testimonials/TravellerBoy.jpeg";
+import { useQuery } from "react-query";
+import { getTopReviews } from "../../../services/Home";
+import TestimonialsLoader from "../../../components/TestimonialsLoader";
 
 const Testimonials = () => {
+  const {  isLoading, data, isSuccess } = useQuery("Reviews", getTopReviews);
+
+  // console.log({Reviews : data});
   return (
     <>
-      <div className="hero  mb-24">
+    {!isSuccess && isLoading && <TestimonialsLoader />}
+    {!!data && <div className="hero  mb-24">
         <div>
           <div className="container mx-auto">
             <div className="mx-8">
@@ -19,18 +23,15 @@ const Testimonials = () => {
                 </h2>
               </div>
               <div className="grid grid-cols-1 lg:gird-cols-2 xl:grid-cols-3 gap-4">
-                <TestimonialCard
-                  name="Jessica Miller"
-                  date="12 NOV"
-                  image={Girl}
-                />
-                <TestimonialCard name="Paul Harrison" date="4 SEP" image={Man} />
-                <TestimonialCard name="Sara David" date="2 JUN" image={Blonde} />
+                {data.data?.map((item,index) => 
+                { if (index < 3)
+                  return <TestimonialCard key={item._id} data={item} />;
+                })}
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div>}
     </>
   );
 };

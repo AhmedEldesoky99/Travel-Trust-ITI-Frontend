@@ -1,11 +1,16 @@
+import { useQuery } from "react-query";
 import TourCard from "../../../components/shared/TourCard";
+import { getRecommendedTour } from "../../../services/Home";
+import CardLoader from "../../../components/CardLoader";
 
 const Recommended = () => {
+  const { isLoading, data, isSuccess } = useQuery("recommendedTours", getRecommendedTour);
   return (
     <>
-      <div className="hero">
+    {!isSuccess && isLoading && <CardLoader />}
+    {!!data?.data && <div className="hero">
         <div className="container">
-          <div className="mx-8 my-20 text-center md:text-start">
+          <div className="mx-8 mt-20 text-center md:text-start">
             <p className="hidden lg:flex md:text-[18]px] 2xl:text-[22px] font-header">
               Explore your favorite tours
             </p>
@@ -13,14 +18,14 @@ const Recommended = () => {
               recommended tours
             </h2>
             <div className="container grid gap-4 2xs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mt-12">
-          <TourCard />
-          <TourCard />
-          <TourCard />
-          <TourCard />
-        </div>
+              {data?.data?.map((item,index) => 
+                {if (index < 4) return <TourCard key={item._id} data={item}  />}
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      </div>}
+      
     </>
   );
 };

@@ -6,7 +6,7 @@ const AddTourFormContext = createContext({});
 
 export const AddTourFormProvider = ({ children }) => {
   const nextBtn = createRef();
-  console.log({nextBtn});
+  // console.log({nextBtn});
   const [formData, setFormData] = useState({
     title: "",
     selectGov: "",

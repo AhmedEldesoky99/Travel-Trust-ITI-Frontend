@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
-import TopDestinationCard from "../../../components/TopDestinationCard";
+import { useQuery } from "react-query";
 
-import Alex from "../../../assets/images/Home/TopDesCard/Alex.jpeg"
-import Fayoum from "../../../assets/images/Home/TopDesCard/Fayoum.jpg"
-import Giza from "../../../assets/images/Home/TopDesCard/Giza.jpg"
-import Dahab from "../../../assets/images/Home/TopDesCard/Dahab.jpg"
-import Luxor from "../../../assets/images/Home/TopDesCard/Luxor.jpg"
+import TopDestinationCard from "../../../components/TopDestinationCard";
+import { getTopDestinations } from "../../../services/Home";
+import DestinationsLoader from "../../../components/DestinationsLoader/DestinationsLoader";
 
 const TopDestinations = () => {
+  const { isLoading, data, isSuccess} = useQuery("TopDestinations", getTopDestinations);
+  // console.log({ Destinations : data});
   return (
     <>
-      <div className="hero">
+     {!isSuccess && isLoading && <DestinationsLoader />}
+     {!!data && <div className="hero">
         <div className="container">
           <div className="mx-8  text-center md:text-start flex items-center justify-between ">
             <div className="w-full lg:w-auto">
@@ -30,23 +31,20 @@ const TopDestinations = () => {
           </div>
 
           <div className="flex flex-row xl:space-x-4 flex-wrap xl:flex-nowrap mx-10 mt-10 gap-12 xl:gap-0">
-            <TopDestinationCard tours="4 tours" governorate="Alex" url={Alex}/>
-            <TopDestinationCard tours="12 tours"  governorate="Fayoum" url={Fayoum}/>
-            <TopDestinationCard tours="8 tours" governorate="Giza" url={Giza}/>
-            <TopDestinationCard tours="10 tours" governorate="Dahab" url={Dahab}/>
-            <TopDestinationCard tours="6 tours" governorate="Luxor" url={Luxor}/>
+            {data.data?.map((item,index) => 
+              {if (index < 5) return <TopDestinationCard key={item.id} data={item} />}
+            )}
             <div className="w-full block sm:hidden">
-            <Link
-              to=""
-              className="block sm:hidden border-[1.4px] border-gray-600  md:text-[20]px] lg:text-[24px] px-6 py-4 rounded-lg capitalize text-center transition-all duration-700 hover:bg-black hover:text-white hover:border-transparent"
-            >
-              View all destinations
-            </Link>
+              <Link
+                to=""
+                className="block sm:hidden border-[1.4px] border-gray-600  md:text-[20]px] lg:text-[24px] px-6 py-4 rounded-lg capitalize text-center transition-all duration-700 hover:bg-black hover:text-white hover:border-transparent"
+              >
+                View all destinations
+              </Link>
             </div>
-           
           </div>
         </div>
-      </div>
+      </div>}
     </>
   );
 };
