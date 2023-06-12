@@ -30,7 +30,7 @@ const EditProfile = () => {
   
 
   const editProfileHandler = (data) => {
-    console.log(data);
+    // console.log(data);
     setLoading(true);
     // call Api
     // setLoading(false);

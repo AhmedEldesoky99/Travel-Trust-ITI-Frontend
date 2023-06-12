@@ -4,6 +4,8 @@ import { createContext, useState } from "react";
 const AddTourFormContext = createContext({});
 
 export const AddTourFormProvider = ({ children }) => {
+
+
   // ------------- state -------------
   const [formData, setFormData] = useState({});
 

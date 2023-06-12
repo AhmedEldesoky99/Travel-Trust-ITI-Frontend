@@ -147,7 +147,7 @@ const AdminAllTours = () => {
       //action icons
       render: (props) => (
         <>
-          {console.log({ props })}
+          {/* {console.log({ props })} */}
           <div
             className="flex justify-center items-center gap-6 "
           >

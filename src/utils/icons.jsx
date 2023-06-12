@@ -1,6 +1,6 @@
 import React from "react";
 
-const Icon = ({ name, color }) => {
+const Icon = ({ name, color, number }) => {
   const iconsObj = {
     userAdd: (
       <svg
@@ -84,9 +84,7 @@ const Icon = ({ name, color }) => {
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-
           strokeinlecap="round"
-
         />
       </svg>
     ),
@@ -343,7 +341,7 @@ const Icon = ({ name, color }) => {
         />
       </svg>
     ),
-    Culture: (
+    Cultural: (
       <svg
         width="97"
         height="88"
@@ -1494,7 +1492,6 @@ const Icon = ({ name, color }) => {
       </svg>
     ),
 
- 
     eye: (
       <svg
         width="23"
@@ -1543,7 +1540,6 @@ const Icon = ({ name, color }) => {
         />
       </svg>
     ),
-
   };
 
   return iconsObj[name];
