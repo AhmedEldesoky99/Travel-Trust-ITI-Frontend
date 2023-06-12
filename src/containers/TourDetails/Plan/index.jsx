@@ -6,7 +6,7 @@ import Icon from "../../../utils/icons";
 import CheckoutCard from "../../../components/shared/CheckoutCard";
 import CollapseImage from "../../../components/CollapseImage";
 
-import "./PlanStyle.css";
+
 
 const Plan = () => {
   const items = [
@@ -102,7 +102,6 @@ const Plan = () => {
           <Steps
             // progressDot
             // status="finish"
-            className="my-custom-step-line"
             current={100}
             direction="vertical"
             items={items}

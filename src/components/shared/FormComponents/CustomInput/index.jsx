@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import { ruleValidation } from "../../../../helpers/InputsValidation";
+import { ruleEditValidation } from "../../../../helpers/EditFormValidations";
 
 const CustomInput = ({
+  edit,
   type,
   name,
   label,
@@ -15,7 +17,8 @@ const CustomInput = ({
   const [showPassword, setShowPassword] = useState(false);
 
   // ------- Handlers --------
-  const toggleShowPassword = () => {
+  const toggleShowPassword = (e) => {
+    e.preventDefault();
     setShowPassword(!showPassword);
   };
 
@@ -23,10 +26,14 @@ const CustomInput = ({
     <>
       <div className="relative">
         <input
-          {...register(name, ruleValidation[rule])}
+          {...register(
+            name,
+            edit ? ruleEditValidation[rule] : ruleValidation[rule]
+          )}
           type={showPassword ? "text" : type}
           id={label}
           name={name}
+
           className={`2xl:h-[4rem] block px-2.5 pb-2.5 pt-4 w-full text-black bg-transparent rounded-lg border border-black appearance-none focus:outline-none focus:ring-0 focus:border-black peer ${
             errors[name] &&
             "border border-tertiary-red focus:border-tertiary-red focus:outline-none"
@@ -57,7 +64,9 @@ const CustomInput = ({
           {label}
         </label>
       </div>
-      <p className="text-tertiary-red mt-1">{errors[name]?.message}</p>
+      <p className="text-tertiary-red mt-1 mb-2 2xs:text-sm 2xl:text-base">
+        {errors[name]?.message}
+      </p>
     </>
   );
 };

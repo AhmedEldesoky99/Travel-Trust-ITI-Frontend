@@ -97,6 +97,7 @@ const AddTourPage = () => {
           {step === 3 && <AddGallery />}
           {step === 4 && <AddMeetingPoint />}
           {step === 5 && <AddComplete />}
+
         </div>
       </div>
     </>

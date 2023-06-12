@@ -5,9 +5,8 @@ import { Link } from "react-router-dom";
 import CheckoutCard from "../../../components/shared/CheckoutCard";
 import ReviewCard from "../../../components/shared/ReviewCard";
 
-
 import AdminImage from "../../../assets/images/TourCard/admin.jpeg";
-
+import CustomButton from "../../../components/shared/CustomButton";
 
 const Reviews = () => {
   return (
@@ -43,10 +42,17 @@ const Reviews = () => {
                 </div>
               </div>
             </div>
-
-            <div className="2xs:col-span-1 lg:col-span-7">
-            <textarea className="textarea textarea-bordered w-full md:textarea-lg resize-none focus:outline-none" placeholder="Share details of your own experience at this place !"></textarea>
-            </div>
+            <form className="2xs:col-span-1 lg:col-span-7">
+              <div>
+                <textarea
+                  className="textarea textarea-bordered w-full md:textarea-lg resize-none focus:outline-none"
+                  placeholder="Share details of your own experience at this place !"
+                ></textarea>
+                <div className="flex justify-end">
+                  <CustomButton submit="submit" value="Add Review" />
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>

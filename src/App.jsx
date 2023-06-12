@@ -17,10 +17,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="app">
-      {/* <AddTourFormProvider></AddTourFormProvider> */}
-          <RouterProvider router={router} />
-          <ToastContainer autoClose={2000} />
-    
+        {/* <AddTourFormProvider></AddTourFormProvider> */}
+        <RouterProvider router={router} />
+        <ToastContainer limit={1} rtl={false} pauseOnFocusLoss />
       </div>
       <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </QueryClientProvider>

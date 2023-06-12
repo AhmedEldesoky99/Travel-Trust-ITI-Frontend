@@ -1,0 +1,46 @@
+@media screen and (min-width:1024px) {
+    .my-custom-tabs>.ant-tabs-nav .ant-tabs-nav-list {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .my-custom-tabs>.ant-tabs-nav .ant-tabs-tab {
+        min-width: 10vw;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+@media screen and (min-width:320px) {
+    .my-custom-tabs>.ant-tabs-nav {
+        max-height: 40px;
+    }
+}
+
+
+.my-custom-tabs>.ant-tabs-nav .ant-tabs-tab:hover {
+    color: black;
+    background-color: white;
+}
+
+
+.my-custom-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: black;
+}
+
+.my-custom-tabs>.ant-tabs-nav .ant-tabs-nav-more {
+    color: white;
+}
+
+.ant-tabs-dropdown .ant-tabs-dropdown-menu-item {
+    min-width: 160px;
+}
+
+.my-custom-tabs>div>.ant-tabs-nav .ant-tabs-nav-operations {
+    color: white;
+}
+
+.my-custom-tabs .ant-steps-item-finish>.ant-steps-item-container>.ant-steps-item-tail::after {
+    background-color: #009EB7;
+}

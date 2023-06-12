@@ -17,26 +17,50 @@ export const request = ({ ...options }) => {
     }
 
     const onSuccess = (response) => {
-        console.log("<<Success>>", response);
-        if (options.successMsg) toast.success(options.successMsg);
-        return response;
+        console.log("<<Success>>", response.data);
+        if (options.successMsg) toast.success(options.successMsg, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+        return response.data;
     };
+
     const onError = (err) => {
-        if (options.errorMsg) toast.success(options.errorMsg);
         console.log("<<ERROR>>", err);
+        if (err) err.response.data.message.map((error) => {
+            toast.error(error || 'Something went wrong...', {
+                position: "top-right",
+                autoClose: false,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        })
+
         return err;
     };
 
     return client(options).then(onSuccess).catch(onError);
 };
 
-export const headers = (formdata = false) => {
-    return {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        "content-type": formdata ? "multipart/form-data" : "application/json",
-        Accept: "application/json",
-    };
-};
+
+
+// export const headers = (formdata = false) => {
+//     return {
+//         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+//         "content-type": formdata ? "multipart/form-data" : "application/json",
+//         Accept: "application/json",
+//     };
+// };
 
 //usage examples
 

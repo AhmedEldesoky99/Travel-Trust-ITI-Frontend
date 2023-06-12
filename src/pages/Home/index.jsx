@@ -3,7 +3,6 @@ import HeaderSection from "../../containers/Home/Header";
 import Recommended from "../../containers/Home/Recommendation";
 import Sales from "../../containers/Home/Sales";
 import TopDestinations from "../../containers/Home/TopDestinations";
-import Footer from "../../components/shared/Footer"
 import DreamTour from "../../containers/Home/DreamTour";
 import VideoSection from "../../containers/Home/VideoSection";
 import Testimonials from "../../containers/Home/Testimonials";
@@ -24,7 +23,6 @@ const Home = () => {
     <Testimonials/>
     <JoinUs/>
     <Partners/>
-    <Footer/>
     </>
   )
 };

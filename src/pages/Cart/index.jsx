@@ -19,7 +19,6 @@ const Cart = () => {
   ));
   return (
     <>
-      <Navbar />
       {items !== 0 ? (
         <div className="flex md:flex-row 2xs:flex-col lg:mx-0 2xs:mx-10 my-10 md:items-start justify-center md:gap-40 2xs:gap-12 2xs:items-center">
           <div className="flex flex-col max-w-[1110px]">
@@ -35,15 +34,15 @@ const Cart = () => {
                 onClick={clear}
               >
                 <img src={Bin} className="" />
-                <p className="text-danger text-lg">Clear all</p>
+                <button className="text-danger text-lg">Clear all</button>
               </div>
             </div>
             <div className="flex flex-col gap-9 md:mx-0 2xs:mx-12">
               {tourCards}
             </div>
           </div>
-          <div className="border border-gray-200 max-w-[405px] max-h-[413px] w-full h-full flex flex-col gap-2 justify-center p-6 rounded-2xl">
-            <p className="text-2xl mb-6 text-center">Order Summary</p>
+          <div className="md:border-2 max-w-[405px] max-h-[413px] w-full h-full flex flex-col gap-2 justify-center md:p-6 rounded-2xl">
+            <p className="text-2xl my-6">Order Summary</p>
             <div className="flex justify-between text-base">
               <p>booking fee</p>
               <p>0.00 EGP</p>
@@ -66,13 +65,13 @@ const Cart = () => {
               <p className="text-[#A4A0A0]">Free cancellation</p>
             </div>
             <div className="mt-8 text-center">
-              <CustomButton type="secondary" value="Check out" />
+              <CustomButton type="secondary" value="Check out" width='w-full'/>
             </div>
           </div>
         </div>
       ) : (
         <div className="flex flex-col">
-          <div className="flex flex-col h-[60vh] w-full justify-center items-center">
+          <div className="flex flex-col h-[60vh] w-full justify-center items-center text-center">
             <div className="bg-emptyCart max-h-[268px] max-w-[252px] w-full h-full mb-3"></div>
             <p className="text-4xl">Your cart looks empty</p>
             <p className="text-xl">What are you waiting for?</p>
@@ -82,7 +81,6 @@ const Cart = () => {
           </div>
         </div>
       )}
-      <Footer />
     </>
   );
 };

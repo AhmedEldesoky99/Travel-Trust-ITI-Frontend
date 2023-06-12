@@ -9,7 +9,7 @@ const Sales = () => {
           <div className="container mx-auto  text-center lg:text-start">
             <div className="mx-10 h-[600px] flex justify-between items-center">
               <div className="text-white w-full 2xl:w-[30%] py-20">
-                <h2 className="sm:text-4xl md:text-5xl lg:text-6xl">
+                <h2 className="sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl">
                   Save on your next stay
                 </h2>
                 <p className="md:text-[18]px] lg:text-[22px] mt-4 mb-14">

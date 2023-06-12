@@ -16,10 +16,10 @@ const AccordionFAQ = ({question,answer}) => {
         onClick={(event) => {
         event.stopPropagation();
         }}/>
-        <span>{question}</span>
+        <span className='text-2xl'>{question}</span>
         </div>
         }>
-          <div>{answer}</div>
+          <div><span className='text-lg'>{answer}</span></div>
         </Panel>
       </Collapse>
     </>

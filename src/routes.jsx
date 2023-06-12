@@ -11,48 +11,91 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import AboutUs from "./pages/AboutUs";
 import Cart from "./pages/Cart";
 import Favorite from "./pages/Favorite";
+import Search from "./pages/Search";
 import EachGovernorate from "./pages/EachGovernorate";
 import Sales from "./pages/Sales";
 import TourDetails from "./pages/TourDetails";
 import AllTours from "./pages/AllTours";
+import Destinations from "./pages/Destinations";
 import UserProfile from "./pages/UserProfile";
+import ContactUs from "./pages/ContactUs";
+import History from "./pages/History";
+
 
 // Admin components
 import AdminSignUp from "./pages/Admin/adminSignup";
 import AdminLogin from "./pages/Admin/adminLogin";
+
+
 import DashBoard from "./pages/Admin/DashBoard";
+import AdminProfile from "./pages/Admin/adminProfile";
+
+import AdminAllTours from "./pages/Admin/AdminAllTours";
+import AdminReviews from "./pages/AdminReviews";
 import AddTourPage from "./pages/Admin/addTour";
 import { AddTourFormProvider } from "./context/AddTourFormContext";
 
-export const router = createBrowserRouter([
-  { path: "/", element: <Home /> },
-  { path: "/join", element: <JoinUs /> },
-  { path: "/login", element: <Login /> },
-  { path: "/signup", element: <SignUp /> },
-  { path: "/each-governorate/:id", element: <EachGovernorate /> },
-  { path: "/sales", element: <Sales /> },
-  { path: "/tour-details/:id", element: <TourDetails /> },
-  { path: "/shared", element: <SharedComponents /> },
-  { path: "/faq", element: <Faq /> },
-  { path: "/privacy", element: <PrivacyPolicy /> },
-  { path: "/Aboutus", element: <AboutUs /> },
-  { path: "/cart", element: <Cart /> },
-  { path: "/favorite", element: <Favorite /> },
-  { path: "/all-tours", element: <AllTours /> },
-  { path: "/user-profile/:id", element: <UserProfile /> },
 
-  //admin
-  { path: "/admin", element: <DashBoard /> },
-  { path: "/admin/signup", element: <AdminSignUp /> },
-  { path: "/admin/login", element: <AdminLogin /> },
-  //----Add tour
+import Layout from "./layout";
+
+
+import { UserIdProvider } from './context/UserIdContext';
+
+
+
+export const router = createBrowserRouter([
 
   {
-    path: "/admin/addTour",
-    element: (
-      <AddTourFormProvider>
-        <AddTourPage />
-      </AddTourFormProvider>
-    ),
+    path: "/",
+    element: <Layout />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "join", element: <JoinUs /> },
+      { path: "login", element: <Login /> },
+      {
+        path: "signup",
+        element: (
+          <UserIdProvider>
+            <SignUp />
+          </UserIdProvider>
+        ),
+      },
+      { path: "each-governorate/:id", element: <EachGovernorate /> },
+      { path: "sales", element: <Sales /> },
+      { path: "tour-details/:id", element: <TourDetails /> },
+      { path: "shared", element: <SharedComponents /> },
+      { path: "faq", element: <Faq /> },
+      { path: "search", element: <Search /> },
+      { path: "privacy", element: <PrivacyPolicy /> },
+      { path: "Aboutus", element: <AboutUs /> },
+      { path: "cart", element: <Cart /> },
+      { path: "favorite", element: <Favorite /> },
+      { path: "all-tours", element: <AllTours /> },
+      { path: "destinations", element: <Destinations /> },
+      { path: "user-profile/:id", element: <UserProfile /> },
+
+
+
+      { path: "sales", element: <Sales /> },
+      { path: "contact-us", element: <ContactUs /> },
+      { path: "history", element: <History /> },
+      
+
+      //admin
+      { path: "admin", element: <DashBoard /> },
+      { path: "admin/signup", element: <AdminSignUp /> },
+      { path: "admin/login", element: <AdminLogin /> },
+      { path: "admin/alltours", element: <AdminAllTours /> },
+      { path: "admin/reviews", element: <AdminReviews /> },
+      {
+        path: "admin/addTour",
+        element: (
+          <AddTourFormProvider>
+            <AddTourPage />
+          </AddTourFormProvider>
+        ),
+      },
+      { path: "admin/:id", element: <AdminProfile /> },
+    ],
   },
 ]);
