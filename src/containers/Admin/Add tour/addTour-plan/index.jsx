@@ -1,34 +1,62 @@
 import DayInputs from "../../../../containers/Admin/Add tour/DayInputs";
 import Categories from "../../../../containers/Admin/Add tour/Categories";
 import useAddTourFormContext from "../../../../hooks/useAddTourFormContext";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
+import CustomButton from "../../../../components/shared/CustomButton";
+import EachDayForm from "../eachDayForm.jsx";
+import { useState } from "react";
+import StopLocationInputs from "../StopLocationInput";
 
-const AddPlan = ({onhandleSubmit}) => {
-  const { formData } = useAddTourFormContext();
-  const { handleSubmit } = useForm();
+const AddPlan = ({}) => {
+  const { formData, handlePrev, onhandleSubmit } = useAddTourFormContext();
 
+  const {
+    handleSubmit,
+    register,
+    control,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      ...formData,
+    },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "plan",
+  });
   return (
     <>
-      <div className="rounded-2xl shadow-md p-10">
-        <h2 className="text-3xl font-medium">Customize Your Plan</h2>{" "}
-        <form onSubmit={handleSubmit(onhandleSubmit)} className="">
-          <div className="grid lg:grid-cols-6 lg:grid-flow-row auto-rows-max w-full  gap-5 h-fill md:mt-8 mt-32">
-            <div className="col-span-6 lg:col-span-3">
-              {Array(+formData?.duration)
-                .fill(0)
-                .map((day, i) => (
-                  <DayInputs key={i} dayNum={i + 1} />
-                ))}
-            </div>
-            <div className="col-span-6 lg:col-span-3 pl-10">
-              <Categories />
-            </div>
-            <button type="submit" className="">
-              submit
-            </button>
-          </div>
-        </form>
-      </div>
+      <form onSubmit={handleSubmit(onhandleSubmit)} className="mt-8">
+        <div className="rounded-2xl shadow-md p-10 ">
+          <h2 className="text-3xl font-medium">Customize Your Plan</h2>{" "}
+          {fields.map((field, index) => {
+            return (
+              <>
+                <DayInputs
+                  key={field.id}
+                  index={index}
+                  register={register}
+                  errors={errors}
+                  control={control}
+                />
+              </>
+            );
+          })}
+        </div>
+        <input type="submit" id="form-2" className="hidden" />
+        <div className="flex flex-col items-center md:flex-row md:justify-end mt-10 mb-10 gap-5">
+          <CustomButton
+            type="quadruple"
+            value="Previous"
+            width="w-64"
+            onClick={handlePrev}
+          />
+          <label htmlFor="form-2" className="btn w-64">
+            Next
+          </label>
+        </div>
+      </form>
     </>
   );
 };

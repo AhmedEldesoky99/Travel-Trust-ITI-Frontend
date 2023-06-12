@@ -46,18 +46,12 @@ export const ruleValidation = {
     required: "Confirm Password is required",
   },
   title: {
-    required: "title is required",
+    required: "Title is required",
   },
-  selectGov: {
-    required: "Governorate selection is required",
-  },
-  price: {
+  price_per_person: {
     required: "Price is required",
   },
-  duration: {
-    required: "Duration is required",
-  },
-  personsNum: {
+  person_num: {
     required: "Number of persons is required",
   },
   description: {

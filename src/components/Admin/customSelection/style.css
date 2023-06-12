@@ -1,0 +1,14 @@
+.custom-select .ant-select-selector {
+  height: 65px !important;
+  border-color: black !important;
+  border-radius: 0.5rem !important;
+  padding: 0 16px;
+}
+.custom-select .ant-select-selection-placeholder {
+  color: #6b7280;
+}
+
+.custom-select .ant-select-selection-item {
+  display: flex;
+  align-items: center;
+}
