@@ -13,7 +13,7 @@ const Row = ({ time, title, isFavorite }) => {
         <div className="flex flex-row md:gap-6 2xs:gap-1 justify-center">
           <Checkbox />
           <p className="2xl:text-xl lg:text-lg 2xs:text-base">{time}</p>
-          <p className="ml-6 2xl:text-xl lg:text-lg 2xs:text-base max-w-[130px]">{title}</p>
+          <p className="ml-6 2xl:text-xl lg:text-lg 2xs:text-base md:max-w-full 2xs:max-w-[130px]">{title}</p>
         </div>
         <div className="flex flex-row md:gap-9  items-center">
           {isFavorite && <img className="md:block 2xs:hidden" src={heart} />}

@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Button } from "antd";
 import Icon from "../../../utils/icons";
 import UserImage from "../../../assets/images/UserProfile/userprofile.png";
+import './style.css';
 
 const EditProfile = () => {
   const [loading, setLoading] = useState(false);
@@ -37,7 +38,7 @@ const EditProfile = () => {
   };
   return (
     <>
-      <div className="max-w-[973px] w-screen">
+      <div className="md:max-w-[973px] md:w-screen flex items-stretch">
         <form
           onSubmit={handleSubmit(editProfileHandler)}
           className=" gap-4  flex flex-col max-w-[973px] w-screen"
@@ -97,8 +98,8 @@ const EditProfile = () => {
             </div>
           </div>
 
-          <div className="px-20 pb-[60px]">
-            <div className="flex w-full gap-5 justify-between">
+          <div className="px-20 pb-[60px] flex flex-col gap-4">
+            <div className="flex md:flex-row 2xs:flex-col w-full md:gap-5 justify-between">
               <div className="w-full">
                 <CustomInput
                   type="text"
@@ -120,7 +121,7 @@ const EditProfile = () => {
                 />
               </div>
             </div>
-            <div className="flex w-full gap-5 justify-between">
+            <div className="flex md:flex-row 2xs:flex-col w-full md:gap-5 justify-between">
               <div className="w-full">
                 <CustomInput
                   type="text"
@@ -142,7 +143,7 @@ const EditProfile = () => {
                 />
               </div>
             </div>
-            <div className="flex w-full gap-5 justify-between">
+            <div className="flex md:flex-row 2xs:flex-col w-full md:gap-5 justify-between">
               <div className="w-full">
                 <CustomInput
                   type="text"
@@ -174,7 +175,7 @@ const EditProfile = () => {
                 errors={errors}
               />
             </div>
-            <div className="flex w-full gap-5 justify-between">
+            <div className="flex md:flex-row 2xs:flex-col w-full md:gap-5 justify-between">
               <div className="w-full">
                 <CustomInput
                   type="text"
@@ -196,7 +197,7 @@ const EditProfile = () => {
                 />
               </div>
             </div>
-            <div className="w-full flex justify-end gap-5 mt-8">
+            <div className="w-full flex md:justify-end 2xs:justify-center gap-5 mt-8">
               <CustomButton
                 value="Cancel"
                 type="quadruple"
