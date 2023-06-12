@@ -28,7 +28,7 @@ const navLinks = [
 const NavBar = () => {
   return (
     <>
-      <div className=" navbar fixed md:static  md:flex-col md:justify-between md:w-[100px] md:h-[100vh] bg-base-100 rounded-lg shadow-md m-3 p-4 z-20">
+      <div className=" navbar fixed md:sticky md:top-0 md:flex-col md:justify-between md:w-[100px] md:h-[100vh] bg-base-100 rounded-lg shadow-md m-3 p-4 z-20">
         <div className="flex-1 md:flex-none">
           <a className="btn bg-white border-0 hover:bg-transparent normal-case text-xl">
             <Icon name="blackLogo" />

@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { useRef } from "react";
+
 
 import NavBar from "../../../components/shared/Admin/Admin-NavBar";
 import SubNavBar from "../../../components/shared/Admin/SubNavBar.jsx";
@@ -12,9 +11,7 @@ import AddPlan from "../../../containers/Admin/Add tour/addTour-plan";
 import AddComplete from "../../../containers/Admin/Add tour/addTour-done";
 import AddGallery from "../../../containers/Admin/Add tour/addTour-gallery";
 import AddMeetingPoint from "../../../containers/Admin/Add tour/addTour-meetingPoint";
-import CustomButton from "../../../components/shared/CustomButton";
 
-import { AddTourFormProvider } from "../../../context/AddTourFormContext";
 import useAddTourFormContext from "../../../hooks/useAddTourFormContext";
 
 import {
@@ -59,23 +56,19 @@ const items = [
   },
 ];
 
+const stepMap = new Map([
+  ["step-1", { component: <AddOverview /> }],
+  ["step-2", { component: <AddPlan /> }],
+  ["step-3", { component: <AddGallery /> }],
+  ["step-4", { component: <AddMeetingPoint /> }],
+  ["step-5", { component: <AddComplete /> }],
+]);
+
 const AddTourPage = () => {
   //----------- states -----------
 
-  const [step, setStep] = useState(1);
+  const { step} = useAddTourFormContext();
   const [stepState, setStepState] = useState(items[0]);
-  const { nextBtn, setFormData } = useAddTourFormContext();
-  console.log("addtour", nextBtn);
-  //----------- handlers -----------
-  const handleNext = () => {
-    // check if step is valied
-    // some code
-    setStep((prev) => Math.min(prev + 1, 5));
-  };
-
-  const handlePrev = () => {
-    setStep((prev) => Math.max(prev - 1, 1));
-  };
   useEffect(() => {
     const currentStep = items.find((item) => item.step === step);
     setStepState({
@@ -90,14 +83,6 @@ const AddTourPage = () => {
       ),
     });
   }, [step]);
-  const onhandleSubmit = (data) => {
-    // nextBtn.current.onclick();
-    if (data) handleNext();
-    console.log("data from parent", data);
-    console.log(nextBtn);
-    setFormData({ ...formData, data });
-  };
-
   return (
     <>
       <div className="flex flex-row  ">
@@ -106,39 +91,17 @@ const AddTourPage = () => {
         <div className="w-full container mx-auto w-">
           <SubNavBar />
           <CustomSteps items={items} stepState={stepState} />
-          
-          {step === 1 && <AddOverview onhandleSubmit={onhandleSubmit} />}
-          {step === 2 && <AddPlan onhandleSubmit={onhandleSubmit} />}
+          {/* {stepMap.get("step-1").component} */}
+          {step === 1 && <AddOverview />}
+          {step === 2 && <AddPlan />}
           {step === 3 && <AddGallery />}
           {step === 4 && <AddMeetingPoint />}
           {step === 5 && <AddComplete />}
-          {step !== 5 && (
-            <div className="flex flex-col items-center md:flex-row md:justify-end mt-10 mb-10 gap-5">
-              {step !== 1 && (
-                <CustomButton
-                  type="quadruple"
-                  value="Previous"
-                  width="w-64"
-                  onClick={handlePrev}
-                />
-              )}
-              
-              <CustomButton
-                type="secondary"
-                value="Next"
-                width="w-64"
-                onClick={onhandleSubmit}
-              />
-            </div>
-          )}
-         
+
         </div>
       </div>
     </>
   );
 };
- //     () =>
-                //   nextBtn.current.addEventListener("click", () => {
-                //     console.log("hager");
-                //   })
+
 export default AddTourPage;

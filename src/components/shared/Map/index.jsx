@@ -12,16 +12,18 @@ const accessToken =
 
 function CustomMap({
   width = "100%",
-  height = 300,
-  longitude = "31.2653",
-  latitude = "32.3019",
+  height = "100%",
+  // longitude = "31.2653",
+  // latitude = "32.3019",
+  coordinates,
+
   zoom = 6,
   draggable = true,
   setLocation = () => {},
 }) {
   const [viewState, setViewState] = useState({
-    longitude,
-    latitude,
+    longitude: coordinates?.longitude || "31.2653",
+    latitude: coordinates?.latitude || "32.3019",
     zoom,
   });
 
