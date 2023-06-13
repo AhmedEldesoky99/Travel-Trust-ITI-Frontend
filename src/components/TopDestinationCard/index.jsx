@@ -17,7 +17,6 @@ const TopDestinationCard = (data) => {
             <h2 className="text-2xl text-white font-header font-medium transition-all duration-200 opacity-0 group-hover:opacity-100 group-hover:delay-100">
               {data.data?.tours_number}
             </h2>
-         
         </div>
        
       </div>
