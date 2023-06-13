@@ -12,10 +12,6 @@ const TopDestinationCard = (data) => {
           <h1 className="h-full w-full text-[30px] xl:text-[32px] 2xl:text-[40px] text-white font-medium flex justify-center items-end transition-all duration-500 font-header mb-2">
             {data.data?.title}
           </h1>
-            <span className="border-b border-2 transition-all duration-200 opacity-0 group-hover:opacity-100 group-hover:w-1/2 group-hover:border-secondary-yellow group-hover:delay-100 space-y-4"></span>
-            <h2 className="text-2xl text-white font-header font-medium transition-all duration-200 opacity-0 group-hover:opacity-100 group-hover:delay-100">
-              {data.data?.tours_number}
-            </h2>
           <span className="border-b border-2 transition-all duration-200 opacity-0 group-hover:opacity-100 group-hover:w-1/2 group-hover:border-secondary-yellow group-hover:delay-100 space-y-4"></span>
           <h2 className="text-2xl text-white font-header font-medium transition-all duration-200 opacity-0 group-hover:opacity-100 group-hover:delay-100">
             {data.data?.tours_number !== 0
@@ -24,6 +20,7 @@ const TopDestinationCard = (data) => {
                 : data.data?.tours_number + " tours"
               : "no tours"}
           </h2>
+
         </div>
       </div>
     </>
