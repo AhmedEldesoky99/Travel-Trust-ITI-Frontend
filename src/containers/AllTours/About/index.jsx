@@ -30,6 +30,7 @@ const About = () => {
               },
             ]}
           />
+          
           <div className="container mb-10 mx-auto grid gap-4 2xs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
             {data?.data.map((item) => (
               <TourCard key={item._id} data={item} />
