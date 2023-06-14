@@ -6,6 +6,7 @@ const AboutIntro = () => {
     <>
       <Breadcrumb
         className="ml-20 mt-10 mb-10 text-xl"
+        separator="/"
         items={[
           {
             title: <Link href="/">Home</Link>,

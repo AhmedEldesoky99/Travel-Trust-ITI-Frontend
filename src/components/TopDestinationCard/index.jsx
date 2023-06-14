@@ -20,6 +20,7 @@ const TopDestinationCard = (data) => {
                 : data.data?.tours_number + " tours"
               : "no tours"}
           </h2>
+
         </div>
       </div>
     </>
