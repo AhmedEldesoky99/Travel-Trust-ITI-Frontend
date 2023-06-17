@@ -29,7 +29,7 @@ const CardLoader = () => {
               </div>
             </div>
 
-            <div className="w-full border-[1px]  shadow-md rounded-xl">
+            <div className="w-full border-[1px] shadow-md rounded-xl">
               <div className="w-full h-60 bg-gray-200 rounded-t-lg dark:bg-gray-300"></div>
               <div className="bg-gray-100 ml-8 -mt-12 w-20 h-20 rounded-full dark:bg-gray-200"></div>
               <div className="my-16 ml-4">
@@ -39,7 +39,7 @@ const CardLoader = () => {
               </div>
             </div>
 
-            <div className="w-full border-[1px]  shadow-md rounded-xl">
+            <div className="w-full border-[1px] shadow-md rounded-xl">
               <div className="w-full h-60 bg-gray-200 rounded-t-lg dark:bg-gray-300"></div>
               <div className="bg-gray-100 ml-8 -mt-12 w-20 h-20 rounded-full dark:bg-gray-200"></div>
               <div className="my-16 ml-4">
