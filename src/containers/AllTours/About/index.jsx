@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { getDreamTours } from "../../../services/Home";
+import { getAllTours } from "../../../services/Home";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Breadcrumb, Pagination } from "antd";
@@ -9,7 +9,7 @@ import CardLoader from "../../../components/CardLoader";
 
 
 const About = () => {
-  const { isLoading, data, isSuccess } = useQuery("DreamTours", getDreamTours);
+  const { isLoading, data, isSuccess } = useQuery("allTours", getAllTours);
 
   const [page, setPage] = useState(1);
 
