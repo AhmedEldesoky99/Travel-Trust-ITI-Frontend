@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
 
-
 import NavBar from "../../../components/shared/Admin/Admin-NavBar";
 import SubNavBar from "../../../components/shared/Admin/SubNavBar.jsx";
 import CustomSteps from "../../../components/steps";
@@ -22,6 +21,8 @@ import {
   QuestionCircleOutlined,
   SmileOutlined,
 } from "@ant-design/icons";
+import { useTour } from "../../../services/useTour";
+import { useParams } from "react-router-dom";
 
 const items = [
   {
@@ -67,8 +68,9 @@ const stepMap = new Map([
 const AddTourPage = () => {
   //----------- states -----------
 
-  const { step} = useAddTourFormContext();
+  const { step, setFormData } = useAddTourFormContext();
   const [stepState, setStepState] = useState(items[0]);
+
   useEffect(() => {
     const currentStep = items.find((item) => item.step === step);
     setStepState({
@@ -83,6 +85,29 @@ const AddTourPage = () => {
       ),
     });
   }, [step]);
+
+  useEffect(() => {
+    function handleBeforeUnload(event) {
+      event.preventDefault();
+      event.returnValue = "";
+    }
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    //clean function
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  // useEffect(() => {
+  //   if (tourID !== "add") {
+  //     const { data: tour } = TourById(tourID);
+  //     // console.log("tour", tour);
+  //     // setFormData({ ...tour?.data, city: tour?.data.city.title });
+  //   }
+  // }, []);
+
   return (
     <>
       <div className="flex flex-row  ">
@@ -97,7 +122,6 @@ const AddTourPage = () => {
           {step === 3 && <AddGallery />}
           {step === 4 && <AddMeetingPoint />}
           {step === 5 && <AddComplete />}
-
         </div>
       </div>
     </>

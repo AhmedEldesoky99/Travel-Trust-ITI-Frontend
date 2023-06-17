@@ -19,6 +19,29 @@ const AddMeetingPoint = () => {
     },
   });
 
+  function validateCoordinates(value) {
+    //console.log(value); //{longitude: 30.878, latitude: 31.5147}
+    const { longitude, latitude } = value;
+
+    if (latitude === "32.3019" || longitude === "31.2653") {
+      return "Coordinates is required";
+    }
+
+    if (isNaN(parseFloat(latitude)) || isNaN(parseFloat(longitude))) {
+      return "Invalid coordinates format";
+    }
+
+    if (parseFloat(latitude) < -90 || parseFloat(latitude) > 90) {
+      return "Invalid latitude value";
+    }
+
+    if (parseFloat(longitude) < -180 || parseFloat(longitude) > 180) {
+      return "Invalid longitude value";
+    }
+
+    return true;
+  }
+
   return (
     <>
       <div className="rounded-2xl shadow-md p-10">
@@ -27,25 +50,28 @@ const AddMeetingPoint = () => {
         <div className="  flex justify-center items-center flex-col">
           <form onSubmit={handleSubmit(onhandleSubmit)}>
             <div className=" w-[100vh] h-[60vh] mt-10 rounded-2xl">
-              <Controller
-                name="meeting_point"
-                control={control}
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <>
-                    <CustomMap
-                      coordinates={field.value}
-                      setLocation={field.onChange}
-                    />
-                  </>
-                )}
-              />
+              {/* <div className=" w-full h-full"> */}
+                <Controller
+                  name="meeting_point"
+                  control={control}
+                  //TO DO :Validate coordinates 90 90
+                  rules={{ validate: validateCoordinates }}
+                  render={({ field }) => (
+                    <>
+                      <CustomMap
+                        coordinates={field.value}
+                        setLocation={field.onChange}
+                      />
+                    </>
+                  )}
+                />
+              {/* </div> */}
             </div>
             <p className="mt-4 mb-8 text-center">
               (Be Careful any scrolling in the map area will cause the meeting
               point to change)
             </p>
-            <div className=" mt-6">
+            <div className="w- mt-6">
               <CustomInput
                 type="text"
                 name="description"

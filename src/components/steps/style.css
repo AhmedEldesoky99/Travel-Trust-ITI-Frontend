@@ -1,0 +1,9 @@
+.custom-steps {
+  margin: 64px 0px !important;
+}
+
+@media screen and (max-width: 700px) {
+  .custom-steps {
+    margin-top: 150px !important;
+  }
+}

@@ -27,17 +27,29 @@ const AddGallery = () => {
         <Form onFinish={handleSubmit(onhandleSubmit)}>
           <div className="flex justify-start items-center flex-wrap md:flex-nowrap mt-10">
             <Controller
-              name="highlight_photos"
+              name="highlight_files"
               control={control}
-              rules={{ required: true }}
+              rules={{
+                required: {
+                  value: true,
+                  message: "Image is required",
+                },
+              }}
               render={({ field }) => (
                 <>
-                  <CustomUploadImage
-                    length={2}
-                    fileList={field.value}
-                    setFileList={field.onChange}
-                    // {...field}
-                  />
+                  <div className="flex flex-col content-start">
+                    <CustomUploadImage
+                      length={6}
+                      fileList={field.value}
+                      setFileList={field.onChange}
+                      // {...field}
+                    />
+                    {errors.highlight_files && (
+                      <p className="text-tertiary-red mt-1">
+                        {errors.highlight_files.message}
+                      </p>
+                    )}
+                  </div>
                 </>
               )}
             />
@@ -46,17 +58,29 @@ const AddGallery = () => {
           <h3 className="text-3xl mt-10 font-medium">Upload food images</h3>
           <div className="flex justify-start items-center flex-wrap md:flex-nowrap mt-10">
             <Controller
-              name="food_photos"
+              name="food_files"
               control={control}
-              rules={{ required: true }}
+              rules={{
+                required: {
+                  value: true,
+                  message: "Image is required",
+                },
+              }}
               render={({ field }) => (
                 <>
-                  <CustomUploadImage
-                    length={6}
-                    fileList={field.value}
-                    setFileList={field.onChange}
-                    // {...field}
-                  />
+                  <div className="flex flex-col content-start">
+                    <CustomUploadImage
+                      length={2}
+                      fileList={field.value}
+                      setFileList={field.onChange}
+                      // {...field}
+                    />
+                    {errors.food_files && (
+                      <p className="text-tertiary-red mt-1">
+                        {errors.food_files.message}
+                      </p>
+                    )}
+                  </div>
                 </>
               )}
             />

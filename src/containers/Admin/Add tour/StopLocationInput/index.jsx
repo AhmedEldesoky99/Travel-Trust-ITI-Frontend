@@ -15,7 +15,7 @@ const StopLocationInputs = ({
           {fields.map((field, index) => {
             return (
               <li
-                className="flex items-center content-start gap-4 mb-4"
+                className="flex flex-col gap-2 lg:flex-row lg:items-center lg:content-start lg:gap-4 mb-10 lg:mb-4"
                 key={field.id}
               >
                 <div className="w-full">
@@ -38,10 +38,11 @@ const StopLocationInputs = ({
                     errors={errors}
                   />{" "}
                 </div>
-                <div>
+                <div className="w-full lg:w-auto">
                   <CustomButton
-                    type="primary"
+                    type="delete"
                     value="-"
+                    width="w-full"
                     onClick={() => remove(index)}
                   />
                 </div>

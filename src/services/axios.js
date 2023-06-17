@@ -3,59 +3,70 @@ import { toast } from "react-toastify";
 
 export const baseURL = "https://travel-8ztv.onrender.com";
 
-const client = axios.create({ baseURL });
+const clientFormData = axios.create({
+  baseURL,
+  headers: { "Content-Type": "multipart/form-data" },
+});
+const client = axios.create({
+  baseURL,
+});
 
 export const request = ({ ...options }) => {
   client.defaults.headers.common.Accept = "application/json";
   client.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
     "travelJWT"
   )}`;
-  if (options.formData) {
-    client.defaults.headers.common["Content-Type"] = "multipart/form-data";
-  } else {
-    client.defaults.headers.common["Content-Type"] = "application/json";
-  }
 
-    const onSuccess = (response) => {
-        console.log("<<Success>>", response.data);
-        if(!response.data.success)         
-        { console.log("Error"); throw new Error("somthing is wrong") 
-      }
-        if (options.successMsg) toast.success(options.successMsg, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
+  clientFormData.defaults.headers.common.Accept = "application/json";
+  clientFormData.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
+    "travelJWT"
+  )}`;
+
+  const onSuccess = (response) => {
+    console.log("<<Success>>", response.data);
+    if (!response.data.success) {
+      console.log("Error");
+      throw new Error("somthing is wrong");
+    }
+    if (options.successMsg)
+      toast.success(options.successMsg, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    return response.data;
+  };
+
+  const onError = (err) => {
+    console.log("<<ERROR>>", err);
+    if (err)
+      err.response.data.message.map((error) => {
+        toast.error(error || "Something went wrong...", {
+          position: "top-right",
+          autoClose: false,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
         });
-        return response.data;
-    };
+      });
 
-    const onError = (err) => {
-        console.log("<<ERROR>>", err);
-        if (err) err.response.data.message.map((error) => {
-            toast.error(error || 'Something went wrong...', {
-                position: "top-right",
-                autoClose: false,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-        })
+    return err;
+  };
 
-        return err;
-    };
-
-  return client(options).then(onSuccess).catch(onError);
+  if (options.formData) {
+    return clientFormData(options).then(onSuccess).catch(onError);
+  } else {
+    return client(options).then(onSuccess).catch(onError);
+  }
 };
-
-
 
 // export const headers = (formdata = false) => {
 //     return {
@@ -79,4 +90,3 @@ export const request = ({ ...options }) => {
 //   export const updatePostByID = (id) => {
 //     return request({ url: `/v1/post/${id}`, method: "Patch" });
 //   };
-

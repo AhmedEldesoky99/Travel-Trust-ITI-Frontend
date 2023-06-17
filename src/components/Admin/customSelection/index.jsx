@@ -9,11 +9,11 @@ const CustomSelection = forwardRef(
     return (
       <>
         <div className="">
-          <span className=" text-lg">{span}</span>
+          <span className=" mb-2 mt-6 inline-block text-lg">{span}</span>
           <Select
             {...props}
             ref={ref}
-            className="custom-select mt-4"
+            className="custom-select "
             mode={mode}
             placeholder={placeHolder}
             value={value}
