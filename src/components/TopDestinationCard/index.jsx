@@ -1,4 +1,5 @@
 const TopDestinationCard = (data) => {
+ 
   return (
     <>
       <div
@@ -6,6 +7,7 @@ const TopDestinationCard = (data) => {
         style={{
           backgroundImage: `linear-gradient(rgba(0.4, 0.4, 0.4, 0.4), rgba(0.4,0.4,0.4,0.4)),url(${data.data?.home_image})`,
         }}
+      
       >
         <div className="absolute inset-0 group-hover:bg-black/30 duration-500 transition-all ease-in-out"></div>
         <div className="z-10 flex w-full h-full translate-y-8 flex-col items-center justify-center space-y-0 transition-transform group-hover:-translate-y-32 duration-300  ease-in-out">
