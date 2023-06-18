@@ -1,16 +1,6 @@
 import { useState } from "react";
 
-const regionsTabs = [
-  { name: "Greater Cairo Region", cities: 3 },
-  { name: "Alexandria Region", cities: 3 },
-  { name: "Delta Region", cities: 5 },
-  { name: "Suez Canal Region", cities: 6 },
-  { name: "North Upper Egypt Region", cities: 3 },
-  { name: "Central Upper Egypt Region", cities: 2 },
-  { name: "Southern Upper Egypt Region", cities: 5 },
-];
-
-const RegionCard = () => {
+const RegionCard = ({ regionsTabs }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const handleButtonClick = (index) => {
@@ -36,7 +26,7 @@ const RegionCard = () => {
                 }`}
                 onClick={() => handleButtonClick(index)}
               >
-                <p className="text-xl font-normal">{name}</p>
+                <p className="text-xl font-normal capitalize">{name}</p>
                 <p
                   className={`border-[1.2px] border-gray-300 text-[1rem] w-[1.6rem] h-[1.6rem] flex justify-center items-center rounded-md px-3 ${
                     selectedIndex === index
