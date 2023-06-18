@@ -1,8 +1,17 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
+import { getEachGovernorateTours } from "../../../services/EachGovernorate";
 
 const Header = () => {
+  const {id} = useParams();
+  const {  data } = useQuery(
+    ["GovernorateTours", id],
+    () => getEachGovernorateTours(id)
+  );
   return (
-    <header className="relative hero min-h-[55vh] bg-eachGovernorateBG ">
+    <header className={`relative hero min-h-[55vh] ${data?`bg-[url(${data?.data.city.full_image})]`:`bg-eachGovernorateBG`} `}>
       <div className="hero-overlay bg-black/[0.4]"></div>
       <div className="container">
         <div className="hero-content p-0 justify-start text-white mb-2">
@@ -11,7 +20,7 @@ const Header = () => {
               Egypt
             </p>
             <h1 className="2xs:text-3xl sm:text-4xl md:text-4xl xl:text-5xl 2xl:text-6xl font-bold">
-              Dahab
+            {data?.data.city.title}
             </h1>
           </div>
         </div>

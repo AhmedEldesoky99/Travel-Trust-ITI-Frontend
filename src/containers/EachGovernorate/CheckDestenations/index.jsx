@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { Pagination } from "antd";
 
 import CheckDestCard from "../../../components/CheckDestCard";
 
@@ -10,7 +9,6 @@ import Image3 from "../../../assets/images/CheckDestinations/Nouba.png";
 import Image4 from "../../../assets/images/CheckDestinations/Alex.png";
 
 const CheckDestenations = () => {
-  const [page, setPage] = useState(1);
 
   return (
     <section className="py-14">
@@ -35,15 +33,7 @@ const CheckDestenations = () => {
         </div>
       </div>
 
-      <Pagination
-        className="my-custom-pagination text-center mt-14"
-        current={page}
-        onChange={(page) => {
-          setPage(page);
-        }}
-        pageSize={12}
-        total={50}
-      />
+
     </section>
   );
 };
