@@ -4,7 +4,6 @@ import Statistics from "../../../components/AdminProfile/statistics/index.jsx";
 import TopTravelers from "../../../components/AdminProfile/topTravelers/index.jsx";
 import EditProfile from "../../../components/AdminProfile/EditProfile/index.jsx";
 
-
 import profileImg from "../../../assets/images/Admin/AdminProfile/profileImg.png";
 import phone from "../../../assets/images/Admin/AdminProfile/phone.svg";
 import email from "../../../assets/images/Admin/AdminProfile/email.svg";
@@ -13,7 +12,7 @@ import ssn from "../../../assets/images/Admin/AdminProfile/ssn.svg";
 import role from "../../../assets/images/Admin/AdminProfile/role.svg";
 import { Modal } from "antd";
 import { useState } from "react";
-import './app.css';
+import "./app.css";
 
 const AdminProfile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,7 +38,7 @@ const AdminProfile = () => {
                   {/* user card + edit profile */}
                   <div className="flex md:flex-row 2xs:flex-col gap-5 lg:mx-0">
                     <div className="2xs:mx-auto">
-                      <div className="max-h-[283px] md:max-w-[283px] w-full md:px-4 " >
+                      <div className="max-h-[283px] md:max-w-[283px] w-full md:px-4 ">
                         <img
                           src={profileImg}
                           className="rounded-2xl object-cover  h-full"
@@ -76,7 +75,9 @@ const AdminProfile = () => {
                           </div>
                           <div className="flex flex-row items-center gap-7">
                             <img src={phone} />
-                            <p className="text-xl text-[#9A9999]">+123-456-789</p>
+                            <p className="text-xl text-[#9A9999]">
+                              +123-456-789
+                            </p>
                           </div>
                           <div className="flex flex-row items-center gap-7">
                             <img src={email} />
@@ -88,7 +89,9 @@ const AdminProfile = () => {
                         <div className="flex flex-col md:gap-4 2xs:gap-2 justify-end">
                           <div className="flex flex-row items-center gap-7">
                             <img src={ssn} />
-                            <p className="text-xl text-[#9A9999]">+123-456-789</p>
+                            <p className="text-xl text-[#9A9999]">
+                              +123-456-789
+                            </p>
                           </div>
                           <div className="flex flex-row items-center gap-7">
                             <img src={role} />
@@ -106,8 +109,14 @@ const AdminProfile = () => {
                     >
                       Edit profile
                     </button>
-                    <Modal title="Edit Profile" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                      <EditProfile/>
+                    <Modal
+                      className="ant-modal-content1 ant-modal-footer1 ant-modal-title1 ant-modal-mask1"
+                      title="Edit Profile"
+                      open={isModalOpen}
+                      onOk={handleOk}
+                      onCancel={handleCancel}
+                    >
+                      <EditProfile />
                     </Modal>
                   </div>
                 </div>
@@ -119,7 +128,7 @@ const AdminProfile = () => {
                     </div>
                     <div className="flex flex-row gap-12">
                       <Statistics num="523" stat="Traveler Booked" />
-                      <Statistics num="896" stat="Views" duration={0.1}/>
+                      <Statistics num="896" stat="Views" duration={0.1} />
                     </div>
                     <div className="flex flex-row gap-12">
                       <Statistics num="480" stat="Reviews" />
@@ -128,17 +137,26 @@ const AdminProfile = () => {
                   </div>
                   <div className="flex flex-col max-w-[830px] bg-white shadow-xl rounded-2xl w-screen md:px-5 py-6 gap-4 container flex-wrap px-4">
                     {/* about + Governorate of expertise tags + Language tags */}
-                    <h3 className="text-[#9A9999] font-semibold text-xl mb-4">About</h3>
+                    <h3 className="text-[#9A9999] font-semibold text-xl mb-4">
+                      About
+                    </h3>
                     <p className="text-xl mb-6 flex flex-wrap">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus.
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Ut et massa mi. Aliquam in hendrerit urna. Pellentesque
+                      sit amet sapien fringilla, mattis ligula consectetur,
+                      ultrices mauris. Maecenas vitae mattis tellus.
                     </p>
-                    <h4 className="text-[#9A9999] font-semibold text-xl">Governorate of expertise</h4>
+                    <h4 className="text-[#9A9999] font-semibold text-xl">
+                      Governorate of expertise
+                    </h4>
                     <div className="flex flex-row max-h-[42px] mb-4">
                       <div className="py-3 px-5 bg-[#D9D9D9] rounded-lg flex items-center">
                         Alexandria
                       </div>
                     </div>
-                    <h4 className="text-[#9A9999] font-semibold text-xl">Language</h4>
+                    <h4 className="text-[#9A9999] font-semibold text-xl">
+                      Language
+                    </h4>
                     <div className="flex flex-row gap-2 items-center max-w-[121px]">
                       <div className="py-3 px-5 bg-[#D9D9D9] rounded-lg flex items-center">
                         Arabic
@@ -152,9 +170,21 @@ const AdminProfile = () => {
                     {/* Top travelers */}
                     <h2 className="text-2xl">Top Travelers</h2>
                     <div className="flex flex-col gap-6">
-                      <TopTravelers img={profileImg} name='Maged Mostafa' mail='maged@gmail.com'/>
-                      <TopTravelers img={profileImg} name='Maged Mostafa' mail='maged@gmail.com'/>
-                      <TopTravelers img={profileImg} name='Maged Mostafa' mail='maged@gmail.com'/>
+                      <TopTravelers
+                        img={profileImg}
+                        name="Maged Mostafa"
+                        mail="maged@gmail.com"
+                      />
+                      <TopTravelers
+                        img={profileImg}
+                        name="Maged Mostafa"
+                        mail="maged@gmail.com"
+                      />
+                      <TopTravelers
+                        img={profileImg}
+                        name="Maged Mostafa"
+                        mail="maged@gmail.com"
+                      />
                     </div>
                   </div>
                 </div>
