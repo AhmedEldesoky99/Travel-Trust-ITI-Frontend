@@ -3,10 +3,10 @@
     width: max-content !important;
     padding: 0!important;
 }
-.ant-modal-footer1{
+.ant-modal-footer{
     display: none;
 }
-.ant-modal-title1{
+.ant-modal-title{
     display: none;
 }
 .ant-modal-mask1{

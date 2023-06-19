@@ -18,10 +18,11 @@
 
 import { Checkbox } from 'antd';
 
-const FilterCheckbox = ({ options, onChange }) => {
-  const checkboxes = options.map((option, index) => (
-    <div key={index} className='flex gap-1'>
-      <Checkbox value={option} onChange={onChange} />
+const FilterCheckbox = ({ data, onChange }) => {
+  console.log(data);
+  const checkboxes = data?.data.map((option) => (
+    <div key={option._id} className='flex gap-1'>
+      <Checkbox value={option.name} onChange={onChange} />
       <p className='text-xl'>{option}</p>
     </div>
   ));
