@@ -14,7 +14,6 @@ import { useQuery } from "react-query";
 import { getTopDestinations } from "../../../services/Home";
 import CustomSelection from "../../Admin/customSelection";
 import { useUser } from "../../../services/user";
-
 const languages = [
   { value: "Arabic", label: "Arabic" },
   { value: "English", label: "English" },
@@ -23,12 +22,13 @@ const languages = [
   { value: "Italy", label: "Italy" },
 ];
 
-const EditProfile = () => {
-  //----------- states -----------
-  const [admin, setAdmin] = useState();
+<
 
-  //custom hooks
-  //useform
+const EditProfile = () => {
+    const [admin, setAdmin] = useState();
+
+  // ------- hooks --------
+
   const {
     handleSubmit,
     register,
@@ -36,7 +36,7 @@ const EditProfile = () => {
     formState: { errors },
   } = useForm();
 
-  //upload
+  
   const {
     userImageUrl,
     userCoverUrl,
@@ -45,16 +45,51 @@ const EditProfile = () => {
     handleButtonClick,
     onImageChange,
   } = useUploadImage();
-
-  //----------- handlers -----------
+  
+  
+    //----------- handlers -----------
   // const { data: cities } = useQuery("TopDestinations", getTopDestinations);
   const { updateProfileMutation } = useUser();
 
   const { mutate } = updateProfileMutation;
 
+
+  //upload
+  
+
+
+  
+
+  const { userImageUrl, userCoverUrl, onImageChange } = useUploadImage();
+
+  // --------- States -----------
+  const [openModal, setOpenModal] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  // --------- Handlers -----------
+  const showModal = (type) => {
+    type === "delete" ? setOpenDeleteModal(true) : setOpenModal(true);
+  };
+
+  const handleCancel = () => {
+    setOpenModal(false);
+  };
+
+  const handleDeleteCancel = () => {
+    setOpenDeleteModal(false);
+  };
+
+  const handleOk = () => {
+    setLoading(true);
+    //Call Api
+    // setLoading(false);
+    // setOpenDeleteModal(false);
+  };
+
   const editProfileHandler = (data) => {
     console.log(data);
-
+    setLoading(true);
     // call Api
     //update user
     mutate(data);
@@ -70,10 +105,10 @@ const EditProfile = () => {
       <div className="md:max-w-[973px] md:w-screen flex items-stretch">
         <form
           onSubmit={handleSubmit(editProfileHandler)}
-          className=" gap-4  flex flex-col max-w-[973px] w-screen"
+          className=" gap-16  flex flex-col max-w-[973px] w-screen"
         >
           <div
-            className={`relative hero place-items-start min-h-[10rem] mb-20 ${
+            className={`relative hero place-items-start min-h-[10rem] bg-cover bg-center ${
               !userCoverUrl ? "bg-lighter-gray" : ""
             }`}
             style={{
@@ -83,23 +118,24 @@ const EditProfile = () => {
             <div className="h-full w-full flex justify-center items-center">
               <div>
                 <input
-                  {...register("user-cover")}
+                  {...register("user-cover", {
+                    onChange: (e) => onImageChange(e, "userCover"),
+                  })}
                   id="coverImage"
                   className="hidden"
                   type="file"
                   accept="image/*"
                   name="user-cover"
-                  onChange={(e) => onImageChange(e, "userCover")}
                 />
-                <Button
-                  icon={<Icon name="addImage" />}
-                  onClick={() => handleButtonClick("coverBtn")}
-                  className="my-custom-btn flex justify-center items-center gap-2 border-none shadow-none"
+                <label
+                  htmlFor="coverImage"
+                  className="cursor-pointer flex justify-center items-center gap-2 hover:text-primary-green transition duration-300"
                 >
+                  <Icon name="addImage" />
                   <span className="2xs:text-sm sm:text-base 2xl:text-xl">
                     Add cover photo
                   </span>
-                </Button>
+                </label>
               </div>
             </div>
 
@@ -111,19 +147,21 @@ const EditProfile = () => {
                 />
               </div>
               <input
-                {...register("user-image")}
+                {...register("user-image", {
+                  onChange: (e) => onImageChange(e, "userImage"),
+                })}
                 id="profileImage"
                 className="hidden"
                 type="file"
                 accept="image/*"
                 name="user-image"
-                onChange={(e) => onImageChange(e, "userImage")}
               />
-              <Button
-                icon={<Icon name="camera" />}
-                onClick={() => handleButtonClick("imgBtn")}
-                className="my-custom-btn absolute bottom-0 right-0 translate-y-1/4 flex justify-center items-center bg-white p-4 rounded-full"
-              ></Button>
+              <label
+                htmlFor="profileImage"
+                className="cursor-pointer absolute bottom-0 right-0 translate-y-1/4 bg-white p-2 shadow-md rounded-full hover:text-primary-green transition duration-300"
+              >
+                <Icon name="camera" />
+              </label>
             </div>
           </div>
 
@@ -190,6 +228,7 @@ const EditProfile = () => {
                 register={register}
                 errors={errors}
               />
+
             </div>
 
             <Controller

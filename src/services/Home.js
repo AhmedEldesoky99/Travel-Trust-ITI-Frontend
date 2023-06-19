@@ -12,7 +12,7 @@ export const getTopReviews = () => {
   return request({ url: "/v1/comments", method: "GET" });
 };
 
-export const getDreamTours = () => {
+export const getAllTours = () => {
   return request({
     url: "v1/tours",
     method: "GET",
@@ -21,4 +21,8 @@ export const getDreamTours = () => {
 
 export const getRecommendedTour = () => {
   return request({ url: "/v1/recommendations", method: "GET" });
+};
+
+export const getAllDestinations = () => {
+  return request({ url: "/v1/destinations", method: "GET" });
 };

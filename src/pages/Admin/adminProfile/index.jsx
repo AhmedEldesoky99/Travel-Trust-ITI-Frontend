@@ -16,6 +16,7 @@ import "./app.css";
 import { useParams } from "react-router-dom";
 import { getUserData, useUser } from "../../../services/user";
 
+
 const AdminProfile = () => {
   //----------- states -----------
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -91,6 +92,7 @@ const AdminProfile = () => {
                             <img src={phone} />
                             <p className="text-xl text-[#9A9999]">
                               {admin?.data?.phone}
+
                             </p>
                           </div>
                           <div className="flex flex-row items-center gap-7">
@@ -105,6 +107,7 @@ const AdminProfile = () => {
                             <img src={ssn} />
                             <p className="text-xl text-[#9A9999]">
                               {admin?.data?.ssn}
+
                             </p>
                           </div>
                           <div className="flex flex-row items-center gap-7">
@@ -126,6 +129,8 @@ const AdminProfile = () => {
                       Edit profile
                     </button>
                     <Modal
+
+                      className="ant-modal-content1 ant-modal-footer1 ant-modal-title1 ant-modal-mask1"
                       title="Edit Profile"
                       open={isModalOpen}
                       onOk={handleOk}
@@ -144,6 +149,7 @@ const AdminProfile = () => {
                     <div className="flex flex-row gap-12">
                       <Statistics num="523" stat="Traveler Booked" />
                       <Statistics num="896" stat="Views" duration={2} />
+
                     </div>
                     <div className="flex flex-row gap-12">
                       <Statistics num="480" stat="Reviews" />
@@ -157,6 +163,8 @@ const AdminProfile = () => {
                     </h3>
                     <p className="text-xl mb-6 flex flex-wrap">
                       {/* {admin?.data?.bio} */}
+
+
                     </p>
                     <h4 className="text-[#9A9999] font-semibold text-xl">
                       Governorate of expertise
@@ -174,6 +182,7 @@ const AdminProfile = () => {
                     <h4 className="text-[#9A9999] font-semibold text-xl">
                       Language
                     </h4>
+
 
                     <div className="flex flex-row gap-2 items-center max-w-[121px]">
                       {/* {admin?.data?.languages.map((lang) => {

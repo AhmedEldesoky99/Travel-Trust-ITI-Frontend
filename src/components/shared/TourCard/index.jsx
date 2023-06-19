@@ -4,7 +4,6 @@ import {
   EnvironmentOutlined,
   UserOutlined,
   ClockCircleOutlined,
-  CheckSquareOutlined,
   HeartFilled,
 } from "@ant-design/icons";
 
@@ -30,6 +29,10 @@ const TourCard = ({ data }) => {
           className="w-full object-cover h-[14.7rem] rounded-t-[14px]"
           src={data?.highlight_photos[0]?.url}
           alt="Tour Image"
+          // Placeholder-Image
+          onError={(e) => {
+            e.target.src = 'https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png'
+          }}
         />
 
         <div className="group-hover:translate-y-0 group-hover:opacity-30 opacity-0 absolute top-0 w-full h-full bg-black rounded-t-[14px] transition-all duration-500 ease-out flex items-start flex-col">
@@ -57,6 +60,10 @@ const TourCard = ({ data }) => {
             <img
               src={data?.organizer.photo[0]?.url}
               alt="Tour Creator"
+              // Placeholder-Image
+              onError={(e) => {
+                e.target.src = 'https://frostbrowntodd.com/app/uploads/2021/10/FBT_NoPhoto-1.jpg'
+              }}
               className="2xs:w-16 xs:w-20 sm:w-20 md:w-16 md:h-16 bg-cover bg-center object-cover  lg: xl: 2xl: rounded-full relative"
             />
           </a>

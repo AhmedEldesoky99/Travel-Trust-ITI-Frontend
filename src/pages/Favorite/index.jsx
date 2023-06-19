@@ -72,7 +72,7 @@ const Favorite = () => {
                 </Link>
               </div>
             </div>
-            <div className="flex justify-center mx-auto">{recommendedCards}</div>
+            <div className="flex justify-center">{recommendedCards}</div>
             <div className="lg:mt-0 lg:mb-0 mt-10 mb-5">
             <Link
                   to=""

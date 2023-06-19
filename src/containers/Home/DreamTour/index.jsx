@@ -1,11 +1,11 @@
 import { useQuery } from "react-query";
 import TourCard from "../../../components/shared/TourCard";
 import { Link } from "react-router-dom";
-import { getDreamTours } from "../../../services/Home";
+import { getAllTours } from "../../../services/Home";
 import CardLoader from "../../../components/CardLoader";
 
 const DreamTour = () => {
-  const { isLoading, data, isSuccess } = useQuery("DreamTours", getDreamTours);
+  const { isLoading, data, isSuccess } = useQuery("allTours", getAllTours);
 
   // console.log({ DreamTour: data });
   return (
