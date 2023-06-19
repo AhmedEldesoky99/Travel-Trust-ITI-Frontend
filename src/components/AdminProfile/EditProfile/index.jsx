@@ -54,14 +54,6 @@ const EditProfile = () => {
   const { mutate } = updateProfileMutation;
 
 
-  //upload
-  
-
-
-  
-
-  const { userImageUrl, userCoverUrl, onImageChange } = useUploadImage();
-
   // --------- States -----------
   const [openModal, setOpenModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
