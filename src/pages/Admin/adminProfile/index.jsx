@@ -119,7 +119,7 @@ const AdminProfile = () => {
                     </div>
                     <div className="flex flex-row gap-12">
                       <Statistics num="523" stat="Traveler Booked" />
-                      <Statistics num="896" stat="Views" duration={2}/>
+                      <Statistics num="896" stat="Views" duration={0.1}/>
                     </div>
                     <div className="flex flex-row gap-12">
                       <Statistics num="480" stat="Reviews" />
