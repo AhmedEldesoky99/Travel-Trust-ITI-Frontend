@@ -22,7 +22,7 @@ const languages = [
   { value: "Italy", label: "Italy" },
 ];
 
-<
+
 
 const EditProfile = () => {
     const [admin, setAdmin] = useState();
