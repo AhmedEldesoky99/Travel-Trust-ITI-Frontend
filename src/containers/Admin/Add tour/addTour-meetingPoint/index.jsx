@@ -19,6 +19,7 @@ const AddMeetingPoint = () => {
     },
   });
 
+
   function validateCoordinates(value) {
     //console.log(value); //{longitude: 30.878, latitude: 31.5147}
     const { longitude, latitude } = value;
@@ -74,9 +75,9 @@ const AddMeetingPoint = () => {
             <div className="w- mt-6">
               <CustomInput
                 type="text"
-                name="description"
+                name="meeting_description"
                 label="Description"
-                rule="description"
+                rule="meeting_description"
                 register={register}
                 errors={errors}
               />

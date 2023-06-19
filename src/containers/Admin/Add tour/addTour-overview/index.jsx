@@ -5,10 +5,10 @@ import OverviewData from "../../../../containers/Admin/Add tour/Overview";
 import CustomSelection from "../../../../components/Admin/customSelection";
 import { useTour } from "../../../../services/useTour";
 
-const AddOverview = ({  }) => {
+const AddOverview = ({}) => {
   //-------------- state --------------
-  const { formData, setFormData, onhandleSubmit,tourID } = useAddTourFormContext();
-
+  const { tourID, formData, setFormData, onhandleSubmit } =
+    useAddTourFormContext();
 
   const {
     handleSubmit,
@@ -37,6 +37,7 @@ const AddOverview = ({  }) => {
         <form onSubmit={handleSubmit(onhandleSubmit)}>
           <div className=" flex flex-col w-full md:mt-8">
             <OverviewData
+              tourID={tourID}
               onhandleSubmit={onhandleSubmit}
               register={register}
               errors={errors}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 
 import {
   EnvironmentOutlined,
@@ -11,8 +11,12 @@ import {
 import CheckoutCard from "../../../components/shared/CheckoutCard";
 
 import AdminImage from "../../../assets/images/TourCard/admin.jpeg";
+import { Link } from "react-router-dom";
+
 
 const OverView = () => {
+
+
   return (
     <section className="container grid lg:grid-cols-12">
       <div className="lg:col-span-8">
@@ -164,6 +168,7 @@ const OverView = () => {
             </p>
           </div>
         </div>
+       
       </div>
     </section>
   );

@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import NavBar from "../../../components/shared/Admin/Admin-NavBar";
 import SubNavBar from "../../../components/shared/Admin/SubNavBar.jsx";
@@ -13,6 +12,7 @@ import AddMeetingPoint from "../../../containers/Admin/Add tour/addTour-meetingP
 
 import useAddTourFormContext from "../../../hooks/useAddTourFormContext";
 
+import { Switch } from "antd";
 import {
   CalendarOutlined,
   EnvironmentOutlined,
@@ -21,8 +21,6 @@ import {
   QuestionCircleOutlined,
   SmileOutlined,
 } from "@ant-design/icons";
-import { useTour } from "../../../services/useTour";
-import { useParams } from "react-router-dom";
 
 const items = [
   {
@@ -68,7 +66,7 @@ const stepMap = new Map([
 const AddTourPage = () => {
   //----------- states -----------
 
-  const { step, setFormData } = useAddTourFormContext();
+  const { step, publish, setPublish,tourID} = useAddTourFormContext();
   const [stepState, setStepState] = useState(items[0]);
 
   useEffect(() => {
@@ -100,13 +98,10 @@ const AddTourPage = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   if (tourID !== "add") {
-  //     const { data: tour } = TourById(tourID);
-  //     // console.log("tour", tour);
-  //     // setFormData({ ...tour?.data, city: tour?.data.city.title });
-  //   }
-  // }, []);
+  const onChange = (checked) => {
+    console.log(`switch to ${checked}`);
+    setPublish(checked);
+  };
 
   return (
     <>
@@ -115,8 +110,14 @@ const AddTourPage = () => {
 
         <div className="w-full container mx-auto w-">
           <SubNavBar />
-          <CustomSteps items={items} stepState={stepState} />
+          {tourID !== "add" && <CustomSteps items={items} stepState={stepState} />}
+          
           {/* {stepMap.get("step-1").component} */}
+
+          <div className="flex justify-end items-center gap-4">
+            <Switch defaultChecked onChange={onChange} />
+            <p>{publish ? "publish" : "Draft"}</p>
+          </div>
           {step === 1 && <AddOverview />}
           {step === 2 && <AddPlan />}
           {step === 3 && <AddGallery />}

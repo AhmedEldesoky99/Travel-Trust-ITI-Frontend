@@ -26,7 +26,7 @@ const meals = [
   { value: "Snacks", label: "Snacks" },
 ];
 
-const OverviewData = ({ register, errors, control }) => {
+const OverviewData = ({ tourID, register, errors, control }) => {
   //-------------- state --------------
 
   const {
@@ -71,7 +71,7 @@ const OverviewData = ({ register, errors, control }) => {
           <>
             <CustomSelection
               //TO DO: center placeholder
-              mode="multiple"
+              mode=""
               options={citiesOptions}
               placeHolder="Please select governorate"
               {...field}
@@ -94,6 +94,7 @@ const OverviewData = ({ register, errors, control }) => {
           }}
           render={({ field }) => (
             <>
+              {/* date  */}
               <CustomDatePicker {...field} />
               {errors.date && (
                 <p className="text-tertiary-red mt-1">{errors.date.message}</p>
@@ -102,15 +103,31 @@ const OverviewData = ({ register, errors, control }) => {
           )}
         />
       </div>
-      <CustomInput
-        type="number"
-        name="price_per_person"
-        rule="price_per_person"
-        label="Price per person *"
-        register={register}
-        errors={errors}
-      />
 
+      <div className="flex justify-center items-center gap-2 flex-col md:flex-row">
+        <div className="w-full">
+          <CustomInput
+            type="number"
+            name="price_per_person"
+            rule="price_per_person"
+            label="Price per person *"
+            register={register}
+            errors={errors}
+          />
+        </div>
+        {tourID !== "add" && (
+          <div className="w-full">
+            <CustomInput
+              type="number"
+              name="sale"
+              rule="sale"
+              label="sale in percentage"
+              register={register}
+              errors={errors}
+            />
+          </div>
+        )}
+      </div>
       <CustomInput
         type="number"
         name="person_num"
@@ -161,12 +178,12 @@ const OverviewData = ({ register, errors, control }) => {
       />
 
       <Controller
-        name="include"
+        name="package"
         control={control}
         rules={{
           required: {
             value: true,
-            message: "Package include is required",
+            message: "Package package is required",
           },
         }}
         render={({ field }) => (
@@ -178,7 +195,7 @@ const OverviewData = ({ register, errors, control }) => {
               span="Package tour include :"
               {...field}
             />
-            {errors.include && (
+            {errors.package && (
               <p className="text-tertiary-red mt-1 ">
                 {errors.include.message}
               </p>

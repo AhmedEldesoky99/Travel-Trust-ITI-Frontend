@@ -70,11 +70,14 @@ export const router = createBrowserRouter([
       { path: "history", element: <History /> },
 
       //admin
-      { path: "admin", element: <DashBoard /> },
+      { path: "admin/:organizerId", element: <DashBoard /> },
       { path: "admin/signup", element: <AdminSignUp /> },
       { path: "admin/login", element: <AdminLogin /> },
       { path: "admin/alltours/:organizerId", element: <AdminAllTours /> },
-      { path: "admin/reviews", element: <AdminReviews /> },
+      { path: "admin/reviews/:organizerId", element: <AdminReviews /> },
+      { path: "tour-details/:id/:organizerId", element: <TourDetails /> },
+      { path: "admin/profile/:organizerId", element: <AdminProfile /> },
+
       {
         path: "admin/tour/:tourID",
         element: (
@@ -83,7 +86,6 @@ export const router = createBrowserRouter([
           </AddTourFormProvider>
         ),
       },
-      { path: "admin/:id", element: <AdminProfile /> },
     ],
   },
 ]);

@@ -42,7 +42,6 @@ const AddGallery = () => {
                       length={6}
                       fileList={field.value}
                       setFileList={field.onChange}
-                      // {...field}
                     />
                     {errors.highlight_files && (
                       <p className="text-tertiary-red mt-1">

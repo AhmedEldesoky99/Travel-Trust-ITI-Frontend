@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { request } from "./axios";
 import { useMutation, useQuery } from "react-query";
 import { useState } from "react";
@@ -70,9 +70,11 @@ export const useTour = () => {
   });
 
   //4- Update Tour By Id
-  const updateTourById = (tourID, tour) => {
+  const updateTourById = ({ id, tour }) => {
+    console.log("update");
+
     return request({
-      url: `/v1/tours/${tourID}`,
+      url: `/v1/tours/${id}`,
       method: "PATCH",
       data: tour,
       formData: true,
@@ -80,23 +82,22 @@ export const useTour = () => {
     });
   };
 
-  const updateTourByIdMutation = () => {
-    useMutation(updateTourById, {
-      onSuccess: (res) => {
-        console.log(res);
-        if (res.success) {
-          //------------------------------------------------------------------- organizer id
-          navigate(`/admin/alltours/${organizerId}`);
-        }
-      },
-      onError: (err) => console.log(err),
-    });
-  };
+  const updateTourByIdMutation = useMutation(updateTourById, {
+    onSuccess: (res) => {
+      console.log(res);
+      if (res.success) {
+        //------------------------------------------------------------------- organizer id
+        navigate(`/admin/alltours/${organizerId}`);
+      }
+    },
+    onError: (err) => console.log(err),
+  });
 
   return {
     addTourMutation,
     OrganizerTours,
     TourById,
     DeleteTourByIdmutation,
+    updateTourByIdMutation,
   };
 };

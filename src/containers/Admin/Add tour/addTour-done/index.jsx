@@ -21,6 +21,7 @@ const AddComplete = () => {
     setModalOpen,
     progress,
     isAddTourLoading,
+    isUpdateTourLoading,
   } = useAddTourFormContext();
 
   return (
@@ -64,7 +65,7 @@ const AddComplete = () => {
             <p></p>
           </Modal>
         </div>
-        {isAddTourLoading && (
+        {isAddTourLoading && isUpdateTourLoading && (
           <div className="w-[70%]">
             <div className="flex flex-col justify-center items-center">
               <Progress percent={progress} status="active" />

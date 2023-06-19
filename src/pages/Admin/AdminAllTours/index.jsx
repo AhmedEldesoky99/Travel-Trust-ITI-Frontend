@@ -24,13 +24,11 @@ const AdminAllTours = () => {
   const { getColumnSearchProps } = useSearchDatagrid();
   const { loading, open, handleOk, showModal, handleCancel } = useModal();
 
-  //-------------- table structure --------------
   const { OrganizerTours, DeleteTourByIdmutation } = useTour();
   const { data: tours, isLoading, isError } = OrganizerTours(organizerId);
   const { mutate } = DeleteTourByIdmutation;
-  // console.log("organizerId", organizerId);
-  // console.log("tours", tours);
 
+  //-------------- table row --------------
   const data = tours?.data.map((tour, index) => {
     return {
       key: index,
@@ -130,9 +128,13 @@ const AdminAllTours = () => {
         <>
           {/* {console.log({ props })} //each tour */}
           <div className="flex justify-center items-center gap-6 ">
-            <button>
-              <Icon name="eye" />
-            </button>
+            {/* to do :  get organizer id */}
+            <Link to={`/tour-details/${props._id}/${props?.organizer?._id}`}>
+              <button>
+                <Icon name="eye" />
+              </button>
+            </Link>
+
             <Link to={`/admin/tour/${props._id}`}>
               <button>
                 <Icon name="edit" />
@@ -172,7 +174,7 @@ const AdminAllTours = () => {
           <SubNavBar />
           <div className="lg:grid lg:grid-cols-12 gap-6">
             <div className=" lg:col-span-12">
-              <DataGrid data={data} columns={columns} />{" "}
+              <DataGrid data={data} columns={columns} loading={isLoading} />{" "}
             </div>
           </div>
         </div>

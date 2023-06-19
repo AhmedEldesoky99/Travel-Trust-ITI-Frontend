@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useTour } from "../services/useTour";
 import { request } from "../services/axios";
+import { Descriptions } from "antd";
 
 const AddTourFormContext = createContext({});
 
@@ -10,36 +11,55 @@ export const AddTourFormProvider = ({ children }) => {
   // ------------- state -------------
   const [formData, setFormData] = useState({});
   const [step, setStep] = useState(1);
+  const [publish, setPublish] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [progress, setProgress] = useState(0);
 
   const { tourID } = useParams();
   console.log(tourID);
   //custom hook
-  const { addTourMutation, TourById } = useTour();
+  const { addTourMutation, updateTourByIdMutation } = useTour();
 
-  const { mutate, isLoading: isAddTourLoading } = addTourMutation;
+  const { mutate: addMutate, isLoading: isAddTourLoading } = addTourMutation;
+  const { mutate: updateMutate, isLoading: isUpdateTourLoading } =
+    updateTourByIdMutation;
 
   // ------------- handlers -------------
+  async function getTourById() {
+    const { data } = await request({
+      url: `/v1/tours/${tourID}`,
+      method: "GET",
+    });
+
+    return data;
+  }
 
   useEffect(() => {
-    async function gettourById() {
-      const { data } = await request({
-        url: `/v1/tours/${tourID}`,
-        method: "GET",
-      });
-      setFormData({
-        ...data,
-        city: [data.city],
-        // date: [moment(data.start_date), moment(data.end_date)],
-        category: data?.category?.map((category) => {
-          return category.name;
-        }),
-      });
+    if (tourID !== "add") {
+      (async () => {
+        const tour = await getTourById();
+        setFormData((prev) => ({
+          ...prev,
+          ...tour,
+          // date: [
+          //   { M2: moment(tour?.start_date) },
+          //   { M2: moment(tour?.end_date) },
+          // ],
+          city: tour?.city?._id,
+          category: tour?.category?.map((category) => category._id),
+          meals: tour?.include[0]?.meals,
+          package: tour?.include[0]?.package,
+          meeting_description: tour?.meeting_point?.description,
+          meeting_point: {
+            longitude: tour?.meeting_point?.longitude,
+            latitude: tour?.meeting_point?.latitude,
+          },
+        }));
+      })();
     }
-
-    if (tourID !== "add") gettourById();
   }, []);
+
+  //constructor date local
 
   console.log("formData", formData);
   const handleNext = () => {
@@ -52,8 +72,10 @@ export const AddTourFormProvider = ({ children }) => {
     setStep((prev) => Math.max(prev - 1, 1));
   };
 
+  let requestBody = new FormData();
+
   const onhandleSubmit = (data, _) => {
-    let stepOneData, stepTwoData, stepThreeData, stepFourData;
+    let stepOneData, stepTwoData, stepThreeData, stepFourData, requestBody;
 
     if (data) handleNext();
     if (step === 1) {
@@ -93,7 +115,8 @@ export const AddTourFormProvider = ({ children }) => {
         price_per_person: +data.price_per_person,
         person_num: +data.person_num,
         plan: initialPlan,
-        city: data.city[0],
+        include: { package: data.package, meals: data.meals },
+        // city: +data.city,
       };
 
       console.log("stepOneData", stepOneData);
@@ -148,18 +171,27 @@ export const AddTourFormProvider = ({ children }) => {
     }
 
     if (step === 4) {
-      stepFourData = data;
+      stepFourData = {
+        ...data,
+        meeting_point: {
+          longitude: data.meeting_point.longitude,
+          latitude: data.meeting_point.latitude,
+          description: data.meeting_description,
+        },
+      };
       console.log(" stepFourData", stepFourData);
     }
 
-    setFormData({
+    setFormData((prev) => ({
+      ...prev,
       ...stepOneData,
       ...stepTwoData,
       ...stepThreeData,
       ...stepFourData,
-    });
-    console.log("formData", formData);
+    }));
   };
+
+  console.log("formData", formData);
 
   const handleClick = () => {
     setProgress(0);
@@ -185,33 +217,53 @@ export const AddTourFormProvider = ({ children }) => {
     //check publish - Draft
     setModalOpen(false);
 
-    let touredit = {
-      ...data,
-      publish: btn === "publish" ? true : false,
-      include: [...data.include, ...data.meals],
-    };
-    // console.log({ touredit });
-    // try {
-    //   if (tourID === "add") {
-    //     mutate(touredit);
-    //   } else {
-    //     //  handleEdit();
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    mutate(touredit);
-    handleClick();
+    let submitData = { ...formData };
+    submitData = Object.fromEntries(
+      Object.entries(formData).filter(
+        ([key, value]) =>
+          key !== "_id" &&
+          key !== "date" &&
+          key !== "meals" &&
+          key !== "package" &&
+          key !== "food_files" &&
+          key !== "highlight_files" &&
+          key !== "organizer" &&
+          key !== "meeting_description"
+      )
+    );
+    console.log("submitData", submitData);
 
-    // const { data: tour } = TourById(tourID);
-    // console.log("tour", tour);
+    for (let key in submitData) {
+      requestBody.append(key, submitData[key]);
+    }
+
+    data?.highlight_photos.map((item) =>
+      requestBody.append("highlight_photos", item)
+    );
+    data?.food_photos.map((item) => requestBody.append("food_photos", item));
+
+    let touredit = {
+      ...submitData,
+      ...requestBody,
+      publish: btn === "publish" ? true : false,
+    };
+
+    console.log("touredit", touredit);
+    // console.log({ touredit });
+    try {
+      if (tourID === "add") {
+        addMutate(touredit);
+      } else {
+        updateMutate({ id: tourID, tour: touredit });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    handleClick();
   };
 
   //update
-  // setformdata with tourby id
-  //params change titles
   // buttons update not save
-  // toggle button for  publish and draft
 
   return (
     <AddTourFormContext.Provider
@@ -219,11 +271,14 @@ export const AddTourFormProvider = ({ children }) => {
         tourID,
         step,
         setStep,
+        publish,
+        setPublish,
         modalOpen,
         setModalOpen,
         progress,
         setProgress,
         isAddTourLoading,
+        isUpdateTourLoading,
         handleNext,
         handlePrev,
         formData,

@@ -10,91 +10,39 @@ import Icon from "../../utils/icons.jsx";
 import Avatar from "../../components/Avatar/index.jsx";
 import AdminReviewModal from "../../components/AdminReviewModal/index.jsx";
 import { useState } from "react";
+import { useAdminReviews } from "../../services/useAdminReviews.jsx";
+import { useParams } from "react-router-dom";
 
 const AdminReviews = () => {
+  //-------------- State --------------
   //custom hook
   const { getColumnSearchProps } = useSearchDatagrid();
   const { loading, open, showModal, handleOk, handleCancel } = useModal();
 
-  const [selected,setSelected] = useState({});
+  const [selected, setSelected] = useState({});
 
+  const { organizerId } = useParams();
+  const { AdminReviewsById } = useAdminReviews();
+  const { data: reviews, isLoading, isError } = AdminReviewsById(organizerId);
 
-  const data = [
-    {
-      key: "1",
-      tourID: "#123456",
+  // console.log({ reviews });
+  //-------------- table row --------------
+  const data = reviews?.data.map((review, index) => {
+    return {
+      key: index,
+      tourID: review?.tour._id,
       UserName: (
         <Avatar
-          name="magid moustafa"
-          image="https://media.istockphoto.com/id/108271508/photo/young-gray-cat.jpg?s=612x612&w=0&k=20&c=Cnra41iZ85qkZGDJB3cDNQ41BTg0vgl11Mlgu-OpjwM="
+          name={review?.user?.username}
+          image={review?.user?.photo[0].url}
         />
       ),
-      Review: "Our stay was pleasant and welcoming. We stayed...",
-      Rating: 4.5,
-    },
-    {
-      key: "2",
-      tourID: "#123456",
-      UserName: (
-        <Avatar
-          name="mai moustafa"
-          image="https://media.istockphoto.com/id/108271508/photo/young-gray-cat.jpg?s=612x612&w=0&k=20&c=Cnra41iZ85qkZGDJB3cDNQ41BTg0vgl11Mlgu-OpjwM="
-        />
-      ),
-      Review: "Our stay was pleasant and welcoming. We stayed...",
-      Rating: 3.2,
-    },
-    {
-      key: "3",
-      tourID: "#123456",
-      UserName: (
-        <Avatar
-          name="mai moustafa"
-          image="https://media.istockphoto.com/id/108271508/photo/young-gray-cat.jpg?s=612x612&w=0&k=20&c=Cnra41iZ85qkZGDJB3cDNQ41BTg0vgl11Mlgu-OpjwM="
-        />
-      ),
-      Review: "Our stay was pleasant and welcoming. We stayed...",
-      Rating: 1.3,
-    },
-    {
-      key: "4",
-      tourID: "#123456",
-      UserName: (
-        <Avatar
-          name="mai moustafa"
-          image="https://media.istockphoto.com/id/108271508/photo/young-gray-cat.jpg?s=612x612&w=0&k=20&c=Cnra41iZ85qkZGDJB3cDNQ41BTg0vgl11Mlgu-OpjwM="
-        />
-      ),
-      Review: "Our stay was pleasant and welcoming. We stayed...",
-      Rating: 4.5,
-    },
-    {
-      key: "5",
-      tourID: "#123456",
-      UserName: (
-        <Avatar
-          name="mai moustafa"
-          image="https://media.istockphoto.com/id/108271508/photo/young-gray-cat.jpg?s=612x612&w=0&k=20&c=Cnra41iZ85qkZGDJB3cDNQ41BTg0vgl11Mlgu-OpjwM="
-        />
-      ),
-      Review: "Our stay was pleasant and welcoming. We stayed...",
-      Rating: 1.3,
-    },
-    {
-      key: "6",
-      tourID: "#123456",
-      UserName: (
-        <Avatar
-          name="mai moustafa"
-          image="https://media.istockphoto.com/id/108271508/photo/young-gray-cat.jpg?s=612x612&w=0&k=20&c=Cnra41iZ85qkZGDJB3cDNQ41BTg0vgl11Mlgu-OpjwM="
-        />
-      ),
-      Review: "Our stay was pleasant and welcoming. We stayed...",
-      Rating: 3.2,
-    },
-  ];
+      Review: review?.content,
+      Rating: review?.rating,
+    };
+  });
 
-  //table structure
+  //-------------- table structure --------------
   const columns = [
     Table.SELECTION_COLUMN,
     {
@@ -159,10 +107,14 @@ const AdminReviews = () => {
       fixed: "right",
       width: 100,
       //action icons
-      render: (_, record) => (
+      render: (props, record) => (
         <>
+          {/* {console.log({ props })} */}
           <button
-            onClick={showModal}
+            onClick={() => {
+              setSelected(props);
+              showModal();
+            }}
             className="flex justify-center items-center "
           >
             <Icon name="eye" />
@@ -172,16 +124,11 @@ const AdminReviews = () => {
             loading={loading}
             handleOk={handleOk}
             handleCancel={handleCancel}
-            title="2 Days Private Tour All Inclusive, Cairo and Giza Attractions"
-            travellerName="Magid Mostafa"
-            review=" Our stay was pleasant and welcoming. We stayed in an apartment
-            meant for 3 adults with kitchen facilities. The cleaning services
-             were superp. We liked the laundry and kitchen cleaning services on
-            top of the regular cleaning services. The support services were
-             prompt...much needed extra bowls were delivered in a jiffy. Front
-             desk were very cotdial and helpful though working under at times.
-             Needed travel arrangements and info were delivered with smiles.
-             Delivering luggeges to the room was done witbout request.?"
+            // title={review?.tour.title}
+            travellerName={props.UserName.props.name}
+            AdminImage={props.UserName.props.image}
+            review={props.Review}
+            rating={props.Rating}
           />
         </>
       ),
@@ -197,10 +144,10 @@ const AdminReviews = () => {
           <div className="container mx-auto">
             <div className="md:grid md:grid-cols-12 gap-4">
               <div className="col-span-12 2xl:col-span-9 ">
-                <DataGrid data={data} columns={columns} />
+                <DataGrid data={data} columns={columns} loading={isLoading} />
               </div>
               <div className="col-span-12 2xl:col-span-3">
-                <AdminReviewCard />
+                <AdminReviewCard totalReviews={reviews.length} />
               </div>
             </div>
           </div>
