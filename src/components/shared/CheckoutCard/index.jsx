@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import Icon from "../../../utils/icons";
 import CustomButton from "./../../../components/shared/CustomButton/index";
+import { Link, useParams } from "react-router-dom";
 
 const CheckoutCard = () => {
   const [persons, setPersons] = useState(1);
@@ -14,8 +15,19 @@ const CheckoutCard = () => {
     setPersons(persons === 1 ? persons : persons - 1);
   };
 
+  const { id, admin } = useParams();
+  console.log("details", admin);
+
   return (
     <>
+      {admin && (
+        <div className="mb-10 flex justify-center items-center">
+          {/* to do :  get organizer id */}
+          <Link to="/admin/:organizerId">
+            <CustomButton value="Go Back to Admin" width="w-full" />
+          </Link>
+        </div>
+      )}
       <div className="flex flex-col justify-center items-center gap-4 border border-solid border-black/10 rounded-2xl shadow-md 2xs:p-8 sm:px-28 md:px-36 lg:p-8">
         <p className="badge 2xs:text-base 2xl:text-xl p-4 bg-tertiary-red border-tertiary-red w-full">
           Likely to sell out

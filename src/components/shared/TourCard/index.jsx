@@ -12,9 +12,7 @@ import ShipIcon from "../../../assets/images/TourCard/ship.svg";
 import SkateIcon from "../../../assets/images/TourCard/skate.svg";
 import CastleIcon from "../../../assets/images/TourCard/castle.svg";
 
-const TourCard = ({
- data
-}) => {
+const TourCard = ({ data }) => {
   // const TourCard = (props) => {
   // -------- States --------
   const [checked, setChecked] = useState(false);
@@ -74,8 +72,10 @@ const TourCard = ({
           </span>
         </div>
 
-        <div className="absolute top-2 right-2 bg-glass-gray opacity-50 py-2 px-4
-         rounded-lg">
+        <div
+          className="absolute top-2 right-2 bg-glass-gray opacity-50 py-2 px-4
+         rounded-lg"
+        >
           <button onClick={toggleFavorites}>
             <HeartFilled
               className={`2xs:text-xl 2xl:text-2xl hover:scale-110 transition-all duration-200 ease-out ${
@@ -107,16 +107,19 @@ const TourCard = ({
 
         <div className="flex items-center space-x-2 ">
           <Rate disabled defaultValue={data?.rate} />
-          <span className="2xs:text-base xl:text-lg 2xl:text-xl">{data?.rate}</span>
+          <span className="2xs:text-base xl:text-lg 2xl:text-xl">
+            {data?.rate}
+          </span>
         </div>
 
         <div className="card-actions justify-between items-end">
           <div>
             <div className="flex items-center justify-end space-x-2">
               <ClockCircleOutlined className="text-base" />
-              <span className="text-base text-light-gray h-5">{data?.duration}days</span>
+              <span className="text-base text-light-gray h-5">
+                {data?.duration}days
+              </span>
             </div>
-          
           </div>
           <CustomButton
             // onClick={() => {}}

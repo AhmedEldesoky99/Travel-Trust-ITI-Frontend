@@ -1,4 +1,4 @@
-const AdminReviewCard = () => {
+const AdminReviewCard = ({ totalReviews }) => {
   const reviewSummaries = [
     { summary: "excellent", width: "100%" },
     { summary: "v-good", width: "80%" },
@@ -16,7 +16,6 @@ const AdminReviewCard = () => {
     },
     { value: "4", className: "mask mask-star-2 bg-secondary-yellow mr-2" },
     { value: "5", className: "mask mask-star-2 bg-secondary-yellow mr-2" },
-    { value: "6", className: "mask mask-star-2 bg-secondary-yellow mr-2" },
   ];
 
   return (
@@ -43,7 +42,7 @@ const AdminReviewCard = () => {
               </div>
             </div>
             <p className="text-center text-lg capitalize mb-12">
-              based on 2 reviews
+              based on {totalReviews} reviews
             </p>
             <h2 className="capitalize text-xl mt-4">review summary</h2>
 
