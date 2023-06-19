@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -7,8 +8,11 @@ import Image1 from "../../../assets/images/CheckDestinations/Aswan.png";
 import Image2 from "../../../assets/images/CheckDestinations/Luxor.png";
 import Image3 from "../../../assets/images/CheckDestinations/Nouba.png";
 import Image4 from "../../../assets/images/CheckDestinations/Alex.png";
+import { useQuery } from "react-query";
+import { getTopDestinations } from "../../../services/Home";
 
 const CheckDestenations = () => {
+  const { isLoading, data, isSuccess} = useQuery("TopDestinations", getTopDestinations);
 
   return (
     <section className="py-14">
@@ -26,10 +30,9 @@ const CheckDestenations = () => {
         </div>
 
         <div className="container grid gap-2 2xs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          <CheckDestCard city="Aswan" url={Image1} />
-          <CheckDestCard city="Luxor" url={Image2} />
-          <CheckDestCard city="Nouba" url={Image3} />
-          <CheckDestCard city="Alex" url={Image4} />
+          {data.data?.map((item,index) => 
+              {if (index < 4) return <CheckDestCard key={item._id} url={item.home_image} city={item.title}/>}
+            )}
         </div>
       </div>
 
