@@ -9,28 +9,45 @@ import { useState } from "react";
 import { Button } from "antd";
 import Icon from "../../../utils/icons";
 import UserImage from "../../../assets/images/UserProfile/userprofile.png";
-import './style.css';
+import "./style.css";
 
 const EditProfile = () => {
-  const [loading, setLoading] = useState(false);
+  // ------- hooks --------
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm();
 
-  const {
-    userImageUrl,
-    userCoverUrl,
-    userImageRef,
-    userCoverRef,
-    handleButtonClick,
-    onImageChange,
-  } = useUploadImage();
-  
+  const { userImageUrl, userCoverUrl, onImageChange } = useUploadImage();
+
+  // --------- States -----------
+  const [openModal, setOpenModal] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  // --------- Handlers -----------
+  const showModal = (type) => {
+    type === "delete" ? setOpenDeleteModal(true) : setOpenModal(true);
+  };
+
+  const handleCancel = () => {
+    setOpenModal(false);
+  };
+
+  const handleDeleteCancel = () => {
+    setOpenDeleteModal(false);
+  };
+
+  const handleOk = () => {
+    setLoading(true);
+    //Call Api
+    // setLoading(false);
+    // setOpenDeleteModal(false);
+  };
 
   const editProfileHandler = (data) => {
-    // console.log(data);
+    console.log(data);
     setLoading(true);
     // call Api
     // setLoading(false);
@@ -41,10 +58,10 @@ const EditProfile = () => {
       <div className="md:max-w-[973px] md:w-screen flex items-stretch">
         <form
           onSubmit={handleSubmit(editProfileHandler)}
-          className=" gap-4  flex flex-col max-w-[973px] w-screen"
+          className=" gap-16  flex flex-col max-w-[973px] w-screen"
         >
           <div
-            className={`relative hero place-items-start min-h-[10rem] mb-20 ${
+            className={`relative hero place-items-start min-h-[10rem] bg-cover bg-center ${
               !userCoverUrl ? "bg-lighter-gray" : ""
             }`}
             style={{
@@ -54,23 +71,24 @@ const EditProfile = () => {
             <div className="h-full w-full flex justify-center items-center">
               <div>
                 <input
-                  {...register("user-cover")}
+                  {...register("user-cover", {
+                    onChange: (e) => onImageChange(e, "userCover"),
+                  })}
                   id="coverImage"
                   className="hidden"
                   type="file"
                   accept="image/*"
                   name="user-cover"
-                  onChange={(e) => onImageChange(e, "userCover")}
                 />
-                <Button
-                  icon={<Icon name="addImage" />}
-                  onClick={() => handleButtonClick("coverBtn")}
-                  className="my-custom-btn flex justify-center items-center gap-2 border-none shadow-none"
+                <label
+                  htmlFor="coverImage"
+                  className="cursor-pointer flex justify-center items-center gap-2 hover:text-primary-green transition duration-300"
                 >
+                  <Icon name="addImage" />
                   <span className="2xs:text-sm sm:text-base 2xl:text-xl">
                     Add cover photo
                   </span>
-                </Button>
+                </label>
               </div>
             </div>
 
@@ -82,19 +100,21 @@ const EditProfile = () => {
                 />
               </div>
               <input
-                {...register("user-image")}
+                {...register("user-image", {
+                  onChange: (e) => onImageChange(e, "userImage"),
+                })}
                 id="profileImage"
                 className="hidden"
                 type="file"
                 accept="image/*"
                 name="user-image"
-                onChange={(e) => onImageChange(e, "userImage")}
               />
-              <Button
-                icon={<Icon name="camera" />}
-                onClick={() => handleButtonClick("imgBtn")}
-                className="my-custom-btn absolute bottom-0 right-0 translate-y-1/4 flex justify-center items-center bg-white p-4 rounded-full"
-              ></Button>
+              <label
+                htmlFor="profileImage"
+                className="cursor-pointer absolute bottom-0 right-0 translate-y-1/4 bg-white p-2 shadow-md rounded-full hover:text-primary-green transition duration-300"
+              >
+                <Icon name="camera" />
+              </label>
             </div>
           </div>
 
@@ -166,14 +186,12 @@ const EditProfile = () => {
               </div>
             </div>
             <div className="">
-              <CustomInput
-                type="text"
-                name="First Name"
-                label="First Name"
-                rule="firstName"
-                register={register}
-                errors={errors}
-              />
+            <textarea
+              {...register("bio")}
+              className="textarea border-black px-2.5 py-4 2xs:text-sm 2xl:text-lg w-full resize-none focus:outline-none"
+              placeholder="Write something about yourself"
+              name="bio"
+            ></textarea>
             </div>
             <div className="flex md:flex-row 2xs:flex-col w-full md:gap-5 justify-between">
               <div className="w-full">

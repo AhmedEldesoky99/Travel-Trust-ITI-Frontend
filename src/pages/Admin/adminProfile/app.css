@@ -1,15 +1,15 @@
-.ant-modal-content{
+.ant-modal-content1{
     max-width: 973px !important;
     width: max-content !important;
     padding: 0!important;
 }
-.ant-modal-footer{
+.ant-modal-footer1{
     display: none;
 }
-.ant-modal-title{
+.ant-modal-title1{
     display: none;
 }
-.ant-modal-mask{
+.ant-modal-mask1{
     display: flex;
     flex-direction: column;
     align-items: center;
