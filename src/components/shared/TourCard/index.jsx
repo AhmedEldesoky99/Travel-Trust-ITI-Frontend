@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Rate } from "antd";
 import {
   EnvironmentOutlined,
@@ -31,7 +32,8 @@ const TourCard = ({ data }) => {
           alt="Tour Image"
           // Placeholder-Image
           onError={(e) => {
-            e.target.src = 'https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png'
+            e.target.src =
+              "https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png";
           }}
         />
 
@@ -62,7 +64,8 @@ const TourCard = ({ data }) => {
               alt="Tour Creator"
               // Placeholder-Image
               onError={(e) => {
-                e.target.src = 'https://frostbrowntodd.com/app/uploads/2021/10/FBT_NoPhoto-1.jpg'
+                e.target.src =
+                  "https://frostbrowntodd.com/app/uploads/2021/10/FBT_NoPhoto-1.jpg";
               }}
               className="2xs:w-16 xs:w-20 sm:w-20 md:w-16 md:h-16 bg-cover bg-center object-cover  lg: xl: 2xl: rounded-full relative"
             />
@@ -117,17 +120,19 @@ const TourCard = ({ data }) => {
             <div className="flex items-center justify-end space-x-2">
               <ClockCircleOutlined className="text-base" />
               <span className="text-base text-light-gray h-5">
-                {data?.duration}days
+                {data?.duration} days
               </span>
             </div>
           </div>
-          <CustomButton
-            // onClick={() => {}}
-            // isLoading
-            value="View more"
-            type="primary"
-            width="sm:w-full xl:w-fit"
-          />
+          <Link to={`tour-details/${data._id}`}>
+            <CustomButton
+              // onClick={() => {}}
+              // isLoading
+              value="View more"
+              type="primary"
+              width="sm:w-full xl:w-fit"
+            />
+          </Link>
         </div>
       </div>
     </div>
