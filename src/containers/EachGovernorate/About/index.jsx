@@ -14,6 +14,7 @@ const About = () => {
     ["GovernorateTours", id],
     () => getEachGovernorateTours(id)
   );
+  const section_img = `bg-[url(${data?.data.city.section_image})]`;
   return (
     <section className="pt-32">
       <div className="container mx-auto">
@@ -62,9 +63,7 @@ const About = () => {
       </div>
 
       <div
-        className={`bg-cover bg-center h-[19rem] mt-14 ${
-          data ? `bg-[url(${data?.data.city.section_image})]` : `bg-fish`
-        }`}
+        className={`bg-cover bg-center h-[19rem] mt-14 ${data?`${section_img}`:`bg-fish`} `}
       >
         <div className="bg-black/[0.25] h-full w-full"></div>
       </div>

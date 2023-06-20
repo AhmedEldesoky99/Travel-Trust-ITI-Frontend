@@ -136,7 +136,7 @@ const AdminProfile = () => {
                       onOk={handleOk}
                       onCancel={handleCancel}
                     >
-                      <EditProfile />
+                      <EditProfile onOk={handleOk} onCancel={handleCancel} />
                     </Modal>
                   </div>
                 </div>
