@@ -1,32 +1,57 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
+import { getAdminData } from "../../../services/visitAdminProfile";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
 
 const ProfileDetails = () => {
+  const { id } = useParams();
+  const { isLoading, data, isSuccess } = useQuery(["AdminData", id], () =>
+    getAdminData(id)
+  );
   return (
     <div className="flex flex-col gap-4 mb-10">
-
       <div>
-        <p className="text-light-gray mb-2 2xs:text-base md:text-lg 2xl:text-2xl">About</p>
+        <p className="text-light-gray mb-2 2xs:text-base md:text-lg 2xl:text-2xl">
+          About
+        </p>
         <p className=" 2xs:text-sm md:text-base 2xl:text-xl">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa
-          mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla,
-          mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis
-          tellus.
+          {data?.data.bio}
         </p>
       </div>
 
       <div className="flex flex-col gap-3">
         <div>
-          <p className="mb-1 text-light-gray 2xs:text-base md:text-lg 2xl:text-2xl">Governorate of expertise</p>
-          <span className="badge p-3 2xs:text-sm 2xl:text-xl 2xl:p-4">Cairo</span>
+          <p className="mb-1 text-light-gray 2xs:text-base md:text-lg 2xl:text-2xl">
+            Governorate of expertise
+          </p>
+          {data?.data.governorate_expertise.map((item, index) => {
+            return (
+              <span
+                className="badge p-3 2xs:text-sm 2xl:text-xl 2xl:p-4"
+                key={index}
+              >
+                {item.title}
+              </span>
+            );
+          })}
         </div>
         <div>
-          <p className="mb-1 text-light-gray 2xs:text-base md:text-lg 2xl:text-2xl">Language</p>
-          <span className="badge p-3 mr-2 2xs:text-sm 2xl:text-xl 2xl:p-4">Arabic</span>
-          <span className="badge p-3 2xs:text-sm 2xl:text-xl 2xl:p-4">English</span>
+          <p className="mb-1 text-light-gray 2xs:text-base md:text-lg 2xl:text-2xl">
+            Language
+          </p>
+          {data?.data.languages && Object.entries(data?.data.languages).map(([key, value]) => {
+            return (
+              <span
+                className="badge p-3 2xs:text-sm 2xl:text-xl 2xl:p-4"
+                key={key}
+              >
+                {value}
+              </span>
+            );
+          })}
         </div>
       </div>
-
-
     </div>
   );
 };

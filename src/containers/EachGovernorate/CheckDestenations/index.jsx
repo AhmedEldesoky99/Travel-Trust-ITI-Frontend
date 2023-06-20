@@ -29,7 +29,7 @@ const CheckDestenations = () => {
           </Link>
         </div>
           <div className="container grid gap-2 2xs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {data?.data.map((item, index) => {
+            {data?.data?.map((item, index) => {
               if (index < 4)
                 return (
                   <CheckDestCard

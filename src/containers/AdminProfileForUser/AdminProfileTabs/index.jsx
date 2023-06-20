@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Tabs } from "antd";
 
 import ProfileDetails from "../ProfileDetails";
@@ -9,8 +10,14 @@ import Reviews from "../Reviews";
 import AdminImage from "../../../assets/images/CheckDestinations/Aswan.png";
 
 import "../../UserProfile/ProfileTabs/ProfileTabsStyle.css";
+import { getAdminData } from "../../../services/visitAdminProfile";
+import { useQuery } from "react-query";
 
 const AdminProfileTabs = () => {
+  const { id } = useParams();
+  const { isLoading, data, isSuccess } = useQuery(["AdminData", id], () =>
+    getAdminData(id)
+  );
   const items = [
     {
       key: "1",
@@ -56,28 +63,28 @@ const AdminProfileTabs = () => {
               <div className="avatar">
                 <div className="w-24 rounded-full">
                   <Link to="">
-                    <img className="object-cover" src={AdminImage} />
+                    <img className="object-cover" src={data?.data.photo[0].url} />
                   </Link>
                 </div>
               </div>
               <h3 className="font-bold mt-2 2xs:text-base lg:text-lg 2xl:text-2xl">
-                Osama Sayed
+                {data?.data.username}
               </h3>
             </div>
             <div className="mt-7 flex flex-col gap-4">
               <div>
                 <span className="2xs:text-sm sm:text-base 2xl:text-xl">
-                  Cairo
+                  {data?.data.city.title}
                 </span>
               </div>
               <div>
                 <span className="2xs:text-sm sm:text-base 2xl:text-xl">
-                  01090132116
+                  {data?.data.phone}
                 </span>
               </div>
               <div>
                 <span className="2xs:text-sm sm:text-base 2xl:text-xl">
-                  osama@gmail.com
+                  {data?.data.email}
                 </span>
               </div>
             </div>
