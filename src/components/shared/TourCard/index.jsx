@@ -123,7 +123,7 @@ const TourCard = ({ data }) => {
               </span>
             </div>
           </div>
-          <Link to={`tour-details/60`}>
+          <Link to={`tour-details/${data?._id}`}>
             <CustomButton
               // onClick={() => {}}
               // isLoading

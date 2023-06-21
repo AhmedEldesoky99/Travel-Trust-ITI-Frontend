@@ -10,18 +10,20 @@ export const getCart = () => {
 
 
 
-const addToCart = (tourId) => {
+const addToCart = (tourId, data) => {
     return request({
         url: `/v1/cart/${tourId}`,
         method: "POST",
-        succesMsg: "Added to cart successfully",
+        data: data,
+        successMsg: "Added to cart successfully",
     });
 };
 
 
-export const addToCartMutation = (tourId) => {
-    return useMutation(() => addToCart(tourId), {
+export const addToCartMutation = (tourId, data) => {
+    return useMutation(() => addToCart(tourId, data), {
         onSuccess: (res) => console.log(res),
         onError: (err) => console.log(err),
     });
 };
+

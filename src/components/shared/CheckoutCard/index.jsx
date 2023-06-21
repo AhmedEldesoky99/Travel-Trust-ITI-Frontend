@@ -8,25 +8,42 @@ import Icon from "../../../utils/icons";
 import { addToCartMutation } from "../../../services/Cart";
 
 const CheckoutCard = ({ data }) => {
+  // --------- States ----------
   const [persons, setPersons] = useState(1);
+  const personsMax = persons >= data?.person_num;
 
+
+  // ------------- handlers ------------
   const handleIncrement = () => {
-    setPersons(persons + 1);
+    if (personsMax) {
+      setPersons((prevPersons) => prevPersons);
+    } else {
+      setPersons((prevPersons) => prevPersons + 1);
+    }
   };
 
   const handleDecrement = () => {
-    setPersons(persons === 1 ? persons : persons - 1);
+    setPersons((prevPersons) =>
+      prevPersons === 1 ? prevPersons : prevPersons - 1
+    );
   };
 
-  const { mutate, isLoading } = addToCartMutation(data?._id);
+
+  const { mutate, isLoading } = addToCartMutation(data?._id, {
+    subscriber_number: `${persons}`,
+  });
+
 
   const handleAddToCart = (e) => {
     e.preventDefault();
     mutate();
   };
 
+
+
   const { id, admin } = useParams();
   // console.log("details", admin);
+
 
   return (
     <>
@@ -60,10 +77,19 @@ const CheckoutCard = ({ data }) => {
               </div>
             </button>
 
-            <span className="text-lg 2xl:text-2xl">{persons}</span>
+            <span className="text-lg 2xl:text-2xl">
+              {persons}{" "}
+              {personsMax ? (
+                <span className="text-tertiary-red">Max</span>
+              ) : null}
+            </span>
 
-            <button onClick={handleIncrement}>
-              <div className="shadow-md p-3 rounded-lg">
+            <button disabled={personsMax} onClick={handleIncrement}>
+              <div
+                className={`shadow-md p-3 rounded-lg ${
+                  personsMax ? "bg-gray-200" : null
+                }`}
+              >
                 <Icon name="userAdd" />
               </div>
             </button>
