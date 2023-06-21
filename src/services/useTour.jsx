@@ -93,11 +93,21 @@ export const useTour = () => {
     onError: (err) => console.log(err),
   });
 
+  //* 5- Get One Tour Details
+  const getOneTour = (tourId) => {
+    return request({ url: `/v1/tours/${tourId}`, method: "GET" });
+  };
+
+  const getTourDetails = (tourId) => {
+    return useQuery(["tour-details", tourId], () => getOneTour(tourId));
+  };
+
   return {
     addTourMutation,
     OrganizerTours,
     TourById,
     DeleteTourByIdmutation,
     updateTourByIdMutation,
+    getTourDetails,
   };
 };

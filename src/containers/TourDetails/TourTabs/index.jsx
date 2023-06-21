@@ -17,6 +17,8 @@ import Icon from "./../../../utils/icons";
 import "./TourTabsStyle.css";
 
 const TourTabs = () => {
+
+
   const items = [
     {
       key: "1",
@@ -67,6 +69,8 @@ const TourTabs = () => {
     },
   ];
 
+
+  
   return (
     <>
       <Tabs

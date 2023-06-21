@@ -20,6 +20,7 @@ import Destinations from "./pages/Destinations";
 import UserProfile from "./pages/UserProfile";
 import ContactUs from "./pages/ContactUs";
 import History from "./pages/History";
+import AdminProfileForUser from "./pages/AdminProfileForUser";
 
 // Admin components
 import AdminSignUp from "./pages/Admin/adminSignup";
@@ -54,6 +55,7 @@ export const router = createBrowserRouter([
       },
       { path: "each-governorate/:id", element: <EachGovernorate /> },
       { path: "sales", element: <Sales /> },
+      { path: "admin-profile/:id", element: <AdminProfileForUser /> },
       { path: "tour-details/:id", element: <TourDetails /> },
       { path: "shared", element: <SharedComponents /> },
       { path: "faq", element: <Faq /> },
