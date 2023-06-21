@@ -3,9 +3,12 @@ import { Rate } from "antd";
 
 import "./RateStyle.css";
 
-const Header = ({ data, isLoading }) => {
+const Header = ({ data }) => {
   return (
-    <header className="hero min-h-[55vh] bg-tourDetailsBG bg-bottom">
+    <header
+      style={{ backgroundImage: `url(${data?.data?.highlight_photos[0].url})` }}
+      className="hero min-h-[55vh] bg-center bg-cover bg-no-repeat"
+    >
       <div className="hero-overlay bg-black/[0.3]"></div>
       <div className="container">
         <div className="hero-content mx-auto p-0 justify-center text-white">
@@ -17,10 +20,10 @@ const Header = ({ data, isLoading }) => {
               <Rate
                 className="text-white mr-2 my-custom-rate"
                 disabled
-                defaultValue={2}
+                defaultValue={data?.data?.rate}
               />
               <span className="2xs:text-base xl:text-lg 2xl:text-xl xl:leading-6">
-                2
+                {data?.data?.rate}
               </span>
             </div>
           </div>

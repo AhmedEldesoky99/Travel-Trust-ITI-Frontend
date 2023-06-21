@@ -17,8 +17,8 @@ const TourDetails = () => {
   }, 0);
   return (
     <>
-      <Header data={data} isLoading={isLoading} />
-      <TourTabs data={data} isLoading={isLoading} />
+      <Header data={data}   />
+      <TourTabs data={data} />
     </>
   );
 };

@@ -8,7 +8,7 @@ import ReviewCard from "../../../components/shared/ReviewCard";
 import AdminImage from "../../../assets/images/TourCard/admin.jpeg";
 import CustomButton from "../../../components/shared/CustomButton";
 
-const Reviews = () => {
+const Reviews = ({ data }) => {
   return (
     <section className="container grid 2xs:grid-cols-1 lg:grid-cols-12">
       <div className="2xs:col-span-1 lg:col-span-8">
@@ -60,7 +60,7 @@ const Reviews = () => {
       <div className="2xs:col-span-1 lg:col-span-1"></div>
 
       <div className="2xs:col-span-1 lg:col-span-3 2xs:mt-10 lg:mt-0">
-        <CheckoutCard />
+        <CheckoutCard data={data?.data} />
       </div>
     </section>
   );
