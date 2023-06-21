@@ -70,6 +70,7 @@ export const router = createBrowserRouter([
       { path: "sales", element: <Sales /> },
       { path: "contact-us", element: <ContactUs /> },
       { path: "history", element: <History /> },
+      { path: "profile/admin/:organizerId", element: <AdminProfileForUser /> },
 
       //admin
       { path: "admin/:organizerId", element: <DashBoard /> },

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Rate } from "antd";
 import {
   EnvironmentOutlined,
@@ -133,15 +133,17 @@ const TourCard = ({ data }) => {
             </div>
           </div>
 
-          <CustomButton
-            onClick={() => {
-              handleClick(data._id);
-            }}
-            // isLoading
-            value="View more"
-            type="primary"
-            width="sm:w-full xl:w-fit"
-          />
+      
+
+          <Link to={`/tour-details/${data?._id}`}>
+            <CustomButton
+              // onClick={() => {}}
+              // isLoading
+              value="View more"
+              type="primary"
+              width="sm:w-full xl:w-fit"
+            />
+          </Link>
         </div>
       </div>
     </div>

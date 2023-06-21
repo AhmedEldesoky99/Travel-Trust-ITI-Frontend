@@ -6,7 +6,7 @@ import Food1 from "../../../assets/images/TourDetails/food1.png";
 import Food2 from "../../../assets/images/TourDetails/food2.png";
 import Food3 from "../../../assets/images/TourDetails/food3.png";
 
-const Gallery = () => {
+const Gallery = ({ data }) => {
   return (
     <section>
       <h3 className="font-semibold 2xs:text-base lg:text-xl 2xl:text-2xl mb-5">
@@ -155,12 +155,12 @@ const Gallery = () => {
               <div className="w-full min-h-inherit rounded-2xl"></div>
             </div>
           </div>
-         
+
           {/* Highlights grid End */}
         </div>
 
         <div className="lg:col-span-3 2xs:mt-10 lg:mt-0">
-          <CheckoutCard />
+          <CheckoutCard data={data?.data}/>
         </div>
       </div>
     </section>
