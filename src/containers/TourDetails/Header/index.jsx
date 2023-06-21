@@ -3,7 +3,7 @@ import { Rate } from "antd";
 
 import "./RateStyle.css";
 
-const Header = () => {
+const Header = ({ data, isLoading }) => {
   return (
     <header className="hero min-h-[55vh] bg-tourDetailsBG bg-bottom">
       <div className="hero-overlay bg-black/[0.3]"></div>
@@ -11,7 +11,7 @@ const Header = () => {
         <div className="hero-content mx-auto p-0 justify-center text-white">
           <div className=" 2xs:max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
             <h1 className="2xs:text-2xl sm:text-4xl md:text-4xl xl:text-4xl 2xl:text-5xl font-bold">
-              2 days private tour all inclusive, cairo and giza attractions
+              {data?.data?.title}
             </h1>
             <div className="flex items-end space-x-2r">
               <Rate
