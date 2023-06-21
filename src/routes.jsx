@@ -22,30 +22,22 @@ import ContactUs from "./pages/ContactUs";
 import History from "./pages/History";
 import AdminProfileForUser from "./pages/AdminProfileForUser";
 
-
 // Admin components
 import AdminSignUp from "./pages/Admin/adminSignup";
 import AdminLogin from "./pages/Admin/adminLogin";
-
-
 import DashBoard from "./pages/Admin/DashBoard";
 import AdminProfile from "./pages/Admin/adminProfile";
-
 import AdminAllTours from "./pages/Admin/AdminAllTours";
 import AdminReviews from "./pages/AdminReviews";
 import AddTourPage from "./pages/Admin/addTour";
-import { AddTourFormProvider } from "./context/AddTourFormContext";
 
+import { AddTourFormProvider } from "./context/AddTourFormContext";
 
 import Layout from "./layout";
 
-
-import { UserIdProvider } from './context/UserIdContext';
-
-
+import { UserIdProvider } from "./context/UserIdContext";
 
 export const router = createBrowserRouter([
-
   {
     path: "/",
     element: <Layout />,
@@ -75,29 +67,27 @@ export const router = createBrowserRouter([
       { path: "all-tours", element: <AllTours /> },
       { path: "destinations", element: <Destinations /> },
       { path: "user-profile/:id", element: <UserProfile /> },
-
-
-
       { path: "sales", element: <Sales /> },
       { path: "contact-us", element: <ContactUs /> },
       { path: "history", element: <History /> },
-      
 
       //admin
-      { path: "admin", element: <DashBoard /> },
+      { path: "admin/:organizerId", element: <DashBoard /> },
       { path: "admin/signup", element: <AdminSignUp /> },
       { path: "admin/login", element: <AdminLogin /> },
-      { path: "admin/alltours", element: <AdminAllTours /> },
-      { path: "admin/reviews", element: <AdminReviews /> },
+      { path: "admin/alltours/:organizerId", element: <AdminAllTours /> },
+      { path: "admin/reviews/:organizerId", element: <AdminReviews /> },
+      { path: "tour-details/:id/:organizerId", element: <TourDetails /> },
+      { path: "admin/profile/:organizerId", element: <AdminProfile /> },
+
       {
-        path: "admin/addTour",
+        path: "admin/tour/:tourID",
         element: (
           <AddTourFormProvider>
             <AddTourPage />
           </AddTourFormProvider>
         ),
       },
-      { path: "admin/:id", element: <AdminProfile /> },
     ],
   },
 ]);

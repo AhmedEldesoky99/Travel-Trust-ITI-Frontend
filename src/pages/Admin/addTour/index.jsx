@@ -1,6 +1,4 @@
-import { useState } from "react";
-import { useEffect } from "react";
-
+import { useState, useEffect } from "react";
 
 import NavBar from "../../../components/shared/Admin/Admin-NavBar";
 import SubNavBar from "../../../components/shared/Admin/SubNavBar.jsx";
@@ -14,6 +12,7 @@ import AddMeetingPoint from "../../../containers/Admin/Add tour/addTour-meetingP
 
 import useAddTourFormContext from "../../../hooks/useAddTourFormContext";
 
+import { Switch } from "antd";
 import {
   CalendarOutlined,
   EnvironmentOutlined,
@@ -67,8 +66,9 @@ const stepMap = new Map([
 const AddTourPage = () => {
   //----------- states -----------
 
-  const { step} = useAddTourFormContext();
+  const { step, publish, setPublish,tourID} = useAddTourFormContext();
   const [stepState, setStepState] = useState(items[0]);
+
   useEffect(() => {
     const currentStep = items.find((item) => item.step === step);
     setStepState({
@@ -83,6 +83,26 @@ const AddTourPage = () => {
       ),
     });
   }, [step]);
+
+  useEffect(() => {
+    function handleBeforeUnload(event) {
+      event.preventDefault();
+      event.returnValue = "";
+    }
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    //clean function
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  const onChange = (checked) => {
+    console.log(`switch to ${checked}`);
+    setPublish(checked);
+  };
+
   return (
     <>
       <div className="flex flex-row  ">
@@ -90,14 +110,19 @@ const AddTourPage = () => {
 
         <div className="w-full container mx-auto w-">
           <SubNavBar />
-          <CustomSteps items={items} stepState={stepState} />
+          {tourID !== "add" && <CustomSteps items={items} stepState={stepState} />}
+          
           {/* {stepMap.get("step-1").component} */}
+
+          <div className="flex justify-end items-center gap-4">
+            <Switch defaultChecked onChange={onChange} />
+            <p>{publish ? "publish" : "Draft"}</p>
+          </div>
           {step === 1 && <AddOverview />}
           {step === 2 && <AddPlan />}
           {step === 3 && <AddGallery />}
           {step === 4 && <AddMeetingPoint />}
           {step === 5 && <AddComplete />}
-
         </div>
       </div>
     </>

@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Rate } from "antd";
 import {
   EnvironmentOutlined,
   UserOutlined,
   ClockCircleOutlined,
-  CheckSquareOutlined,
   HeartFilled,
 } from "@ant-design/icons";
 
@@ -14,6 +14,7 @@ import CustomButton from "../CustomButton";
 import ShipIcon from "../../../assets/images/TourCard/ship.svg";
 import SkateIcon from "../../../assets/images/TourCard/skate.svg";
 import CastleIcon from "../../../assets/images/TourCard/castle.svg";
+
 
 const TourCard = ({
   tourImg,
@@ -40,6 +41,11 @@ const TourCard = ({
           className="w-full object-cover h-[14.7rem] rounded-t-[14px]"
           src={tourImg}
           alt="Tour Image"
+          // Placeholder-Image
+          onError={(e) => {
+            e.target.src =
+              "https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png";
+          }}
         />
 
         <div className="group-hover:translate-y-0 group-hover:opacity-30 opacity-0 absolute top-0 w-full h-full bg-black rounded-t-[14px] transition-all duration-500 ease-out flex items-start flex-col">
@@ -67,6 +73,11 @@ const TourCard = ({
             <img
               src={organizerImg}
               alt="Tour Creator"
+              // Placeholder-Image
+              onError={(e) => {
+                e.target.src =
+                  "https://frostbrowntodd.com/app/uploads/2021/10/FBT_NoPhoto-1.jpg";
+              }}
               className="2xs:w-16 xs:w-20 sm:w-20 md:w-16 md:h-16 bg-cover bg-center object-cover  lg: xl: 2xl: rounded-full relative"
             />
           </a>
@@ -118,16 +129,19 @@ const TourCard = ({
               <ClockCircleOutlined className="text-base" />
               <span className="text-base text-light-gray h-5">
                 {duration === 1 ? "a" : duration} day{duration === 1 ? "" : "s"}
+
               </span>
             </div>
           </div>
-          <CustomButton
-            // onClick={() => {}}
-            // isLoading
-            value="View more"
-            type="primary"
-            width="sm:w-full xl:w-fit"
-          />
+          <Link to={`tour-details/${data._id}`}>
+            <CustomButton
+              // onClick={() => {}}
+              // isLoading
+              value="View more"
+              type="primary"
+              width="sm:w-full xl:w-fit"
+            />
+          </Link>
         </div>
       </div>
     </div>

@@ -1,13 +1,12 @@
-import DayInputs from "../../../../containers/Admin/Add tour/DayInputs";
-import Categories from "../../../../containers/Admin/Add tour/Categories";
-import useAddTourFormContext from "../../../../hooks/useAddTourFormContext";
 import { useFieldArray, useForm } from "react-hook-form";
+
+import DayInputs from "../../../../containers/Admin/Add tour/DayInputs";
 import CustomButton from "../../../../components/shared/CustomButton";
-import EachDayForm from "../eachDayForm.jsx";
-import { useState } from "react";
-import StopLocationInputs from "../StopLocationInput";
+
+import useAddTourFormContext from "../../../../hooks/useAddTourFormContext";
 
 const AddPlan = ({}) => {
+  //-------------- state --------------
   const { formData, handlePrev, onhandleSubmit } = useAddTourFormContext();
 
   const {
@@ -21,10 +20,11 @@ const AddPlan = ({}) => {
     },
   });
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields } = useFieldArray({
     control,
     name: "plan",
   });
+
   return (
     <>
       <form onSubmit={handleSubmit(onhandleSubmit)} className="mt-8">
@@ -45,7 +45,7 @@ const AddPlan = ({}) => {
           })}
         </div>
         <input type="submit" id="form-2" className="hidden" />
-        <div className="flex flex-col items-center md:flex-row md:justify-end mt-10 mb-10 gap-5">
+        <div className="flex flex-col items-center  md:flex-row md:justify-end mt-10 mb-10 gap-5">
           <CustomButton
             type="quadruple"
             value="Previous"

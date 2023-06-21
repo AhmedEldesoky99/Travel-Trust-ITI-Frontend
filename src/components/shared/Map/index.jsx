@@ -16,7 +16,6 @@ function CustomMap({
   // longitude = "31.2653",
   // latitude = "32.3019",
   coordinates,
-
   zoom = 6,
   draggable = true,
   setLocation = () => {},

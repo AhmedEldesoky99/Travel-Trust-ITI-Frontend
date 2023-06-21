@@ -12,3 +12,17 @@
   display: flex;
   align-items: center;
 }
+
+.custom-select
+  .ant-select-single
+  .ant-select-selector
+  .ant-select-selection-search {
+  display: flex !important;
+  align-items: center !important;
+}
+
+@media screen and (max-width: 1200px) {
+  .custom-select .ant-select-selector {
+    height: 51.6px !important;
+  }
+}

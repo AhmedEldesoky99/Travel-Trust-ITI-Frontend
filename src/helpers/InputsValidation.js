@@ -57,4 +57,7 @@ export const ruleValidation = {
   description: {
     required: "Description is required",
   },
+  meeting_description: {
+    required: "Description is required",
+  },
 };

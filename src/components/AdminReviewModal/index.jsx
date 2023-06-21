@@ -9,7 +9,9 @@ const AdminReviewModal = ({
   handleCancel,
   title,
   travellerName,
+  AdminImage,
   review,
+  rating
 }) => {
   return (
     <Modal
@@ -51,7 +53,7 @@ const AdminReviewModal = ({
                 {travellerName}
               </p>
             </Link>
-            <Rate disabled defaultValue={2} />
+            <Rate disabled defaultValue={rating} />
           </div>
           <div>
             <p className="2xs:text-sm sm:text-base 2xl:text-xl">{review}</p>

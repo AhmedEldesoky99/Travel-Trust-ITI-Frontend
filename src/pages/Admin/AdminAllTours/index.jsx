@@ -1,141 +1,120 @@
+import { useState } from "react";
+import { Link, useParams } from "react-router-dom";
+
 import { Table, Tag } from "antd";
+import moment from "moment";
 
 import NavBar from "../../../components/shared/Admin/Admin-NavBar/index.jsx";
-import DataGrid from "../../../components/shared/Admin/Data-grid/index.jsx";
 import SubNavBar from "../../../components/shared/Admin/SubNavBar.jsx";
-import useModal from "../../../hooks/useModal.jsx";
-import useSearchDatagrid from "../../../hooks/useSearchDataGrid.jsx";
+import DataGrid from "../../../components/shared/Admin/Data-grid/index.jsx";
 import Icon from "../../../utils/icons.jsx";
 import CustomModal from "../../../components/shared/Admin/CustomModal/index.jsx";
-import { useState } from "react";
+
+import useModal from "../../../hooks/useModal.jsx";
+import useSearchDatagrid from "../../../hooks/useSearchDataGrid.jsx";
+import { useTour } from "../../../services/useTour.jsx";
 
 const AdminAllTours = () => {
- 
+  //-------------- State --------------
+  const [selected, setSelected] = useState({});
+
+  const { organizerId } = useParams();
 
   //custom hook
   const { getColumnSearchProps } = useSearchDatagrid();
   const { loading, open, handleOk, showModal, handleCancel } = useModal();
- 
-  const [selected,setSelected] = useState({});
 
-  const data = [
-    {
-      key: "1",
-      tourID: "#123456",
-      Title: "2 days private tour all  ...",
-      Destination: "Alex",
-      Price: "2 980EGP",
-      startDate: "01.oct 2020",
-      Status: "Published",
-    },
-    {
-      key: "2",
-      tourID: "#123456",
-      Title: "4 days private tour all  ...",
-      Destination: "Dahab",
-      Price: "2 980EGP",
-      startDate: "01.oct 2020",
-      Status: "Expired",
-    },
-    {
-      key: "3",
-      tourID: "#123456",
-      Title: "6 days private tour all  ...",
-      Destination: "Ismailia",
-      Price: "2 980EGP",
-      startDate: "01.oct 2020",
-      Status: "Published",
-    },
-    {
-      key: "4",
-      tourID: "#123456",
-      Title: "2 days private tour all  ...",
-      Destination: "Cairo",
-      Price: "2 980EGP",
-      startDate: "01.oct 2020",
-      Status: "Draft",
-    },
-    {
-      key: "5",
-      tourID: "#123456",
-      Title: "3 days private tour all  ...",
-      Destination: "Fayoum",
-      Price: "2 980EGP",
-      startDate: "01.oct 2020",
-      Status: "Published",
-    },
-    {
-      key: "6",
-      tourID: "#123456",
-      Title: "2 days private tour all  ...",
-      Destination: "Ismailia",
-      Price: "2 980EGP",
-      startDate: "01.oct 2020",
-      Status: "Expired",
-    },
-  ];
+  const { OrganizerTours, DeleteTourByIdmutation } = useTour();
+  const { data: tours, isLoading, isError } = OrganizerTours(organizerId);
+  const { mutate } = DeleteTourByIdmutation;
 
-  //table structure
+  //-------------- table row --------------
+  const data = tours?.data.map((tour, index) => {
+    return {
+      key: index,
+      _id: tour._id,
+      title: tour.title,
+      city: tour.city.title,
+      price_per_person: tour.price_per_person,
+      start_date: moment(tour.start_date).format("MMMM Do YYYY"),
+      status: tour.status,
+    };
+  });
+
+  const handleDelete = (tourId) => {
+    DeleteTourByIdmutation.mutate(tourId);
+  };
+
+  //-------------- table structure --------------
   const columns = [
     Table.SELECTION_COLUMN,
     {
       title: "Tour ID",
-      dataIndex: "tourID",
-      key: "tourID",
+      dataIndex: "_id",
+      key: "_id",
       //fixed column  NOTE: Do not use percentage
       width: 150,
       fixed: "left",
       //search
-      ...getColumnSearchProps("tourID"),
+      ...getColumnSearchProps("_id"),
     },
     {
       title: "Title",
-      dataIndex: "Title",
-      key: "Title",
-      //   width: "20%",
-      //search
-      ...getColumnSearchProps("Title"),
-    },
-    {
-      title: "Destination",
-      dataIndex: "Destination",
-      key: "Destination",
-      // width: "40%",
+      dataIndex: "title",
+      key: "title",
 
       //search
-      ...getColumnSearchProps("Review"),
+      ...getColumnSearchProps("title"),
+    },
+    {
+      title: "Governorate",
+      dataIndex: "city",
+      key: "city",
+
+      //search
+      ...getColumnSearchProps("city"),
     },
     {
       title: "Price",
-      dataIndex: "Price",
-      key: "Price",
-      // width: "40%",
+      dataIndex: "price_per_person",
+      key: "price_per_person",
 
       //search
-      ...getColumnSearchProps("Price"),
+      ...getColumnSearchProps("price_per_person"),
     },
     {
       title: "Start Date",
-      dataIndex: "startDate",
-      key: "startDate",
-      // width: "40%",
+      dataIndex: "start_date",
+      key: "start_date",
 
       //search
-      ...getColumnSearchProps("Review"),
+      ...getColumnSearchProps("start_date"),
     },
     {
       title: "Status",
-      dataIndex: "Status",
-      key: "Status",      //search
-      ...getColumnSearchProps("Status"),
-      render: (_, { Status }) => {
+      dataIndex: "status",
+      key: "status", //search
+      ...getColumnSearchProps("status"),
+      render: (_, { status }) => {
         let color = "#009EB7";
-        if (Status === "Expired") {
+        if (status === "Expired") {
           color = "#DB3A34";
-        } else if (Status === "Draft") {
+        } else if (status === "Draft") {
           color = "#81CCD8";
         }
-        return <Tag style={{width:"100px", fontSize :"16px" ,padding:"6px",textAlign:"center"}} color={color}>{Status}</Tag>;
+        return (
+          <Tag
+            style={{
+              width: "100px",
+              fontSize: "16px",
+              padding: "6px",
+              textAlign: "center",
+            }}
+            color={color}
+          >
+            {status}
+          </Tag>
+        );
       },
     },
     {
@@ -147,41 +126,55 @@ const AdminAllTours = () => {
       //action icons
       render: (props) => (
         <>
-          {/* {console.log({ props })} */}
-          <div
-            className="flex justify-center items-center gap-6 "
-          >
-            <button><Icon name="eye"/></button>
-            <button><Icon name="edit"/></button>
-            <button  onClick={() => {
-              setSelected(props)
-              showModal();
-            }}><Icon name="delete"  /></button>
-          </div>
-         
-        </>
-      ),
-    },
-  ];
+          {/* {console.log({ props })} //each tour */}
+          <div className="flex justify-center items-center gap-6 ">
+            {/* to do :  get organizer id */}
+            <Link to={`/tour-details/${props._id}/${props?.organizer?._id}`}>
+              <button>
+                <Icon name="eye" />
+              </button>
+            </Link>
 
-  return (
-    <>
-     <CustomModal
+            <Link to={`/admin/tour/${props._id}`}>
+              <button>
+                <Icon name="edit" />
+              </button>
+            </Link>
+            <button
+              onClick={() => {
+                setSelected(props);
+                showModal();
+                // handleDelete(props._id);
+              }}
+            >
+              <Icon name="delete" />
+            </button>
+          </div>
+          <CustomModal
             open={open}
             loading={loading}
-            handleOk={handleOk}
+            handleOk={() => handleDelete(props._id)}
             handleCancel={handleCancel}
             title="You Are About To Delete This Tour"
             message1="This Will Delete It From Your History"
             message2="Are You Sure ?"
           />
+        </>
+      ),
+    },
+  ];
+
+  //-------------- Handlers --------------
+
+  return (
+    <>
       <div className="flex flex-row">
         <NavBar />
         <div className="w-full container mx-auto ">
           <SubNavBar />
           <div className="lg:grid lg:grid-cols-12 gap-6">
             <div className=" lg:col-span-12">
-              <DataGrid data={data} columns={columns} />{" "}
+              <DataGrid data={data} columns={columns} loading={isLoading} />{" "}
             </div>
           </div>
         </div>

@@ -2,26 +2,33 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Icon from "../../../../utils/icons";
 
+const organizerID = 16;
+
 const navLinks = [
   {
     name: "adminHome",
     link: "Home",
+    route: `/admin/${organizerID}`,
   },
   {
     name: "adminProfile",
     link: "Profile",
+    route: `/admin/profile/${organizerID}`,
   },
   {
     name: "tourFlag",
     link: "Tours",
+    route: `/admin/alltours/${organizerID}`,
   },
   {
     name: "adminReview",
     link: "Reviews",
+    route: `/admin/reviews/${organizerID}`,
   },
   {
     name: "add",
     link: "Tour",
+    route: `/admin/tour/add`,
   },
 ];
 
@@ -74,12 +81,12 @@ const NavBar = () => {
             >
               <div className="card-body">
                 <ul className=" ">
-                  {navLinks.map(({ name, link }, index) => (
+                  {navLinks.map(({ name, link, route }, index) => (
                     <li
                       key={index}
                       className="flex flex-col justify-center items-start my-4 p-4 rounded-lg  active:bg-white hover:bg-slate-300 w-full"
                     >
-                      <Link to="" className=" text-black p-1">
+                      <Link to={route} className=" text-black p-1">
                         {link}
                       </Link>
                     </li>
@@ -94,14 +101,15 @@ const NavBar = () => {
         </div>
         <ul className="2xs:hidden  md:flex md:flex-col  md:justify-between md:h-[70vh]">
           <div>
-            {navLinks.map(({ name, link }, index) => (
+            {navLinks.map(({ name, link, route }, index) => (
               <li
                 key={index}
                 className=" group flex flex-col justify-center items-center my-4 w-[70px] h-[70px] rounded-lg hover:border-2 active:bg-white hover:text-primary-green"
               >
+                {/* to do change color of the icon when active */}
                 <Icon name={name} />
                 <Link
-                  to=""
+                  to={route}
                   className=" text-black text-sm group-hover:text-primary-green active:text-primary-green p-1 pr-0"
                 >
                   {link}

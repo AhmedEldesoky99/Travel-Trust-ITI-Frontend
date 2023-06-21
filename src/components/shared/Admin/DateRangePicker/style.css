@@ -3,3 +3,37 @@
   height: 65px;
   border-color: black;
 }
+
+.custom-date-picker .ant-picker-input > input:placeholder-shown {
+  color: #6b7280 !important;
+  font-size: 20px !important;
+}
+
+.custom-date-picker .anticon svg {
+  width: 20px;
+  height: 20px;
+  color: #6b7280;
+}
+.custom-date-picker .ant-picker-input > input {
+  font-size: 20px;
+}
+.custom-date-picker
+  .ant-picker-dropdown
+  .ant-picker-cell-in-view.ant-picker-cell-range-start
+  .ant-picker-cell-inner {
+  background: red !important;
+}
+
+@media screen and (max-width: 1200px) {
+  .custom-date-picker {
+    height: 51.6px !important;
+  }
+
+}
+
+@media screen and (max-width: 780px) {
+  .custom-date-picker .ant-picker-input > input:placeholder-shown {
+    font-size: 16px !important;
+  }
+
+}

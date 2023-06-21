@@ -8,11 +8,13 @@ import CustomDatePicker from "../../../../components/shared/Admin/TimePicker";
 import CustomUploadImage from "../../../../components/Admin/uploadImage";
 
 const DayInputs = ({ register, errors, control, index }) => {
+  //-------------- state --------------
   const { fields, append, remove } = useFieldArray({
     control,
     name: `plan.${index}.details`,
   });
 
+  //-------------- handlers --------------
   const handleAppend = (e) => {
     e.preventDefault();
     append();
@@ -32,15 +34,36 @@ const DayInputs = ({ register, errors, control, index }) => {
             register={register}
             errors={errors}
           />
+          {/* {errors.plan?.[index]?.title && (
+            <p className="text-tertiary-red mt-1">
+              {errors.plan?.[index]?.title?.message}
+            </p>
+          )} */}
+
           <Controller
             name={`plan.${index}.time`}
             control={control}
-            rules={{ required: true }}
-            render={({ field }) => <CustomDatePicker {...field} />}
+            rules={{
+              required: {
+                value: true,
+                message: "Start time and End time is required",
+              },
+            }}
+            render={({ field }) => (
+              <>
+                <CustomDatePicker {...field} />
+                {errors.plan?.[index]?.time && (
+                  <p className="text-tertiary-red mt-1 mb-6">
+                    {errors.plan?.[index]?.time?.message}
+                  </p>
+                )}
+              </>
+            )}
           />
 
           <h3 className="text-2xl">Where they will go during the day</h3>
           <StopLocationInputs
+            key={index}
             register={register}
             errors={errors}
             fields={fields}
@@ -48,31 +71,44 @@ const DayInputs = ({ register, errors, control, index }) => {
             nestedIndex={index}
           />
 
-          <div className="flex justify-start mt-4">
+          <div className="w-full lg:flex lg:justify-start mt-4 ">
             <CustomButton
               onClick={handleAppend}
-              type="primary"
+              type="secondary"
+              width="w-full"
               value="Add location"
             />
           </div>
         </div>
-        <div className="col-span-6 lg:col-span-3">
+        <div className=" col-span-6 lg:col-span-3">
           <Controller
-            name={`plan.${index}.image`}
+            name={`plan.${index}.image_file`}
             control={control}
-            rules={{ required: true }}
+            rules={{
+              required: {
+                value: true,
+                message: "Image is required",
+              },
+            }}
             render={({ field }) => (
               <>
-                <span className="block mb-4">
-                  (Pick a photo that highlight the day)
-                </span>
+                <div className="flex justify-center flex-col">
+                  <span className="block mb-4">
+                    (Pick a photo that highlight the day)
+                  </span>
 
-                <CustomUploadImage
-                  length={0}
-                  fileList={field.value}
-                  setFileList={field.onChange}
-                  // {...field}
-                />
+                  <CustomUploadImage
+                    length={0}
+                    fileList={field.value}
+                    setFileList={field.onChange}
+                    // {...field}
+                  />
+                  {errors.plan?.[index]?.image_file && (
+                    <p className="text-tertiary-red mt-1">
+                      {errors.plan?.[index]?.image_file?.message}
+                    </p>
+                  )}
+                </div>
               </>
             )}
           />

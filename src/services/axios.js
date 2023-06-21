@@ -3,18 +3,24 @@ import { toast } from "react-toastify";
 
 export const baseURL = "https://travel-8ztv.onrender.com";
 
-const client = axios.create({ baseURL });
+const clientFormData = axios.create({
+  baseURL,
+  headers: { "Content-Type": "multipart/form-data" },
+});
+const client = axios.create({
+  baseURL,
+});
 
 export const request = ({ ...options }) => {
   client.defaults.headers.common.Accept = "application/json";
   client.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
     "travelJWT"
   )}`;
-  if (options.formData) {
-    client.defaults.headers.common["Content-Type"] = "multipart/form-data";
-  } else {
-    client.defaults.headers.common["Content-Type"] = "application/json";
-  }
+
+  clientFormData.defaults.headers.common.Accept = "application/json";
+  clientFormData.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
+    "travelJWT"
+  )}`;
 
   const onSuccess = (response) => {
     console.log("<<Success>>", response.data);
@@ -33,6 +39,8 @@ export const request = ({ ...options }) => {
         progress: undefined,
         theme: "light",
       });
+      
+      
     return response.data;
   };
 
@@ -52,11 +60,17 @@ export const request = ({ ...options }) => {
         });
       });
 
+
     return err;
   };
 
-  return client(options).then(onSuccess).catch(onError);
+  if (options.formData) {
+    return clientFormData(options).then(onSuccess).catch(onError);
+  } else {
+    return client(options).then(onSuccess).catch(onError);
+  }
 };
+
 
 // export const headers = (formdata = false) => {
 //     return {
