@@ -3,9 +3,11 @@ import TourCard from "../../../components/shared/TourCard";
 import { getRecommendedTour } from "../../../services/Home";
 import CardLoader from "../../../components/CardLoader";
 
-const token = localStorage.getItem("travelJWT");
 
 const Recommended = () => {
+
+  const token = localStorage.getItem("travelJWT");
+
   const { isLoading, data, isSuccess } = useQuery(
     "recommendedTours",
     getRecommendedTour,
@@ -14,7 +16,7 @@ const Recommended = () => {
     }
   );
 
-  console.log(data);
+
   return (
     <>
       {!isSuccess && isLoading && <CardLoader />}

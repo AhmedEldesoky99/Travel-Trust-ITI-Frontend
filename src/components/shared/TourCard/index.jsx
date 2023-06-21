@@ -16,10 +16,8 @@ import SkateIcon from "../../../assets/images/TourCard/skate.svg";
 import CastleIcon from "../../../assets/images/TourCard/castle.svg";
 
 
-const TourCard = ({
-data
-}) => {
-  // const TourCard = (props) => {
+const TourCard = ({ data }) => {
+
   // -------- States --------
   const [checked, setChecked] = useState(false);
 
@@ -127,7 +125,8 @@ data
               </span>
             </div>
           </div>
-          <Link to={`tour-details/${data?.id}`}>
+          
+          <Link to={`tour-details/${data?._id}`}>
             <CustomButton
               // onClick={() => {}}
               // isLoading
