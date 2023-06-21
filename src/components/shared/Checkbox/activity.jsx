@@ -1,31 +1,14 @@
 /* eslint-disable react/prop-types */
-// import { Checkbox } from 'antd';
-
-
-// const FilterCheckbox = () => {
-//     const checkboxes = Array.from({ length: Options.length }, (_, index) => (
-//         <div key={index} className='flex gap-1'>
-//             <Checkbox options={Options[index]} onChange={onChange}/> <p className='text-xl'>{Options[index]}</p>
-//         </div>
-//       ));
-//     return (
-//         <>
-//             {checkboxes}
-//         </>
-//     );
-// }
-// export default FilterCheckbox;
-
 import { Checkbox } from 'antd';
 
-const FilterCheckbox = ({ options, onChange }) => {
-  const checkboxes = options.map((option, index) => (
-    <div key={index} className='flex gap-1'>
-      <Checkbox value={option} onChange={onChange} />
-      <p className='text-xl'>{option}</p>
+const FilterCheckbox = ({ data, onChange }) => {
+  const checkboxes = data?.data?.map((option) => (
+    <div key={option._id} className='flex gap-1'>
+      <Checkbox value={option.name} onChange={onChange} />
+      <p className='text-xl'>{option.name}</p> {/* Display option.name instead of option */}
     </div>
   ));
-
+  console.log(data?.data[0].name);
   return <>{checkboxes}</>;
 };
 
