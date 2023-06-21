@@ -10,11 +10,12 @@ const TourDetails = () => {
   const { id } = useParams();
   const { getTourDetails } = useTour();
   const { data, isLoading, isSuccess, isError } = getTourDetails(id);
+  console.log(data);
 
   return (
     <>
-      <Header data={data} isLoading={isLoading} />
-      <TourTabs data={data} isLoading={isLoading} />
+      <Header data={data}   />
+      <TourTabs data={data} />
     </>
   );
 };

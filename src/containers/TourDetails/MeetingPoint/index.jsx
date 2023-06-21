@@ -3,7 +3,8 @@ import React from "react";
 import CheckoutCard from "../../../components/shared/CheckoutCard";
 import CustomMap from "../../../components/shared/Map";
 
-const MeetingPoint = () => {
+const MeetingPoint = ({ data }) => {
+  console.log(data);
   return (
     <section className="container grid lg:grid-cols-12">
       <div className="lg:col-span-8">
@@ -12,12 +13,13 @@ const MeetingPoint = () => {
             Where will we meet
           </h3>
           <h3 className="2xs:text-sm sm:text-base 2xl:text-xl">
-            We will meet at Campo Manin, under the Manin statue and from there
-            the experience will start.
+            We will meet at {data?.description}
           </h3>
         </div>
 
-        <CustomMap />
+        <CustomMap
+          coordinates={{ longitude: data?.latitude, latitude: data?.longitude }}
+        />
       </div>
 
       <div className="lg:col-span-1"></div>

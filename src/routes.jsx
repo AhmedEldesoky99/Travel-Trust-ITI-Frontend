@@ -20,6 +20,7 @@ import Destinations from "./pages/Destinations";
 import UserProfile from "./pages/UserProfile";
 import ContactUs from "./pages/ContactUs";
 import History from "./pages/History";
+import AdminProfileForUser from "./pages/AdminProfileForUser";
 
 // Admin components
 import AdminSignUp from "./pages/Admin/adminSignup";
@@ -68,6 +69,7 @@ export const router = createBrowserRouter([
       { path: "sales", element: <Sales /> },
       { path: "contact-us", element: <ContactUs /> },
       { path: "history", element: <History /> },
+      { path: "profile/admin/:organizerId", element: <AdminProfileForUser /> },
 
       //admin
       { path: "admin/:organizerId", element: <DashBoard /> },

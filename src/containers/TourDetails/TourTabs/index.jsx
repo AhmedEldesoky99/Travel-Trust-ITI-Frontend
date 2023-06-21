@@ -16,9 +16,7 @@ import {
 import Icon from "./../../../utils/icons";
 import "./TourTabsStyle.css";
 
-const TourTabs = () => {
-
-
+const TourTabs = ({ data }) => {
   const items = [
     {
       key: "1",
@@ -27,7 +25,7 @@ const TourTabs = () => {
           <QuestionCircleOutlined /> <span>Overview</span>
         </span>
       ),
-      children: <OverView />,
+      children: <OverView data={data} />,
     },
     {
       key: "2",
@@ -36,7 +34,7 @@ const TourTabs = () => {
           <CalendarOutlined /> <span>Plan</span>{" "}
         </span>
       ),
-      children: <Plan />,
+      children: <Plan data={data} />,
     },
     {
       key: "3",
@@ -45,7 +43,7 @@ const TourTabs = () => {
           <Icon name="photo" /> <span className="ml-3">Gallery</span>
         </span>
       ),
-      children: <Gallery />,
+      children: <Gallery data={data} />,
     },
     {
       key: "4",
@@ -55,7 +53,7 @@ const TourTabs = () => {
           <span>Meeting Point</span>
         </span>
       ),
-      children: <MeetingPoint />,
+      children: <MeetingPoint data={data?.data?.meeting_point} />,
     },
     {
       key: "5",
@@ -69,8 +67,6 @@ const TourTabs = () => {
     },
   ];
 
-
-  
   return (
     <>
       <Tabs
