@@ -24,7 +24,6 @@ const TourCard = ({ data }) => {
   // const TourCard = (props) => {
   // -------- States --------
   const [checked, setChecked] = useState(false);
-  const navigate = useNavigate();
 
   // -------- Handlers --------
   const toggleFavorites = () => {
