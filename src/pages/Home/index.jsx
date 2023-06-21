@@ -10,6 +10,9 @@ import JoinUs from "../../containers/Home/JoinUs";
 import Partners from "../../containers/Home/Partners";
 
 const Home = () => {
+  setTimeout(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, 0);
   return (
     <>
       <HeaderSection />

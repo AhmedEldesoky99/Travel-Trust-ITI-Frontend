@@ -9,6 +9,7 @@ import Check from "../../assets/images/Cart/Check.svg";
 import { useQuery } from "react-query";
 import { getCart } from "../../services/Cart";
 
+const tours=[{}]
 const Cart = () => {
   // const [items, setItems] = useState(3);
   const { data, isLoading, isSucess } = useQuery("cart", getCart);
