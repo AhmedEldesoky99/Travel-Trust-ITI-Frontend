@@ -32,10 +32,10 @@ const Search = () => {
   };
   const [items] = useState(3);
   const [page, setPage] = useState(1);
-  const { isLoading, toursData, isSuccess } = useQuery(
-    ["SearchResults", ],
-    () => getSearchResults()
-  );
+  // const { isLoading, toursData, isSuccess } = useQuery(
+  //   ["SearchResults", ],
+  //   () => getSearchResults()
+  // );
   const tourCards = Array.from({ length: items }, (_, index) => (
     <TourWideCard key={index} />
   ));
@@ -82,7 +82,7 @@ const Search = () => {
                     className="border-none poop"
                   >
                     <Panel header="Activity" key="1" className="peep">
-                      <FilterCheckbox options={data} onChange={onChange} />
+                      <FilterCheckbox data={data} onChange={onChange} />
                     </Panel>
                   </Collapse>
                   <hr />

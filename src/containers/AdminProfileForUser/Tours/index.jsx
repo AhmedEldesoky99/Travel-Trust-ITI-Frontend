@@ -39,6 +39,7 @@ const Tours = () => {
                 title={item?.title}
                 duration={item?.duration}
                 id={item?._id}
+                data={item}
               />
             </div>
           );
