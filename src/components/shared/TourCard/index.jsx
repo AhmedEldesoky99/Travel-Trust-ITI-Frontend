@@ -24,6 +24,7 @@ const TourCard = ({
   rate,
   title,
   duration,
+  id
 }) => {
   // const TourCard = (props) => {
   // -------- States --------
@@ -133,7 +134,7 @@ const TourCard = ({
               </span>
             </div>
           </div>
-          <Link to={`tour-details/${data._id}`}>
+          <Link to={`tour-details/${id}`}>
             <CustomButton
               // onClick={() => {}}
               // isLoading

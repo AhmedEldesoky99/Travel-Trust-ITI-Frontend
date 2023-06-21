@@ -38,6 +38,7 @@ const Tours = () => {
                 rate={item?.rate}
                 title={item?.title}
                 duration={item?.duration}
+                id={item?._id}
               />
             </div>
           );

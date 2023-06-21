@@ -73,29 +73,29 @@ const AdminProfileTabs = () => {
                   <Link to="">
                     <img
                       className="object-cover"
-                      src={data?.data.photo[0].url}
+                      src={data?.data?.user?.photo[0]?.url}
                     />
                   </Link>
                 </div>
               </div>
               <h3 className="font-bold mt-2 2xs:text-base lg:text-lg 2xl:text-2xl">
-                {data?.data.username}
+                {data?.data?.user?.username}
               </h3>
             </div>
             <div className="mt-7 flex flex-col gap-4">
               <div>
                 <span className="2xs:text-sm sm:text-base 2xl:text-xl">
-                  {data?.data.city.title}
+                  {data?.data?.user?.city?.title}
                 </span>
               </div>
               <div>
                 <span className="2xs:text-sm sm:text-base 2xl:text-xl">
-                  {data?.data.phone}
+                  {data?.data?.user?.phone}
                 </span>
               </div>
               <div>
                 <span className="2xs:text-sm sm:text-base 2xl:text-xl">
-                  {data?.data.email}
+                  {data?.data?.user?.email}
                 </span>
               </div>
             </div>
