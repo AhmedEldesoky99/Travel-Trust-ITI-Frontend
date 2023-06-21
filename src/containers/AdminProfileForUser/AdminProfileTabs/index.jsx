@@ -12,11 +12,19 @@ import AdminImage from "../../../assets/images/CheckDestinations/Aswan.png";
 import "../../UserProfile/ProfileTabs/ProfileTabsStyle.css";
 import { getAdminData } from "../../../services/visitAdminProfile";
 import { useQuery } from "react-query";
+import { getAdminReviews } from "../../../services/AdminReviews";
+import { getAdminTours } from "../../../services/AdminTours";
 
 const AdminProfileTabs = () => {
   const { id } = useParams();
   const { isLoading, data, isSuccess } = useQuery(["AdminData", id], () =>
     getAdminData(id)
+  );
+  const { data: reviewData } = useQuery(["AdminReviews", id], () =>
+    getAdminReviews(id)
+  );
+  const { data: tourData } = useQuery(["AdminTours", id], () =>
+    getAdminTours(id)
   );
   const items = [
     {
@@ -34,7 +42,7 @@ const AdminProfileTabs = () => {
         <span className="2xs:text-sm sm:text-base flex items-center">
           <span className="2xs:text-sm 2xl:text-xl">Tours</span>
           <span className="kbd border-b-[1px] bg-white min-h-6 min-w-min ml-2">
-            2
+            {tourData?.data?.length}
           </span>
         </span>
       ),
@@ -46,7 +54,7 @@ const AdminProfileTabs = () => {
         <span className="2xs:text-sm sm:text-base flex items-center">
           <span className="2xs:text-sm 2xl:text-xl">Reviews</span>
           <span className="kbd border-b-[1px] bg-white min-h-6 min-w-min ml-2">
-            2
+            {reviewData?.data?.length}
           </span>
         </span>
       ),
@@ -63,7 +71,10 @@ const AdminProfileTabs = () => {
               <div className="avatar">
                 <div className="w-24 rounded-full">
                   <Link to="">
-                    <img className="object-cover" src={data?.data.photo[0].url} />
+                    <img
+                      className="object-cover"
+                      src={data?.data.photo[0].url}
+                    />
                   </Link>
                 </div>
               </div>
