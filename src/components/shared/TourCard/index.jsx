@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { Rate } from "antd";
 import {
@@ -14,7 +16,13 @@ import SkateIcon from "../../../assets/images/TourCard/skate.svg";
 import CastleIcon from "../../../assets/images/TourCard/castle.svg";
 
 const TourCard = ({
- data
+  tourImg,
+  organizerImg,
+  cityName,
+  price,
+  rate,
+  title,
+  duration,
 }) => {
   // const TourCard = (props) => {
   // -------- States --------
@@ -30,7 +38,7 @@ const TourCard = ({
       <figure className="relative overflow-visible">
         <img
           className="w-full object-cover h-[14.7rem] rounded-t-[14px]"
-          src={data?.highlight_photos[0]?.url}
+          src={tourImg}
           alt="Tour Image"
         />
 
@@ -57,7 +65,7 @@ const TourCard = ({
         <div className="absolute bottom-0 left-[5%] flex items-center translate-y-[50%]">
           <a href="">
             <img
-              src={data?.organizer.photo[0]?.url}
+              src={organizerImg}
               alt="Tour Creator"
               className="2xs:w-16 xs:w-20 sm:w-20 md:w-16 md:h-16 bg-cover bg-center object-cover  lg: xl: 2xl: rounded-full relative"
             />
@@ -67,8 +75,10 @@ const TourCard = ({
           </span>
         </div>
 
-        <div className="absolute top-2 right-2 bg-glass-gray opacity-50 py-2 px-4
-         rounded-lg">
+        <div
+          className="absolute top-2 right-2 bg-glass-gray opacity-50 py-2 px-4
+         rounded-lg"
+        >
           <button onClick={toggleFavorites}>
             <HeartFilled
               className={`2xs:text-xl 2xl:text-2xl hover:scale-110 transition-all duration-200 ease-out ${
@@ -84,32 +94,32 @@ const TourCard = ({
           <div className="flex justify-center items-center space-x-2">
             <EnvironmentOutlined className="2xs:text-base 2xl:text-lg" />
             <span className="2xs:text-base 2xl:text-lg text-light-gray h-5">
-              {data?.city.title}
+              {cityName}
             </span>
           </div>
           <div className="flex justify-center items-center space-x-1">
             <span className="2xs:text-2xl md:text-xl xl:text-2xl font-bold">
-              ${data?.price_per_person}
+              {price}
             </span>{" "}
             <span className="">/</span>
             <UserOutlined className="2xs:text-xl md:text-lg" />
           </div>
         </div>
 
-        <h2 className="card-title 2xs:text-lg 2xl:text-xl">{data?.title}</h2>
+        <h2 className="card-title 2xs:text-lg 2xl:text-xl">{title}</h2>
 
         <div className="flex items-center space-x-2 ">
-          <Rate disabled defaultValue={data?.rate} />
-          <span className="2xs:text-base xl:text-lg 2xl:text-xl">{data?.rate}</span>
+          <Rate disabled defaultValue={0} value={rate} />
         </div>
 
         <div className="card-actions justify-between items-end">
           <div>
             <div className="flex items-center justify-end space-x-2">
               <ClockCircleOutlined className="text-base" />
-              <span className="text-base text-light-gray h-5">{data?.duration}days</span>
+              <span className="text-base text-light-gray h-5">
+                {duration === 1 ? "a" : duration} day{duration === 1 ? "" : "s"}
+              </span>
             </div>
-          
           </div>
           <CustomButton
             // onClick={() => {}}
