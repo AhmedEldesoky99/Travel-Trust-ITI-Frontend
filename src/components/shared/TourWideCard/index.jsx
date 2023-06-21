@@ -14,7 +14,10 @@ const TourWideCard = () => {
   return (
     <div className="card lg:card-side bg-base-100    lg:col-span-8 shadow-xl">
       <figure className="2xs:w-full 2xs:max-h-80 lg:w-[40%]">
-        <img className="w-full h-full" src={CardImage} alt="Tour Card" />
+        <img className="w-full h-full" src=
+        {CardImage} 
+        // {data?.highlight_photos[0]?.url} 
+        alt="Tour Card" />
       </figure>
 
       <div className="card-body justify-between gap-10">
@@ -22,6 +25,7 @@ const TourWideCard = () => {
           <div className="flex justify-between">
             <h2 className="card-title 2xs:text-lg sm:text-xl xl:text-2xl 2xl:text-3xl">
               Giza in 6 days explore egypt{" "}
+              {/* {data?.title} */}
             </h2>
             <button className="2xs:hidden xs:inline-block">
               <div className="shadow-md p-3 rounded-lg">
@@ -35,12 +39,16 @@ const TourWideCard = () => {
               <EnvironmentOutlined className="2xs:text-base 2xl:text-lg" />
               <span className="2xs:text-base 2xl:text-lg text-light-gray h-5">
                 Alexandria
+                {/* {data?.city.title} */}
               </span>
             </div>
 
             <div className="flex items-center space-x-2">
               <ClockCircleOutlined className="text-base" />
-              <span className="text-base text-light-gray h-5">8 days</span>
+              <span className="text-base text-light-gray h-5">
+                8 days
+                {/* {data?.duration}days */}
+              </span>
             </div>
           </div>
 
@@ -58,6 +66,7 @@ const TourWideCard = () => {
           <div className="flex justify-center items-center space-x-1">
             <span className="2xs:text-lg md:text-xl xl:text-2xl font-bold">
               $2,900
+              {/* ${data?.price_per_person} */}
             </span>{" "}
             <span className="">/</span>
             <UserOutlined className="2xs:text-xl md:text-lg" />

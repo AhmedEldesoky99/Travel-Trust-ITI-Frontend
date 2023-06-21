@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import DestinationCard from "../../../components/DestinationCard";
 import RegionCard from "../../../components/RegionCard";
-import { getAllDestinations } from "../../../services/Home";
+import { getAllDestinations } from "../../../services/Destinations";
 import RegionCardLoader from "../../../components/RegionCardLoader";
 
 // const regions = [
@@ -98,33 +98,37 @@ const Regions = () => {
   }
   return (
     <>
-    {!isSuccess && isLoading && <RegionCardLoader />}
-    {!!data &&  <div className="my-32 grid lg:grid-cols-12 gap-10">
-      <div className="sm:col-span-12 xl:col-span-4">
-        <RegionCard regionsTabs={regionsTabs} />
-      </div>
-      <div className="sm:col-span-12 xl:col-span-8 px-6 xs:px-0 ">
-        {regions.map((region) => (
-          <div
-            key={region.name}
-            id={region.name}
-            className="mb-16 text-center md:text-start"
-          >
-            <h2 className="text-[2.3rem] mb-8 font-medium capitalize">{region.name}</h2>
-            <div className="flex gap-4 flex-wrap">
-              {region.destinations.map(({ tours, city, url }, index) => (
-                <DestinationCard
-                  key={index}
-                  tours={tours}
-                  city={city}
-                  url={url}
-                />
-              ))}
-            </div>
+      {!isSuccess && isLoading && <RegionCardLoader />}
+      {!!data && (
+        <div className="my-32 grid lg:grid-cols-12 gap-10">
+          <div className="sm:col-span-12 xl:col-span-4">
+            <RegionCard regionsTabs={regionsTabs} />
           </div>
-        ))}
-      </div>
-    </div>}
+          <div className="sm:col-span-12 xl:col-span-8 px-6 xs:px-0 ">
+            {regions.map((region) => (
+              <div
+                key={region.name}
+                id={region.name}
+                className="mb-16 text-center md:text-start"
+              >
+                <h2 className="text-[2.3rem] mb-8 font-medium capitalize">
+                  {region.name}
+                </h2>
+                <div className="flex gap-4 flex-wrap">
+                  {region.destinations.map(({ tours, city, url }, index) => (
+                    <DestinationCard
+                      key={index}
+                      tours={tours}
+                      city={city}
+                      url={url}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </>
   );
 };

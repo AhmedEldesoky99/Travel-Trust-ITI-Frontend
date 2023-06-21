@@ -33,6 +33,7 @@ const DreamTour = () => {
               </div>
               <div className="container grid gap-4 2xs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2  md:grid-cols-2  lg:grid-cols-3 2xl:grid-cols-4 mt-12">
                 {data.data?.map((item, index) => {
+                  console.log({ data: data.data });
                   if (index < 4) return <TourCard key={item._id} data={item} />;
                 })}
                 <div className="w-full block sm:hidden mt-8 sm:mt-0">
