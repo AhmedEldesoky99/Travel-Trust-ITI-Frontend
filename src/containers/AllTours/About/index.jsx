@@ -1,11 +1,11 @@
 import { useQuery } from "react-query";
-import { getAllTours } from "../../../services/Home";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Breadcrumb, Pagination } from "antd";
 
 import TourCard from "./../../../components/shared/TourCard/index";
 import CardLoader from "../../../components/CardLoader";
+import { getAllTours } from "../../../services/AllTours";
 
 
 const About = () => {
