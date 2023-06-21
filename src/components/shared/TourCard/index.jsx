@@ -17,13 +17,7 @@ import CastleIcon from "../../../assets/images/TourCard/castle.svg";
 
 
 const TourCard = ({
-  tourImg,
-  organizerImg,
-  cityName,
-  price,
-  rate,
-  title,
-  duration,
+data
 }) => {
   // const TourCard = (props) => {
   // -------- States --------
@@ -39,7 +33,7 @@ const TourCard = ({
       <figure className="relative overflow-visible">
         <img
           className="w-full object-cover h-[14.7rem] rounded-t-[14px]"
-          src={tourImg}
+          src={data?.highlight_photos[0]?.url}
           alt="Tour Image"
           // Placeholder-Image
           onError={(e) => {
@@ -71,7 +65,7 @@ const TourCard = ({
         <div className="absolute bottom-0 left-[5%] flex items-center translate-y-[50%]">
           <a href="">
             <img
-              src={organizerImg}
+              src={data?.organizer.photo[0]?.url}
               alt="Tour Creator"
               // Placeholder-Image
               onError={(e) => {
@@ -105,22 +99,22 @@ const TourCard = ({
           <div className="flex justify-center items-center space-x-2">
             <EnvironmentOutlined className="2xs:text-base 2xl:text-lg" />
             <span className="2xs:text-base 2xl:text-lg text-light-gray h-5">
-              {cityName}
+              {data?.city?.title}
             </span>
           </div>
           <div className="flex justify-center items-center space-x-1">
             <span className="2xs:text-2xl md:text-xl xl:text-2xl font-bold">
-              {price}
+              {data?.price_per_person}$
             </span>{" "}
             <span className="">/</span>
             <UserOutlined className="2xs:text-xl md:text-lg" />
           </div>
         </div>
 
-        <h2 className="card-title 2xs:text-lg 2xl:text-xl">{title}</h2>
+        <h2 className="card-title 2xs:text-lg 2xl:text-xl">{data?.title}</h2>
 
         <div className="flex items-center space-x-2 ">
-          <Rate disabled defaultValue={0} value={rate} />
+          <Rate disabled defaultValue={0} value={data?.rate} />
         </div>
 
         <div className="card-actions justify-between items-end">
@@ -128,12 +122,12 @@ const TourCard = ({
             <div className="flex items-center justify-end space-x-2">
               <ClockCircleOutlined className="text-base" />
               <span className="text-base text-light-gray h-5">
-                {duration === 1 ? "a" : duration} day{duration === 1 ? "" : "s"}
+                {data?.duration === 1 ? "a" : data?.duration} day{data?.duration === 1 ? "" : "s"}
 
               </span>
             </div>
           </div>
-          <Link to={`tour-details/${data._id}`}>
+          <Link to={`tour-details/${data?.id}`}>
             <CustomButton
               // onClick={() => {}}
               // isLoading

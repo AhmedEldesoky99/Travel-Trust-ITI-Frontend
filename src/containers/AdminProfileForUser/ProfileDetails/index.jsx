@@ -16,7 +16,7 @@ const ProfileDetails = () => {
           About
         </p>
         <p className=" 2xs:text-sm md:text-base 2xl:text-xl">
-          {data?.data.bio}
+          {data?.data.user?.bio}
         </p>
       </div>
 
@@ -25,13 +25,13 @@ const ProfileDetails = () => {
           <p className="mb-1 text-light-gray 2xs:text-base md:text-lg 2xl:text-2xl">
             Governorate of expertise
           </p>
-          {data?.data.governorate_expertise.map((item, index) => {
+          {data?.data?.user?.governorate_expertise?.map((item, index) => {
             return (
               <span
                 className="badge p-3 2xs:text-sm 2xl:text-xl 2xl:p-4"
                 key={index}
               >
-                {item.title}
+                {item?.title}
               </span>
             );
           })}
@@ -40,7 +40,7 @@ const ProfileDetails = () => {
           <p className="mb-1 text-light-gray 2xs:text-base md:text-lg 2xl:text-2xl">
             Language
           </p>
-          {data?.data.languages && Object.entries(data?.data.languages).map(([key, value]) => {
+          {data?.data?.user?.languages && Object.entries(data?.data?.user?.languages).map(([key, value]) => {
             return (
               <span
                 className="badge p-3 2xs:text-sm 2xl:text-xl 2xl:p-4"
