@@ -55,6 +55,7 @@ export const router = createBrowserRouter([
       },
       { path: "each-governorate/:id", element: <EachGovernorate /> },
       { path: "sales", element: <Sales /> },
+      { path: "admin-profile/:id", element: <AdminProfileForUser /> },
       { path: "tour-details/:id", element: <TourDetails /> },
       { path: "shared", element: <SharedComponents /> },
       { path: "faq", element: <Faq /> },

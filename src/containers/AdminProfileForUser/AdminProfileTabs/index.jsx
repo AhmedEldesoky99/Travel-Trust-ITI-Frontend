@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Tabs } from "antd";
 
 import ProfileDetails from "../ProfileDetails";
@@ -9,8 +10,22 @@ import Reviews from "../Reviews";
 import AdminImage from "../../../assets/images/CheckDestinations/Aswan.png";
 
 import "../../UserProfile/ProfileTabs/ProfileTabsStyle.css";
+import { getAdminData } from "../../../services/visitAdminProfile";
+import { useQuery } from "react-query";
+import { getAdminReviews } from "../../../services/AdminReviews";
+import { getAdminTours } from "../../../services/AdminTours";
 
 const AdminProfileTabs = () => {
+  const { id } = useParams();
+  const { isLoading, data, isSuccess } = useQuery(["AdminData", id], () =>
+    getAdminData(id)
+  );
+  const { data: reviewData } = useQuery(["AdminReviews", id], () =>
+    getAdminReviews(id)
+  );
+  const { data: tourData } = useQuery(["AdminTours", id], () =>
+    getAdminTours(id)
+  );
   const items = [
     {
       key: "1",
@@ -27,7 +42,7 @@ const AdminProfileTabs = () => {
         <span className="2xs:text-sm sm:text-base flex items-center">
           <span className="2xs:text-sm 2xl:text-xl">Tours</span>
           <span className="kbd border-b-[1px] bg-white min-h-6 min-w-min ml-2">
-            2
+            {tourData?.data?.length}
           </span>
         </span>
       ),
@@ -39,7 +54,7 @@ const AdminProfileTabs = () => {
         <span className="2xs:text-sm sm:text-base flex items-center">
           <span className="2xs:text-sm 2xl:text-xl">Reviews</span>
           <span className="kbd border-b-[1px] bg-white min-h-6 min-w-min ml-2">
-            2
+            {reviewData?.data?.length}
           </span>
         </span>
       ),
@@ -56,28 +71,31 @@ const AdminProfileTabs = () => {
               <div className="avatar">
                 <div className="w-24 rounded-full">
                   <Link to="">
-                    <img className="object-cover" src={AdminImage} />
+                    <img
+                      className="object-cover"
+                      src={data?.data?.user?.photo[0]?.url}
+                    />
                   </Link>
                 </div>
               </div>
               <h3 className="font-bold mt-2 2xs:text-base lg:text-lg 2xl:text-2xl">
-                Osama Sayed
+                {data?.data?.user?.username}
               </h3>
             </div>
             <div className="mt-7 flex flex-col gap-4">
               <div>
                 <span className="2xs:text-sm sm:text-base 2xl:text-xl">
-                  Cairo
+                  {data?.data?.user?.city?.title}
                 </span>
               </div>
               <div>
                 <span className="2xs:text-sm sm:text-base 2xl:text-xl">
-                  01090132116
+                  {data?.data?.user?.phone}
                 </span>
               </div>
               <div>
                 <span className="2xs:text-sm sm:text-base 2xl:text-xl">
-                  osama@gmail.com
+                  {data?.data?.user?.email}
                 </span>
               </div>
             </div>
