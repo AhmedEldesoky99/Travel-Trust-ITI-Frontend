@@ -76,22 +76,26 @@ const Regions = () => {
     getAllDestinations
   );
 
+  const formatName = (name) => {
+    return name.split("_").join(" ");
+  };
+
   if (isSuccess) {
     regions = [];
     regionsTabs = [];
     const entries = Object.entries(data.data[0]);
     entries.map(([name, cities]) => {
       if (name !== "__v" && name !== "id") {
-        const formattedName = name.split('_').join(' ')
-        regionsTabs.push({ name : formattedName, cities: cities.length });
+        const formattedName = formatName(name);
+        regionsTabs.push({ name: formattedName, cities: cities.length });
         if (cities.length !== 0) {
           const destinations = cities.map((city) => ({
             tours: city.tours_number,
             city: city.title,
             url: city.home_image,
           }));
-          const formattedName = name.split('_').join(' ')
-          regions.push({ name :formattedName, destinations });
+          const formattedName = name.split("_").join(" ");
+          regions.push({ name: formattedName, destinations });
         }
       }
     });

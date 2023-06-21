@@ -15,15 +15,24 @@ import ShipIcon from "../../../assets/images/TourCard/ship.svg";
 import SkateIcon from "../../../assets/images/TourCard/skate.svg";
 import CastleIcon from "../../../assets/images/TourCard/castle.svg";
 
+const place_holder_avatar =
+  "https://frostbrowntodd.com/app/uploads/2021/10/FBT_NoPhoto-1.jpg";
+const place_holder_tour =
+  "https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png";
 
 const TourCard = ({ data }) => {
-
+  // const TourCard = (props) => {
   // -------- States --------
   const [checked, setChecked] = useState(false);
+  const navigate = useNavigate();
 
   // -------- Handlers --------
   const toggleFavorites = () => {
     setChecked(!checked);
+  };
+
+  const handleClick = (id) => {
+    navigate(`/tour-details/${id}`);
   };
 
   return (
@@ -31,12 +40,11 @@ const TourCard = ({ data }) => {
       <figure className="relative overflow-visible">
         <img
           className="w-full object-cover h-[14.7rem] rounded-t-[14px]"
-          src={data?.highlight_photos[0]?.url}
+          src={data?.highlight_photos[0]?.url ?? place_holder_tour}
           alt="Tour Image"
           // Placeholder-Image
           onError={(e) => {
-            e.target.src =
-              "https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png";
+            e.target.src = place_holder_tour;
           }}
         />
 
@@ -63,12 +71,11 @@ const TourCard = ({ data }) => {
         <div className="absolute bottom-0 left-[5%] flex items-center translate-y-[50%]">
           <a href="">
             <img
-              src={data?.organizer.photo[0]?.url}
+              src={data?.organizer.photo[0]?.url ?? place_holder_avatar}
               alt="Tour Creator"
               // Placeholder-Image
               onError={(e) => {
-                e.target.src =
-                  "https://frostbrowntodd.com/app/uploads/2021/10/FBT_NoPhoto-1.jpg";
+                e.target.src = place_holder_avatar;
               }}
               className="2xs:w-16 xs:w-20 sm:w-20 md:w-16 md:h-16 bg-cover bg-center object-cover  lg: xl: 2xl: rounded-full relative"
             />
@@ -125,6 +132,9 @@ const TourCard = ({ data }) => {
               </span>
             </div>
           </div>
+
+      
+
           <Link to={`/tour-details/${data?._id}`}>
             <CustomButton
               // onClick={() => {}}

@@ -12,6 +12,9 @@ const TourDetails = () => {
   const { data, isLoading, isSuccess, isError } = getTourDetails(id);
   console.log(data);
 
+  setTimeout(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, 0);
   return (
     <>
       <Header data={data}   />
