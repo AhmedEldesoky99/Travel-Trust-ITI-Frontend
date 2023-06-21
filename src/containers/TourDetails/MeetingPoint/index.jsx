@@ -13,19 +13,19 @@ const MeetingPoint = ({ data }) => {
             Where will we meet
           </h3>
           <h3 className="2xs:text-sm sm:text-base 2xl:text-xl">
-            We will meet at {data?.description}
+            We will meet at {data?.data?.description}
           </h3>
         </div>
 
         <CustomMap
-          coordinates={{ longitude: data?.latitude, latitude: data?.longitude }}
+          coordinates={{ longitude: data?.data?.latitude, latitude: data?.data?.longitude }}
         />
       </div>
 
       <div className="lg:col-span-1"></div>
 
       <div className="lg:col-span-3 2xs:mt-10 lg:mt-0">
-        <CheckoutCard />
+        <CheckoutCard data={data?.data} />
       </div>
     </section>
   );

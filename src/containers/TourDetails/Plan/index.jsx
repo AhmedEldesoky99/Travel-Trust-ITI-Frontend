@@ -156,7 +156,7 @@ const Plan = ({ data }) => {
       <div className="lg:col-span-1"></div>
 
       <div className="lg:col-span-3 2xs:mt-10 lg:mt-0">
-        <CheckoutCard />
+        <CheckoutCard  data={data?.data}/>
       </div>
     </section>
   );

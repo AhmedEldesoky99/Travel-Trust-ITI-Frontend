@@ -53,7 +53,7 @@ const TourTabs = ({ data }) => {
           <span>Meeting Point</span>
         </span>
       ),
-      children: <MeetingPoint data={data?.data?.meeting_point} />,
+      children: <MeetingPoint data={data} />,
     },
     {
       key: "5",
@@ -63,7 +63,7 @@ const TourTabs = ({ data }) => {
           <span className="ml-3">Reviews</span>
         </span>
       ),
-      children: <Reviews />,
+      children: <Reviews data={data}/>,
     },
   ];
 
