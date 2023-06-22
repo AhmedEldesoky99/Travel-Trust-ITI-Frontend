@@ -10,7 +10,7 @@ const TourDetails = () => {
   const { id } = useParams();
   const { getTourDetails } = useTour();
   const { data, isLoading, isSuccess, isError } = getTourDetails(id);
-  console.log(data);
+
 
   return (
     <>

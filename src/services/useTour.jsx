@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { request } from "./axios";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useState } from "react";
 
 export const useTour = () => {
@@ -93,13 +93,45 @@ export const useTour = () => {
     onError: (err) => console.log(err),
   });
 
-  //* 5- Get One Tour Details
+  //! 5- Get One Tour Details
   const getOneTour = (tourId) => {
     return request({ url: `/v1/tours/${tourId}`, method: "GET" });
   };
 
   const getTourDetails = (tourId) => {
     return useQuery(["tour-details", tourId], () => getOneTour(tourId));
+  };
+
+  //! 6- Create Tour Comment
+  const mutateTourComment = ({ id: tourId, ...data }) => {
+    console.log("Osama", data);
+    return request({
+      url: `/v1/comments/${tourId}`,
+      method: "POST",
+      data: data,
+      successMsg: "Comment added successfully",
+    });
+  };
+
+  const createTourComment = () => {
+    const queryClient = useQueryClient();
+    return useMutation(mutateTourComment, {
+      onSuccess: (res) => {
+        console.log(res);
+        queryClient.invalidateQueries("tour-comments");
+      },
+      onError: (err) => console.log(err),
+    });
+  };
+
+  //! Get Tour Comments
+
+  const fetchTourComments = (tourId) => {
+    return request({ url: `/v1/comments/tour/${tourId}` });
+  };
+
+  const getTourComments = (tourId) => {
+    return useQuery(["tour-comments", tourId], () => fetchTourComments(tourId));
   };
 
   return {
@@ -109,5 +141,7 @@ export const useTour = () => {
     DeleteTourByIdmutation,
     updateTourByIdMutation,
     getTourDetails,
+    createTourComment,
+    getTourComments,
   };
 };
