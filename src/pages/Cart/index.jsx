@@ -6,21 +6,30 @@ import CheckDestenations from "../../containers/EachGovernorate/CheckDestenation
 import CustomButton from "../../components/shared/CustomButton/index";
 import Bin from "../../assets/images/Cart/Bin.svg";
 import Check from "../../assets/images/Cart/Check.svg";
-import { useQuery } from "react-query";
-import { getCart } from "../../services/Cart";
+import { useMutation, useQuery } from "react-query";
+import { clearCart, getCart } from "../../services/Cart";
 
-const tours=[{}]
+const tours = [{}];
 const Cart = () => {
-  // const [items, setItems] = useState(3);
-  const { data, isLoading, isSucess } = useQuery("cart", getCart);
-  // console.log({ Data: data });
+  setTimeout(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, 0);
+  
+  const { data, isLoading, isSuccess } = useQuery("cart", getCart);
+  const emptyCart = useMutation(clearCart);
+
   const clear = () => {
     // setItems(0);
     console.log("cleared cart");
+    emptyCart.mutate();
   };
-  // const tourCards = Array.from({ length: items }, (_, index) => (
-  //   <TourCardWide key={index} data={items} />
-  // ));
+
+  let tours;
+  if (isSuccess) {
+    tours = data.data.tours;
+    console.log({ tours });
+  }
+ 
   return (
     <>
       {data ? (
@@ -43,8 +52,8 @@ const Cart = () => {
                 </div>
               </div>
               <div className="flex flex-col gap-9 md:mx-0 2xs:mx-2">
-                {data?.data?.tours?.map((item) => (
-                  <TourCardWide key={item._id} data={item} />
+                {tours?.map((tour, index) => (
+                  <TourCardWide key={index} data={tour} />
                 ))}
               </div>
             </div>

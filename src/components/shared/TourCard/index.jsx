@@ -24,7 +24,6 @@ const TourCard = ({ data }) => {
   // const TourCard = (props) => {
   // -------- States --------
   const [checked, setChecked] = useState(false);
-  const navigate = useNavigate();
 
   // -------- Handlers --------
   const toggleFavorites = () => {
@@ -128,7 +127,6 @@ const TourCard = ({ data }) => {
               <ClockCircleOutlined className="text-base" />
               <span className="text-base text-light-gray h-5">
                 {data?.duration === 1 ? "a" : data?.duration} day{data?.duration === 1 ? "" : "s"}
-
               </span>
             </div>
           </div>
