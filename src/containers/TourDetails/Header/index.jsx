@@ -20,7 +20,7 @@ const Header = ({ data }) => {
               <Rate
                 className="text-white mr-2 my-custom-rate"
                 disabled
-                defaultValue={data?.data?.rate}
+                value={data?.data?.rate}
               />
               <span className="2xs:text-base xl:text-lg 2xl:text-xl xl:leading-6">
                 {data?.data?.rate}

@@ -9,9 +9,8 @@ const navigate = useNavigate();
 
 
   const adminSignup = (data) => {
-    console.log(data);
     return request({
-      url: "/v1/users/sign-up/admin",
+      url: "/v1/users/sign-up/organizer",
       method: "POST",
       data: data,
       successMsg: "You have been signed up successfully",
@@ -19,9 +18,8 @@ const navigate = useNavigate();
   };
 
   const adminLogin = (data) => {
-    console.log(data);
     return request({
-      url: "/v1/users/sign-in/admin",
+      url: "/v1/users/sign-in/organizer",
       method: "POST",
       data: data,
       successMsg: "You have been logged in successfully",
@@ -35,8 +33,8 @@ const navigate = useNavigate();
             if (res.success) {
               console.log("Navigate");
               localStorage.setItem("travelJWT", res.data.access_token);
-              localStorage.setItem("userId", res.data.user._id);
-              navigate("/admin");
+              localStorage.setItem("organizerId", res.data.user._id);
+              navigate(`/admin/${res.data.user._id}`);
             }
           },
       onError: (err) => console.log(err),
@@ -50,8 +48,8 @@ const navigate = useNavigate();
             if (res.success) {
               console.log("Navigate");
               localStorage.setItem("travelJWT", res.data.access_token);
-              localStorage.setItem("userId", res.data.userBody._id);
-              navigate("/admin");
+              localStorage.setItem("organizerId", res.data.userBody._id);
+              navigate(`/admin/${res.data.userBody._id}`);
             }
           },
       onError: (err) => console.log(err),
