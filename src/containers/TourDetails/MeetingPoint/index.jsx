@@ -18,7 +18,11 @@ const MeetingPoint = ({ data }) => {
         </div>
 
         <CustomMap
-          coordinates={{ longitude: data?.data?.latitude, latitude: data?.data?.longitude }}
+          draggable={false}
+          coordinates={{
+            longitude: data?.data?.latitude,
+            latitude: data?.data?.longitude,
+          }}
         />
       </div>
 

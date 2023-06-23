@@ -104,7 +104,6 @@ export const useTour = () => {
 
   //! 6- Create Tour Comment
   const mutateTourComment = ({ id: tourId, ...data }) => {
-    console.log("Osama", data);
     return request({
       url: `/v1/comments/${tourId}`,
       method: "POST",
@@ -117,14 +116,13 @@ export const useTour = () => {
     const queryClient = useQueryClient();
     return useMutation(mutateTourComment, {
       onSuccess: (res) => {
-        console.log(res);
         queryClient.invalidateQueries("tour-comments");
       },
       onError: (err) => console.log(err),
     });
   };
 
-  //! Get Tour Comments
+  //! 7- Get Tour Comments
 
   const fetchTourComments = (tourId) => {
     return request({ url: `/v1/comments/tour/${tourId}` });
@@ -132,6 +130,48 @@ export const useTour = () => {
 
   const getTourComments = (tourId) => {
     return useQuery(["tour-comments", tourId], () => fetchTourComments(tourId));
+  };
+
+  //! 8- Update Tour Comment
+
+  const updateTourComment = ({ commentId, ...data }) => {
+    return request({
+      url: `/v1/comments/${commentId}`,
+      method: "PUT",
+      data: data,
+      successMsg: "Comment updated Successfully",
+    });
+  };
+
+  const updateTourCommentMutation = (setOpenModal) => {
+    const queryClient = useQueryClient();
+    return useMutation(updateTourComment, {
+      onSuccess: (res) => {
+        setOpenModal(false);
+        queryClient.invalidateQueries("tour-comments");
+      },
+      onError: (err) => {
+        console.log(err);
+      },
+    });
+  };
+
+  //! 9- Delete Tour Comment
+  const deleteTourComment = (commentId) => {
+    return request({ url: `/v1/comments/${commentId}`, method: "DELETE" });
+  };
+
+  const deleteTourCommentMutation = (setOpenDeleteModal) => {
+    const queryClient = useQueryClient();
+    return useMutation(deleteTourComment, {
+      onSuccess: (res) => {
+        setOpenDeleteModal(false);
+        queryClient.invalidateQueries("tour-comments");
+      },
+      onError: (err) => {
+        console.log(err);
+      },
+    });
   };
 
   return {
@@ -143,5 +183,7 @@ export const useTour = () => {
     getTourDetails,
     createTourComment,
     getTourComments,
+    updateTourCommentMutation,
+    deleteTourCommentMutation,
   };
 };
