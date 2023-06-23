@@ -1,33 +1,37 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import { useState } from "react";
-import Navbar from "../../components/shared/Navbar/index";
-import Footer from "../../components/shared/Footer/index";
+// import { useState } from "react";
 import TourCardWide from "../../components/shared/TourWideCard/index";
 import CheckDestenations from "../../containers/EachGovernorate/CheckDestenations";
 import CustomButton from "../../components/shared/CustomButton/index";
 import Bin from "../../assets/images/Cart/Bin.svg";
 import Check from "../../assets/images/Cart/Check.svg";
+import { useQuery } from "react-query";
+import { getCart } from "../../services/Cart";
 
+const tours=[{}]
 const Cart = () => {
-  const [items, setItems] = useState(3);
+  // const [items, setItems] = useState(3);
+  const { data, isLoading, isSucess } = useQuery("cart", getCart);
+  // console.log({ Data: data });
   const clear = () => {
-    setItems(0);
+    // setItems(0);
+    console.log("cleared cart");
   };
-  const tourCards = Array.from({ length: items }, (_, index) => (
-    <TourCardWide key={index} />
-  ));
+  // const tourCards = Array.from({ length: items }, (_, index) => (
+  //   <TourCardWide key={index} data={items} />
+  // ));
   return (
     <>
-      {items !== 0 ? (
-        <div className="md:container md:mx-auto">
+      {data ? (
+        <div className="md:container md:mx-auto mt-32">
           <div className="flex lg:flex-row 2xs:flex-col lg:mx-0 2xs:mx-10 my-10 lg:items-start justify-center xl:gap-40 md:gap-30 2xs:gap-12 2xs:items-center">
             <div className="flex flex-col max-w-[1110px]">
               <div className="bg-white flex flex-row w-full h-28 border border-gray-200 items-center p-7 rounded-2xl justify-between mb-8">
                 <p className="font-bold lg:text-3xl md:text-xl 2xs:text-lg lg:block 2xs:flex justify-center items-center gap-1">
                   My Cart
                   <span className="font-normal lg:text-2xl md:text-lg 2xs:text-base text-gray-700">
-                    ({items} tours)
+                    {/* ({items} tours) */}
                   </span>
                 </p>
                 <div
@@ -39,7 +43,9 @@ const Cart = () => {
                 </div>
               </div>
               <div className="flex flex-col gap-9 md:mx-0 2xs:mx-2">
-                {tourCards}
+                {data?.data?.tours?.map((item) => (
+                  <TourCardWide key={item._id} data={item} />
+                ))}
               </div>
             </div>
             <div className="border-2 px-4 max-w-[405px] w-full h-full flex flex-col gap-2 justify-center md:p-6 rounded-2xl pb-6 mb-4">
@@ -66,7 +72,11 @@ const Cart = () => {
                 <p className="text-[#A4A0A0]">Free cancellation</p>
               </div>
               <div className="mt-8 text-center">
-                <CustomButton type="secondary" value="Check out" width='w-full'/>
+                <CustomButton
+                  type="secondary"
+                  value="Check out"
+                  width="w-full"
+                />
               </div>
             </div>
           </div>

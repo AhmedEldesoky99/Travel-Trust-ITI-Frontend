@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Rate } from "antd";
 import {
@@ -15,30 +15,41 @@ import ShipIcon from "../../../assets/images/TourCard/ship.svg";
 import SkateIcon from "../../../assets/images/TourCard/skate.svg";
 import CastleIcon from "../../../assets/images/TourCard/castle.svg";
 
+import { toggleFavoriteMutation } from "../../../services/favorites";
 
-const TourCard = ({
-data
-}) => {
-  // const TourCard = (props) => {
+const place_holder_avatar =
+  "https://frostbrowntodd.com/app/uploads/2021/10/FBT_NoPhoto-1.jpg";
+const place_holder_tour =
+  "https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png";
+
+const TourCard = ({ data, length }) => {
   // -------- States --------
   const [checked, setChecked] = useState(false);
 
   // -------- Handlers --------
+
+  const { mutate } = toggleFavoriteMutation();
+
   const toggleFavorites = () => {
+    length = null;
     setChecked(!checked);
+    mutate({ tourId: data?._id, checked });
   };
+
+  useEffect(() => {
+    length ? setChecked(true) : setChecked(false);
+  }, [length]);
 
   return (
     <div className="card card-compact shadow-xl group">
       <figure className="relative overflow-visible">
         <img
           className="w-full object-cover h-[14.7rem] rounded-t-[14px]"
-          src={data?.highlight_photos[0]?.url}
+          src={data?.highlight_photos[0]?.url ?? place_holder_tour}
           alt="Tour Image"
           // Placeholder-Image
           onError={(e) => {
-            e.target.src =
-              "https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png";
+            e.target.src = place_holder_tour;
           }}
         />
 
@@ -65,12 +76,11 @@ data
         <div className="absolute bottom-0 left-[5%] flex items-center translate-y-[50%]">
           <a href="">
             <img
-              src={data?.organizer.photo[0]?.url}
+              src={data?.organizer.photo[0]?.url ?? place_holder_avatar}
               alt="Tour Creator"
               // Placeholder-Image
               onError={(e) => {
-                e.target.src =
-                  "https://frostbrowntodd.com/app/uploads/2021/10/FBT_NoPhoto-1.jpg";
+                e.target.src = place_holder_avatar;
               }}
               className="2xs:w-16 xs:w-20 sm:w-20 md:w-16 md:h-16 bg-cover bg-center object-cover  lg: xl: 2xl: rounded-full relative"
             />
@@ -122,12 +132,13 @@ data
             <div className="flex items-center justify-end space-x-2">
               <ClockCircleOutlined className="text-base" />
               <span className="text-base text-light-gray h-5">
-                {data?.duration === 1 ? "a" : data?.duration} day{data?.duration === 1 ? "" : "s"}
-
+                {data?.duration === 1 ? "a" : data?.duration} day
+                {data?.duration === 1 ? "" : "s"}
               </span>
             </div>
           </div>
-          <Link to={`tour-details/${data?.id}`}>
+
+          <Link to={`/tour-details/${data?._id}`}>
             <CustomButton
               // onClick={() => {}}
               // isLoading

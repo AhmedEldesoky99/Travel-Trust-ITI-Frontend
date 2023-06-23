@@ -38,8 +38,6 @@ const Navbar = ({ pathBackgroundIncluded }) => {
   // const { userId } = useContext(UserIdContext);
   // console.log(userId);
 
-
-
   const userId = localStorage.getItem("userId");
   const { data } = getUserData(userId);
   // console.log(data);
@@ -50,12 +48,10 @@ const Navbar = ({ pathBackgroundIncluded }) => {
     localStorage.removeItem("userId");
   };
 
-
-  
   return (
     <>
       <nav
-        className={`navbar justify-between fixed top-0 z-50 text-white shadow-md transition-all duration-500  ${
+        className={`navbar justify-between fixed top-0 z-50 text-white transition-all duration-500  ${
           pathBackgroundIncluded
             ? "bg-[#0B0B0B]"
             : isScrolled
@@ -224,7 +220,10 @@ const Navbar = ({ pathBackgroundIncluded }) => {
                         >
                           <div className="avatar">
                             <div className="px-4 rounded-full">
-                              <img src={data.data.photo[0]} alt="User Image" />
+                              <img
+                                src={data?.data?.photo[0].url}
+                                alt="User Image"
+                              />
                             </div>
                           </div>
                         </label>

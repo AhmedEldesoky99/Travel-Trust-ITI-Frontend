@@ -11,10 +11,14 @@ const TourDetails = () => {
   const { getTourDetails } = useTour();
   const { data, isLoading, isSuccess, isError } = getTourDetails(id);
 
+
+  setTimeout(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, 0);
   return (
     <>
-      <Header data={data} isLoading={isLoading} />
-      <TourTabs data={data} isLoading={isLoading} />
+      <Header data={data}   />
+      <TourTabs data={data} />
     </>
   );
 };
