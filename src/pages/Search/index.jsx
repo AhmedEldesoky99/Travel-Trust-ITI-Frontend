@@ -10,43 +10,79 @@ import "./app.css";
 import { useQuery } from "react-query";
 import { getSearchResults } from "../../services/Search";
 import { getAllCategories } from "../../services/Home";
+import { useEffect } from "react";
+import { getStats } from "../../services/TourSats";
 
 const { Panel } = Collapse;
 
 const Search = () => {
-
-  const Options = [
-    "Cruise",
-    "Hiking",
-    "Food",
-    "Art",
-    "Religion",
-    "Diving",
-    "Medical",
-    "History",
-  ];
-  const { data } = useQuery("categories", getAllCategories);
-
-  const onChange = (checkedValues) => {
-    console.log("checked = ", checkedValues);
+  const [category, setCategory] = useState([]);
+  const [city, setCity] = useState([]);
+  const [rate, setRate] = useState([]);
+  const onChangeCategories = (checkedValues) => {
+    if (category.includes(checkedValues)) {
+      setCategory(category.filter((value) => value !== checkedValues));
+    } else {
+      setCategory([...category, checkedValues]);
+    }
   };
+  const onChangeRatings = (checkedValues) => {
+    const option = checkedValues.options;
+    if (rate.includes(option)) {
+      setRate(rate.filter((value) => value !== option));
+    } else {
+      setRate([...rate, option]);
+    }
+  };
+
+  const onChangeCities = (value) => {
+      setCity(value);
+  };
+
+
   const [items] = useState(3);
   const [page, setPage] = useState(1);
-  // const { isLoading, toursData, isSuccess } = useQuery(
-  //   ["SearchResults", ],
-  //   () => getSearchResults()
-  // );
+  const [min, setMin] = useState(0);
+  const [max, setMax] = useState(1);
+  const { data } = useQuery("categories", getAllCategories);
+  const { data: statsData } = useQuery("stats", getStats);
   const tourCards = Array.from({ length: items }, (_, index) => (
     <TourWideCard key={index} />
-  ));
+    ));
+    const onChangeSlider = (value) => {
+      if (value[0] < value[1]) {
+        setMin(value[0]);
+      setMax(value[1]);
+    }
+  };
+
+  const test ={
+    rate:[0,1,2,3,4,5],
+    category:[1,2,3,4,5,6],
+    city: [1,2,3,4,5,6,7],
+    minPrice:10,
+    maxPrice:1000
+}
+
+  const { isLoading, data:toursData, isSuccess } = useQuery(
+    ["SearchResults",test],()=>getSearchResults(test)
+  );
+
+  useEffect(() => {
+    console.log("categories",category);
+    console.log("cities",city);
+    console.log("rate",rate);
+    console.log(min,max);
+  }, [category,min,max,city,rate]);
+
   return (
     <>
       <div className="my-16">
         <div className="flex flex-col">
-          <div className="flex flex-col flex-wrap w-screen shadow-lg ">
-            <div className="w-screen container mx-auto mb-8">
+          <div className="flex flex-col flex-wrap shadow-lg ">
+            <div className=" container mx-auto mb-8">
               <div className="max-w-[1124px] flex lg:justify-normal 2xs:justify-center">
-                <CustomSearch />
+                <CustomSearch data={statsData} onChange={onChangeCities}/>
               </div>
               <div></div>
             </div>
@@ -57,20 +93,32 @@ const Search = () => {
                 {/* filter component */}
                 <div className="shadow-lg px-5 py-6 rounded-xl">
                   <h1 className="text-2xl">Price Range</h1>
-                  <p className="text-lg">EGP 1 200 - EGP 10 000</p>
-                  <p className="text-sm"> Average Price 5 600</p>
+                  <p className="text-lg">{`EGP ${statsData?.data?.minPrice} - EGP ${statsData?.data?.maxPrice}`}</p>
+                  <p className="text-sm">{` Average Price ${
+                    (statsData?.data?.minPrice + statsData?.data?.maxPrice) / 2
+                  }`}</p>
                   <div className="mt-[18px] mb-[15px]">
-                    <Slider range max={1000} defaultValue={[0, 400]} />
+                    <Slider
+                      min={0}
+                      max={statsData?.data?.maxPrice}
+                      onChange={onChangeSlider}
+                      range={true}
+                      defaultValue={[0, statsData?.data?.maxPrice]}
+                      Value={[min, max===1?statsData?.data?.maxPrice:max]}
+                    />
                   </div>
                   <div className="flex gap-1 items-center justify-center">
                     <input
                       type="text"
                       className="input input-bordered max-h-[32px] max-w-[120px]"
+                      value={min}
+                      disabled
                     />
                     <p>-</p>
                     <input
                       type="text"
                       className="input input-bordered max-h-[32px] max-w-[120px]"
+                      value={max}
                     />
                   </div>
                   <div className="my-6">
@@ -82,7 +130,11 @@ const Search = () => {
                     className="border-none poop"
                   >
                     <Panel header="Activity" key="1" className="peep">
-                      <FilterCheckbox data={data} onChange={onChange} />
+                      <FilterCheckbox
+                        data={data}
+                        stat={statsData}
+                        onChange={onChangeCategories}
+                      />
                     </Panel>
                   </Collapse>
                   <hr />
@@ -95,7 +147,9 @@ const Search = () => {
                       <p className="text-base text-gray-600">
                         Includes stars and other ratings
                       </p>
-                      <RatingCheckbox />
+                      <RatingCheckbox stats={statsData?.data?.rates}
+                        onChange={onChangeRatings}
+                      />
                     </Panel>
                   </Collapse>
                 </div>
@@ -105,16 +159,15 @@ const Search = () => {
                 {/* wide cards */}
                 {tourCards}
                 {/* {data?.data.length >= 12 ? ( */}
-                  <Pagination
-                    className="my-custom-pagination text-center mb-10"
-                    current={page}
-                    onChange={(page) => {
-                      setPage(page);
-                      console.log(page);
-                    }}
-                    pageSize={12}
-                    total={10}
-                  />
+                <Pagination
+                  className="my-custom-pagination text-center mb-10"
+                  current={page}
+                  onChange={(page) => {
+                    setPage(page);
+                  }}
+                  pageSize={12}
+                  total={10}
+                />
                 {/* ) : (
                   ""
                 )} */}

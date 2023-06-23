@@ -1,16 +1,30 @@
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable react/prop-types */
+import { useQuery } from "react-query";
 import "../CustomSearchSelection/style.css";
 import { Select, Space } from "antd";
+import { getSearchOptions } from "../../services/SearchOptions";
 
 const { Option } = Select;
 
-const CustomSearch = (props) => {
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
+const CustomSearch = ({ customWidth, onChange, onSubmit, submitData }) => {
+  const { data } = useQuery("searchOptions", getSearchOptions);
+
+  const handleOnChange = (value) => {
+    onChange([...value]);
   };
+
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    onSubmit(submitData);
+  }
 
   return (
     <>
-      <div className={`w-full ${props.customWidth ? props.customWidth : 'md:w-[61.2%]'} mt-8`}>
+      <div
+        className={`w-full ${customWidth ? customWidth : "md:w-[61.2%]"} mt-8`}
+      >
+        <form onSubmit={handleSubmit}>
         <div className="relative flex flex-col justify-between">
           <div>
             <Select
@@ -18,21 +32,18 @@ const CustomSearch = (props) => {
               mode="multiple"
               style={{ width: "100%" }}
               placeholder="where are you travelling?"
-              onChange={handleChange}
+              onChange={handleOnChange}
               optionLabelProp="label"
             >
-              <Option value="china" label="China">
-                <Space>Dahab</Space>
-              </Option>
-              <Option value="usa" label="USA">
-                <Space>Cairo</Space>
-              </Option>
-              <Option value="japan" label="Japan">
-                <Space>Fayoum</Space>
-              </Option>
-              <Option value="korea" label="Korea">
-                <Space>Alex</Space>
-              </Option>
+              {data?.data?.map((option) => (
+                <Option
+                  value={option?._id}
+                  label={option?.title}
+                  key={option?._id}
+                >
+                  <Space>{option?.title}</Space>
+                </Option>
+              ))}
             </Select>
           </div>
           <div>
@@ -44,6 +55,7 @@ const CustomSearch = (props) => {
             </button>
           </div>
         </div>
+        </form>
       </div>
     </>
   );
