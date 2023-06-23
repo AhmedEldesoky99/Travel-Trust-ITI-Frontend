@@ -8,9 +8,9 @@ const Faq = () => {
   const test = `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita ea nostrum architecto ratione corrupti esse neque tempore optio, minima aspernatur explicabo deserunt inventore! Praesentium, asperiores doloribus laboriosam fugit quod consectetur!`;
   return (
     <>
-      <div className="relative h-[80vh] flex flex-col items-center mt-14 mb-36">
+      <div className="relative flex flex-col items-center mt-14 md:mb-40 2xs:mb-96">
         <div className="absolute bg-[#009EB7] z-0 max-w-[1680px] max-h-[400px] h-[100vh] w-[100vw] mx-auto rounded-lg "></div>
-        <div className="absolute z-10 max-w-[870px] max-h-[730px] top-[40%] mx-auto bg-white rounded-2xl shadow-lg flex flex-col items-center px-5 w-[100vw]">
+        <div className="mt-40 z-10 max-w-[870px] mx-auto bg-white rounded-2xl shadow-lg flex flex-col items-center px-5 w-[100vw] ">
           <h1 className="2xl:text-5xl lg:text-4xl 2xs:text-3xl mb-14 mt-14">
             Frequently<span className="font-bold"> asked questions</span>
           </h1>

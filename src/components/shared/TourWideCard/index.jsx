@@ -12,7 +12,9 @@ import {
 import CardImage from "../../../assets/images/TourCard/tour1.png";
 import Icon from "../../../utils/icons";
 
-const TourWideCard = ({showAction=true, data}) => {
+const TourWideCard = ({showAction=true, data,   onUpdateTourIncrement,
+  onUpdateTourDecrement,
+  onDeleteTour}) => {
   
   return (
     <div className="card lg:card-side bg-base-100    lg:col-span-8 shadow-xl">

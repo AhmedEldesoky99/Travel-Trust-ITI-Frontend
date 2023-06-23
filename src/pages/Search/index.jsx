@@ -17,7 +17,6 @@ const { Panel } = Collapse;
 
 const Search = () => {
   const [category, setCategory] = useState([]);
-  const [city, setCity] = useState([]);
   const [rate, setRate] = useState([]);
   const onChangeCategories = (checkedValues) => {
     if (category.includes(checkedValues)) {
@@ -35,9 +34,7 @@ const Search = () => {
     }
   };
 
-  const onChangeCities = (value) => {
-    setCity(value);
-  };
+
 
   const [page, setPage] = useState(1);
   const [min, setMin] = useState(0);
@@ -60,12 +57,13 @@ const Search = () => {
     <TourWideCard showAction={false} key={index} data={item} />
   ));
 
+  
+
   useEffect(() => {
     if (statsData?.data.minPrice) {
-      setMin(statsData?.data.minPrice);
       setMax(statsData?.data.maxPrice);
     }
-  }, [statsSuccess]);
+  }, []);
   return (
     <>
       <div className="my-16">
@@ -75,12 +73,10 @@ const Search = () => {
               <div className="max-w-[1124px] flex lg:justify-normal 2xs:justify-center">
                 <CustomSearch
                   data={statsData}
-                  onChange={onChangeCities}
                   min={min}
                   max={max}
                   rate={rate}
                   category={category}
-                  city={city}
                   setResult={setResult}
                 />
               </div>
@@ -120,6 +116,8 @@ const Search = () => {
                       type="text"
                       className="input input-bordered max-h-[32px] max-w-[120px]"
                       value={max}
+                      disabled
+
                     />
                   </div>
                   <div className="my-6">
