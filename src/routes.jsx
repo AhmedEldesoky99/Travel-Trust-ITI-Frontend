@@ -41,6 +41,7 @@ import { AddTourFormProvider } from "./context/AddTourFormContext";
 import Layout from "./layout";
 
 import { UserIdProvider } from "./context/UserIdContext";
+import ErrorPage from "./pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,7 @@ export const router = createBrowserRouter([
       { path: "join", element: <JoinUs /> },
       { path: "login", element: <Login /> },
       { path: "not-found", element: <NotFound/> },
+      { path: "error", element: <ErrorPage/> },
 
       {
         path: "signup",
