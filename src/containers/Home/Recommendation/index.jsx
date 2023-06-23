@@ -33,7 +33,7 @@ const Recommended = () => {
                   if (index < 4) {
                     return (
                       <Link to={`/tour-details/${data?._id}`}>
-                        <TourCard key={item._id} data={item} />;
+                        <TourCard key={item._id} data={item} />
                       </Link>
                     );
                   }

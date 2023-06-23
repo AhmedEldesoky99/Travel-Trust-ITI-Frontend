@@ -1,6 +1,10 @@
 import Icon from "../../utils/icons";
 
 const TestimonialCard = (data) => {
+
+  const place_holder_avatar =
+  "https://frostbrowntodd.com/app/uploads/2021/10/FBT_NoPhoto-1.jpg";
+
   const options = {
     day: "numeric",
     month: "short",
@@ -25,7 +29,7 @@ const TestimonialCard = (data) => {
               <div>
                 <a href="">
                   <img
-                    src={data.data?.user?.photo[0]?.url}
+                    src={data.data?.user?.photo[0]?.url ?? place_holder_avatar}
                     alt="Traveller"
                     className="w-16 h-16 bg-cover bg-center object-cover rounded-full"
                   />

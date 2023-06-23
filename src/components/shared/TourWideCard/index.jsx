@@ -48,7 +48,9 @@ const TourWideCard = ({
   const deleteTour = useMutation({
     mutationFn: deleteFromCart,
     onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: ["cart"] });
       onDeleteTour(id);
+
       // await queryClient.cancelQueries({ queryKey: ["cart"] });
       // const prevValue = queryClient.getQueryData(["cart"]);
       // console.log({ prevValue });
@@ -61,12 +63,6 @@ const TourWideCard = ({
       //   prevValue,
       // };
     },
-    // If the mutation fails,
-    // use the context returned from onMutate to roll back
-    // onError: (err, newValue, context) => {
-    //   queryClient.setQueryData(["cart"], context.prevValue);
-    // },
-    // // Always refetch after error or success:
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["cart"] });
     },

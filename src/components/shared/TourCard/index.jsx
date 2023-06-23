@@ -131,8 +131,6 @@ const TourCard = ({ data }) => {
             </div>
           </div>
 
-      
-
           <Link to={`/tour-details/${data?._id}`}>
             <CustomButton
               // onClick={() => {}}
