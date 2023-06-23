@@ -4,9 +4,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Rate } from "antd";
 
+import Icon from "../../../utils/icons";
+
 import Anonymous from "../../../assets/images/UserProfile/userprofile.png";
 
-const ReviewCard = ({ username, content, userImg, rating, userId }) => {
+const ReviewCard = ({
+  username,
+  content,
+  userImg,
+  rating,
+  userId,
+  showModal,
+  commentId,
+}) => {
   return (
     <>
       <div className="2xs:col-span-1 lg:col-span-1 ">
@@ -36,8 +46,23 @@ const ReviewCard = ({ username, content, userImg, rating, userId }) => {
             </Link>
             <Rate disabled defaultValue={0} value={rating} />
           </div>
-          <div>
-            <p className="2xs:text-sm sm:text-base 2xl:text-xl">{content}</p>
+          <div className="flex justify-between items-center">
+            <div>
+              <p className="2xs:text-sm sm:text-base 2xl:text-xl">{content}</p>
+            </div>
+
+            {userId === parseInt(localStorage.getItem("userId")) ? (
+              <div className="flex justify-between items-center gap-3">
+                <button
+                  onClick={() => showModal("edit", content, rating, commentId)}
+                >
+                  <Icon name="edit" />
+                </button>
+                <button onClick={() => showModal("delete", "", 1, commentId)}>
+                  <Icon name="delete" />
+                </button>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>

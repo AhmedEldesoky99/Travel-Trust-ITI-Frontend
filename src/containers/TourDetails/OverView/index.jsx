@@ -175,6 +175,7 @@ const OverView = ({ data }) => {
             </div>
           </div>
           <div>
+            <p className="font-header 2xs:text-sm 2xl:text-base">Created By</p>
             <h5 className="2xs:text-base 2xl:text-xl border-solid border-b-[1px] border-black">
               <Link
                 to={`/profile/admin/${data?.data?.organizer?._id}`}
