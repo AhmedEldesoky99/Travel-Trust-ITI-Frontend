@@ -6,8 +6,10 @@ import Logo from "../../assets/images/Logo/Tlogo.svg";
 const JoinUs = () => {
   return (
     <div className="bg-join-us h-[100vh] bg-cover">
-      <div className="absolute bg-cover 2xl:h-[7rem] 2xl:w-[8.5rem] lg:h-[5rem] lg:w-[6.1rem] md:h-[4rem] md:w-[4.9rem] 2xs:h-[3rem] 2xs:w-[3.7rem] top-10 left-5">
+      <div className="absolute bg-cover 2xl:h-[7rem] 2xl:w-[8.5rem] lg:h-[5rem] lg:w-[6.1rem] md:h-[4rem] md:w-[4.9rem] 2xs:h-[3rem] 2xs:w-[3.7rem] top-10 left-5 cursor-pointer">
+        <Link to='/'>
         <img src={Logo} />
+        </Link>
       </div>
       <div className="bg-black h-[100vh] bg-opacity-60 flex flex-col justify-center items-center gap-8">
         <h1 className="text-white 2xl:text-8xl xl:text-7xl lg:text-5xl md:text-4xl 2xs:text-3xl font-header mb-5">

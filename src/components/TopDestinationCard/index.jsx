@@ -1,13 +1,14 @@
+import { Link } from "react-router-dom";
+
 const TopDestinationCard = (data) => {
- 
   return (
     <>
-      <div
+      <Link
+        to={`/each-governorate/${data?.data?._id}`}
         className="group relative overflow-hidden bg-cover bg-center rounded-md w-full xl:w-1/2  hover:w-full  duration-500 p-4 transition-all h-96 cursor-pointer"
         style={{
           backgroundImage: `linear-gradient(rgba(0.4, 0.4, 0.4, 0.4), rgba(0.4,0.4,0.4,0.4)),url(${data.data?.home_image})`,
         }}
-      
       >
         <div className="absolute inset-0 group-hover:bg-black/30 duration-500 transition-all ease-in-out"></div>
         <div className="z-10 flex w-full h-full translate-y-8 flex-col items-center justify-center space-y-0 transition-transform group-hover:-translate-y-32 duration-300  ease-in-out">
@@ -22,9 +23,8 @@ const TopDestinationCard = (data) => {
                 : data.data?.tours_number + " tours"
               : "no tours"}
           </h2>
-
         </div>
-      </div>
+      </Link>
     </>
   );
 };

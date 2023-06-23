@@ -7,27 +7,98 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 
-import CardImage from "../../../assets/images/TourCard/tour1.png";
 import Icon from "../../../utils/icons";
+import { deleteFromCart } from "../../../services/Cart";
+import { useMutation, useQueryClient } from "react-query";
+import { Link } from "react-router-dom";
 
-const TourWideCard = () => {
+const TourWideCard = ({
+  data,
+  onUpdateTourIncrement,
+  onUpdateTourDecrement,
+  onDeleteTour,
+}) => {
+  const {
+    city,
+    cityTitle,
+    title,
+    duration,
+    startDate,
+    pricePerPerson,
+    personNum,
+    id,
+    money,
+    personsCount,
+  } = data;
+
+  const queryClient = useQueryClient();
+
+  const personsMax = personsCount === personNum;
+
+  const handleIncrement = () => {
+    if (!personsMax) {
+      onUpdateTourIncrement(id);
+    }
+  };
+  const handleDecrement = () => {
+    if (personsCount <= personNum && personsCount > 1) {
+      onUpdateTourDecrement(id);
+    }
+  };
+  const deleteTour = useMutation({
+    mutationFn: deleteFromCart,
+    onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: ["cart"] });
+      onDeleteTour(id);
+
+      // await queryClient.cancelQueries({ queryKey: ["cart"] });
+      // const prevValue = queryClient.getQueryData(["cart"]);
+      // console.log({ prevValue });
+      // queryClient.setQueryData(["cart"], () => {
+      //   data: {
+      //   }
+      // });
+      // setCardsDetails([]);
+      // return {
+      //   prevValue,
+      // };
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
+    },
+  });
+
+  const handleDelete = () => {
+    deleteTour.mutate(id);
+  };
+
+  const place_holder_tour =
+    "https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png";
+
   return (
-    <div className="card lg:card-side bg-base-100    lg:col-span-8 shadow-xl">
+    <div className="card lg:card-side bg-base-100  lg:col-span-8 shadow-xl">
       <figure className="2xs:w-full 2xs:max-h-80 lg:w-[40%]">
-        <img className="w-full h-full" src=
-        {CardImage} 
-        // {data?.highlight_photos[0]?.url} 
-        alt="Tour Card" />
+        <Link to={`/tour-details/${id}`} className="cursor-pointer">
+          <img
+            className="w-full h-full"
+            src={city ?? place_holder_tour}
+            alt="Tour Card"
+            onError={(e) => {
+              e.target.src = place_holder_tour;
+            }}
+          />
+        </Link>
       </figure>
-
       <div className="card-body justify-between gap-10">
         <div>
           <div className="flex justify-between">
             <h2 className="card-title 2xs:text-lg sm:text-xl xl:text-2xl 2xl:text-3xl">
-              Giza in 6 days explore egypt{" "}
-              {/* {data?.title} */}
+              {title}
             </h2>
-            <button className="2xs:hidden xs:inline-block">
+            <button
+              className="2xs:hidden xs:inline-block"
+              onClick={handleDelete}
+            >
               <div className="shadow-md p-3 rounded-lg">
                 <Icon name="delete" />
               </div>
@@ -38,16 +109,15 @@ const TourWideCard = () => {
             <div className="flex justify-center items-center space-x-2">
               <EnvironmentOutlined className="2xs:text-base 2xl:text-lg" />
               <span className="2xs:text-base 2xl:text-lg text-light-gray h-5">
-                Alexandria
-                {/* {data?.city.title} */}
+                {cityTitle}
               </span>
             </div>
 
             <div className="flex items-center space-x-2">
               <ClockCircleOutlined className="text-base" />
               <span className="text-base text-light-gray h-5">
-                8 days
-                {/* {data?.duration}days */}
+                {duration} day
+                {duration > 1 ? "s" : ""}
               </span>
             </div>
           </div>
@@ -56,7 +126,7 @@ const TourWideCard = () => {
             <div className="flex justify-center items-center space-x-2">
               <CalendarOutlined className="2xs:text-base 2xl:text-lg" />
               <span className="2xs:text-base 2xl:text-lg text-light-gray h-5">
-                Thursday , February 20,2023 | 10:00 AM
+                {startDate}
               </span>
             </div>
           </div>
@@ -65,24 +135,26 @@ const TourWideCard = () => {
         <div className="card-actions justify-between items-center">
           <div className="flex justify-center items-center space-x-1">
             <span className="2xs:text-lg md:text-xl xl:text-2xl font-bold">
-              $2,900
-              {/* ${data?.price_per_person} */}
+              ${pricePerPerson}
             </span>{" "}
             <span className="">/</span>
             <UserOutlined className="2xs:text-xl md:text-lg" />
           </div>
 
           <div className="flex justify-between items-center min-w-[9rem]">
-            <button>
+            <button onClick={handleDecrement}>
               <div className="shadow-md p-3 rounded-lg">
                 <Icon name="userDelete" />
               </div>
             </button>
-
-            <span className="text-lg">2</span>
-
-            <button>
-              <div className="shadow-md p-3 rounded-lg">
+            {/* <p> booked for: money / pricePerPerson} </p> */}
+            <span className="text-lg 2xl:text-2xl px-3">{personsCount}</span>
+            <button disabled={personsMax} onClick={handleIncrement}>
+              <div
+                className={`shadow-md p-3 rounded-lg ${
+                  personsMax ? "bg-gray-200" : null
+                }`}
+              >
                 <Icon name="userAdd" />
               </div>
             </button>
@@ -90,18 +162,12 @@ const TourWideCard = () => {
 
           <div>
             <p className="font-medium">
-              Total:{" "}
+              Total:
               <span className="2xs:text-lg md:text-xl xl:text-2xl  2xl:text-3xl font-bold">
-                EGP 10,965
+                ${money}
               </span>
             </p>
           </div>
-
-          <button className="2xs:inline-block xs:hidden mt-2">
-            <div className="shadow-md p-3 rounded-lg">
-              <Icon name="delete" />
-            </div>
-          </button>
         </div>
       </div>
     </div>

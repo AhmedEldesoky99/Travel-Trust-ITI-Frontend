@@ -132,8 +132,8 @@ const TourCard = ({ data, length }) => {
             <div className="flex items-center justify-end space-x-2">
               <ClockCircleOutlined className="text-base" />
               <span className="text-base text-light-gray h-5">
-                {data?.duration === 1 ? "a" : data?.duration} day
-                {data?.duration === 1 ? "" : "s"}
+                {data?.duration === 1 ? "a" : data?.duration} day{data?.duration === 1 ? "" : "s"}
+
               </span>
             </div>
           </div>
