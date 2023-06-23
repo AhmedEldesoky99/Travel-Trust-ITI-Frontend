@@ -6,7 +6,7 @@ export const getSearchResults = (data) => {
 
 
   return request({
-    url: `/v1/tours?limit=1`,
+    url: `/v1/tours/search`,
     method: "POST",
     data:data
   });

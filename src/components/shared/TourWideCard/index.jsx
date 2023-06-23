@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React from "react";
 
 import {
@@ -10,7 +12,8 @@ import {
 import CardImage from "../../../assets/images/TourCard/tour1.png";
 import Icon from "../../../utils/icons";
 
-const TourWideCard = () => {
+const TourWideCard = ({showAction=true, data}) => {
+  
   return (
     <div className="card lg:card-side bg-base-100    lg:col-span-8 shadow-xl">
       <figure className="2xs:w-full 2xs:max-h-80 lg:w-[40%]">
@@ -27,11 +30,11 @@ const TourWideCard = () => {
               Giza in 6 days explore egypt{" "}
               {/* {data?.title} */}
             </h2>
-            <button className="2xs:hidden xs:inline-block">
+            {showAction&& <button className="2xs:hidden xs:inline-block">
               <div className="shadow-md p-3 rounded-lg">
                 <Icon name="delete" />
               </div>
-            </button>
+            </button>}
           </div>
 
           <div className="flex items-center justify-between w-full my-2  lg:max-w-[85%] xl:max-w-[55%] ">
@@ -72,7 +75,7 @@ const TourWideCard = () => {
             <UserOutlined className="2xs:text-xl md:text-lg" />
           </div>
 
-          <div className="flex justify-between items-center min-w-[9rem]">
+{  showAction&&        <div className="flex justify-between items-center min-w-[9rem]">
             <button>
               <div className="shadow-md p-3 rounded-lg">
                 <Icon name="userDelete" />
@@ -86,7 +89,7 @@ const TourWideCard = () => {
                 <Icon name="userAdd" />
               </div>
             </button>
-          </div>
+          </div>}
 
           <div>
             <p className="font-medium">

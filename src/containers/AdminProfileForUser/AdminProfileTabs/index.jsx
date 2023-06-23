@@ -69,10 +69,10 @@ const AdminProfileTabs = () => {
           <div className="p-8 rounded-2xl shadow-lg bg-white mb-7 ">
             <div className="flex flex-col justify-center items-center">
               <div className="avatar">
-                <div className="w-24 rounded-full">
+                <div className="w-32 rounded-full">
                   <Link to="">
                     <img
-                      className="object-cover"
+                      className="object-fill"
                       src={data?.data?.user?.photo[0]?.url}
                     />
                   </Link>

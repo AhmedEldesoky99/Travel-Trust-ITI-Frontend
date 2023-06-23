@@ -9,7 +9,7 @@ const FilterCheckbox = ({ data, onChange, stat }) => {
         <Checkbox value={option.name} onChange={() => onChange(option._id)} />
         <p className='text-xl'>{option.name}</p>
       </div>
-      <span className=''>{stat?.data?.categories?.hasOwnProperty(option.name) ? stat?.data?.categories[option.name] : '0'}</span>
+      <span className=''>{stat?.hasOwnProperty(option.name) ? stat[option.name] : '0'}</span>
     </div>
   ));
   return <>{checkboxes}</>;

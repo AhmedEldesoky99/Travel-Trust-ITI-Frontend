@@ -1,23 +1,50 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-prototype-builtins */
 /* eslint-disable react/prop-types */
 import { useQuery } from "react-query";
 import "../CustomSearchSelection/style.css";
 import { Select, Space } from "antd";
 import { getSearchOptions } from "../../services/SearchOptions";
+import { getSearchResults } from "../../services/Search";
+
 
 const { Option } = Select;
 
-const CustomSearch = ({ customWidth, onChange, onSubmit, submitData }) => {
-  const { data } = useQuery("searchOptions", getSearchOptions);
 
+const CustomSearch = ({ customWidth, onChange, onSubmit, min, max, rate=[], category=[], city=[],setResult }) => {
+
+
+  const { data } = useQuery("searchOptions", getSearchOptions);
+  const handleSearch = async () => {
+    let Data = {
+      maxPrice: max,
+      minPrice: min,
+    };
+    if (rate.length > 0) {
+      Data.rate = rate;
+    }
+    if (category.length > 0) {
+      Data.category = category;
+    }
+    if (city.length > 0) {
+      Data.city = city;
+    }
+    const result = await getSearchResults(Data);
+    setResult(result)
+  };
   const handleOnChange = (value) => {
     onChange([...value]);
   };
 
   const handleSubmit = (e)=>{
     e.preventDefault();
-    onSubmit(submitData);
+    handleSearch();
   }
+  const {
+    isLoading,
+    data:toursData,
+    isSuccess,
+  } = useQuery("SearchResults", handleSearch);
 
   return (
     <>

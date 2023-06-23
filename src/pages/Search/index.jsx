@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { Collapse, Pagination, Slider } from "antd";
@@ -8,7 +9,6 @@ import CustomSearch from "../../components/CustomSearchSelection";
 
 import "./app.css";
 import { useQuery } from "react-query";
-import { getSearchResults } from "../../services/Search";
 import { getAllCategories } from "../../services/Home";
 import { useEffect } from "react";
 import { getStats } from "../../services/TourSats";
@@ -36,45 +36,36 @@ const Search = () => {
   };
 
   const onChangeCities = (value) => {
-      setCity(value);
+    setCity(value);
   };
 
-
-  const [items] = useState(3);
   const [page, setPage] = useState(1);
   const [min, setMin] = useState(0);
-  const [max, setMax] = useState(1);
+  const [max, setMax] = useState(0);
+  const [result, setResult] = useState([]);
   const { data } = useQuery("categories", getAllCategories);
-  const { data: statsData } = useQuery("stats", getStats);
-  const tourCards = Array.from({ length: items }, (_, index) => (
-    <TourWideCard key={index} />
-    ));
-    const onChangeSlider = (value) => {
-      if (value[0] < value[1]) {
-        setMin(value[0]);
+  const { data: statsData, isSuccess: statsSuccess } = useQuery(
+    "stats",
+    getStats
+  );
+
+  const onChangeSlider = (value) => {
+    if (value[0] < value[1]) {
+      setMin(value[0]);
       setMax(value[1]);
     }
   };
 
-  const test ={
-    rate:[0,1,2,3,4,5],
-    category:[1,2,3,4,5,6],
-    city: [1,2,3,4,5,6,7],
-    minPrice:10,
-    maxPrice:1000
-}
-
-  const { isLoading, data:toursData, isSuccess } = useQuery(
-    ["SearchResults",test],()=>getSearchResults(test)
-  );
+  const tourCards = result?.data?.map((item, index) => (
+    <TourWideCard showAction={false} key={index} data={item} />
+  ));
 
   useEffect(() => {
-    console.log("categories",category);
-    console.log("cities",city);
-    console.log("rate",rate);
-    console.log(min,max);
-  }, [category,min,max,city,rate]);
-
+    if (statsData?.data.minPrice) {
+      setMin(statsData?.data.minPrice);
+      setMax(statsData?.data.maxPrice);
+    }
+  }, [statsSuccess]);
   return (
     <>
       <div className="my-16">
@@ -82,7 +73,16 @@ const Search = () => {
           <div className="flex flex-col flex-wrap shadow-lg ">
             <div className=" container mx-auto mb-8">
               <div className="max-w-[1124px] flex lg:justify-normal 2xs:justify-center">
-                <CustomSearch data={statsData} onChange={onChangeCities}/>
+                <CustomSearch
+                  data={statsData}
+                  onChange={onChangeCities}
+                  min={min}
+                  max={max}
+                  rate={rate}
+                  category={category}
+                  city={city}
+                  setResult={setResult}
+                />
               </div>
               <div></div>
             </div>
@@ -103,8 +103,9 @@ const Search = () => {
                       max={statsData?.data?.maxPrice}
                       onChange={onChangeSlider}
                       range={true}
-                      defaultValue={[0, statsData?.data?.maxPrice]}
-                      Value={[min, max===1?statsData?.data?.maxPrice:max]}
+                      step={50}
+                      defaultValue={[min, max]}
+                      value={[min, max]}
                     />
                   </div>
                   <div className="flex gap-1 items-center justify-center">
@@ -132,7 +133,7 @@ const Search = () => {
                     <Panel header="Activity" key="1" className="peep">
                       <FilterCheckbox
                         data={data}
-                        stat={statsData}
+                        stat={statsData?.data?.categories}
                         onChange={onChangeCategories}
                       />
                     </Panel>
@@ -147,7 +148,8 @@ const Search = () => {
                       <p className="text-base text-gray-600">
                         Includes stars and other ratings
                       </p>
-                      <RatingCheckbox stats={statsData?.data?.rates}
+                      <RatingCheckbox
+                        statsData={statsData?.data?.rates}
                         onChange={onChangeRatings}
                       />
                     </Panel>
