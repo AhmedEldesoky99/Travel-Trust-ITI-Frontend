@@ -24,6 +24,7 @@ const Layout = () => {
     "/admin/alltours",
     "/admin/reviews",
     "/admin/addTour",
+    "/not-found"
   ];
   const pathsForBackground = ["/favorite", "/cart", "/faq", "/privacy","/history"];
 
