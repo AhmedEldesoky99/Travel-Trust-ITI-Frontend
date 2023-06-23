@@ -5,7 +5,6 @@ const CustomButton = ({
   type = "primary",
   submit,
   width,
-
   isLoading,
   onClick = () => {},
 }) => {
