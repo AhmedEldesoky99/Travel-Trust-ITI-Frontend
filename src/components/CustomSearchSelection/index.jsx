@@ -6,14 +6,15 @@ import "../CustomSearchSelection/style.css";
 import { Select, Space } from "antd";
 import { getSearchOptions } from "../../services/SearchOptions";
 import { getSearchResults } from "../../services/Search";
+import { Link, useLocation } from "react-router-dom";
 
 
 const { Option } = Select;
 
 
 const CustomSearch = ({ customWidth, onChange, onSubmit, min, max, rate=[], category=[], city=[],setResult }) => {
-
-
+  const { pathname } = useLocation(); // Add useLocation hook
+  const isHomePage = pathname === "/"; // Check if the user is on the home page
   const { data } = useQuery("searchOptions", getSearchOptions);
   const handleSearch = async () => {
     let Data = {
@@ -74,12 +75,23 @@ const CustomSearch = ({ customWidth, onChange, onSubmit, min, max, rate=[], cate
             </Select>
           </div>
           <div>
-            <button
-              type="submit"
-              className="CustomBtn absolute top-[6.9px] right-[0.34rem] sm:right-2  bg-primary-green hover:bg-[#048BA0] transition-all duration-300 text-white cursor-pointer  px-5  md:px-10 lg:px-12 py-[11px] xs:py-[11px] min:[767px]-max:[769px]-py-[11px] md:py-[20px] lg:py-[18px] rounded-md text-[16px] md:text-xl lg:text-2xl"
-            >
-              Search
-            </button>
+          {isHomePage ? (
+              <Link to="/search">
+                <button
+                  type="submit"
+                  className="CustomBtn absolute top-[6.9px] right-[0.34rem] sm:right-2  bg-primary-green hover:bg-[#048BA0] transition-all duration-300 text-white cursor-pointer  px-5  md:px-10 lg:px-12 py-[11px] xs:py-[11px] min:[767px]-max:[769px]-py-[11px] md:py-[20px] lg:py-[18px] rounded-md text-[16px] md:text-xl lg:text-2xl"
+                >
+                  Search
+                </button>
+              </Link>
+            ) : (
+              <button
+                type="submit"
+                className="CustomBtn absolute top-[6.9px] right-[0.34rem] sm:right-2  bg-primary-green hover:bg-[#048BA0] transition-all duration-300 text-white cursor-pointer  px-5  md:px-10 lg:px-12 py-[11px] xs:py-[11px] min:[767px]-max:[769px]-py-[11px] md:py-[20px] lg:py-[18px] rounded-md text-[16px] md:text-xl lg:text-2xl"
+              >
+                Search
+              </button>
+            )}
           </div>
         </div>
         </form>
