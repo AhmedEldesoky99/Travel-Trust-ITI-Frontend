@@ -25,6 +25,7 @@ export const deleteFromCart = (tourId) => {
   });
 };
 
+
 export const clearCart = (tourId) => {
   return request({
     url: `/v1/cart`,
@@ -42,3 +43,4 @@ export const addToCartMutation = (tourId, data, invalidateCart) => {
     onError: (err) => console.log(err),
   });
 };
+

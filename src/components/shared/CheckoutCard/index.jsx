@@ -6,7 +6,9 @@ import CustomButton from "./../../../components/shared/CustomButton/index";
 import Icon from "../../../utils/icons";
 
 import { addToCartMutation } from "../../../services/Cart";
+
 import { useQueryClient } from "react-query";
+
 
 const CheckoutCard = ({ data }) => {
   const queryClient = useQueryClient();
@@ -30,6 +32,8 @@ const CheckoutCard = ({ data }) => {
     );
   };
 
+
+
   const invalidateCart = () => {
     queryClient.invalidateQueries({ queryKey: ["cart"] });
   };
@@ -40,6 +44,7 @@ const CheckoutCard = ({ data }) => {
     },
     invalidateCart
   );
+
 
   const handleAddToCart = (e) => {
     e.preventDefault();
@@ -60,6 +65,7 @@ const CheckoutCard = ({ data }) => {
         };
       });
     }
+
   };
 
   const { id, admin } = useParams();
@@ -115,12 +121,14 @@ const CheckoutCard = ({ data }) => {
             </button>
           </div>
         </div>
+
         <CustomButton
           onClick={handleAddToCart}
-          isLoading={isLoading}
-          value="Add to Cart"
+          isLoading={isAddLoading}
+          value="Add To Cart"
           width="w-full"
         />
+
         <CustomButton value="Check out" type="secondary" width="w-full" />
       </div>
     </>
