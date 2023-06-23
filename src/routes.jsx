@@ -21,6 +21,9 @@ import UserProfile from "./pages/UserProfile";
 import ContactUs from "./pages/ContactUs";
 import History from "./pages/History";
 import AdminProfileForUser from "./pages/AdminProfileForUser";
+import NotFound from "./pages/NotFound";
+
+
 
 // Admin components
 import AdminSignUp from "./pages/Admin/adminSignup";
@@ -30,6 +33,8 @@ import AdminProfile from "./pages/Admin/adminProfile";
 import AdminAllTours from "./pages/Admin/AdminAllTours";
 import AdminReviews from "./pages/AdminReviews";
 import AddTourPage from "./pages/Admin/addTour";
+
+
 
 import { AddTourFormProvider } from "./context/AddTourFormContext";
 
@@ -45,6 +50,8 @@ export const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "join", element: <JoinUs /> },
       { path: "login", element: <Login /> },
+      { path: "not-found", element: <NotFound/> },
+
       {
         path: "signup",
         element: (
