@@ -8,68 +8,91 @@ import {
 } from "@ant-design/icons";
 
 import Icon from "../../../utils/icons";
-import { useState } from "react";
 import { deleteFromCart } from "../../../services/Cart";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
+import { Link } from "react-router-dom";
 
-const TourWideCard = ({ data }) => {
+const TourWideCard = ({
+  data,
+  onUpdateTourIncrement,
+  onUpdateTourDecrement,
+  onDeleteTour,
+}) => {
   const {
     city,
+    cityTitle,
     title,
     duration,
-    start_date,
-    price_per_person,
-    person_num,
-    _id,
+    startDate,
+    pricePerPerson,
+    personNum,
+    id,
+    money,
+    personsCount,
   } = data;
-  console.log({ data });
-  const [persons, setPersons] = useState(person_num);
-  const personsMax = persons >= person_num;
-  const date = new Date(start_date);
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  const dateString = date.toLocaleDateString("en-US", options);
-  const timeString = date.toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
-  });
-  const formattedDate = `${dateString} | ${timeString}`;
+
+  const queryClient = useQueryClient();
+
+  const personsMax = personsCount === personNum;
 
   const handleIncrement = () => {
-    if (personsMax) {
-      setPersons((prevPersons) => prevPersons);
-    } else {
-      setPersons((prevPersons) => prevPersons + 1);
+    if (!personsMax) {
+      onUpdateTourIncrement(id);
     }
   };
-
   const handleDecrement = () => {
-    setPersons((prevPersons) =>
-      prevPersons === 1 ? prevPersons : prevPersons - 1
-    );
+    if (personsCount <= personNum && personsCount > 1) {
+      onUpdateTourDecrement(id);
+    }
   };
-  const deleteTour = useMutation(deleteFromCart);
+  const deleteTour = useMutation({
+    mutationFn: deleteFromCart,
+    onMutate: async () => {
+      onDeleteTour(id);
+      // await queryClient.cancelQueries({ queryKey: ["cart"] });
+      // const prevValue = queryClient.getQueryData(["cart"]);
+      // console.log({ prevValue });
+      // queryClient.setQueryData(["cart"], () => {
+      //   data: {
+      //   }
+      // });
+      // setCardsDetails([]);
+      // return {
+      //   prevValue,
+      // };
+    },
+    // If the mutation fails,
+    // use the context returned from onMutate to roll back
+    // onError: (err, newValue, context) => {
+    //   queryClient.setQueryData(["cart"], context.prevValue);
+    // },
+    // // Always refetch after error or success:
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
+    },
+  });
 
   const handleDelete = () => {
-    deleteTour.mutate(_id);
+    deleteTour.mutate(id);
   };
-  return (
-    <div className="card lg:card-side bg-base-100    lg:col-span-8 shadow-xl">
-      <figure className="2xs:w-full 2xs:max-h-80 lg:w-[40%]">
-        <img
-          className="w-full h-full"
-          src={
-            // {CardImage}
-            city?.home_image
-          }
-          alt="Tour Card"
-        />
-      </figure>
 
+  const place_holder_tour =
+    "https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png";
+
+  return (
+    <div className="card lg:card-side bg-base-100  lg:col-span-8 shadow-xl">
+      <figure className="2xs:w-full 2xs:max-h-80 lg:w-[40%]">
+        <Link to={`/tour-details/${id}`} className="cursor-pointer">
+          <img
+            className="w-full h-full"
+            src={city ?? place_holder_tour}
+            alt="Tour Card"
+            onError={(e) => {
+              e.target.src = place_holder_tour;
+            }}
+          />
+        </Link>
+      </figure>
       <div className="card-body justify-between gap-10">
         <div>
           <div className="flex justify-between">
@@ -90,7 +113,7 @@ const TourWideCard = ({ data }) => {
             <div className="flex justify-center items-center space-x-2">
               <EnvironmentOutlined className="2xs:text-base 2xl:text-lg" />
               <span className="2xs:text-base 2xl:text-lg text-light-gray h-5">
-                {city?.title}
+                {cityTitle}
               </span>
             </div>
 
@@ -107,7 +130,7 @@ const TourWideCard = ({ data }) => {
             <div className="flex justify-center items-center space-x-2">
               <CalendarOutlined className="2xs:text-base 2xl:text-lg" />
               <span className="2xs:text-base 2xl:text-lg text-light-gray h-5">
-                {formattedDate}
+                {startDate}
               </span>
             </div>
           </div>
@@ -116,7 +139,7 @@ const TourWideCard = ({ data }) => {
         <div className="card-actions justify-between items-center">
           <div className="flex justify-center items-center space-x-1">
             <span className="2xs:text-lg md:text-xl xl:text-2xl font-bold">
-              ${price_per_person}
+              ${pricePerPerson}
             </span>{" "}
             <span className="">/</span>
             <UserOutlined className="2xs:text-xl md:text-lg" />
@@ -128,13 +151,8 @@ const TourWideCard = ({ data }) => {
                 <Icon name="userDelete" />
               </div>
             </button>
-
-            <span className="text-lg 2xl:text-2xl px-3">
-              {persons}{" "}
-              {personsMax ? (
-                <span className="text-tertiary-red">Max</span>
-              ) : null}
-            </span>
+            {/* <p> booked for: money / pricePerPerson} </p> */}
+            <span className="text-lg 2xl:text-2xl px-3">{personsCount}</span>
             <button disabled={personsMax} onClick={handleIncrement}>
               <div
                 className={`shadow-md p-3 rounded-lg ${
@@ -148,9 +166,9 @@ const TourWideCard = ({ data }) => {
 
           <div>
             <p className="font-medium">
-              Total:{" "}
+              Total:
               <span className="2xs:text-lg md:text-xl xl:text-2xl  2xl:text-3xl font-bold">
-                EGP {person_num * price_per_person}
+                ${money}
               </span>
             </p>
           </div>
