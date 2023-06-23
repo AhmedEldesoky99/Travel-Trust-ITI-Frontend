@@ -6,12 +6,13 @@ import CustomButton from "./../../../components/shared/CustomButton/index";
 import Icon from "../../../utils/icons";
 
 import { addToCartMutation } from "../../../services/Cart";
+import { removeFromCartMutation } from "./../../../services/Cart";
 
 const CheckoutCard = ({ data }) => {
   // --------- States ----------
+  const [buttonVisible, setButtonVisible] = useState(true);
   const [persons, setPersons] = useState(1);
   const personsMax = persons >= data?.person_num;
-
 
   // ------------- handlers ------------
   const handleIncrement = () => {
@@ -28,22 +29,21 @@ const CheckoutCard = ({ data }) => {
     );
   };
 
-
-  const { mutate, isLoading } = addToCartMutation(data?._id, {
+  const { mutate, isLoading: isAddLoading } = addToCartMutation(data?._id, {
     subscriber_number: `${persons}`,
   });
 
+  const { mutate: removeMutate, isLoading: isRemoveLoading } =
+    removeFromCartMutation(data?._id);
 
   const handleAddToCart = (e) => {
     e.preventDefault();
     mutate();
+    setButtonVisible(false);
   };
-
-
 
   const { id, admin } = useParams();
   // console.log("details", admin);
-
 
   return (
     <>
@@ -95,12 +95,14 @@ const CheckoutCard = ({ data }) => {
             </button>
           </div>
         </div>
+
         <CustomButton
           onClick={handleAddToCart}
-          isLoading={isLoading}
-          value="Add to Cart"
+          isLoading={isAddLoading}
+          value="Add To Cart"
           width="w-full"
         />
+
         <CustomButton value="Check out" type="secondary" width="w-full" />
       </div>
     </>

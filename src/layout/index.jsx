@@ -20,7 +20,7 @@ const Layout = () => {
     "/admin/reviews",
     "/admin/addTour",
   ];
-  const pathsForBackground = ["/favorite", "/cart", "/faq", "/privacy"];
+  const pathsForBackground = ["/favorite", "/cart", "/faq", "/privacy","/history"];
 
   const pathIncluded = pathsToHide.includes(location.pathname);
   const pathBackgroundIncluded = pathsForBackground.includes(location.pathname);
