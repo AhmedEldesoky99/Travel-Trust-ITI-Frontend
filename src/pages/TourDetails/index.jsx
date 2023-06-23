@@ -14,9 +14,7 @@ const TourDetails = () => {
   const { data, isLoading, isSuccess, isError } = getTourDetails(id);
   addTourToHistoryQuery(id);
 
-  setTimeout(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, 0);
+  
   return (
     <>
       {!isSuccess && isLoading && (

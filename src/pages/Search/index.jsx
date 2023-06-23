@@ -37,7 +37,7 @@ const Search = () => {
   //   () => getSearchResults()
   // );
   const tourCards = Array.from({ length: items }, (_, index) => (
-    <TourWideCard key={index} />
+    <TourWideCard key={index}/>
   ));
   return (
     <>

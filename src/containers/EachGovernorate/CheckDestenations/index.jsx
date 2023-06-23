@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import { Link } from "react-router-dom";
 
 import CheckDestCard from "../../../components/CheckDestCard";
 
@@ -10,6 +9,7 @@ import Image3 from "../../../assets/images/CheckDestinations/Nouba.png";
 import Image4 from "../../../assets/images/CheckDestinations/Alex.png";
 import { useQuery } from "react-query";
 import { getTopDestinations } from "../../../services/Home";
+import { Link } from "react-router-dom";
 
 const CheckDestenations = () => {
   const { data } = useQuery("TopDestinations", getTopDestinations);
@@ -29,20 +29,20 @@ const CheckDestenations = () => {
           </Link>
         </div>
 
-
-      
-          <div className="container grid gap-2 2xs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {data?.data?.map((item, index) => {
-              if (index < 4)
-                return (
+        <div className="container grid gap-2 2xs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {data?.data?.map((item, index) => {
+            if (index < 4)
+              return (
+                <Link to={`/each-governorate/${item._id}`} key={index}>
                   <CheckDestCard
                     key={item._id}
                     url={item.home_image}
                     city={item.title}
                   />
-                );
-            })}
-          </div>
+                </Link>
+              );
+          })}
+        </div>
       </div>
     </section>
   );

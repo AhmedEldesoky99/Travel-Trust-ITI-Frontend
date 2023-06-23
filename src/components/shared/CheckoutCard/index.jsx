@@ -6,11 +6,14 @@ import CustomButton from "./../../../components/shared/CustomButton/index";
 import Icon from "../../../utils/icons";
 
 import { addToCartMutation } from "../../../services/Cart";
-import { removeFromCartMutation } from "./../../../services/Cart";
+
+import { useQueryClient } from "react-query";
+
 
 const CheckoutCard = ({ data }) => {
+  const queryClient = useQueryClient();
+
   // --------- States ----------
-  const [buttonVisible, setButtonVisible] = useState(true);
   const [persons, setPersons] = useState(1);
   const personsMax = persons >= data?.person_num;
 
@@ -29,17 +32,40 @@ const CheckoutCard = ({ data }) => {
     );
   };
 
-  const { mutate, isLoading: isAddLoading } = addToCartMutation(data?._id, {
-    subscriber_number: `${persons}`,
-  });
 
-  const { mutate: removeMutate, isLoading: isRemoveLoading } =
-    removeFromCartMutation(data?._id);
+
+  const invalidateCart = () => {
+    queryClient.invalidateQueries({ queryKey: ["cart"] });
+  };
+  const { mutate, isLoading } = addToCartMutation(
+    data?._id,
+    {
+      subscriber_number: `${persons}`,
+    },
+    invalidateCart
+  );
+
 
   const handleAddToCart = (e) => {
     e.preventDefault();
     mutate();
-    setButtonVisible(false);
+    const prevValue = queryClient.getQueryData(["cart"]);
+    let exists = false;
+    prevValue?.data?.tours?.forEach((tour) => {
+      if (tour._id == data?._id) {
+        exists = true;
+      }
+    });
+    // console.log({ tour_id: data?._id, prevValue });
+    if (!exists) {
+      prevValue?.data?.tours.push({});
+      queryClient.setQueryData(["cart"], () => {
+        return {
+          data: { tours: prevValue?.data?.tours },
+        };
+      });
+    }
+
   };
 
   const { id, admin } = useParams();

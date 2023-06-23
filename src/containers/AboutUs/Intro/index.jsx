@@ -5,7 +5,7 @@ const AboutIntro = () => {
   return (
     <>
       <Breadcrumb
-        className="ml-20 mt-10 mb-10 text-xl"
+        className="ml-20 my-10 text-xl"
         separator="/"
         items={[
           {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
 import Navbar from "../components/shared/Navbar";
@@ -9,6 +9,11 @@ import { UserIdProvider } from "../context/UserIdContext";
 
 const Layout = () => {
   const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.pathname]);
+  
   const pathsToHide = [
     "/join",
     "/login",
