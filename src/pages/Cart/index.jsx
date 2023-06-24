@@ -221,7 +221,7 @@ const Cart = () => {
                     // console.log({ tour });
                     {
                       return (
-                        <TourCardWide
+                        <TourCardWide 
                           key={index}
                           data={tour}
                           onUpdateTourIncrement={handleUpdateTourIncrement}

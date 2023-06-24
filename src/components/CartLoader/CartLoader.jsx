@@ -74,15 +74,9 @@ const CartLoader = () => {
 
                       <div className="card-actions justify-between items-center">
                         <div className="flex justify-center items-center space-x-1">
-                          <span className="2xs:text-lg md:text-xl xl:text-2xl font-bold">
-                           
-                          </span>
-                          <span className="">
-                            
-                          </span>
-                          <div className="2xs:text-xl md:text-lg">
-                        
-                          </div>
+                          <span className="2xs:text-lg md:text-xl xl:text-2xl font-bold"></span>
+                          <span className=""></span>
+                          <div className="2xs:text-xl md:text-lg"></div>
                         </div>
 
                         <div className="flex justify-between gap-32 items-center min-w-[9rem]">
@@ -94,7 +88,6 @@ const CartLoader = () => {
                             </div>
                           </div>
                           <span className="text-lg 2xl:text-2xl px-3">
-                           
                             <p className="w-20 h-3   bg-gray-200 rounded-lg dark:bg-gray-300"></p>
                           </span>
                           <div>
@@ -177,15 +170,9 @@ const CartLoader = () => {
 
                       <div className="card-actions justify-between items-center">
                         <div className="flex justify-center items-center space-x-1">
-                          <span className="2xs:text-lg md:text-xl xl:text-2xl font-bold">
-                           
-                          </span>
-                          <span className="">
-                            
-                          </span>
-                          <div className="2xs:text-xl md:text-lg">
-                        
-                          </div>
+                          <span className="2xs:text-lg md:text-xl xl:text-2xl font-bold"></span>
+                          <span className=""></span>
+                          <div className="2xs:text-xl md:text-lg"></div>
                         </div>
 
                         <div className="flex justify-between gap-32 items-center min-w-[9rem]">
@@ -197,7 +184,6 @@ const CartLoader = () => {
                             </div>
                           </div>
                           <span className="text-lg 2xl:text-2xl px-3">
-                           
                             <p className="w-20 h-3   bg-gray-200 rounded-lg dark:bg-gray-300"></p>
                           </span>
                           <div>

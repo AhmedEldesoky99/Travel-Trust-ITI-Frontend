@@ -51,18 +51,21 @@ const Search = () => {
     }
   };
 
+  const handleResult= (value)=>{
+    setResult(value);
+  }
+
 
   const tourCards = result?.data?.map((item, index) => (
-    <TourWideCard showAction={false} key={index} data={item} />
+    <TourWideCard showAction={false} key={index} data={item} />))
   const [items] = useState(3);
-  const [page, setPage] = useState(1);
   // const { isLoading, toursData, isSuccess } = useQuery(
   //   ["SearchResults", ],
   //   () => getSearchResults()
   // );
  // const tourCards = Array.from({ length: items }, (_, index) => (
   //  <TourWideCard key={index}/>
-  ));
+  // ));
 
   useEffect(() => {
     if (statsData?.data.minPrice) {
@@ -82,7 +85,7 @@ const Search = () => {
                   max={max}
                   rate={rate}
                   category={category}
-                  setResult={setResult}
+                  handleResult={handleResult}
                 />
               </div>
               <div></div>
