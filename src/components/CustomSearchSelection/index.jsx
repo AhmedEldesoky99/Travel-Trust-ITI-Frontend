@@ -11,11 +11,16 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 
-
 const { Option } = Select;
 
-
-const CustomSearch = ({ customWidth, min, max, rate=[], category=[], setResult }) => {
+const CustomSearch = ({
+  customWidth,
+  min,
+  max,
+  rate = [],
+  category = [],
+  handleResult,
+}) => {
   const [city, setCity] = useState([]);
   const onChangeCities = (value) => {
     setCity(value);
@@ -37,7 +42,8 @@ const CustomSearch = ({ customWidth, min, max, rate=[], category=[], setResult }
       Data.city = city;
     }
     const result = await getSearchResults(Data);
-    setResult(result)
+      handleResult(result);
+
   };
   const handleOnChange = (value) => {
     onChangeCities([...value]);
@@ -47,20 +53,22 @@ const CustomSearch = ({ customWidth, min, max, rate=[], category=[], setResult }
     onSuccess: (res) => {
       if (res?.data?.success) {
         navigate("/search");
+        console.log("or here");
       } else {
         navigate("/search");
+        console.log("here");
       }
     },
   });
-  const handleSubmit = (e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
+    navigate("/search");
     mutation.mutate();
-  }
+  };
 
   useEffect(() => {
     mutation.mutate();
-  }, [])
-  
+  }, []);
 
   return (
     <>
@@ -68,39 +76,36 @@ const CustomSearch = ({ customWidth, min, max, rate=[], category=[], setResult }
         className={`w-full ${customWidth ? customWidth : "md:w-[61.2%]"} mt-8`}
       >
         <form onSubmit={handleSubmit}>
-        <div className="relative flex flex-col justify-between">
-          <div>
-            <Select
-              className="custom-search"
-              mode="multiple"
-              style={{ width: "100%" }}
-              placeholder="where are you travelling?"
-              onChange={handleOnChange}
-              optionLabelProp="label"
-            >
-              {data?.data?.map((option) => (
-                <Option
-                  value={option?._id}
-                  label={option?.title}
-                  key={option?._id}
-                >
-                  <Space>{option?.title}</Space>
-                </Option>
-              ))}
-            </Select>
+          <div className="relative flex flex-col justify-between">
+            <div>
+              <Select
+                className="custom-search"
+                mode="multiple"
+                style={{ width: "100%" }}
+                placeholder="where are you travelling?"
+                onChange={handleOnChange}
+                optionLabelProp="label"
+              >
+                {data?.data?.map((option) => (
+                  <Option
+                    value={option?._id}
+                    label={option?.title}
+                    key={option?._id}
+                  >
+                    <Space>{option?.title}</Space>
+                  </Option>
+                ))}
+              </Select>
+            </div>
+            <div>
+              <button
+                type="submit"
+                className="CustomBtn absolute top-[6.9px] right-[0.34rem] sm:right-2  bg-primary-green hover:bg-[#048BA0] transition-all duration-300 text-white cursor-pointer  px-5  md:px-10 lg:px-12 py-[11px] xs:py-[11px] min:[767px]-max:[769px]-py-[11px] md:py-[20px] lg:py-[18px] rounded-md text-[16px] md:text-xl lg:text-2xl"
+              >
+                Search
+              </button>
+            </div>
           </div>
-          <div>
-
-        
-            <button
-              type="submit"
-              className="CustomBtn absolute top-[6.9px] right-[0.34rem] sm:right-2  bg-primary-green hover:bg-[#048BA0] transition-all duration-300 text-white cursor-pointer  px-5  md:px-10 lg:px-12 py-[11px] xs:py-[11px] min:[767px]-max:[769px]-py-[11px] md:py-[20px] lg:py-[18px] rounded-md text-[16px] md:text-xl lg:text-2xl"
-            >
-              Search
-            </button>
-          
-          </div>
-        </div>
         </form>
       </div>
     </>

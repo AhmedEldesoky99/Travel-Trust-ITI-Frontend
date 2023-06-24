@@ -148,7 +148,7 @@ const TourWideCard = ({
           </div>
 
 
-{  showAction&& 
+{/* {  showAction&&  */}
 
           {/* <div className="flex justify-between items-center min-w-[9rem]">
 
