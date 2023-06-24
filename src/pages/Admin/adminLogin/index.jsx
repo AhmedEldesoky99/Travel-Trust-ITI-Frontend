@@ -19,12 +19,16 @@ const AdminLogin = () => {
   } = useForm();
 
   const { adminLoginMutation } = useAdminAuth();
-  const { mutate, isLoading } = adminLoginMutation();
+  const { mutate, isLoading, data } = adminLoginMutation();
 
   const registerHandler = (data) => {
     console.log(data);
     mutate(data);
   };
+
+
+
+  
   return (
     <div className="flex 2xs:flex-col lg:flex-row ">
       <div className="relative 2xs:h-[30vh] 2xs:w-[100vw] lg:w-[50vw] lg:h-[100vh]  sm:block 2xs:bg-login-admin bg-cover bg-left bg-no-repeat">

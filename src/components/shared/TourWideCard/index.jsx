@@ -147,16 +147,19 @@ const TourWideCard = ({
             <UserOutlined className="2xs:text-xl md:text-lg" />
           </div>
 
+
 {  showAction&& 
-          <div className="flex justify-between items-center min-w-[9rem]">
+
+          {/* <div className="flex justify-between items-center min-w-[9rem]">
+
             <button onClick={handleDecrement}>
 
               <div className="shadow-md p-3 rounded-lg">
                 <Icon name="userDelete" />
               </div>
-            </button>
+            </button> */}
             {/* <p> booked for: money / pricePerPerson} </p> */}
-            <span className="text-lg 2xl:text-2xl px-3">{personsCount}</span>
+            {/* <span className="text-lg 2xl:text-2xl px-3">{personsCount}</span>
             <button disabled={personsMax} onClick={handleIncrement}>
               <div
                 className={`shadow-md p-3 rounded-lg ${
@@ -166,7 +169,7 @@ const TourWideCard = ({
                 <Icon name="userAdd" />
               </div>
             </button>
-          </div>}
+          </div> */}
 
           <div>
             <p className="font-medium">

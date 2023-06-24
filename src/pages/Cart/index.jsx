@@ -178,7 +178,7 @@ const Cart = () => {
   console.log({ tours: data?.data?.tours });
   if (isSuccess && data?.data?.tours.length == 0) {
     return (
-      <div className="container mx-auto">
+      <div className="container mx-auto mt-32">
         <div className="flex flex-col">
           <div className="flex flex-col h-[60vh] w-full justify-center items-center text-center">
             <div className="bg-emptyCart max-h-[268px] max-w-[252px] w-full h-full mb-3"></div>

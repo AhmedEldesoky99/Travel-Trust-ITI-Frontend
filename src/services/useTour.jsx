@@ -5,6 +5,7 @@ import { useState } from "react";
 
 export const useTour = () => {
   const navigate = useNavigate();
+  // const [progress, setProgress] = useState(0);
 
   //1- Add Tour
   const addTour = (tour) => {
@@ -13,6 +14,18 @@ export const useTour = () => {
       method: "POST",
       data: tour,
       formData: true,
+
+      // onDownloadProgress: (progressEvent) => {
+      //   const { loaded, total, timestamp } = progressEvent;
+      //   console.log("timestamp", timestamp);
+      //   let percentCompleted = Math.floor((loaded * 100) / total);
+      //   // const percentCompleted = Math.round(
+      //   //   (progressEvent.loaded * 100) / progressEvent.total
+      //   // );
+      //   setProgress(percentCompleted);
+      //   console.log("percentCompleted", percentCompleted);
+      //   console.log("progress", progress);
+      // },
       successMsg: "You have added your tour successfully",
     });
   };
@@ -21,8 +34,7 @@ export const useTour = () => {
     onSuccess: (res) => {
       console.log(res);
       if (res.success) {
-        //------------------------------------------------------------------- organizer id
-        navigate(`/admin/alltours/${organizerId}`);
+        navigate(`/local`);
       }
     },
     onError: (err) => console.log(err),
@@ -62,12 +74,24 @@ export const useTour = () => {
     return request({
       url: `/v1/tours/${tourID}`,
       method: "DELETE",
+      successMsg: "You have deleted your tour successfully",
     });
   };
 
-  const DeleteTourByIdmutation = useMutation((tourID) => {
-    return deleteTourById(tourID);
-  });
+  const DeleteTourByIdmutation = () => {
+    const queryClient = useQueryClient();
+    return useMutation(deleteTourById, {
+      onSuccess: (res) => {
+        console.log(res);
+        queryClient.invalidateQueries("oraganizerTours");
+      },
+      onError: (err) => console.log(err),
+    });
+  };
+
+  // useMutation((tourID) => {
+  //   return deleteTourById(tourID);
+  // });
 
   //4- Update Tour By Id
   const updateTourById = ({ id, tour }) => {
@@ -86,8 +110,7 @@ export const useTour = () => {
     onSuccess: (res) => {
       console.log(res);
       if (res.success) {
-        //------------------------------------------------------------------- organizer id
-        navigate(`/admin/alltours/${organizerId}`);
+        navigate(`/local`);
       }
     },
     onError: (err) => console.log(err),

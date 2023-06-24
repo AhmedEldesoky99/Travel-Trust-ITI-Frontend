@@ -39,8 +39,8 @@ export const request = ({ ...options }) => {
         progress: undefined,
         theme: "light",
       });
-      
-      
+
+     
     return response.data;
   };
 
@@ -60,7 +60,6 @@ export const request = ({ ...options }) => {
         });
       });
 
-
     return err;
   };
 
@@ -70,7 +69,6 @@ export const request = ({ ...options }) => {
     return client(options).then(onSuccess).catch(onError);
   }
 };
-
 
 // export const headers = (formdata = false) => {
 //     return {
