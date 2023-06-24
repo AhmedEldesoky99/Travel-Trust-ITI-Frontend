@@ -1,16 +1,73 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable react/prop-types */
+import { useMutation, useQuery } from "react-query";
 import "../CustomSearchSelection/style.css";
 import { Select, Space } from "antd";
+import { getSearchOptions } from "../../services/SearchOptions";
+import { getSearchResults } from "../../services/Search";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
+
 
 const { Option } = Select;
 
-const CustomSearch = (props) => {
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
+
+const CustomSearch = ({ customWidth, min, max, rate=[], category=[], setResult }) => {
+  const [city, setCity] = useState([]);
+  const onChangeCities = (value) => {
+    setCity(value);
   };
+  const navigate = useNavigate();
+  const { data } = useQuery("searchOptions", getSearchOptions);
+  const handleSearch = async () => {
+    let Data = {
+      maxPrice: max,
+      minPrice: min,
+    };
+    if (rate.length > 0) {
+      Data.rate = rate;
+    }
+    if (category.length > 0) {
+      Data.category = category;
+    }
+    if (city.length > 0) {
+      Data.city = city;
+    }
+    const result = await getSearchResults(Data);
+    setResult(result)
+  };
+  const handleOnChange = (value) => {
+    onChangeCities([...value]);
+  };
+
+  const mutation = useMutation(handleSearch, {
+    onSuccess: (res) => {
+      if (res?.data?.success) {
+        navigate("/search");
+      } else {
+        navigate("/search");
+      }
+    },
+  });
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    mutation.mutate();
+  }
+
+  useEffect(() => {
+    mutation.mutate();
+  }, [])
+  
 
   return (
     <>
-      <div className={`w-full ${props.customWidth ? props.customWidth : 'md:w-[61.2%]'} mt-8`}>
+      <div
+        className={`w-full ${customWidth ? customWidth : "md:w-[61.2%]"} mt-8`}
+      >
+        <form onSubmit={handleSubmit}>
         <div className="relative flex flex-col justify-between">
           <div>
             <Select
@@ -18,24 +75,22 @@ const CustomSearch = (props) => {
               mode="multiple"
               style={{ width: "100%" }}
               placeholder="where are you travelling?"
-              onChange={handleChange}
+              onChange={handleOnChange}
               optionLabelProp="label"
             >
-              <Option value="china" label="China">
-                <Space>Dahab</Space>
-              </Option>
-              <Option value="usa" label="USA">
-                <Space>Cairo</Space>
-              </Option>
-              <Option value="japan" label="Japan">
-                <Space>Fayoum</Space>
-              </Option>
-              <Option value="korea" label="Korea">
-                <Space>Alex</Space>
-              </Option>
+              {data?.data?.map((option) => (
+                <Option
+                  value={option?._id}
+                  label={option?.title}
+                  key={option?._id}
+                >
+                  <Space>{option?.title}</Space>
+                </Option>
+              ))}
             </Select>
           </div>
           <div>
+
         
             <button
               type="submit"
@@ -43,10 +98,10 @@ const CustomSearch = (props) => {
             >
               Search
             </button>
-           
-           
+          
           </div>
         </div>
+        </form>
       </div>
     </>
   );

@@ -31,11 +31,11 @@ const Reviews = () => {
           {data?.data?.map((item,index) => {
             return (
               <ReviewCard
-              // key={index}
-              // username={item?.user?.username}
-              // content={item?.content}
-              // userImg={item?.user?.photo[0].url}
-              // rating={item?.rating}
+              key={index}
+              username={item?.user?.username}
+              content={item?.content}
+              userImg={item?.user?.photo[0].url}
+              rating={item?.rating}
               />
             );
           })}
