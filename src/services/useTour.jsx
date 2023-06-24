@@ -34,7 +34,7 @@ export const useTour = () => {
     onSuccess: (res) => {
       console.log(res);
       if (res.success) {
-        navigate(`/local`);
+        navigate(`/local/dashboard`);
       }
     },
     onError: (err) => console.log(err),
@@ -110,7 +110,7 @@ export const useTour = () => {
     onSuccess: (res) => {
       console.log(res);
       if (res.success) {
-        navigate(`/local`);
+        navigate(`/local/dashboard`);
       }
     },
     onError: (err) => console.log(err),

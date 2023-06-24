@@ -26,7 +26,7 @@ export const AddTourFormProvider = ({ children }) => {
     plan: null,
   });
   const [step, setStep] = useState(1);
-  const [publish, setPublish] = useState(true);
+  const [publish, setPublish] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [progress, setProgress] = useState(0);
   const { tourID } = useParams();
@@ -138,8 +138,9 @@ export const AddTourFormProvider = ({ children }) => {
       const editedPlan = data?.plan.map((plan, index) => {
         return {
           ...plan,
-          image_file: plan?.image_file, //image object uid
-          image: plan?.image_file[0]?.originFileObj || plan?.image_file, // File
+          image_file: plan?.image_file, //image object uid //object url
+          image: plan?.image_file[0]?.originFileObj,
+
           start_time: moment(plan?.time[0].$d).format("H:mm a"), //03:04 am
           end_time: moment(plan?.time[1].$d).format("H:mm a"), //03:04 am
           details: plan?.details.map((detail) => {
@@ -153,31 +154,54 @@ export const AddTourFormProvider = ({ children }) => {
     }
 
     if (step === 3) {
-      // no edit send same array from back
-      // add files send files only
-      // delete .. same arry missing the deleted one
-      // delete and add ...
+      const highlightFiles = data?.highlight_files
+        ?.filter((photo) => {
+          return photo.originFileObj;
+        })
+        .map((photo) => photo.originFileObj);
 
-      const editedFood_photos = data?.food_files?.map((photo) => {
-        return photo.originFileObj;
-      });
+      const highlightUrls = data?.highlight_files
+        ?.filter((photo) => {
+          return photo.url;
+        })
+        .map((photo) => {
+          return photo;
+        });
 
-      const editedHighlights_photos = data?.highlight_files?.map((photo) => {
-        return photo.originFileObj;
-      });
+      const foodFiles = data?.food_files
+        ?.filter((photo) => {
+          return photo.originFileObj;
+        })
+        .map((photo) => photo.originFileObj);
+      const foodUrls = data?.food_files
+        ?.filter((photo) => {
+          return photo.url;
+        })
+        .map((photo) => {
+          return photo;
+        });
+
+      console.log(
+        { highlightFiles },
+        { highlightUrls },
+
+        { foodFiles },
+        { foodUrls }
+      );
 
       stepThreeData = {
         ...data,
+        //display data in ant upload component
         food_files: data?.food_files, //carry files or url
         highlight_files: data?.highlight_files,
-        food_photos: editedFood_photos[0]
-          ? editedFood_photos
-          : data?.food_files,
-        highlight_photos: editedHighlights_photos[0]
-          ? editedHighlights_photos
-          : data?.highlight_files,
+        //files if photos added
+        highlightFiles: highlightFiles,
+        foodFiles: foodFiles,
+        //urls nothing added to the photos
+        highlightUrls: highlightUrls,
+        foodUrls: foodUrls,
       };
-      console.log({ editedFood_photos });
+
       console.log("stepThreeData", stepThreeData);
     }
 
@@ -215,8 +239,12 @@ export const AddTourFormProvider = ({ children }) => {
       "food_files",
       "highlight_files",
       "organizer",
-      tourID ? "meeting_point" : "",
-      tourID ? "include" : "",
+      "meeting_point",
+      "include",
+      "highlightFiles",
+      "highlightUrls",
+      "foodFiles",
+      "foodUrls",
       "meeting_description",
       "plan",
       "category",
@@ -238,39 +266,29 @@ export const AddTourFormProvider = ({ children }) => {
     }
 
     {
-      tourID
-        ? data?.highlight_photos?.map((photo) => {
-            Object.entries(photo).map(([key, value]) =>
-              requestBody.append(`highlight_photos[${key}]`, value)
-            );
-          })
-        : data?.highlight_photos?.map((item) =>
-            requestBody.append("highlight_photos", item)
-          );
+      data?.highlightFiles?.length !== 0 &&
+        data?.highlightFiles?.map((photo, index) => {
+          requestBody.append(`highlight_photos`, photo);
+        });
     }
 
     {
-      tourID
-        ? data?.food_photos?.map((photo) => {
-            Object.entries(photo).map(([key, value]) =>
-              requestBody.append(`food_photos[${key}]`, value)
-            );
-          })
-        : data?.food_photos?.map((item) =>
-            requestBody.append("food_photos", item)
-          );
+      data?.foodFiles?.length !== 0 &&
+        data?.foodFiles?.map((photo, index) => {
+          requestBody.append(`food_photos`, photo);
+        });
     }
 
     data?.category?.map((item, index) => {
       requestBody.append(`category[${index}]`, item);
     });
 
-    data?.include?.package?.map((item) =>
-      requestBody.append(`include["package"]`, item)
+    data?.include?.package?.map((item, index) =>
+      requestBody.append(`include[package][${index}]`, item)
     );
 
-    data?.include?.meals?.map((item) =>
-      requestBody.append(`include["meals"]`, item)
+    data?.include?.meals?.map((item, index) =>
+      requestBody.append(`include[meals][${index}]`, item)
     );
 
     Object.entries(data?.meeting_point).map(([key, value]) =>
@@ -290,40 +308,21 @@ export const AddTourFormProvider = ({ children }) => {
       Object.entries(day).map(([key, value]) => {
         requestBody.append(`plan[${index}][${key}]`, value);
       });
-      {
-        tourID
-          ? day?.image.map((image) => {
-              Object.entries(image).map(([key, value]) => {
-                requestBody.append(`plan[${index}][image][${key}]`, value);
-              });
-            })
-          : "";
-      }
 
       day.details.map((location, i) =>
         Object.entries(location).map(([key, value]) =>
           requestBody.append(`plan[${index}][details][${i}][${key}]`, value)
         )
       );
-      {
-        tourID
-          ? day.details.map((location, i) =>
-              Object.entries(location).map(([key, value]) =>
-                requestBody.delete(
-                  `plan[${index}][details][${i}]['_id']`,
-                  value
-                )
-              )
-            )
-          : "";
-      }
     });
 
     finalPlan.map((day, index) => {
       Object.entries(day).map(([key, value]) => {
         requestBody.delete(`plan[${index}][details]`);
         {
-          tourID ? requestBody.delete(`plan[${index}][image]`) : "";
+          day?.image?.length === 0
+            ? requestBody.delete(`plan[${index}][image]`)
+            : "";
         }
       });
     });
@@ -428,3 +427,23 @@ export default AddTourFormContext;
 //     setProgress(100);
 //   }, duration + 100);
 // };
+
+// const editedFood_photos = data?.food_files?.map((photo) => {
+//   return photo.originFileObj;
+// });
+
+// const editedHighlights_photos = data?.highlight_files?.map((photo) => {
+//   return photo.originFileObj;
+// });
+
+// food_photos: editedFood_photos[0]
+//   ? editedFood_photos
+//   : data?.food_files,
+// highlight_photos: editedHighlights_photos[0]
+//   ? editedHighlights_photos
+//   : data?.highlight_files,
+
+// no edit send same array from back
+// add files send files only
+// delete .. same arry missing the deleted one
+// delete and add ...

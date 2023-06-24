@@ -46,6 +46,8 @@ import MainAdminReviews from "./pages/mainAdmin/all-reviews";
 import MainAdminAllTours from "./pages/mainAdmin/all-tours";
 import MainAdminLogin from "./pages/mainAdmin/log-in";
 import MainAdminAllLocals from "./pages/mainAdmin/all-locals";
+import MainAdminDashBoard from "./pages/mainAdmin/dashboard";
+
 
 //lazy
 const Sales = React.lazy(() => import("./pages/Sales"));
@@ -58,6 +60,7 @@ const PrivacyPolicy = React.lazy(() => import("./pages/PrivacyPolicy"));
 const AdminProfileForUser = React.lazy(() =>
   import("./pages/AdminProfileForUser")
 );
+
 
 export const router = createBrowserRouter([
   {
@@ -75,6 +78,7 @@ export const router = createBrowserRouter([
       { path: "not-found", element: <NotFound /> },
       { path: "error", element: <ErrorPage /> },
       { path: "payment-success/:money", element: <PaymentSuccess /> },
+
       { path: "payment-failed", element: <PaymentFailed /> },
 
       {
@@ -107,7 +111,7 @@ export const router = createBrowserRouter([
       { path: "profile/admin/:organizerId", element: <AdminProfileForUser /> },
 
       //local
-      { path: "local", element: <DashBoard /> },
+      { path: "local/dashboard", element: <DashBoard /> },
       { path: "local/signup", element: <AdminSignUp /> },
       { path: "local/login", element: <AdminLogin /> },
       { path: "local/alltours/:organizerId", element: <AdminAllTours /> },
@@ -125,13 +129,13 @@ export const router = createBrowserRouter([
       },
 
       //admin
-      // { path: "admin", element: <DashBoard /> },
+      { path: "admin/dashboard", element: <MainAdminDashBoard /> },
       { path: "admin/login", element: <MainAdminLogin /> },
-      { path: "admin/alltours/:adminId", element: <MainAdminAllTours /> },
-      { path: "admin/reviews/:adminId", element: <MainAdminReviews /> },
+      { path: "admin/alltours", element: <MainAdminAllTours /> },
+      { path: "admin/reviews", element: <MainAdminReviews /> },
       { path: "admin/tour-details/:id/:adminId", element: <TourDetails /> },
       // { path: "admin/users/:adminId", element: <MainAdminAllUsers /> },
-      { path: "admin/locals/:adminId", element: <MainAdminAllLocals /> },
+      { path: "admin/locals", element: <MainAdminAllLocals /> },
     ],
   },
   {

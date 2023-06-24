@@ -92,7 +92,16 @@ const OverviewData = ({ tourID, register, errors, control }) => {
               </>
             )}
           />
-          <div className="mb-4">
+          <div className="mt-4 mb-4">
+            <label className=" block text-lg mb-2 font-semibold">
+              Tour Duration:
+            </label>
+            <p>
+              <span className=" text-primary-green font-semibold"> Note :</span>{" "}
+              "When you update the tour duration, the number of days in Step 2
+              will automatically adjust to match the new duration.<br></br> This way, you
+              can easily see and update the itinerary for your tour."
+            </p>
             <Controller
               name="date"
               control={control}
@@ -105,6 +114,7 @@ const OverviewData = ({ tourID, register, errors, control }) => {
               render={({ field }) => (
                 <>
                   {/* date  */}
+
                   <CustomDatePicker {...field} />
                   {errors.date && (
                     <p className="text-tertiary-red mt-1">
@@ -168,7 +178,10 @@ const OverviewData = ({ tourID, register, errors, control }) => {
             }}
             render={({ field }) => (
               <>
-                <label htmlFor="description" className=" block text-lg mb-2 ">
+                <label
+                  htmlFor="description"
+                  className=" block text-lg mb-2 font-semibold"
+                >
                   Write description for your tour:
                 </label>
 
@@ -230,7 +243,7 @@ const OverviewData = ({ tourID, register, errors, control }) => {
                 <CustomSelection
                   mode="multiple"
                   options={categoriesOptions}
-                  placeHolder="Please pick tour activites"
+                  placeHolder="Please pick tour activites "
                   span="Tour activites :"
                   {...field}
                 />
@@ -257,7 +270,7 @@ const OverviewData = ({ tourID, register, errors, control }) => {
                 <CustomSelection
                   mode="multiple"
                   options={meals}
-                  placeHolder="Please pick meals included in tours"
+                  placeHolder="Please pick meals included in tours "
                   span="Meals included :"
                   {...field}
                 />
