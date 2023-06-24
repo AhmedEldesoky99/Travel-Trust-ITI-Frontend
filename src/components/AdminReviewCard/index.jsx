@@ -20,7 +20,7 @@ const AdminReviewCard = ({ totalReviews }) => {
 
   return (
     <>
-      <section className="w-full mb-24 -mt-16 2xl:mt-10">
+      <section className="w-full mb-24 mt-10   bg-white">
         <div className="container">
           <div className="border-[0.4px] border-gray-200 py-8 -md rounded-md px-8">
             <h2 className="capitalize text-xl">reviews</h2>

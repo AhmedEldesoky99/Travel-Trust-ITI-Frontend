@@ -14,7 +14,7 @@ const About = () => {
     ["GovernorateTours", id],
     () => getEachGovernorateTours(id)
   );
-  const section_img = `bg-[url(${data?.data.city.section_image})]`;
+  const section_img = `bg-[url(${data?.data?.city?.section_image})]`;
   return (
     <section className="pt-32">
       <div className="container mx-auto">

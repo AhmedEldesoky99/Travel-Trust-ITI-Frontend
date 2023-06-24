@@ -51,9 +51,11 @@ const uploadIdentity = (identityform) => {
 
 
 export const uploadIdentityMutation = () => {
+  const queryClient = useQueryClient();
   return useMutation(uploadIdentity, {
     onSuccess: (res) => {
       console.log(res);
+      queryClient.invalidateQueries("user-data");
     },
     onError: (err) => console.log(err),
   });

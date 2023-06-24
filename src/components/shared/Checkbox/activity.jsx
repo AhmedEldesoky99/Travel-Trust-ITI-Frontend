@@ -1,14 +1,17 @@
+/* eslint-disable no-prototype-builtins */
 /* eslint-disable react/prop-types */
 import { Checkbox } from 'antd';
 
-const FilterCheckbox = ({ data, onChange }) => {
+const FilterCheckbox = ({ data, onChange, stat }) => {
   const checkboxes = data?.data?.map((option) => (
-    <div key={option._id} className='flex gap-1'>
-      <Checkbox value={option.name} onChange={onChange} />
-      <p className='text-xl'>{option.name}</p> {/* Display option.name instead of option */}
+    <div key={option._id} className='flex justify-between'>
+      <div className='flex gap-1 '>
+        <Checkbox value={option.name} onChange={() => onChange(option._id)} />
+        <p className='text-xl'>{option.name}</p>
+      </div>
+      <span className=''>{stat?.hasOwnProperty(option.name) ? stat[option.name] : '0'}</span>
     </div>
   ));
-  console.log(data?.data[0].name);
   return <>{checkboxes}</>;
 };
 

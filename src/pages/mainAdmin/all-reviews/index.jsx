@@ -15,6 +15,8 @@ import AdminReviewModal from "../../../components/AdminReviewModal/index.jsx";
 import CustomModal from "../../../components/shared/Admin/CustomModal";
 import { mainAdminReviewsById } from "../../../services/mainAdmin";
 import Avatar from "../../../components/Avatar";
+import { MailOutlined } from "@ant-design/icons";
+import MainNavBar from "../../../components/mainAdmin/Admin-NavBar";
 
 const placeholder =
   "https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg";
@@ -175,10 +177,8 @@ const MainAdminReviews = () => {
   return (
     <>
       <div className="flex flex-row">
-        <NavBar />
+        <MainNavBar />
         <div className="w-full mx-auto ">
-          <SubNavBar />
-
           <div className="container mx-auto">
             {isLoading ? (
               <ReviewPageLoader />

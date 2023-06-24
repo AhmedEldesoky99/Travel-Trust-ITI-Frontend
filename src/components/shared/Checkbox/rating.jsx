@@ -1,19 +1,23 @@
-import { Checkbox } from 'antd';
-const onChange = (checkedValues) => {
-  console.log('checked = ', checkedValues);
-};
-const Options = ['5 Star', '4 Star', '3 Star','2 Star','1 Star'];
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+import { Checkbox } from "antd";
 
-const RatingCheckbox = () => {
-    const checkboxes = Array.from({ length: Options.length }, (_, index) => (
-        <div key={index} className='flex gap-1'>
-            <Checkbox options={Options[index]} onChange={onChange}/> <p>{Options[index]}</p>
-        </div>
-      ));
-    return (
-        <>
-            {checkboxes}
-        </>
-    );
-}
+const RatingCheckbox = ({ statsData, onChange }) => {
+  return (
+    <>
+      {Object.entries(statsData||{})?.map(([key, value]) => {
+        return (
+          <div key={key} className="flex justify-between">
+            <div className="flex gap-1">
+              <Checkbox options={`${key} Star`} onChange={() => onChange(value)} />{" "}
+              <p>{key} Star</p>
+            </div>
+            <span>{value}</span>
+          </div>
+        );
+      })}
+    </>
+  );
+};
 export default RatingCheckbox;

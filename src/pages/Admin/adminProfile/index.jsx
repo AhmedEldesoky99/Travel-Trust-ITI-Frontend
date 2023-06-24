@@ -14,7 +14,7 @@ import email from "../../../assets/images/Admin/AdminProfile/email.svg";
 import location from "../../../assets/images/Admin/AdminProfile/location.svg";
 import ssn from "../../../assets/images/Admin/AdminProfile/ssn.svg";
 
-import { Modal } from "antd";
+import { Badge, Modal } from "antd";
 import "./app.css";
 
 import { getUserData } from "../../../services/user";
@@ -62,6 +62,11 @@ const AdminProfile = () => {
   const { data: admin, isLoading } = getUserData(organizerId);
   console.log("admin", admin);
 
+  const showVerificationForm = admin?.data?.user?.civil_photos?.front[0]?.url;
+
+  const showPending =
+    admin?.data?.user?.civil_photos?.front?.length > 0 &&
+    !admin?.data?.user?.verified;
   return (
     <>
       <div className="flex flex-row bg-admin-grey">
@@ -74,10 +79,10 @@ const AdminProfile = () => {
             ) : (
               <div className="grid lg:grid-cols-6 lg:grid-flow-row auto-rows-max w-full  gap-5 h-fill md:mt-8 mt-32 ">
                 <div className="flex flex-col gap-8">
-                  <div className="flex md:flex-row 2xs:flex-col justify-between  md:max-h-[283px] max-w-[1558px] rounded-2xl shadow-lg w-screen h-screen  bg-white">
+                  <div className="flex md:flex-row 2xs:flex-col justify-between md:max-h-[283px] max-w-[1558px] rounded-2xl shadow-lg w-screen h-screen overflow-hidden  bg-white">
                     <div className="flex md:flex-row 2xs:flex-col gap-5 lg:mx-0">
                       <div className="2xs:mx-auto">
-                        <div className="max-h-[283px] md:max-w-[283px] w-full  p-4">
+                        <div className="max-h-[283px] md:max-w-[283px] w-full   ">
                           <img
                             src={
                               admin?.data?.user?.photo?.length === 0
@@ -108,7 +113,8 @@ const AdminProfile = () => {
                               <h2 className="md:text-2xl 2xs:text-lg font-medium text-[#585858]">
                                 {admin?.data?.user?.job_profile}
                               </h2>
-                              {!admin?.data?.user?.verified && (
+                              {console.log(admin?.data?.user?.verified)}
+                              {!showVerificationForm && (
                                 <div className="flex flex-row items-center ">
                                   <img src={ssn} />
                                   <button
@@ -135,6 +141,16 @@ const AdminProfile = () => {
                                     />
                                   </Modal>
                                 </div>
+                              )}
+                              {showPending ? (
+                                <div className="mt-8">
+                                  <Badge
+                                    count="pending for verification"
+                                    color="#faad14"
+                                  />
+                                </div>
+                              ) : (
+                                ""
                               )}
                             </div>
                             <div className="md:hidden  pr-5">
@@ -240,50 +256,52 @@ const AdminProfile = () => {
                           Governorate of expertise
                         </h4>
                         {/* {console.log("gov", admin?.data?.governorate_expertise)} */}
-                        {admin?.data?.user?.governorate_expertise?.length !==
-                        0 ? (
-                          admin?.data?.user?.governorate_expertise?.map(
-                            (gov, index) => {
+                        <div className="flex flex-col md:flex-row gap-4">
+                          {admin?.data?.user?.governorate_expertise?.length !==
+                          0 ? (
+                            admin?.data?.user?.governorate_expertise?.map(
+                              (gov, index) => {
+                                return (
+                                  <div
+                                    key={index}
+                                    className="flex  max-h-[42px] mb-4 mt-4"
+                                  >
+                                    <div className="py-3 px-5 bg-[#D9D9D9] rounded-lg flex items-center">
+                                      {gov?.title}
+                                    </div>
+                                  </div>
+                                );
+                              }
+                            )
+                          ) : (
+                            <div>
+                              <p>No Governorate of expertise selected</p>
+                            </div>
+                          )}
+                        </div>
+                        <h4 className="text-[#9A9999] font-semibold text-xl mt-8">
+                          Language
+                        </h4>
+                        <div className="flex flex-col md:flex-row gap-4">
+                          {admin?.data?.user?.languages?.length !== 0 ? (
+                            admin?.data?.user?.languages?.map((lang, index) => {
                               return (
                                 <div
                                   key={index}
                                   className="flex flex-row max-h-[42px] mb-4 mt-4"
                                 >
                                   <div className="py-3 px-5 bg-[#D9D9D9] rounded-lg flex items-center">
-                                    {/* {console.log("gov fv", gov)} */}
-                                    {gov?.title}
+                                    {lang}
                                   </div>
                                 </div>
                               );
-                            }
-                          )
-                        ) : (
-                          <div>
-                            <p>No Governorate of expertise selected</p>
-                          </div>
-                        )}
-
-                        <h4 className="text-[#9A9999] font-semibold text-xl mt-8">
-                          Language
-                        </h4>
-                        {admin?.data?.user?.languages?.length !== 0 ? (
-                          admin?.data?.user?.languages?.map((lang, index) => {
-                            return (
-                              <div
-                                key={index}
-                                className="flex flex-row max-h-[42px] mb-4 mt-4"
-                              >
-                                <div className="py-3 px-5 bg-[#D9D9D9] rounded-lg flex items-center">
-                                  {lang}
-                                </div>
-                              </div>
-                            );
-                          })
-                        ) : (
-                          <div>
-                            <p>No languages selected</p>
-                          </div>
-                        )}
+                            })
+                          ) : (
+                            <div>
+                              <p>No languages selected</p>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                     <div className="flex flex-col max-h-[515px] lg:max-w-[405px] bg-white shadow-xl rounded-2xl w-screen py-12 md:p-[24px] 2xs:px-3 gap-5">
@@ -291,19 +309,19 @@ const AdminProfile = () => {
                       <h2 className="text-2xl">Top Travelers</h2>
                       <div className="flex flex-col gap-6">
                         <TopTravelers
-                          img={profileImg}
-                          name="Maged Mostafa"
-                          mail="maged@gmail.com"
+                          img="https://pbs.twimg.com/profile_images/830302889977344001/kNGk9Hf2.jpg"
+                          name="Magid Mostafa"
+                          mail="magid@gmail.com"
+                        />
+                        <TopTravelers
+                          img="https://i1.rgstatic.net/ii/profile.image/860226119032834-1582105297282_Q512/Ana-Moreno-Lobato-2.jpg"
+                          name="Abeer Ali"
+                          mail="abeer@gmail.com"
                         />
                         <TopTravelers
                           img={profileImg}
-                          name="Maged Mostafa"
-                          mail="maged@gmail.com"
-                        />
-                        <TopTravelers
-                          img={profileImg}
-                          name="Maged Mostafa"
-                          mail="maged@gmail.com"
+                          name="Ahmed Moamen"
+                          mail="ahmed@gmail.com"
                         />
                       </div>
                     </div>
