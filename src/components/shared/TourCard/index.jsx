@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Rate } from "antd";
 import {
@@ -15,24 +15,30 @@ import ShipIcon from "../../../assets/images/TourCard/ship.svg";
 import SkateIcon from "../../../assets/images/TourCard/skate.svg";
 import CastleIcon from "../../../assets/images/TourCard/castle.svg";
 
+import { toggleFavoriteMutation } from "../../../services/favorites";
+
 const place_holder_avatar =
   "https://frostbrowntodd.com/app/uploads/2021/10/FBT_NoPhoto-1.jpg";
 const place_holder_tour =
   "https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png";
 
-const TourCard = ({ data }) => {
-  // const TourCard = (props) => {
+const TourCard = ({ data, length }) => {
   // -------- States --------
   const [checked, setChecked] = useState(false);
 
   // -------- Handlers --------
+
+  const { mutate } = toggleFavoriteMutation();
+
   const toggleFavorites = () => {
+    length = null;
     setChecked(!checked);
+    mutate({ tourId: data?._id, checked });
   };
 
-  const handleClick = (id) => {
-    navigate(`/tour-details/${id}`);
-  };
+  useEffect(() => {
+    length ? setChecked(true) : setChecked(false);
+  }, [length]);
 
   return (
     <div className="card card-compact shadow-xl group">
@@ -127,6 +133,7 @@ const TourCard = ({ data }) => {
               <ClockCircleOutlined className="text-base" />
               <span className="text-base text-light-gray h-5">
                 {data?.duration === 1 ? "a" : data?.duration} day{data?.duration === 1 ? "" : "s"}
+
               </span>
             </div>
           </div>

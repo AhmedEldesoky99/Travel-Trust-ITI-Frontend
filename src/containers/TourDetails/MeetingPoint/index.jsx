@@ -6,8 +6,8 @@ import CustomMap from "../../../components/shared/Map";
 const MeetingPoint = ({ data }) => {
   console.log(data);
   return (
-    <section className="container grid lg:grid-cols-12">
-      <div className="lg:col-span-8">
+    <section className="container grid lg:grid-cols-12 pb-20">
+      <div className="lg:col-span-8 2xs:h-[160px] lg:h-auto">
         <div className="mb-5">
           <h3 className="font-bold mb-2 2xs:text-base sm:text-lg 2xl:text-2xl ">
             Where will we meet
@@ -18,13 +18,17 @@ const MeetingPoint = ({ data }) => {
         </div>
 
         <CustomMap
-          coordinates={{ longitude: data?.data?.latitude, latitude: data?.data?.longitude }}
+          draggable={false}
+          coordinates={{
+            longitude: data?.data?.latitude,
+            latitude: data?.data?.longitude,
+          }}
         />
       </div>
 
       <div className="lg:col-span-1"></div>
 
-      <div className="lg:col-span-3 2xs:mt-10 lg:mt-0">
+      <div className="lg:col-span-3 2xs:mt-28 lg:mt-0">
         <CheckoutCard data={data?.data} />
       </div>
     </section>

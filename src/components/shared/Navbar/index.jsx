@@ -58,7 +58,7 @@ const Navbar = ({ pathBackgroundIncluded }) => {
   return (
     <>
       <nav
-        className={`navbar justify-between fixed top-0 z-50 text-white shadow-md transition-all duration-500  ${
+        className={`navbar justify-between fixed top-0 z-50 text-white transition-all duration-500  ${
           pathBackgroundIncluded
             ? "bg-[#0B0B0B]"
             : isScrolled
