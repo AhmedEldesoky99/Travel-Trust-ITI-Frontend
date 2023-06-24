@@ -14,11 +14,13 @@ const Favorite = () => {
   const userId = localStorage.getItem("userId");
   const { data, isLoading, isSuccess } = getUserData(userId);
 
+
+
   return (
     <>
       {!isSuccess && isLoading && <CardLoader />}
 
-      {data ? (
+      {data?.data?.user?.favorite_tours.length ? (
         <section className="mt-32">
           <div className="container mx-auto">
             <h1 className="2xs:text-lg xs:text-xl lg:text-2xl 2xl:text-3xl xs:mb-4">

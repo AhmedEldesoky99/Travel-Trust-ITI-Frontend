@@ -22,7 +22,7 @@ const CheckDestenations = () => {
             Check out other destinations
           </h3>
           <Link
-            to=""
+            to={`/destinations`}
             className="2xs:mb-2 xs:mb-4 md:text-lg 2xl:text-xl text-primary-green hover:underline"
           >
             View all destinations
