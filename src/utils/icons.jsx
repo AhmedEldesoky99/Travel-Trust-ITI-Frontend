@@ -40,6 +40,7 @@ const Icon = ({ name, color, number }) => {
     ),
     delete: (
       <svg
+        className="text-red-600 hover:text-red-700 transition-all duration-200 ease-in-out"
         width="22"
         height="21"
         viewBox="0 0 22 21"
@@ -48,7 +49,7 @@ const Icon = ({ name, color, number }) => {
       >
         <path
           d="M16.3858 19.5522H5.61659C5.20856 19.5522 4.81725 19.3953 4.52873 19.116C4.24021 18.8367 4.07812 18.4579 4.07812 18.0629V4.65918H17.9243V18.0629C17.9243 18.4579 17.7622 18.8367 17.4737 19.116C17.1852 19.3953 16.7938 19.5522 16.3858 19.5522Z"
-          stroke="#585858"
+          stroke="currentColor"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeinlecap="round"
@@ -56,7 +57,7 @@ const Icon = ({ name, color, number }) => {
         />
         <path
           d="M8.69141 15.0844V9.1272"
-          stroke="#585858"
+          stroke="currentColor"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeinlecap="round"
@@ -64,7 +65,7 @@ const Icon = ({ name, color, number }) => {
         />
         <path
           d="M13.3086 15.0844V9.1272"
-          stroke="#585858"
+          stroke="currentColor"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeinlecap="round"
@@ -72,7 +73,7 @@ const Icon = ({ name, color, number }) => {
         />
         <path
           d="M1 4.65918H21"
-          stroke="#585858"
+          stroke="currentColor"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeinlecap="round"
@@ -80,7 +81,7 @@ const Icon = ({ name, color, number }) => {
         />
         <path
           d="M13.3101 1.68066H8.69471C8.28669 1.68066 7.89537 1.83757 7.60685 2.11687C7.31834 2.39617 7.15625 2.77498 7.15625 3.16997V4.65927H14.8486V3.16997C14.8486 2.77498 14.6865 2.39617 14.398 2.11687C14.1094 1.83757 13.7181 1.68066 13.3101 1.68066Z"
-          stroke="#585858"
+          stroke="currentColor"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -1520,6 +1521,7 @@ const Icon = ({ name, color, number }) => {
     ),
     edit: (
       <svg
+        className="text-yellow-500 hover:text-yellow-400 transition-all duration-200 ease-in-out"
         width="24"
         height="24"
         viewBox="0 0 24 24"
@@ -1528,13 +1530,13 @@ const Icon = ({ name, color, number }) => {
       >
         <path
           d="M12.5963 13.899L9.29688 14.371L9.76796 11.0707L18.2529 2.58576C18.628 2.21071 19.1367 2 19.6671 2C20.1975 2 20.7062 2.21071 21.0812 2.58576C21.4563 2.96082 21.667 3.46951 21.667 3.99992C21.667 4.53033 21.4563 5.03902 21.0812 5.41408L12.5963 13.899Z"
-          stroke="#585858"
+          stroke="currentColor"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M18.3352 13.9996V20.666C18.3352 21.0196 18.1947 21.3587 17.9447 21.6088C17.6947 21.8588 17.3555 21.9993 17.0019 21.9993H3.66921C3.3156 21.9993 2.97648 21.8588 2.72644 21.6088C2.47641 21.3587 2.33594 21.0196 2.33594 20.666V7.33327C2.33594 6.97967 2.47641 6.64054 2.72644 6.39051C2.97648 6.14047 3.3156 6 3.66921 6H10.3356"
-          stroke="#585858"
+          stroke="currentColor"
           strokeLinecap="round"
           strokeLinejoin="round"
         />

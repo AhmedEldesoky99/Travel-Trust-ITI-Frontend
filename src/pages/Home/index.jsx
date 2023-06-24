@@ -10,6 +10,7 @@ import JoinUs from "../../containers/Home/JoinUs";
 import Partners from "../../containers/Home/Partners";
 
 const Home = () => {
+  
   return (
     <>
       <HeaderSection />

@@ -36,12 +36,15 @@ const CustomSearch = (props) => {
             </Select>
           </div>
           <div>
+        
             <button
               type="submit"
               className="CustomBtn absolute top-[6.9px] right-[0.34rem] sm:right-2  bg-primary-green hover:bg-[#048BA0] transition-all duration-300 text-white cursor-pointer  px-5  md:px-10 lg:px-12 py-[11px] xs:py-[11px] min:[767px]-max:[769px]-py-[11px] md:py-[20px] lg:py-[18px] rounded-md text-[16px] md:text-xl lg:text-2xl"
             >
               Search
             </button>
+           
+           
           </div>
         </div>
       </div>

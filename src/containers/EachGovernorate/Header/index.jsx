@@ -10,8 +10,9 @@ const Header = () => {
     ["GovernorateTours", id],
     () => getEachGovernorateTours(id)
   );
+  const full_img = `bg-[url(${data?.data.city.home_image})]`
   return (
-    <header className={`relative hero min-h-[55vh] ${data?`bg-[url(${data?.data.city.full_image})]`:`bg-eachGovernorateBG`} `}>
+    <header className={`relative hero min-h-[55vh] ${data?` ${full_img}`:`bg-eachGovernorateBG`} `}>
       <div className="hero-overlay bg-black/[0.4]"></div>
       <div className="container">
         <div className="hero-content p-0 justify-start text-white mb-2">

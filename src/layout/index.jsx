@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
 import Navbar from "../components/shared/Navbar";
@@ -8,6 +8,11 @@ import { UserIdProvider } from "../context/UserIdContext";
 
 const Layout = () => {
   const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.pathname]);
+  
   const pathsToHide = [
     "/join",
     "/login",
@@ -19,8 +24,10 @@ const Layout = () => {
     "/admin/reviews/:organizerId",
     "/admin/profile/:organizerId",
     "/admin/addTour",
+    "/not-found",
+    "/error"
   ];
-  const pathsForBackground = ["/favorite", "/cart", "/faq", "/privacy"];
+  const pathsForBackground = ["/favorite", "/cart", "/faq", "/privacy","/history"];
 
   const pathIncluded = pathsToHide.includes(location.pathname);
   const pathBackgroundIncluded = pathsForBackground.includes(location.pathname);

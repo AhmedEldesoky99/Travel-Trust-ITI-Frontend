@@ -1,89 +1,62 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import TourCard from "../../components/shared/TourCard/index";
-import CheckDestenations from "../../containers/EachGovernorate/CheckDestenations";
 import { Link } from "react-router-dom";
+import { Breadcrumb, Pagination } from "antd";
+
+import CheckDestenations from "../../containers/EachGovernorate/CheckDestenations";
+
+import TourCard from "../../components/shared/TourCard/index";
+import CardLoader from "./../../components/CardLoader/index";
+
+import { getUserData } from "../../services/user";
 
 const Favorite = () => {
-  const [items] = useState(0);
-  const [recommended] = useState(4);
-  const tourCards = Array.from({ length: Math.ceil(items / 4) }, (_, i) => {
-    const row = Array.from({ length: Math.min(items - i * 4, 4) }, (_, j) => (
-      <div key={i * 4 + j} className="max-h-[534px] max-w-[404px]">
-        <TourCard />
-      </div>
-    ));
-    return (
-      <div key={i} className="container grid gap-4 grid-cols-1  md:grid-cols-2  lg:grid-cols-2 xl:grid-cols-4">
-        {row}
-      </div>
-    );
-  });
-  const recommendedCards = Array.from({ length: Math.ceil(recommended / 4) }, (_, i) => {
-    const row = Array.from({ length: Math.min(recommended - i * 4, 4) }, (_, j) => (
-      <div key={i * 4 + j} className="max-h-[534px] max-w-[404px] sm:mb-6 2xs:mb-3">
-        <TourCard />
-      </div>
-    ));
-    return (
-      <div
-        key={i}
-        className="container grid gap-4 grid-cols-1  md:grid-cols-2  lg:grid-cols-2 xl:grid-cols-4 mt-12"
-      >
-        {row}
-      </div>
-    );
-  });
+  const userId = localStorage.getItem("userId");
+  const { data, isLoading, isSuccess } = getUserData(userId);
+
+
+
   return (
     <>
-      {/* <Navbar/> */}
-      {items !== 0 ? (
-        <div className="flex flex-col justify-center mx-[10%]">
-          <div className="">
-            <h1 className="text-3xl mb-8 ">My Favorites</h1>
+      {!isSuccess && isLoading && <CardLoader />}
+
+      {data?.data?.user?.favorite_tours.length ? (
+        <section className="mt-32">
+          <div className="container mx-auto">
+            <h1 className="2xs:text-lg xs:text-xl lg:text-2xl 2xl:text-3xl xs:mb-4">
+              My Favorites
+            </h1>
           </div>
-          <div className="flex flex-col gap-5 ">{tourCards}</div>
-          <div className="mt-8 flex justify-center mb-10"></div>
-        </div>
+
+          <div className="container mb-10 mx-auto grid gap-4 2xs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+            {data?.data?.user?.favorite_tours?.map((tour) => (
+              <TourCard
+                key={tour._id}
+                data={tour}
+                length={data?.data?.user?.favorite_tours.length}
+              />
+            ))}
+          </div>
+        </section>
       ) : (
-        <div className="flex flex-col">
-          <div className="flex flex-col h-[60vh] w-full justify-center items-center text-center mb-14">
-            <div className="bg-emptyFav bg-contain bg-no-repeat  max-h-[382px] max-w-[621px] w-full h-full md:mb-3"></div>
-            <p className="xl:text-4xl lg:text-2xl 2xs:text-xl mb-4">
-              Your favorites does not have anything yet !
-            </p>
-            <p className="xl:text-lg lg:text-base 2xs:text-sm ">
-              When there is something you want to save, just click the heart
-              icon shown on each tour. <br />
-              You will find all the tours you&apos;ve saved here.
-            </p>
-          </div>
-          <div className="flex flex-col container mx-auto">
-            <div className="w-screen lg:w-auto">
-              <div className="container flex flex-row lg:justify-between 2xs:justify-center ">
-                <h2 className="text-[#2B2B2B] lg:text-[32] md:text-2xl 2xs:text-xl font-bold capitalize  lg:text-start">
-                  Check out these Recommended Tours
-                </h2>
-                <Link
-                  to=""
-                  className="hidden lg:flex items-center underline font-medium text-[#009EB7]  md:text-[20px] lg:text-[24px] "
-                >
-                  Find more things to do
-                </Link>
-              </div>
+        <div className="container mx-auto mt-32">
+          <div className="flex flex-col">
+            <div className="flex flex-col h-[60vh] w-3/4 mx-auto justify-center items-center text-center">
+              <div className="bg-emptyFav w-full h-[382px] mb-3 bg-no-repeat bg-contain bg-center"></div>
+              <p className="font-bold 2xs:text-xl md:text-2xl 2xl:text-4xl">
+                Your favorites does not have anything yet !
+              </p>
+              <p className="2xs:text-base md:text-lg 2xl:text-3xl">
+                When there is something you want to save, just click the heart
+                icon shown on each tour. You will find all the tours you've
+                saved here.
+              </p>
             </div>
-            <div className="flex justify-center">{recommendedCards}</div>
-            <div className="lg:mt-0 lg:mb-0 mt-10 mb-5">
-            <Link
-                  to=""
-                  className="lg:hidden flex items-center justify-center underline font-medium text-[#009EB7]  md:text-[20px] lg:text-[24px] "
-                >
-                  Find more things to do
-                </Link>
+            <div>
+              <CheckDestenations />
             </div>
           </div>
         </div>
-        // link center
       )}
     </>
   );

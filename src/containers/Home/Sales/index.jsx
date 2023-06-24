@@ -17,7 +17,7 @@ const Sales = () => {
                   together for you, live unforgettable experience
                 </p>
                 <Link
-                  to=""
+                  to="sales"
                   className=" bg-white  text-[18px] md:text-[21px] xl:text-[22px]  py-4 rounded-lg capitalize text-center px-10 font-inter  font-semibold text-[#2B2B2B] hover:bg-primary-green hover:text-white transition-all duration-500 ease-in-out"
                 >
                   Discover a deal

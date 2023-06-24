@@ -1,17 +1,20 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { Collapse, Pagination } from "antd";
+import { Collapse, Pagination, Slider } from "antd";
 import TourWideCard from "../../components/shared/TourWideCard";
-import PriceRange from "../../components/shared/PriceRange/index";
 import FilterCheckbox from "../../components/shared/Checkbox/activity";
 import RatingCheckbox from "../../components/shared/Checkbox/rating";
 import CustomSearch from "../../components/CustomSearchSelection";
 
 import "./app.css";
+import { useQuery } from "react-query";
+import { getSearchResults } from "../../services/Search";
+import { getAllCategories } from "../../services/Home";
 
 const { Panel } = Collapse;
 
 const Search = () => {
+
   const Options = [
     "Cruise",
     "Hiking",
@@ -22,22 +25,25 @@ const Search = () => {
     "Medical",
     "History",
   ];
+  const { data } = useQuery("categories", getAllCategories);
 
   const onChange = (checkedValues) => {
     console.log("checked = ", checkedValues);
   };
   const [items] = useState(3);
   const [page, setPage] = useState(1);
+  // const { isLoading, toursData, isSuccess } = useQuery(
+  //   ["SearchResults", ],
+  //   () => getSearchResults()
+  // );
   const tourCards = Array.from({ length: items }, (_, index) => (
-    <TourWideCard key={index} />
+    <TourWideCard key={index}/>
   ));
   return (
     <>
       <div className="my-16">
         <div className="flex flex-col">
           <div className="flex flex-col flex-wrap w-screen shadow-lg ">
-            {/* Search component */}
-            {/* filter options */}
             <div className="w-screen container mx-auto mb-8">
               <div className="max-w-[1124px] flex lg:justify-normal 2xs:justify-center">
                 <CustomSearch />
@@ -54,7 +60,7 @@ const Search = () => {
                   <p className="text-lg">EGP 1 200 - EGP 10 000</p>
                   <p className="text-sm"> Average Price 5 600</p>
                   <div className="mt-[18px] mb-[15px]">
-                    <PriceRange />
+                    <Slider range max={1000} defaultValue={[0, 400]} />
                   </div>
                   <div className="flex gap-1 items-center justify-center">
                     <input
@@ -76,7 +82,7 @@ const Search = () => {
                     className="border-none poop"
                   >
                     <Panel header="Activity" key="1" className="peep">
-                      <FilterCheckbox options={Options} onChange={onChange} />
+                      <FilterCheckbox data={data} onChange={onChange} />
                     </Panel>
                   </Collapse>
                   <hr />

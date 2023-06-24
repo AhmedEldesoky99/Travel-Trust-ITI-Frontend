@@ -2,12 +2,19 @@ import { useQuery } from "react-query";
 import TourCard from "../../../components/shared/TourCard";
 import { getRecommendedTour } from "../../../services/Home";
 import CardLoader from "../../../components/CardLoader";
+import { Link } from "react-router-dom";
 
 const Recommended = () => {
+  const token = localStorage.getItem("travelJWT");
+
   const { isLoading, data, isSuccess } = useQuery(
     "recommendedTours",
-    getRecommendedTour
+    getRecommendedTour,
+    {
+      enabled: token ? true : false,
+    }
   );
+
   return (
     <>
       {!isSuccess && isLoading && <CardLoader />}
@@ -23,7 +30,19 @@ const Recommended = () => {
               </h2>
               <div className="container grid gap-4 2xs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mt-12">
                 {data?.data?.map((item, index) => {
-                  if (index < 4) return <TourCard key={item._id} data={item} />;
+                  if (index < 4) {
+                    return (
+                      <TourCard
+                        key={item._id}
+                        data={item}
+                        title={
+                          item?.title.length >= 20
+                            ? item?.title.substring(0, 23) + "..."
+                            : item?.title
+                        }
+                      />
+                    );
+                  }
                 })}
               </div>
             </div>

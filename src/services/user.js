@@ -7,9 +7,9 @@ const getUserById = (userId) => {
 
 export const getUserData = (userId) => {
   return useQuery(["user-data", userId], () => getUserById(userId), {
-    enabled: !!userId,
+    enabled: userId ? true : false,
     onSuccess: (res) => {
-      console.log(res);
+      // console.log(res);
     },
     onError: (err) => {
       console.log(err);

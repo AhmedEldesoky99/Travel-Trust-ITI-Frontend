@@ -6,9 +6,8 @@ const useAdminAuth = () => {
   const navigate = useNavigate();
 
   const adminSignup = (data) => {
-    console.log(data);
     return request({
-      url: "/v1/users/sign-up/admin",
+      url: "/v1/users/sign-up/organizer",
       method: "POST",
       data: data,
       successMsg: "You have been signed up successfully",
@@ -16,9 +15,8 @@ const useAdminAuth = () => {
   };
 
   const adminLogin = (data) => {
-    console.log(data);
     return request({
-      url: "/v1/users/sign-in/admin",
+      url: "/v1/users/sign-in/organizer",
       method: "POST",
       data: data,
       successMsg: "You have been logged in successfully",
@@ -36,21 +34,24 @@ const useAdminAuth = () => {
           navigate(`/admin/alltours/${res.data.userBody._id}`);
         }
       },
+
       onError: (err) => console.log(err),
     });
   };
 
   const adminLoginMutation = () => {
     return useMutation(adminLogin, {
+
       onSuccess: (res) => {
         console.log(res);
         if (res.success) {
           console.log("Navigate login");
           localStorage.setItem("travelJWT", res.data.access_token);
-          localStorage.setItem("userId", res.data.userBody._id);
+          localStorage.setItem("localId", res.data.userBody._id);
           navigate(`/admin/alltours/${res.data.userBody._id}`);
         }
       },
+
       onError: (err) => console.log(err),
     });
   };
