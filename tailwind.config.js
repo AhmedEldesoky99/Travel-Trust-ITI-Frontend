@@ -22,8 +22,10 @@ export default {
         "tertiary-red": "#DB3A34",
         "light-gray": "#585858",
         "glass-gray": "#767676",
-        "lighter-gray":"#D9D9D9"
-      }, backgroundImage: {
+        "lighter-gray": "#D9D9D9",
+        "admin-grey": "#f5f8f9",
+      },
+      backgroundImage: {
         "join-us": "url('/src/assets/images/joinbg.jpg')",
         "login-user": "url('/src/assets/images/login user.jpg')",
         "sign-up-user": "url('/src/assets/images/signup user.jpg')",
@@ -34,7 +36,8 @@ export default {
         fish: "url('/src/assets/images/EachGovernorate/Fish.png')",
         salesBG: "url('/src/assets/images/Sales/SalesBG.png')",
         homeHeader: "url('/src/assets/images/Home/Header/Header.jpg')",
-        salesHeader: "url('/src/assets/images/Home/SalesHeader/SalesHeader.png')",
+        salesHeader:
+          "url('/src/assets/images/Home/SalesHeader/SalesHeader.png')",
         egyptionPharaoh:
           "url('/src/assets/images/Home/VideoSection/EgyptionPharaoh.png')",
         joinUsHome: "url('/src/assets/images/Home/JoinUs/JoinUs.png')",
@@ -42,14 +45,16 @@ export default {
         emptyFav: "url('/src/assets/images/Favorite/emptyFav.png')",
         "signup-admin": "url('/src/assets/images/Admin/admin-signUp.png')",
         "login-admin": "url('/src/assets/images/Admin/admin-logIn.png')",
-        tourDetailsBG: "url('/src/assets/images/TourDetails/TourDetailsBG.png')",
+        tourDetailsBG:
+          "url('/src/assets/images/TourDetails/TourDetailsBG.png')",
         allToursBG: "url('/src/assets/images/AllTours/AllToursBG.png')",
         contactUs: "url('/src/assets/images/Contact/Contact.png')",
         parallax: "url('/src/assets/images/Contact/parallax.png')",
 
-        DestinationsBg: "url('/src/assets/images/Destinations/Egypt-Felucca-on-the-Nile.jpg')",
-
-      }, height: {
+        DestinationsBg:
+          "url('/src/assets/images/Destinations/Egypt-Felucca-on-the-Nile.jpg')",
+      },
+      height: {
         inherit: "inherit",
         fit: "fit-content",
       },
@@ -64,4 +69,3 @@ export default {
     themes: ["light"],
   },
 };
-

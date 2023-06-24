@@ -22,7 +22,7 @@ const AddGallery = () => {
 
   return (
     <>
-      <div className="rounded-2xl shadow-md p-10 ">
+      <div className="rounded-2xl shadow-md p-10 mt-10  bg-white">
         <h3 className="text-3xl mt-10 font-medium">Upload Highlight images</h3>
         <Form onFinish={handleSubmit(onhandleSubmit)}>
           <div className="flex justify-start items-center flex-wrap md:flex-nowrap mt-10">

@@ -34,11 +34,6 @@ const DayInputs = ({ register, errors, control, index }) => {
             register={register}
             errors={errors}
           />
-          {/* {errors.plan?.[index]?.title && (
-            <p className="text-tertiary-red mt-1">
-              {errors.plan?.[index]?.title?.message}
-            </p>
-          )} */}
 
           <Controller
             name={`plan.${index}.time`}
@@ -84,12 +79,6 @@ const DayInputs = ({ register, errors, control, index }) => {
           <Controller
             name={`plan.${index}.image_file`}
             control={control}
-            rules={{
-              required: {
-                value: true,
-                message: "Image is required",
-              },
-            }}
             render={({ field }) => (
               <>
                 <div className="flex justify-center flex-col">
@@ -103,11 +92,6 @@ const DayInputs = ({ register, errors, control, index }) => {
                     setFileList={field.onChange}
                     // {...field}
                   />
-                  {errors.plan?.[index]?.image_file && (
-                    <p className="text-tertiary-red mt-1">
-                      {errors.plan?.[index]?.image_file?.message}
-                    </p>
-                  )}
                 </div>
               </>
             )}

@@ -91,16 +91,17 @@ const CheckoutCard = ({ data }) => {
     removeMutate(data?._id);
   };
 
-  const { id, admin } = useParams();
-  // console.log("details", admin);
+  // { id, admin }
+  const { id, organizerId } = useParams();
+  console.log("details", organizerId);
+
 
   return (
     <>
-      {admin && (
-        <div className="mb-10 flex justify-center items-center">
-          {/* to do :  get organizer id */}
-          <Link to="/admin/:organizerId">
-            <CustomButton value="Go Back to Admin" width="w-full" />
+      {organizerId && (
+        <div className="mb-6 flex justify-center items-center">
+          <Link to={`/local/alltours/${organizerId}`}>
+            <CustomButton value="Go Back to Admin" width="w-96" />
           </Link>
         </div>
       )}

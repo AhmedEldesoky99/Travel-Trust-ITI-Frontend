@@ -4,7 +4,6 @@ import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../components/shared/Navbar";
 import Footer from "../components/shared/Footer";
 
-
 import { UserIdProvider } from "../context/UserIdContext";
 
 const Layout = () => {
@@ -18,11 +17,12 @@ const Layout = () => {
     "/join",
     "/login",
     "/signup",
-    "/admin",
     "/admin/login",
     "/admin/signup",
-    "/admin/alltours",
-    "/admin/reviews",
+    "/admin/:organizerId",
+    "/admin/alltours/:organizerId",
+    "/admin/reviews/:organizerId",
+    "/admin/profile/:organizerId",
     "/admin/addTour",
     "/not-found",
     "/error"
@@ -36,11 +36,11 @@ const Layout = () => {
     <>
       {!pathIncluded && (
         <UserIdProvider>
-          <Navbar pathBackgroundIncluded={pathBackgroundIncluded} />
+          {/* <Navbar pathBackgroundIncluded={pathBackgroundIncluded} /> */}
         </UserIdProvider>
       )}
       <Outlet />
-      {!pathIncluded && <Footer />}
+      {/* {!pathIncluded && <Footer />} */}
     </>
   );
 };

@@ -22,7 +22,7 @@ const AdminReviewCard = ({ totalReviews }) => {
     <>
       <section className="w-full mb-24 -mt-16 2xl:mt-10">
         <div className="container">
-          <div className="border-[0.4px] border-gray-200 py-10 -md rounded-md px-8">
+          <div className="border-[0.4px] border-gray-200 py-8 -md rounded-md px-8">
             <h2 className="capitalize text-xl">reviews</h2>
             <div className="border-b-2 h-4"></div>
             <p className="capitalize text-xl mt-4">overall rating</p>
@@ -49,14 +49,15 @@ const AdminReviewCard = ({ totalReviews }) => {
             <div className="w-full mt-6">
               {reviewSummaries.map((summary, index) => (
                 <div
-                  className="w-full bg-white mb-6 grid grid-cols-12"
+                  className="w-full bg-white mb-4 grid grid-cols-12  "
                   key={index}
                 >
                   <div className="col-span-3 capitalize text-[16px]">
                     {summary.summary}
                   </div>
+
                   <div
-                    className="bg-primary-green text-center col-span-9"
+                    className="bg-primary-green  col-span-9"
                     style={{ width: summary.width, opacity: summary.opacity }}
                   ></div>
                 </div>

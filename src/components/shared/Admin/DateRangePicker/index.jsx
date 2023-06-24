@@ -14,8 +14,6 @@ const disabledDate = (current) => {
 const CustomDatePicker = forwardRef(({ ...props }, ref) => {
   const { formData } = useAddTourFormContext();
 
-
-
   return (
     <RangePicker
       className="custom-date-picker mt-4"
