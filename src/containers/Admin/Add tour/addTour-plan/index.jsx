@@ -27,8 +27,8 @@ const AddPlan = ({}) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onhandleSubmit)} className="mt-8">
-        <div className="rounded-2xl shadow-md p-10 ">
+      <form onSubmit={handleSubmit(onhandleSubmit)} className="mt-8 ">
+        <div className="rounded-2xl shadow-md p-10  bg-white">
           <h2 className="text-3xl font-medium">Customize Your Plan</h2>{" "}
           {fields.map((field, index) => {
             return (

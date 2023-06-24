@@ -1,7 +1,14 @@
 /* eslint-disable no-unused-vars */
 import { request } from "./axios";
+// import { useMutation } from "react-query";
+
+export const getSearchResults = (data) => {
 
 
-export const getSearchResults = (city,minPrice,maxPrice,category,status,rate) => {
-    return request({ url: `/v1/tours?limit=100&city=${city}&minPrice=${minPrice}&maxPrice=${maxPrice}&category=${category}&status=${status}&rate=${rate}`, method: "GET" });
-  };
+  return request({
+    url: `/v1/tours/search`,
+    method: "POST",
+    data:data
+  });
+};
+

@@ -125,9 +125,9 @@ const AdminSignUp = () => {
                   Remember me
                 </label>
               </div>
-              <a href="" className="text-md font-medium text-primary-green">
+              <Link to="/local/signup" className="text-md font-medium text-primary-green">
                 forgot password ?
-              </a>
+              </Link>
             </div>
             <div className="w-80 mt-8 mb-3 text-center flex items-center justify-center">
               <CustomButton
@@ -143,7 +143,7 @@ const AdminSignUp = () => {
         <p className="text-md font-medium">
           Already have an account?
           <Link
-            to="/admin/login"
+            to="/local/login"
             className="text-md font-semibold underline ml-2 text-primary-green"
           >
             Login

@@ -37,7 +37,15 @@ const DreamTour = () => {
                   if (index < 4) {
                     return (
                       <Link to={`/tour-details/${item._id}`}>
-                        <TourCard key={item._id} data={item} />
+                      <TourCard
+                        key={item._id}
+                        data={item}
+                        title={
+                          item?.title.length >= 20
+                            ? item?.title.substring(0, 23) + "..."
+                            : item?.title
+                        }
+                      />
                       </Link>
                     );
                   }

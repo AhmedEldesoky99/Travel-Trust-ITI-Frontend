@@ -12,7 +12,12 @@ import { getTopDestinations } from "../../../services/Home";
 import { Link } from "react-router-dom";
 
 const CheckDestenations = () => {
-  const { data } = useQuery("TopDestinations", getTopDestinations);
+
+  const { isLoading, data, isSuccess } = useQuery(
+    "TopDestinations",
+    getTopDestinations
+  );
+
 
   return (
     <section className="py-14">
@@ -22,7 +27,7 @@ const CheckDestenations = () => {
             Check out other destinations
           </h3>
           <Link
-            to=""
+            to={`/destinations`}
             className="2xs:mb-2 xs:mb-4 md:text-lg 2xl:text-xl text-primary-green hover:underline"
           >
             View all destinations
@@ -33,6 +38,7 @@ const CheckDestenations = () => {
           {data?.data?.map((item, index) => {
             if (index < 4)
               return (
+
                 <Link to={`/each-governorate/${item._id}`} key={index}>
                   <CheckDestCard
                     key={item._id}

@@ -2,11 +2,9 @@ import React from "react";
 
 import CheckoutCard from "../../../components/shared/CheckoutCard";
 
-import Food1 from "../../../assets/images/TourDetails/food1.png";
-import Food2 from "../../../assets/images/TourDetails/food2.png";
-import Food3 from "../../../assets/images/TourDetails/food3.png";
-
 const Gallery = ({ data }) => {
+
+
   return (
     <section>
       <h3 className="font-semibold 2xs:text-base lg:text-xl 2xl:text-2xl mb-5">
@@ -17,7 +15,7 @@ const Gallery = ({ data }) => {
         <div className="lg:col-span-9 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 h-fit">
           {/* Food grid Start */}
           {data?.data?.food_photos?.map((foodPhoto) => (
-            <div className="lg:col-span-1">
+            <div key={foodPhoto?.public_id} className="lg:col-span-1">
               <div
                 style={{ backgroundImage: `url(${foodPhoto?.url})` }}
                 className={`2xs:min-h-[15rem] lg:min-h-[20rem] 2xl:min-h-[25rem] bg-cover bg-center rounded-2xl`}
@@ -56,7 +54,7 @@ const Gallery = ({ data }) => {
           </div>
 
           {data?.data?.highlight_photos?.map((highlightPhoto) => (
-            <div className="lg:col-span-1">
+            <div key={highlightPhoto?.public_id} className="lg:col-span-1">
               <div
                 style={{ backgroundImage: `url(${highlightPhoto?.url})` }}
                 className={`2xs:min-h-[15rem] lg:min-h-[20rem] 2xl:min-h-[25rem] bg-cover bg-center rounded-2xl`}

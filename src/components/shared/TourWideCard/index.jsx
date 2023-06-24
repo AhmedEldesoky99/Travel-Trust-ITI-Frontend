@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React from "react";
 
 import {
@@ -17,6 +19,7 @@ const TourWideCard = ({
   onUpdateTourIncrement,
   onUpdateTourDecrement,
   onDeleteTour,
+  showAction=true
 }) => {
   const {
     city,
@@ -95,14 +98,17 @@ const TourWideCard = ({
             <h2 className="card-title 2xs:text-lg sm:text-xl xl:text-2xl 2xl:text-3xl">
               {title}
             </h2>
+            {showAction&& 
+
             <button
               className="2xs:hidden xs:inline-block"
               onClick={handleDelete}
             >
+
               <div className="shadow-md p-3 rounded-lg">
                 <Icon name="delete" />
               </div>
-            </button>
+            </button>}
           </div>
 
           <div className="flex items-center justify-between w-full my-2  lg:max-w-[85%] xl:max-w-[55%] ">
@@ -141,14 +147,19 @@ const TourWideCard = ({
             <UserOutlined className="2xs:text-xl md:text-lg" />
           </div>
 
-          <div className="flex justify-between items-center min-w-[9rem]">
+
+{/* {  showAction&&  */}
+
+          {/* <div className="flex justify-between items-center min-w-[9rem]">
+
             <button onClick={handleDecrement}>
+
               <div className="shadow-md p-3 rounded-lg">
                 <Icon name="userDelete" />
               </div>
-            </button>
+            </button> */}
             {/* <p> booked for: money / pricePerPerson} </p> */}
-            <span className="text-lg 2xl:text-2xl px-3">{personsCount}</span>
+            {/* <span className="text-lg 2xl:text-2xl px-3">{personsCount}</span>
             <button disabled={personsMax} onClick={handleIncrement}>
               <div
                 className={`shadow-md p-3 rounded-lg ${
@@ -158,7 +169,7 @@ const TourWideCard = ({
                 <Icon name="userAdd" />
               </div>
             </button>
-          </div>
+          </div> */}
 
           <div>
             <p className="font-medium">

@@ -1,52 +1,112 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable react/prop-types */
+import { useMutation, useQuery } from "react-query";
 import "../CustomSearchSelection/style.css";
 import { Select, Space } from "antd";
+import { getSearchOptions } from "../../services/SearchOptions";
+import { getSearchResults } from "../../services/Search";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const { Option } = Select;
 
-const CustomSearch = (props) => {
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
+const CustomSearch = ({
+  customWidth,
+  min,
+  max,
+  rate = [],
+  category = [],
+  handleResult,
+}) => {
+  const [city, setCity] = useState([]);
+  const onChangeCities = (value) => {
+    setCity(value);
   };
+  const navigate = useNavigate();
+  const { data } = useQuery("searchOptions", getSearchOptions);
+  const handleSearch = async () => {
+    let Data = {
+      maxPrice: max,
+      minPrice: min,
+    };
+    if (rate.length > 0) {
+      Data.rate = rate;
+    }
+    if (category.length > 0) {
+      Data.category = category;
+    }
+    if (city.length > 0) {
+      Data.city = city;
+    }
+    const result = await getSearchResults(Data);
+      handleResult(result);
+
+  };
+  const handleOnChange = (value) => {
+    onChangeCities([...value]);
+  };
+
+  const mutation = useMutation(handleSearch, {
+    onSuccess: (res) => {
+      if (res?.data?.success) {
+        navigate("/search");
+        console.log("or here");
+      } else {
+        navigate("/search");
+        console.log("here");
+      }
+    },
+  });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate("/search");
+    mutation.mutate();
+  };
+
+  useEffect(() => {
+    mutation.mutate();
+  }, []);
 
   return (
     <>
-      <div className={`w-full ${props.customWidth ? props.customWidth : 'md:w-[61.2%]'} mt-8`}>
-        <div className="relative flex flex-col justify-between">
-          <div>
-            <Select
-              className="custom-search"
-              mode="multiple"
-              style={{ width: "100%" }}
-              placeholder="where are you travelling?"
-              onChange={handleChange}
-              optionLabelProp="label"
-            >
-              <Option value="china" label="China">
-                <Space>Dahab</Space>
-              </Option>
-              <Option value="usa" label="USA">
-                <Space>Cairo</Space>
-              </Option>
-              <Option value="japan" label="Japan">
-                <Space>Fayoum</Space>
-              </Option>
-              <Option value="korea" label="Korea">
-                <Space>Alex</Space>
-              </Option>
-            </Select>
+      <div
+        className={`w-full ${customWidth ? customWidth : "md:w-[61.2%]"} mt-8`}
+      >
+        <form onSubmit={handleSubmit}>
+          <div className="relative flex flex-col justify-between">
+            <div>
+              <Select
+                className="custom-search"
+                mode="multiple"
+                style={{ width: "100%" }}
+                placeholder="where are you travelling?"
+                onChange={handleOnChange}
+                optionLabelProp="label"
+              >
+                {data?.data?.map((option) => (
+                  <Option
+                    value={option?._id}
+                    label={option?.title}
+                    key={option?._id}
+                  >
+                    <Space>{option?.title}</Space>
+                  </Option>
+                ))}
+              </Select>
+            </div>
+            <div>
+              <button
+                type="submit"
+                className="CustomBtn absolute top-[6.9px] right-[0.34rem] sm:right-2  bg-primary-green hover:bg-[#048BA0] transition-all duration-300 text-white cursor-pointer  px-5  md:px-10 lg:px-12 py-[11px] xs:py-[11px] min:[767px]-max:[769px]-py-[11px] md:py-[20px] lg:py-[18px] rounded-md text-[16px] md:text-xl lg:text-2xl"
+              >
+                Search
+              </button>
+            </div>
           </div>
-          <div>
-        
-            <button
-              type="submit"
-              className="CustomBtn absolute top-[6.9px] right-[0.34rem] sm:right-2  bg-primary-green hover:bg-[#048BA0] transition-all duration-300 text-white cursor-pointer  px-5  md:px-10 lg:px-12 py-[11px] xs:py-[11px] min:[767px]-max:[769px]-py-[11px] md:py-[20px] lg:py-[18px] rounded-md text-[16px] md:text-xl lg:text-2xl"
-            >
-              Search
-            </button>
-           
-           
-          </div>
-        </div>
+        </form>
       </div>
     </>
   );
