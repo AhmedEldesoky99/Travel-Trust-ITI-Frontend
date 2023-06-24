@@ -13,7 +13,7 @@ const addToCart = (tourId, data) => {
     url: `/v1/cart/${tourId}`,
     method: "POST",
     data: data,
-    // successMsg: "Added to cart successfully",
+    successMsg: "Added to cart successfully",
   });
 };
 
@@ -38,6 +38,15 @@ export const addToCartMutation = (tourId, data, invalidateCart) => {
     onSuccess: (res) => {
       console.log(res.json);
       invalidateCart();
+    },
+    onError: (err) => console.log(err),
+  });
+};
+export const deleteFromCartMutation = (tourId, invalidateCart) => {
+  return useMutation(() => deleteFromCart(tourId), {
+    onSuccess: (res) => {
+      // console.log(res.json);
+      // invalidateCart();
     },
     onError: (err) => console.log(err),
   });
