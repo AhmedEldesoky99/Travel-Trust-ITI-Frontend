@@ -110,8 +110,12 @@ const AddTourPage = () => {
     setPublish(checked);
   };
   useEffect(() => {
-    data?.user?.verified ? setDisabled(false) : setDisabled(true);
-  }, []);
+    if (data?.user?.verified) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [data?.user?.verified]);
 
   return (
     <>
