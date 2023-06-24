@@ -25,6 +25,7 @@ import ContactUs from "./pages/ContactUs";
 import History from "./pages/History";
 import AdminProfileForUser from "./pages/AdminProfileForUser";
 import NotFound from "./pages/NotFound";
+import ErrorPage from "./pages/ErrorPage";
 
 // Local components
 import AdminSignUp from "./pages/Admin/adminSignup";
@@ -41,12 +42,8 @@ import MainAdminReviews from "./pages/mainAdmin/all-reviews";
 import MainAdminAllTours from "./pages/mainAdmin/all-tours";
 import MainAdminLogin from "./pages/mainAdmin/log-in";
 
-import { AddTourFormProvider } from "./context/AddTourFormContext";
 
-import Layout from "./layout";
 
-import { UserIdProvider } from "./context/UserIdContext";
-import ErrorPage from "./pages/ErrorPage";
 
 
 export const router = createBrowserRouter([
