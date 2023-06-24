@@ -40,11 +40,8 @@ import AdminReviews from "./pages/AdminReviews";
 import AddTourPage from "./pages/Admin/addTour";
 
 
-import { AddTourFormProvider } from "./context/AddTourFormContext";
 
-import Layout from "./layout";
 
-import { UserIdProvider } from "./context/UserIdContext";
 
 
 // Admin components
