@@ -26,6 +26,9 @@ import History from "./pages/History";
 import AdminProfileForUser from "./pages/AdminProfileForUser";
 import NotFound from "./pages/NotFound";
 import ErrorPage from "./pages/ErrorPage";
+import PageSkeleton from "./pages/PageSkeleton";
+
+
 
 // Local components
 import AdminSignUp from "./pages/Admin/adminSignup";
@@ -36,11 +39,20 @@ import AdminAllTours from "./pages/Admin/AdminAllTours";
 import AdminReviews from "./pages/AdminReviews";
 import AddTourPage from "./pages/Admin/addTour";
 
+
+import { AddTourFormProvider } from "./context/AddTourFormContext";
+
+import Layout from "./layout";
+
+import { UserIdProvider } from "./context/UserIdContext";
+
+
 // Admin components
 import MainAdminReviews from "./pages/mainAdmin/all-reviews";
 import MainAdminAllTours from "./pages/mainAdmin/all-tours";
 import MainAdminLogin from "./pages/mainAdmin/log-in";
 import MainAdminAllLocals from "./pages/mainAdmin/all-locals";
+
 
 export const router = createBrowserRouter([
   {
@@ -53,6 +65,7 @@ export const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "not-found", element: <NotFound /> },
       { path: "error", element: <ErrorPage /> },
+      { path: "skeleton", element: <PageSkeleton /> },
 
       {
         path: "signup",

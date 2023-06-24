@@ -93,6 +93,7 @@ const Regions = () => {
             tours: city.tours_number,
             city: city.title,
             url: city.home_image,
+            id: city._id,
           }));
           const formattedName = name.split("_").join(" ");
           regions.push({ name: formattedName, destinations });
@@ -113,20 +114,23 @@ const Regions = () => {
               <div
                 key={region.name}
                 id={region.name}
-                className="mb-16 text-center md:text-start"
+                className="mb-14 text-center md:text-start"
               >
-                <h2 className="text-[2.3rem] mb-8 font-medium capitalize">
+                <h2 className="text-[2.3rem] mb-10 font-medium capitalize">
                   {region.name}
                 </h2>
                 <div className="flex gap-4 flex-wrap">
-                  {region.destinations.map(({ tours, city, url }, index) => (
-                    <DestinationCard
-                      key={index}
-                      tours={tours}
-                      city={city}
-                      url={url}
-                    />
-                  ))}
+                  {region.destinations.map(
+                    ({ tours, city, url, id }, index) => (
+                      <DestinationCard
+                        key={index}
+                        tours={tours}
+                        city={city}
+                        url={url}
+                        id={id}
+                      />
+                    )
+                  )}
                 </div>
               </div>
             ))}
