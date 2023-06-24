@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { request } from "./axios";
 
 const getUserById = (userId) => {
@@ -33,14 +33,17 @@ export const useUser = () => {
     });
   };
 
-  const updateProfileMutation = useMutation(updateProfile, {
-    onSuccess: (res) => {
-      console.log(res);
-    },
-    onError: (err) => console.log(err),
-  });
-
+  const updateProfileMutation = () => {
+    const queryClient = useQueryClient();
+    return useMutation(updateProfile, {
+      onSuccess: (res) => {
+        console.log(res);
+        queryClient.invalidateQueries("user-data");
+      },
+      onError: (err) => console.log(err),
+    });
+  };
   return {
-    updateProfileMutation
-  }
+    updateProfileMutation,
+  };
 };

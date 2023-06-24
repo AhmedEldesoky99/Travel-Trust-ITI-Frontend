@@ -1,12 +1,14 @@
 import { PlusOutlined } from "@ant-design/icons";
-import { Modal, Upload } from "antd";
+import { Image, Modal, Upload } from "antd";
 import { useState } from "react";
 
 // import "./style.css";
 import "../uploadImage/style.css";
 import useImageList from "../../../hooks/useImageList";
+import useAddTourFormContext from "../../../hooks/useAddTourFormContext";
 
 const CustomUploadImage = ({ length, fileList, setFileList }) => {
+  const { tourID } = useAddTourFormContext();
   const {
     previewOpen,
     previewImage,
@@ -32,7 +34,7 @@ const CustomUploadImage = ({ length, fileList, setFileList }) => {
     <>
       <Upload
         className="custom-upload"
-        action="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy0QPGbDQdIb65Ic2w0Z83Mdp-_PFGfEQUz8Chra8a&s"
+        // url={"https://i.ibb.co/4J2SykS/download.jpg"}
         listType="picture-card"
         fileList={fileList}
         onPreview={handlePreview}

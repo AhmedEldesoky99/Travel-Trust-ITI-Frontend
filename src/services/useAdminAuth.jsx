@@ -3,10 +3,7 @@ import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 
 const useAdminAuth = () => {
-
-
-const navigate = useNavigate();
-
+  const navigate = useNavigate();
 
   const adminSignup = (data) => {
     console.log(data);
@@ -30,30 +27,30 @@ const navigate = useNavigate();
 
   const adminSignupMutation = () => {
     return useMutation(adminSignup, {
-        onSuccess: (res) => {
-            console.log(res);
-            if (res.success) {
-              console.log("Navigate");
-              localStorage.setItem("travelJWT", res.data.access_token);
-              localStorage.setItem("userId", res.data.user._id);
-              navigate("/admin");
-            }
-          },
+      onSuccess: (res) => {
+        console.log(res.data.success, "ahmed");
+        if (res.data.success) {
+          console.log("Navigate", "signup");
+          localStorage.setItem("travelJWT", res.data.access_token);
+          localStorage.setItem("localId", res.data.user._id);
+          navigate(`/admin/alltours/${res.data.userBody._id}`);
+        }
+      },
       onError: (err) => console.log(err),
     });
   };
 
   const adminLoginMutation = () => {
     return useMutation(adminLogin, {
-        onSuccess: (res) => {
-            console.log(res);
-            if (res.success) {
-              console.log("Navigate");
-              localStorage.setItem("travelJWT", res.data.access_token);
-              localStorage.setItem("userId", res.data.userBody._id);
-              navigate("/admin");
-            }
-          },
+      onSuccess: (res) => {
+        console.log(res);
+        if (res.success) {
+          console.log("Navigate login");
+          localStorage.setItem("travelJWT", res.data.access_token);
+          localStorage.setItem("userId", res.data.userBody._id);
+          navigate(`/admin/alltours/${res.data.userBody._id}`);
+        }
+      },
       onError: (err) => console.log(err),
     });
   };

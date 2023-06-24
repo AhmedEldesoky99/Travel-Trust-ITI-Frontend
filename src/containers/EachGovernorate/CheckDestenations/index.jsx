@@ -12,7 +12,10 @@ import { useQuery } from "react-query";
 import { getTopDestinations } from "../../../services/Home";
 
 const CheckDestenations = () => {
-  const { isLoading, data, isSuccess} = useQuery("TopDestinations", getTopDestinations);
+  const { isLoading, data, isSuccess } = useQuery(
+    "TopDestinations",
+    getTopDestinations
+  );
 
   return (
     <section className="py-14">
@@ -30,13 +33,18 @@ const CheckDestenations = () => {
         </div>
 
         <div className="container grid gap-2 2xs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {data.data?.map((item,index) => 
-              {if (index < 4) return <CheckDestCard key={item._id} url={item.home_image} city={item.title}/>}
-            )}
+          {data?.data?.map((item, index) => {
+            if (index < 4)
+              return (
+                <CheckDestCard
+                  key={item._id}
+                  url={item.home_image}
+                  city={item.title}
+                />
+              );
+          })}
         </div>
       </div>
-
-
     </section>
   );
 };

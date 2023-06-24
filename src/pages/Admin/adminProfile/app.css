@@ -1,18 +1,18 @@
+.custom_modal_profile {
+  max-width: 1020px !important;
+  width: max-content !important;
+  padding: 0 !important;
+}
+.custom_modal_profile .ant-modal-footer {
+  display: none;
+}
+.custom_modal_profile .ant-modal-title {
+  display: none;
+}
 
-.ant-modal-content1{
-    max-width: 973px !important;
-    width: max-content !important;
-    padding: 0!important;
+.custom_modal_profile .ant-modal-mask {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.ant-modal-footer1{
-    display: none;
-}
-.ant-modal-title1{
-    display: none;
-}
-.ant-modal-mask1{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-} */

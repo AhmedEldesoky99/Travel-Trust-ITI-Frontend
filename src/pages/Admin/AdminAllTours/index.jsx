@@ -10,39 +10,50 @@ import DataGrid from "../../../components/shared/Admin/Data-grid/index.jsx";
 import Icon from "../../../utils/icons.jsx";
 import CustomModal from "../../../components/shared/Admin/CustomModal/index.jsx";
 
-import useModal from "../../../hooks/useModal.jsx";
 import useSearchDatagrid from "../../../hooks/useSearchDataGrid.jsx";
+
 import { useTour } from "../../../services/useTour.jsx";
+
+import DataGridLoader from "../../../components/Admin/localLoaders/dataGridLoader/index.jsx";
 
 const AdminAllTours = () => {
   //-------------- State --------------
-  const [selected, setSelected] = useState({});
-
+  const [tourID, setTourId] = useState(null);
   const { organizerId } = useParams();
+  const [open, setOpen] = useState(false);
 
   //custom hook
   const { getColumnSearchProps } = useSearchDatagrid();
-  const { loading, open, handleOk, showModal, handleCancel } = useModal();
 
   const { OrganizerTours, DeleteTourByIdmutation } = useTour();
   const { data: tours, isLoading, isError } = OrganizerTours(organizerId);
-  const { mutate } = DeleteTourByIdmutation;
-
+  const { mutate, isLoading: isDelete } = DeleteTourByIdmutation();
   //-------------- table row --------------
   const data = tours?.data.map((tour, index) => {
     return {
       key: index,
-      _id: tour._id,
-      title: tour.title,
-      city: tour.city.title,
-      price_per_person: tour.price_per_person,
-      start_date: moment(tour.start_date).format("MMMM Do YYYY"),
-      status: tour.status,
+      _id: tour?._id,
+      title: tour?.title,
+      city: tour?.city?.title,
+      price_per_person: tour?.price_per_person,
+      start_date: moment(tour?.start_date).format("MMMM Do YYYY"),
+      status: tour?.status,
+      Action: tour?._id,
     };
   });
 
   const handleDelete = (tourId) => {
-    DeleteTourByIdmutation.mutate(tourId);
+    mutate(tourId);
+    setOpen(false);
+  };
+
+  const showModal = (id) => {
+    setTourId(id);
+    setOpen(true);
+  };
+
+  const hideModal = () => {
+    setOpen(false);
   };
 
   //-------------- table structure --------------
@@ -62,9 +73,15 @@ const AdminAllTours = () => {
       title: "Title",
       dataIndex: "title",
       key: "title",
-
+      width: "30%",
       //search
       ...getColumnSearchProps("title"),
+      render: (props) => (
+        <>
+          {/* {console.log({ props })} */}
+          <p className=" max-w-lg truncate capitalize">{props}</p>
+        </>
+      ),
     },
     {
       title: "Governorate",
@@ -96,11 +113,11 @@ const AdminAllTours = () => {
       key: "status", //search
       ...getColumnSearchProps("status"),
       render: (_, { status }) => {
-        let color = "#009EB7";
-        if (status === "Expired") {
-          color = "#DB3A34";
-        } else if (status === "Draft") {
-          color = "#81CCD8";
+        let color = "rgb(0, 158, 183,0.8)";
+        if (status === "expired") {
+          color = "rgb(219, 58, 52,0.8)";
+        } else if (status === "draft") {
+          color = "rgb(129, 204, 216,0.8)";
         }
         return (
           <Tag
@@ -109,6 +126,7 @@ const AdminAllTours = () => {
               fontSize: "16px",
               padding: "6px",
               textAlign: "center",
+              borderRadius: "50px",
             }}
             color={color}
           >
@@ -119,46 +137,35 @@ const AdminAllTours = () => {
     },
     {
       title: "Action",
-      key: "operation",
+      dataIndex: "Action",
+      key: "Action", //search
       //fixed column
       fixed: "right",
       width: 200,
       //action icons
       render: (props) => (
         <>
-          {/* {console.log({ props })} //each tour */}
           <div className="flex justify-center items-center gap-6 ">
-            {/* to do :  get organizer id */}
-            <Link to={`/tour-details/${props._id}/${props?.organizer?._id}`}>
+            <Link to={`/local/tour-details/${props}/${organizerId}`}>
               <button>
                 <Icon name="eye" />
               </button>
             </Link>
 
-            <Link to={`/admin/tour/${props._id}`}>
+            <Link to={`/local/tour/${props}`}>
               <button>
                 <Icon name="edit" />
               </button>
             </Link>
             <button
               onClick={() => {
-                setSelected(props);
-                showModal();
-                // handleDelete(props._id);
+                // setSelected(props);
+                showModal(props);
               }}
             >
               <Icon name="delete" />
             </button>
           </div>
-          <CustomModal
-            open={open}
-            loading={loading}
-            handleOk={() => handleDelete(props._id)}
-            handleCancel={handleCancel}
-            title="You Are About To Delete This Tour"
-            message1="This Will Delete It From Your History"
-            message2="Are You Sure ?"
-          />
         </>
       ),
     },
@@ -172,13 +179,28 @@ const AdminAllTours = () => {
         <NavBar />
         <div className="w-full container mx-auto ">
           <SubNavBar />
-          <div className="lg:grid lg:grid-cols-12 gap-6">
-            <div className=" lg:col-span-12">
-              <DataGrid data={data} columns={columns} loading={isLoading} />{" "}
+          {isLoading ? (
+            <DataGridLoader />
+          ) : (
+            <div className="lg:grid lg:grid-cols-12 gap-6">
+              <div className=" lg:col-span-12">
+                <DataGrid data={data} columns={columns} loading={isLoading} />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
+      <CustomModal
+        open={open}
+        iconName="delete"
+        btnOk="Delete"
+        handleOk={() => handleDelete(tourID)}
+        handleCancel={hideModal}
+        loading={isDelete}
+        header={`You Are About To Delete This Tour ID:  ${tourID}`}
+        message1="This Will Delete It From Your History"
+        message2="Are You Sure ?"
+      />
     </>
   );
 };
