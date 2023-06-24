@@ -13,7 +13,11 @@ import CustomModal from "../../../components/shared/Admin/CustomModal/index.jsx"
 import useSearchDatagrid from "../../../hooks/useSearchDataGrid.jsx";
 
 import DataGridLoader from "../../../components/Admin/localLoaders/dataGridLoader/index.jsx";
-import { getAllLocals, getAllTours } from "../../../services/mainAdmin.js";
+import {
+  getAllLocals,
+  getAllTours,
+  verifyOrganizerMutation,
+} from "../../../services/mainAdmin.js";
 import Avatar from "../../../components/Avatar/index.jsx";
 
 const placeholder =
@@ -21,15 +25,23 @@ const placeholder =
 
 const MainAdminAllLocals = () => {
   //-------------- State --------------
-  const [tourID, setTourId] = useState(null);
-  const { adminId } = useParams();
+  const [localId, setLocalId] = useState(null);
   const [open, setOpen] = useState(false);
+
+  const [frontIdentityPhoto, setFrontIdentityPhoto] = useState("");
+  const [backIdentityPhoto, setBackIdentityPhoto] = useState("");
 
   //custom hook
   const { getColumnSearchProps } = useSearchDatagrid();
 
   const { data: locals, isLoading, isError } = getAllLocals();
   console.log("locals", locals);
+
+  const {
+    mutate: verifyMutate,
+    isLoading: isVerifyLoading,
+  } = verifyOrganizerMutation(setOpen);
+
   //-------------- table row --------------
 
   //id- username - photo -phone  - no. of tours - verified /not verified
@@ -40,23 +52,30 @@ const MainAdminAllLocals = () => {
       _id: local?._id,
       localname: {
         name: local?.username,
-        photo: local?.photo[0]?.url ? local?.photo[0]?.url : placeholder,
+        photo: local?.photo?.length > 0 ? local?.photo[0]?.url : placeholder,
       },
-      phone: local?.phone,
+      phone: local?.phone ? local?.phone : "Unknown",
 
-      toursNum: "",
+      jobProfile: local?.job_profile ? local?.job_profile : "Unknown",
       status: local?.verified,
-      Action: local?._id,
+      Action: {
+        localId: local?._id,
+        localFrontPhoto:
+          local?.civil_photos?.front?.length > 0
+            ? local?.civil_photos?.front[0]?.url
+            : "",
+        localBackPhoto:
+          local?.civil_photos?.back?.length > 0
+            ? local?.civil_photos?.back[0]?.url
+            : "",
+      },
     };
   });
 
-  // const handleDelete = (tourId) => {
-  //   DeleteTourByIdmutation.mutate(tourId);
-  //   setOpen(false);
-  // };
-
-  const showModal = (id) => {
-    setTourId(id);
+  const showModal = (localId, frontPhoto, backPhoto) => {
+    setLocalId(localId);
+    setFrontIdentityPhoto(frontPhoto);
+    setBackIdentityPhoto(backPhoto);
     setOpen(true);
   };
 
@@ -99,11 +118,11 @@ const MainAdminAllLocals = () => {
     },
 
     {
-      title: "Total Tours",
-      dataIndex: "toursNum",
-      key: "toursNum",
+      title: "Job Profile",
+      dataIndex: "jobProfile",
+      key: "jobProfile",
       //search
-      ...getColumnSearchProps("toursNum"),
+      ...getColumnSearchProps("jobProfile"),
     },
     {
       title: "Status",
@@ -145,24 +164,18 @@ const MainAdminAllLocals = () => {
       //action icons
       render: (props) => (
         <>
+          {console.log("clicked on eye", props)}
           <div className="flex justify-center items-center gap-6 ">
-            <Link to={`/admin/tour-details/${props}/${adminId}`}>
-              <button>
-                <Icon name="eye" />
-              </button>
-            </Link>
-
-            <Link to={`/local/tour/${props}`}>
-              <button>
-                <Icon name="edit" />
-              </button>
-            </Link>
             <button
-              onClick={() => {
-                showModal(props);
-              }}
+              onClick={() =>
+                showModal(
+                  props.localId,
+                  props.localFrontPhoto,
+                  props.localBackPhoto
+                )
+              }
             >
-              <Icon name="delete" />
+              <Icon name="eye" />
             </button>
           </div>
         </>
@@ -171,6 +184,10 @@ const MainAdminAllLocals = () => {
   ];
 
   //-------------- Handlers --------------
+  const handleVerify = () => {
+    verifyMutate(localId);
+  };
+
 
   return (
     <>
@@ -191,15 +208,24 @@ const MainAdminAllLocals = () => {
       </div>
       <CustomModal
         open={open}
-        iconName="delete"
-        btnOk="Delete"
-        // handleOk={() => handleDelete(tourID)}
+        btnOk="Verify"
+        handleOk={handleVerify}
         handleCancel={hideModal}
-        // loading={DeleteTourByIdmutation.isLoading}
-        title={`You Are About To Delete This Tour of ID:  ${tourID}`}
-        header={`You Are About To Delete This Tour ID:  ${tourID}`}
-        message1="This Will Delete It From Your History"
-        message2="Are You Sure ?"
+        loading={isVerifyLoading}
+        title={
+          <span className="text-primary-green font-bold 2xs:text-sm sm:text-base lg:text-lg 2xl:text-2xl">
+            Verify the organizer of ID: {localId}
+          </span>
+        }
+        header={`Check the organizer's photos`}
+        message1={
+          <span className="font-bold 2xs:text-sm sm:text-base lg:text-lg 2xl:text-2xl">
+            Is it ok ?
+          </span>
+        }
+        frontPhoto={frontIdentityPhoto}
+        backPhoto={backIdentityPhoto}
+        className="!w-[800px]"
       />
     </>
   );

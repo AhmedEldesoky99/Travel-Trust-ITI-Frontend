@@ -115,7 +115,7 @@ const VerificationModal = ({ handleCancel }) => {
                           // {...field}
                         />
                         <span className="block mb-4">
-                          (Upload your front Id card photo)
+                          (Upload your back Id card photo)
                         </span>
                       </div>
                       {errors?.back && (
@@ -144,7 +144,7 @@ const VerificationModal = ({ handleCancel }) => {
               /> */}
           <CustomButton
             value="Submit"
-            submit="Submit"
+            submit="submit"
             type="secondary"
             width="max-w-[142px] w-full h-full"
             isLoading={isLoading}

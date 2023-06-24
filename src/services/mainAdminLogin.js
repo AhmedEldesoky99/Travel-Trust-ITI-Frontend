@@ -15,7 +15,8 @@ export const mainAdminLoginMutation = () => {
         {
             onSuccess: (res) => {
                 console.log(res);
-                localStorage.setItem("adminToken", res?.data?.access_token);
+                localStorage.setItem("travelJWT", res?.data?.access_token);
+                localStorage.setItem("adminId", res?.data?.userBody?._id);
             },
             onError: (err) => { console.log(err) }
         })

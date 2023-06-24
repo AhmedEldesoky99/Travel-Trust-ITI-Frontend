@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { request } from "./axios";
 
 //1- Get all tours
@@ -49,6 +49,7 @@ const uploadIdentity = (identityform) => {
   });
 };
 
+
 export const uploadIdentityMutation = () => {
   return useMutation(uploadIdentity, {
     onSuccess: (res) => {
@@ -57,3 +58,27 @@ export const uploadIdentityMutation = () => {
     onError: (err) => console.log(err),
   });
 };
+
+
+//! 5- Verify the organizer 
+const verifyOrganizer = (organizerId) => {
+  return request({
+    url: `/v1/admin/verify/${organizerId}`,
+    method: "PATCH",
+    successMsg: "Organizer verifeed successfully"
+  })
+}
+
+export const verifyOrganizerMutation = (setOpen) => {
+  const queryClient = useQueryClient();
+  return useMutation(verifyOrganizer, {
+    onSuccess: (res) => {
+      console.log(res)
+      setOpen(false);
+      queryClient.invalidateQueries("allLocals")
+    },
+    onError: (err) => {
+      console.log(err)
+    }
+  })
+}

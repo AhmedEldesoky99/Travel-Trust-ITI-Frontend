@@ -19,19 +19,7 @@ const Layout = () => {
     "/signup",
 
     "/local",
-    "/local/login",
-    "/local/signup",
-    "/local/alltours/:organizerId",
-    "/local/tour-details/:id/:organizerId",
-    "/local/reviews/:organizerId",
-    "/local/profile/:organizerId",
-    "/local/tour/:tourID",
-
-    "/admin/login",
-    "admin/alltours/:adminId",
-    "admin/reviews/:adminId",
-    "admin/tour-details/:id/:adminId",
-    "admin/locals/:adminId",
+    "/admin",
 
     "/not-found",
     "/error",
