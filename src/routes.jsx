@@ -36,15 +36,11 @@ import AdminAllTours from "./pages/Admin/AdminAllTours";
 import AdminReviews from "./pages/AdminReviews";
 import AddTourPage from "./pages/Admin/addTour";
 
-
 // Admin components
 import MainAdminReviews from "./pages/mainAdmin/all-reviews";
 import MainAdminAllTours from "./pages/mainAdmin/all-tours";
 import MainAdminLogin from "./pages/mainAdmin/log-in";
-
-
-
-
+import MainAdminAllLocals from "./pages/mainAdmin/all-locals";
 
 export const router = createBrowserRouter([
   {
