@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 import TourCardWide from "../../components/shared/TourWideCard/index";
@@ -13,13 +13,9 @@ import CartLoader from "../../components/CartLoader/CartLoader";
 
 const Cart = () => {
   let fees = 0;
-  let total_money = 0;
-  let tours = [];
   let totalCartMoney = 0;
-  let tour_details;
 
   const queryClient = useQueryClient();
-  const [cardsDetails, setCardsDetails] = useState([]);
   const [cartId, setCartId] = useState(null);
   const [checked, setChecked] = useState(false);
   const { data, isLoading, isSuccess } = useQuery("cart", getCart);
@@ -31,34 +27,31 @@ const Cart = () => {
     enabled: checked,
   });
 
-  if (isSuccess) {
-    console.log("success");
-    console.log({ data });
-  }
+  const handleCheckout = () => {
+    setChecked(true);
+  };
 
-  // const handleCheckout = () => {
-  //   setChecked(true);
-  // };
+  // set card Id
+  useEffect(() => {
+    setCartId(data?.data?._id);
+  }, [data]);
 
-  // // navigate to stripe page
-  // useEffect(() => {
-  //   const url = checkoutData?.data?.url;
-  //   if (url) {
-  //     window.location.href = url;
-  //   }
-  // }, [checkoutData]);
+  // navigate to stripe page
+  useEffect(() => {
+    const url = checkoutData?.data?.url;
+    if (url) {
+      window.location.href = url;
+    }
+  }, [checkoutData]);
 
   const emptyCart = useMutation({
     mutationFn: clearCart,
     onMutate: async () => {
       await queryClient.cancelQueries({ queryKey: ["cart"] });
       const prevValue = queryClient.getQueryData(["cart"]);
-      // console.log({ prevValue });
       queryClient.setQueryData(["cart"], () => ({
         data: { tours: [] },
       }));
-      // setCardsDetails([]);
-      // setCartCount(0);
       return {
         prevValue,
       };
@@ -68,124 +61,13 @@ const Cart = () => {
     onError: (err, newValue, context) => {
       queryClient.setQueryData(["cart"], context.prevValue);
     },
-    // Always refetch after error or success:
-    onSettled: () => {
-      // queryClient.invalidateQueries({ queryKey: ["cart"] });
-    },
   });
 
-  // //clear cart
+  //clear cart
   const clear = () => {
     emptyCart.mutate();
   };
 
-  // // set cart tours cards
-  // useEffect(() => {
-  //   if (data) {
-  //     setCartId(data.data._id);
-  //     const cartData = data.data;
-  //     console.log({ cartData });
-  //     tours = cartData.tours;
-  //     tour_details = cartData.tour_details;
-  //     total_money = cartData.total_money;
-  //     // console.log({ tours });
-  //     const allToursDetails = tours.map((tour) => {
-  //       console.log("in useeffect");
-  //       console.log({ tours });
-  //       const money = tour_details?.find(
-  //         (detail) => detail.tour_id == tour._id
-  //       )?.money;
-  //       return {
-  //         city: tour.city?.home_image,
-  //         title: tour.title,
-  //         cityTitle: tour.city?.title,
-  //         duration: tour.duration,
-  //         startDate: formatDate(tour.start_date),
-  //         pricePerPerson: tour.price_per_person,
-  //         personNum: tour.person_num,
-  //         id: tour._id,
-  //         money,
-  //         personsCount: +money / +tour.price_per_person,
-  //       };
-  //     });
-  //     setCardsDetails(allToursDetails);
-  //   }
-  // }, [data]);
-
-  // // handle personsCount increment in tour card
-  // const handleUpdateTourIncrement = (id) => {
-  //   const updatedTours = cardsDetails.map((card) => {
-  //     if (card.id == id) {
-  //       return {
-  //         ...card,
-  //         money: card.money + card.pricePerPerson,
-  //         personsCount: card.personsCount + 1,
-  //       };
-  //     }
-  //     return card;
-  //   });
-  //   setCardsDetails(updatedTours);
-  // };
-
-  // // handle personsCount decrement in tour card
-  // const handleUpdateTourDecrement = (id) => {
-  //   const updatedTours = cardsDetails.map((card) => {
-  //     if (card.id == id) {
-  //       return {
-  //         ...card,
-  //         money: card.money - card.pricePerPerson,
-  //         personsCount: card.personsCount - 1,
-  //       };
-  //     }
-  //     return card;
-  //   });
-  //   // console.log({ updatedTours });
-  //   setCardsDetails(updatedTours);
-  // };
-
-  // handle delete a tour with manual optimistic update
-  // const handleDeleteTour = (id) => {
-  // queryClient.cancelQueries({ queryKey: ["cart"] });
-  // const updatedCartTours = cardsDetails.filter((tour) => tour.id !== id);
-  // setCardsDetails(updatedCartTours);
-  // queryClient.setQueryData(["cart"], (old) => {
-  //   const updatedTours = old.data.tours.filter((tour) => tour._id != id);
-  //   const updateTourDetails = old.data.tour_details.filter(
-  //     (tour) => tour.tour_id != id
-  //   );
-  //   return {
-  //     data: {
-  //       tours: updatedTours,
-  //       tour_details: updateTourDetails,
-  //       total_money: old.data.total_money,
-  //     },
-  //   };
-  // });
-
-  // queryClient.setQueryData(["cart"], () => ({
-  //   data: { tours: updatedCartTours },
-  // }));
-  // const prevValue = queryClient.getQueryData(["cart"]);
-  // const count = prevValue?.data?.tours?.length ?? 0;
-  // if (count == 1) {
-  //   queryClient.setQueryData(["cart"], () => {
-  //     return {
-  //       data: { tours: [] },
-  //     };
-  //   });
-  // } else {
-  // queryClient.setQueryData(["cart"], () => {
-  //   return {
-  //     data: { tours: updatedCartTours },
-  //   };
-  // });
-  // }
-  // queryClient.invalidateQueries({ queryKey: ["cart"] });
-  // queryClient.cancelQueries({ queryKey: ["cart"] });
-  // };
-
-  // empty cart
-  // console.log({ tours: data?.data?.tours });
   if (isSuccess && data?.data?.tours.length == 0) {
     return (
       <div className="container mx-auto mt-32">
@@ -224,11 +106,11 @@ const Cart = () => {
                 </div>
               </div>
               <div className="flex flex-col gap-9 md:mx-0 2xs:mx-2">
-                {data?.data?.tours.map((tour, index) => {
+                {data?.data?.tours.map((tour) => {
                   const { money, subscriber_number } =
                     data.data.tour_details.find((t) => t.tour_id == tour._id);
                   totalCartMoney += +money;
-                  fees = (totalCartMoney * 2) / 100;
+                  fees = (totalCartMoney * 7) / 100;
                   {
                     return (
                       <TourCardWide
@@ -242,8 +124,6 @@ const Cart = () => {
                         pricePerPerson={tour.price_per_person}
                         totalPrice={money}
                         peopleCount={subscriber_number}
-                        // onUpdateTourIncrement={handleUpdateTourIncrement}
-                        // onUpdateTourDecrement={handleUpdateTourDecrement}
                       />
                     );
                   }
@@ -255,15 +135,15 @@ const Cart = () => {
               <p className="text-2xl my-6">Order Summary</p>
               <div className="flex justify-between text-base">
                 <p>booking fee</p>
-                <p>${fees} </p>
+                <p>EGP {fees} </p>
               </div>
               <div className="flex justify-between text-base mb-2">
                 <p>subtotal</p>
-                <p>${totalCartMoney} </p>
+                <p>EGP {totalCartMoney} </p>
               </div>
               <div className="flex justify-between text-xl font-bold mt-6 mb-4">
                 <p>Total</p>
-                <p>${totalCartMoney + fees} </p>
+                <p>EGP {totalCartMoney + fees} </p>
               </div>
               <hr className="max-w-[358px] text-gray-500" />
               <div className="flex gap-3 mt-4">
@@ -276,7 +156,7 @@ const Cart = () => {
               </div>
               <div className="mt-8 text-center">
                 <CustomButton
-                  // onClick={handleCheckout}
+                  onClick={handleCheckout}
                   isLoading={checkoutIsLoading}
                   type="secondary"
                   value="Check out"
