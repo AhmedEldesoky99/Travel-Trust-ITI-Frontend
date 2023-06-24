@@ -30,8 +30,6 @@ import PageSkeleton from "./pages/PageSkeleton";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import PaymentFailed from "./pages/PaymentFailed";
 
-
-
 // Local components
 import AdminSignUp from "./pages/Admin/adminSignup";
 import AdminLogin from "./pages/Admin/adminLogin";
@@ -41,14 +39,12 @@ import AdminAllTours from "./pages/Admin/AdminAllTours";
 import AdminReviews from "./pages/AdminReviews";
 import AddTourPage from "./pages/Admin/addTour";
 
-
 // Admin components
 import MainAdminReviews from "./pages/mainAdmin/all-reviews";
 import MainAdminAllTours from "./pages/mainAdmin/all-tours";
 import MainAdminLogin from "./pages/mainAdmin/log-in";
 import MainAdminAllLocals from "./pages/mainAdmin/all-locals";
-
-
+import MainAdminDashBoard from "./pages/mainAdmin/dashboard";
 
 export const router = createBrowserRouter([
   {
@@ -63,7 +59,7 @@ export const router = createBrowserRouter([
       { path: "error", element: <ErrorPage /> },
       { path: "skeleton", element: <PageSkeleton /> },
       { path: "payment-success", element: <PaymentSuccess /> },
-      { path: "payment-failed", element: <PaymentFailed/> },
+      { path: "payment-failed", element: <PaymentFailed /> },
 
       {
         path: "signup",
@@ -111,13 +107,13 @@ export const router = createBrowserRouter([
       },
 
       //admin
-      // { path: "admin", element: <DashBoard /> },
+      { path: "admin/dashboard", element: <MainAdminDashBoard /> },
       { path: "admin/login", element: <MainAdminLogin /> },
-      { path: "admin/alltours/:adminId", element: <MainAdminAllTours /> },
-      { path: "admin/reviews/:adminId", element: <MainAdminReviews /> },
+      { path: "admin/alltours", element: <MainAdminAllTours /> },
+      { path: "admin/reviews", element: <MainAdminReviews /> },
       { path: "admin/tour-details/:id/:adminId", element: <TourDetails /> },
       // { path: "admin/users/:adminId", element: <MainAdminAllUsers /> },
-      { path: "admin/locals/:adminId", element: <MainAdminAllLocals /> },
+      { path: "admin/locals", element: <MainAdminAllLocals /> },
     ],
   },
   {
