@@ -34,8 +34,6 @@ const Search = () => {
     }
   };
 
-
-
   const [page, setPage] = useState(1);
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(0);
@@ -56,8 +54,6 @@ const Search = () => {
   const tourCards = result?.data?.map((item, index) => (
     <TourWideCard showAction={false} key={index} data={item} />
   ));
-
-  
 
   useEffect(() => {
     if (statsData?.data.minPrice) {
@@ -117,7 +113,6 @@ const Search = () => {
                       className="input input-bordered max-h-[32px] max-w-[120px]"
                       value={max}
                       disabled
-
                     />
                   </div>
                   <div className="my-6">
