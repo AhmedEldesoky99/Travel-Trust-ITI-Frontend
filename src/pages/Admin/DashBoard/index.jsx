@@ -15,6 +15,8 @@ import CategoryLocalStatistics from "../../../components/Admin/categoryLocalStat
 import { useQuery } from "react-query";
 import { getAllCategories } from "../../../services/Home";
 import { getUserData } from "../../../services/user";
+import AdminReviewCard from "../../../components/AdminReviewCard";
+import DashboardLoader from "../../../components/Admin/localLoaders/dashboardLoader";
 
 //dynamic data
 // const data = [
@@ -144,90 +146,187 @@ const DashBoard = () => {
   // const localId = localStorage.getItem("localId");
   // const { data } = getUserData(localId);
 
-  const { data: user } = getUserData(2);
+  const { data: user, isLoading } = getUserData(2);
   console.log("user", user);
 
   return (
     <>
       <div className="flex flex-row  bg-admin-grey">
         <NavBar />
-        <div className="w-full container mx-auto">
-          <SubNavBar />
-          <div className="grid lg:grid-cols-6 lg:grid-flow-row auto-rows-max w-full  gap-5 h-fill md:mt-8 mt-32 ">
-            <div className="col-span-6 lg:col-span-4  flex justify-between items-center  p-10 rounded-2xl shadow-md bg-white">
-              <div>
-                <h2 className=" text-3xl font-medium">Hi username ! </h2>
-                <p className=" mt-6">Welcome to your Dashboard</p>
-              </div>
-              <div className="">
-                <img src="../../../src/assets/images/Admin/hi.png" />
-              </div>
-            </div>
 
-            <div className="2xs:col-span-6 lg:col-span-2 row-span-3 rounded-2xl shadow-md bg-white p-8">
-              <div className="flex justify-center items-center gap-4 mb-8">
-                <div className="flex flex-col justify-center items-center w-full bg-[rgb(0,158,183,0.8)] text-white p-10 rounded-2xl">
-                  <p className=" text-6xl ">{user?.data?.stats?.minPrice}</p>
-                  <p className=" text-center mt-2">Min Price of your Tours</p>
+        <div className="w-full container mx-auto">
+          {isLoading ? (
+            <DashboardLoader />
+          ) : (
+            <>
+              <div className="grid lg:grid-cols-6 lg:grid-flow-row auto-rows-max w-full  gap-5 h-fill md:mt-8 mt-32 ">
+                <div className="col-span-6 lg:col-span-4  flex justify-between items-center  p-10 rounded-2xl shadow-md bg-white">
+                  <div>
+                    <h2 className=" text-3xl font-medium">
+                      Hi {user?.data?.user?.username} !{" "}
+                    </h2>
+                    <p className=" mt-6">Welcome to your Dashboard</p>
+                  </div>
+                  <div className="">
+                    <img src="../../../src/assets/images/Admin/hi.png" />
+                  </div>
                 </div>
-                <div className="w-full bg-[rgb(219,58,52,0.8)] text-white rounded-2xl p-10">
-                  <p className=" text-6xl ">{user?.data?.stats?.maxPrice}</p>
-                  <p className=" text-center mt-2">Max Price of your Tours</p>
+
+                <div className="2xs:col-span-6 lg:col-span-2 row-span-3 rounded-2xl shadow-md bg-white p-8">
+                  <AdminReviewCard totalReviews="100" />
+                </div>
+                <div className="col-span-6 md:col-span-3 lg:col-span-2 ">
+                  <CardIcon
+                    name="suitcase"
+                    title="Total Earnings"
+                    generalStatistics="34,123.00 "
+                    type="EGP"
+                  />
+                </div>
+                <div className="col-span-6 md:col-span-3 lg:col-span-2 ">
+                  <CardIcon
+                    name="layers"
+                    title="Total Tours"
+                    generalStatistics="34,123.00 "
+                    type="Tours"
+                  />
+                </div>
+                <div className="col-span-6 md:col-span-3 lg:col-span-2 ">
+                  <CardIcon
+                    name="shadedUser"
+                    title="Today Views"
+                    generalStatistics="22"
+                    type="Views"
+                  />
+                </div>
+                <div className="col-span-6 md:col-span-3 lg:col-span-2 ">
+                  <CardIcon
+                    name="wallet"
+                    title="Today Expense"
+                    generalStatistics="22"
+                    type="EGP"
+                  />
                 </div>
               </div>
-              <div>
-                <h3 className=" text-2xl font-bold">Tours By Category</h3>
-                {user &&
-                  Object.entries(user?.data?.stats?.categories).map(
-                    ([key, value]) => {
-                      return (
-                        <CategoryLocalStatistics
-                          key={key}
-                          name={key}
-                          tourNum={value}
-                        />
-                      );
-                    }
-                  )}
+
+              <div className="grid lg:grid-cols-12  auto-rows-max w-full  gap-5 h-fill md:mt-8 mt-32 ">
+                <div className="col-span-12 lg:col-span-12 xl:col-span-4 shadow-xl rounded-2xl p-12 bg-white">
+                  <div>
+                    <h3 className=" text-2xl font-bold mb-8">
+                      Tours By Category
+                    </h3>
+                    {user &&
+                      Object.entries(user?.data?.stats?.categories).map(
+                        ([key, value]) => {
+                          return (
+                            <CategoryLocalStatistics
+                              key={key}
+                              name={key}
+                              tourNum={value}
+                            />
+                          );
+                        }
+                      )}
+                  </div>
+                </div>{" "}
+                <div className="col-span-12 lg:col-span-12 xl:col-span-4 shadow-xl rounded-2xl p-12 bg-white">
+                  {/* Top travelers */}
+                  <h2 className="text-2xl mb-5">Top Travelers</h2>
+                  <div className="flex flex-col gap-6">
+                    <div className="flex flex-row gap-4 items-center">
+                      <img
+                        src="https://media.licdn.com/dms/image/C5603AQHOvcWzDuD9pQ/profile-displayphoto-shrink_800_800/0/1589972211462?e=2147483647&v=beta&t=kYzJrqWuPXYK99Fx8d3Sf6wGinr7OJhXHl2nv-R05gM"
+                        className="rounded-full max-w-[70px] max-h-[70px]"
+                      />
+                      <div className="flex flex-col">
+                        <h3 className="text-[#585858] text-xl">
+                          Magid Mostafa
+                        </h3>
+                        <h4 className="text-[#585858] text-lg">
+                          magid@gmail.com
+                        </h4>
+                      </div>
+                    </div>
+                    <div className="flex flex-row gap-4 items-center">
+                      <img
+                        src="https://monteluke.com.au/wp-content/gallery/linkedin-profile-pictures/9.JPG"
+                        className="rounded-full max-w-[70px] max-h-[70px]"
+                      />
+                      <div className="flex flex-col">
+                        <h3 className="text-[#585858] text-xl">Rania Atef</h3>
+                        <h4 className="text-[#585858] text-lg">
+                          rania@gmail.com
+                        </h4>
+                      </div>
+                    </div>
+                    <div className="flex flex-row gap-4 items-center">
+                      <img
+                        src="https://newprofilepic2.photo-cdn.net//assets/images/article/profile.jpg"
+                        className="rounded-full max-w-[70px] max-h-[70px]"
+                      />
+                      <div className="flex flex-col">
+                        <h3 className="text-[#585858] text-xl">Jamila Ahmed</h3>
+                        <h4 className="text-[#585858] text-lg">
+                          jamila@gmail.com
+                        </h4>
+                      </div>
+                    </div>
+                    <div className="flex flex-row gap-4 items-center">
+                      <img
+                        src="https://pbs.twimg.com/profile_images/830302889977344001/kNGk9Hf2.jpg"
+                        className="rounded-full max-w-[70px] max-h-[70px]"
+                      />
+                      <div className="">
+                        <h3 className="text-[#585858] text-xl">Menna Kamal</h3>
+                        <h4 className="text-[#585858] text-lg">
+                          menna@gmail.com
+                        </h4>
+                      </div>
+                    </div>
+                    <div className="flex flex-row gap-4 items-center">
+                      <img
+                        src="https://pbs.twimg.com/profile_images/1485050791488483328/UNJ05AV8_400x400.jpg"
+                        className="rounded-full max-w-[70px] max-h-[70px]"
+                      />
+                      <div className="flex flex-col">
+                        <h3 className="text-[#585858] text-xl">
+                          Mostafa Mohamed
+                        </h3>
+                        <h4 className="text-[#585858] text-lg">
+                          moustafa@gmail.com
+                        </h4>
+                      </div>
+                    </div>
+
+                    {/* </div> */}
+                  </div>
+                </div>
+                <div className="col-span-12 lg:col-span-12 xl:col-span-4 shadow-xl rounded-2xl p-12 bg-white">
+                  <div>
+                    <h3 className=" text-2xl font-bold mb-8">
+                      Tours By Governorates
+                    </h3>
+                    {user &&
+                      Object.entries(user?.data?.stats?.cities).map(
+                        ([key, value]) => {
+                          return (
+                            <CategoryLocalStatistics
+                              key={key}
+                              name={key}
+                              tourNum={value}
+                            />
+                          );
+                        }
+                      )}
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="col-span-6 md:col-span-3 lg:col-span-2 ">
-              <CardIcon
-                name="suitcase"
-                title="Total Earnings"
-                generalStatistics="34,123.00 "
-                type="EGP"
-              />
-            </div>
-            <div className="col-span-6 md:col-span-3 lg:col-span-2 ">
-              <CardIcon
-                name="layers"
-                title="Total Tours"
-                generalStatistics="34,123.00 "
-                type="Tours"
-              />
-            </div>
-            <div className="col-span-6 md:col-span-3 lg:col-span-2 ">
-              <CardIcon
-                name="shadedUser"
-                title="Today Views"
-                generalStatistics="22"
-                type="Views"
-              />
-            </div>
-            <div className="col-span-6 md:col-span-3 lg:col-span-2 ">
-              <CardIcon
-                name="wallet"
-                title="Today Expense"
-                generalStatistics="22"
-                type="EGP"
-              />
-            </div>
-          </div>
-          <div className="rounded-2xl shadow-md mt-12 p-10 bg-white">
-            <h2 className=" font-semibold text-xl">Latest Transaction</h2>
-            <DataGrid data={data} columns={columns} />
-          </div>
+              <div className="rounded-2xl shadow-md mt-12 p-10 bg-white">
+                <h2 className=" font-semibold text-xl">Latest Transaction</h2>
+                <DataGrid data={data} columns={columns} />
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>
