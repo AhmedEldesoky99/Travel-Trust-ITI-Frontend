@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Icon from "../../utils/icons";
 
 const PaymentSuccess = () => {
+  const { money } = useParams();
   return (
     <>
       <div
@@ -27,7 +28,7 @@ const PaymentSuccess = () => {
             <div>
               <div className="flex justify-between mb-2">
                 <p className="font-bold text-xl">Total paid</p>
-                <p className="font-bold text-xl">$ 7,172.96</p>
+                <p className="font-bold text-xl">$ {money}</p>
               </div>
               <div className="flex justify-between">
                 <p className="text-lg">Order method</p>
