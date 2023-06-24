@@ -95,7 +95,6 @@ const CheckoutCard = ({ data }) => {
   const { id, organizerId } = useParams();
   console.log("details", organizerId);
 
-
   return (
     <>
       {organizerId && (

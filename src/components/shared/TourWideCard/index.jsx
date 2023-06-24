@@ -26,18 +26,7 @@ const TourWideCard = ({
 }) => {
   const queryClient = useQueryClient();
   const [removed, setRemoved] = useState(false);
-  // const personsMax = personsCount === personNum;
 
-  // const handleIncrement = () => {
-  //   if (!personsMax) {
-  //     onUpdateTourIncrement(id);
-  //   }
-  // };
-  // const handleDecrement = () => {
-  //   if (personsCount <= personNum && personsCount > 1) {
-  //     onUpdateTourDecrement(id);
-  //   }
-  // };
   const invalidateCart = () => {
     queryClient.invalidateQueries({ queryKey: ["cart"] });
   };
@@ -51,7 +40,6 @@ const TourWideCard = ({
   const handleDelete = () => {
     queryClient.cancelQueries({ queryKey: ["cart"] });
     setRemoved(true);
-    console.log({ id });
     mutate(id);
   };
 
@@ -156,9 +144,6 @@ const TourWideCard = ({
       </div>
     );
   }
-  // if (sucessfulDelete) {
-  //   setRemoved(false);
-  // }
 
   const place_holder_tour =
     "https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png";
@@ -225,7 +210,7 @@ const TourWideCard = ({
             <div className="card-actions justify-between items-center">
               <div className="flex justify-center items-center space-x-1">
                 <span className="2xs:text-lg md:text-xl xl:text-2xl font-bold">
-                  ${pricePerPerson}
+                  EGP {pricePerPerson}
                 </span>{" "}
                 <span className="">/</span>
                 <UserOutlined className="2xs:text-xl md:text-lg" />
@@ -234,29 +219,11 @@ const TourWideCard = ({
               <div>
                 <p>Booked for : {peopleCount}</p>
               </div>
-              {/* <div className="flex justify-between items-center min-w-[9rem]">
-        <button onClick={handleDecrement}>
-          <div className="shadow-md p-3 rounded-lg">
-            <Icon name="userDelete" />
-          </div>
-        </button>
-        <span className="text-lg 2xl:text-2xl px-3">{personsCount}</span>
-        <button disabled={personsMax} onClick={handleIncrement}>
-          <div
-            className={`shadow-md p-3 rounded-lg ${
-              personsMax ? "bg-gray-200" : null
-            }`}
-          >
-            <Icon name="userAdd" />
-          </div>
-        </button>
-      </div> */}
-
               <div>
                 <p className="font-medium">
-                  Total:
+                  Total :
                   <span className="2xs:text-lg md:text-xl xl:text-2xl  2xl:text-3xl font-bold">
-                    ${totalPrice}
+                    {` EGP ${totalPrice}`}
                   </span>
                 </p>
               </div>
