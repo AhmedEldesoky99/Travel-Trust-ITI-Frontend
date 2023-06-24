@@ -27,6 +27,8 @@ import AdminProfileForUser from "./pages/AdminProfileForUser";
 import NotFound from "./pages/NotFound";
 import ErrorPage from "./pages/ErrorPage";
 import PageSkeleton from "./pages/PageSkeleton";
+import PaymentSuccess from "./pages/PaymentSuccess";
+import PaymentFailed from "./pages/PaymentFailed";
 
 
 
@@ -40,15 +42,12 @@ import AdminReviews from "./pages/AdminReviews";
 import AddTourPage from "./pages/Admin/addTour";
 
 
-
-
-
-
 // Admin components
 import MainAdminReviews from "./pages/mainAdmin/all-reviews";
 import MainAdminAllTours from "./pages/mainAdmin/all-tours";
 import MainAdminLogin from "./pages/mainAdmin/log-in";
 import MainAdminAllLocals from "./pages/mainAdmin/all-locals";
+
 
 
 export const router = createBrowserRouter([
@@ -63,6 +62,8 @@ export const router = createBrowserRouter([
       { path: "not-found", element: <NotFound /> },
       { path: "error", element: <ErrorPage /> },
       { path: "skeleton", element: <PageSkeleton /> },
+      { path: "payment-success", element: <PaymentSuccess /> },
+      { path: "payment-failed", element: <PaymentFailed/> },
 
       {
         path: "signup",

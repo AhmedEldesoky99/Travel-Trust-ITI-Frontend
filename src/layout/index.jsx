@@ -35,7 +35,9 @@ const Layout = () => {
 
     "/not-found",
     "/error",
-    "/skeleton"
+    "/skeleton",
+    "/payment-success",
+    "/payment-failed"
   ];
   const pathsForBackground = [
     "/favorite",
