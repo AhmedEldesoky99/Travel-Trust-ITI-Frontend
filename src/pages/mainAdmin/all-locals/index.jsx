@@ -2,10 +2,8 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { Table, Tag } from "antd";
-import moment from "moment";
 
-import NavBar from "../../../components/shared/Admin/Admin-NavBar/index.jsx";
-import SubNavBar from "../../../components/shared/Admin/SubNavBar.jsx";
+import MainNavBar from "../../../components/mainAdmin/Admin-NavBar/index.jsx";
 import DataGrid from "../../../components/shared/Admin/Data-grid/index.jsx";
 import Icon from "../../../utils/icons.jsx";
 import CustomModal from "../../../components/shared/Admin/CustomModal/index.jsx";
@@ -22,7 +20,6 @@ const placeholder =
 const MainAdminAllLocals = () => {
   //-------------- State --------------
   const [tourID, setTourId] = useState(null);
-  const { adminId } = useParams();
   const [open, setOpen] = useState(false);
 
   //custom hook
@@ -146,7 +143,7 @@ const MainAdminAllLocals = () => {
       render: (props) => (
         <>
           <div className="flex justify-center items-center gap-6 ">
-            <Link to={`/admin/tour-details/${props}/${adminId}`}>
+            <Link to={`/admin/tour-details/${props}/${props}`}>
               <button>
                 <Icon name="eye" />
               </button>
@@ -175,9 +172,8 @@ const MainAdminAllLocals = () => {
   return (
     <>
       <div className="flex flex-row">
-        <NavBar />
+        <MainNavBar />
         <div className="w-full container mx-auto ">
-          <SubNavBar />
           {isLoading ? (
             <DataGridLoader />
           ) : (
