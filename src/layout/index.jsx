@@ -36,11 +36,11 @@ const Layout = () => {
     <>
       {!pathIncluded && (
         <UserIdProvider>
-          {/* <Navbar pathBackgroundIncluded={pathBackgroundIncluded} /> */}
+          <Navbar pathBackgroundIncluded={pathBackgroundIncluded} />
         </UserIdProvider>
       )}
       <Outlet />
-      {/* {!pathIncluded && <Footer />} */}
+      {!pathIncluded && <Footer />}
     </>
   );
 };
