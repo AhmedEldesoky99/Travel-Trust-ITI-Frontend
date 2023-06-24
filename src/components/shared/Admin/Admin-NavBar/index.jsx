@@ -14,7 +14,7 @@ const NavBar = () => {
     {
       name: "adminHome",
       link: "Home",
-      route: `/local`,
+      route: `/local/dashboard`,
     },
     {
       name: "adminProfile",

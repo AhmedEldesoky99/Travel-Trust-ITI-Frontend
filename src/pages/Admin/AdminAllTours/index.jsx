@@ -64,8 +64,7 @@ const AdminAllTours = () => {
       dataIndex: "_id",
       key: "_id",
       //fixed column  NOTE: Do not use percentage
-      width: 150,
-      fixed: "left",
+      width: "10%",
       //search
       ...getColumnSearchProps("_id"),
     },
@@ -175,14 +174,14 @@ const AdminAllTours = () => {
 
   return (
     <>
-      <div className="flex flex-row">
+      <div className="flex flex-row bg-admin-grey ">
         <NavBar />
         <div className="w-full container mx-auto ">
           <SubNavBar />
           {isLoading ? (
             <DataGridLoader />
           ) : (
-            <div className="lg:grid lg:grid-cols-12 gap-6">
+            <div className="lg:grid lg:grid-cols-12 gap-6 mt-32 md:mt-8">
               <div className=" lg:col-span-12">
                 <DataGrid data={data} columns={columns} loading={isLoading} />
               </div>
