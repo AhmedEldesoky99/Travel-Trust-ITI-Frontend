@@ -36,8 +36,11 @@ const AddOverview = ({}) => {
           {tourID === "add" ? "Create your own tour" : "Update tour"}
         </h2>
         {tourID === "add" && (
-          <p className="mt-4 capitalize text-lg">
-            please fill the information below{" "}
+          <p className="mt-4  text-xl">
+            When filling out information for your tour, we've designed a
+            user-friendly multi-step form to guide you through the process.<br></br> Our
+            form is broken down into several easy-to-follow steps, so you can
+            take your time and fill out each section at your own pace.
           </p>
         )}
 

@@ -93,7 +93,7 @@ export const router = createBrowserRouter([
       { path: "profile/admin/:organizerId", element: <AdminProfileForUser /> },
 
       //local
-      { path: "local", element: <DashBoard /> },
+      { path: "local/dashboard", element: <DashBoard /> },
       { path: "local/signup", element: <AdminSignUp /> },
       { path: "local/login", element: <AdminLogin /> },
       { path: "local/alltours/:organizerId", element: <AdminAllTours /> },

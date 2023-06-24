@@ -159,7 +159,7 @@ const AdminReviews = () => {
 
   return (
     <>
-      <div className="flex flex-row">
+      <div className="flex flex-row bg-admin-grey">
         <NavBar />
         <div className="w-full mx-auto ">
           <SubNavBar />
@@ -168,11 +168,11 @@ const AdminReviews = () => {
             {isLoading ? (
               <ReviewPageLoader />
             ) : (
-              <div className="md:grid md:grid-cols-12 gap-4">
+              <div className="md:grid md:grid-cols-12 gap-4 mt-32 md:mt-8">
                 <div className="col-span-12 2xl:col-span-9 ">
                   <DataGrid data={data} columns={columns} loading={isLoading} />
                 </div>
-                <div className="col-span-12 2xl:col-span-3">
+                <div className="col-span-12 2xl:col-span-3 mt-8 md:mt-0">
                   <AdminReviewCard totalReviews={reviews?.length} />
                 </div>
               </div>

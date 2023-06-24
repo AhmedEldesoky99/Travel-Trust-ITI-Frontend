@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { request } from "./axios";
 
 //1- Get all tours
@@ -50,9 +50,11 @@ const uploadIdentity = (identityform) => {
 };
 
 export const uploadIdentityMutation = () => {
+  const queryClient = useQueryClient();
   return useMutation(uploadIdentity, {
     onSuccess: (res) => {
       console.log(res);
+      queryClient.invalidateQueries("user-data");
     },
     onError: (err) => console.log(err),
   });
