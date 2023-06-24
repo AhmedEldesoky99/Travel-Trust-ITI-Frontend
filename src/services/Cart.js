@@ -44,3 +44,13 @@ export const addToCartMutation = (tourId, data, invalidateCart) => {
   });
 };
 
+export const deleteFromCartMutation = (tourId, invalidateCart) => {
+  return useMutation(() => deleteFromCart(tourId), {
+    onSuccess: (res) => {
+      // console.log(res.json);
+      // invalidateCart();
+    },
+    onError: (err) => console.log(err),
+  });
+};
+

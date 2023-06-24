@@ -11,22 +11,6 @@ import CheckDestenations from "../../containers/EachGovernorate/CheckDestenation
 import { bookingCheckOut } from "../../services/Booking";
 import CartLoader from "../../components/CartLoader/CartLoader";
 
-const formatDate = (start_date) => {
-  const date = new Date(start_date);
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  const dateString = date.toLocaleDateString("en-US", options);
-  const timeString = date.toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
-  });
-  return `${dateString} | ${timeString}`;
-};
-
 const Cart = () => {
   let fees = 0;
   let total_money = 0;
@@ -47,17 +31,22 @@ const Cart = () => {
     enabled: checked,
   });
 
-  const handleCheckout = () => {
-    setChecked(true);
-  };
+  if (isSuccess) {
+    console.log("success");
+    console.log({ data });
+  }
 
-  // navigate to stripe page
-  useEffect(() => {
-    const url = checkoutData?.data?.url;
-    if (url) {
-      window.location.href = url;
-    }
-  }, [checkoutData]);
+  // const handleCheckout = () => {
+  //   setChecked(true);
+  // };
+
+  // // navigate to stripe page
+  // useEffect(() => {
+  //   const url = checkoutData?.data?.url;
+  //   if (url) {
+  //     window.location.href = url;
+  //   }
+  // }, [checkoutData]);
 
   const emptyCart = useMutation({
     mutationFn: clearCart,
@@ -68,7 +57,7 @@ const Cart = () => {
       queryClient.setQueryData(["cart"], () => ({
         data: { tours: [] },
       }));
-      setCardsDetails([]);
+      // setCardsDetails([]);
       // setCartCount(0);
       return {
         prevValue,
@@ -81,101 +70,122 @@ const Cart = () => {
     },
     // Always refetch after error or success:
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ["cart"] });
+      // queryClient.invalidateQueries({ queryKey: ["cart"] });
     },
   });
 
-  //clear cart
+  // //clear cart
   const clear = () => {
     emptyCart.mutate();
   };
 
-  // set cart tours cards
-  useEffect(() => {
-    if (data) {
-      setCartId(data.data._id);
-      const cartData = data.data;
-      tours = cartData.tours;
-      tour_details = cartData.tour_details;
-      total_money = cartData.total_money;
-      console.log({ tours });
-      const allToursDetails = tours.map((tour) => {
-        const money = tour_details?.find(
-          (detail) => detail.tour_id == tour._id
-        )?.money;
-        return {
-          city: tour.city?.home_image,
-          title: tour.title,
-          cityTitle: tour.city?.title,
-          duration: tour.duration,
-          startDate: formatDate(tour.start_date),
-          pricePerPerson: tour.price_per_person,
-          personNum: tour.person_num,
-          id: tour._id,
-          money,
-          personsCount: +money / +tour.price_per_person,
-        };
-      });
-      setCardsDetails(allToursDetails);
-    }
-  }, [data]);
+  // // set cart tours cards
+  // useEffect(() => {
+  //   if (data) {
+  //     setCartId(data.data._id);
+  //     const cartData = data.data;
+  //     console.log({ cartData });
+  //     tours = cartData.tours;
+  //     tour_details = cartData.tour_details;
+  //     total_money = cartData.total_money;
+  //     // console.log({ tours });
+  //     const allToursDetails = tours.map((tour) => {
+  //       console.log("in useeffect");
+  //       console.log({ tours });
+  //       const money = tour_details?.find(
+  //         (detail) => detail.tour_id == tour._id
+  //       )?.money;
+  //       return {
+  //         city: tour.city?.home_image,
+  //         title: tour.title,
+  //         cityTitle: tour.city?.title,
+  //         duration: tour.duration,
+  //         startDate: formatDate(tour.start_date),
+  //         pricePerPerson: tour.price_per_person,
+  //         personNum: tour.person_num,
+  //         id: tour._id,
+  //         money,
+  //         personsCount: +money / +tour.price_per_person,
+  //       };
+  //     });
+  //     setCardsDetails(allToursDetails);
+  //   }
+  // }, [data]);
 
-  // handle personsCount increment in tour card
-  const handleUpdateTourIncrement = (id) => {
-    const updatedTours = cardsDetails.map((card) => {
-      if (card.id == id) {
-        return {
-          ...card,
-          money: card.money + card.pricePerPerson,
-          personsCount: card.personsCount + 1,
-        };
-      }
-      return card;
-    });
-    setCardsDetails(updatedTours);
-  };
+  // // handle personsCount increment in tour card
+  // const handleUpdateTourIncrement = (id) => {
+  //   const updatedTours = cardsDetails.map((card) => {
+  //     if (card.id == id) {
+  //       return {
+  //         ...card,
+  //         money: card.money + card.pricePerPerson,
+  //         personsCount: card.personsCount + 1,
+  //       };
+  //     }
+  //     return card;
+  //   });
+  //   setCardsDetails(updatedTours);
+  // };
 
-  // handle personsCount decrement in tour card
-  const handleUpdateTourDecrement = (id) => {
-    const updatedTours = cardsDetails.map((card) => {
-      if (card.id == id) {
-        return {
-          ...card,
-          money: card.money - card.pricePerPerson,
-          personsCount: card.personsCount - 1,
-        };
-      }
-      return card;
-    });
-    // console.log({ updatedTours });
-    setCardsDetails(updatedTours);
-  };
+  // // handle personsCount decrement in tour card
+  // const handleUpdateTourDecrement = (id) => {
+  //   const updatedTours = cardsDetails.map((card) => {
+  //     if (card.id == id) {
+  //       return {
+  //         ...card,
+  //         money: card.money - card.pricePerPerson,
+  //         personsCount: card.personsCount - 1,
+  //       };
+  //     }
+  //     return card;
+  //   });
+  //   // console.log({ updatedTours });
+  //   setCardsDetails(updatedTours);
+  // };
 
   // handle delete a tour with manual optimistic update
-  const handleDeleteTour = (id) => {
-    queryClient.cancelQueries({ queryKey: ["cart"] });
-    const updatedCartTours = cardsDetails.filter((tour) => tour.id !== id);
-    setCardsDetails(updatedCartTours);
-    // const prevValue = queryClient.getQueryData(["cart"]);
-    // const count = prevValue?.data?.tours?.length ?? 0;
-    // if (count == 1) {
-    //   queryClient.setQueryData(["cart"], () => {
-    //     return {
-    //       data: { tours: [] },
-    //     };
-    //   });
-    // } else {
-    // queryClient.setQueryData(["cart"], () => {
-    //   return {
-    //     data: { tours: updatedCartTours },
-    //   };
-    // });
-    // }
-    // queryClient.invalidateQueries({ queryKey: ["cart"] });
-  };
+  // const handleDeleteTour = (id) => {
+  // queryClient.cancelQueries({ queryKey: ["cart"] });
+  // const updatedCartTours = cardsDetails.filter((tour) => tour.id !== id);
+  // setCardsDetails(updatedCartTours);
+  // queryClient.setQueryData(["cart"], (old) => {
+  //   const updatedTours = old.data.tours.filter((tour) => tour._id != id);
+  //   const updateTourDetails = old.data.tour_details.filter(
+  //     (tour) => tour.tour_id != id
+  //   );
+  //   return {
+  //     data: {
+  //       tours: updatedTours,
+  //       tour_details: updateTourDetails,
+  //       total_money: old.data.total_money,
+  //     },
+  //   };
+  // });
+
+  // queryClient.setQueryData(["cart"], () => ({
+  //   data: { tours: updatedCartTours },
+  // }));
+  // const prevValue = queryClient.getQueryData(["cart"]);
+  // const count = prevValue?.data?.tours?.length ?? 0;
+  // if (count == 1) {
+  //   queryClient.setQueryData(["cart"], () => {
+  //     return {
+  //       data: { tours: [] },
+  //     };
+  //   });
+  // } else {
+  // queryClient.setQueryData(["cart"], () => {
+  //   return {
+  //     data: { tours: updatedCartTours },
+  //   };
+  // });
+  // }
+  // queryClient.invalidateQueries({ queryKey: ["cart"] });
+  // queryClient.cancelQueries({ queryKey: ["cart"] });
+  // };
 
   // empty cart
-  console.log({ tours: data?.data?.tours });
+  // console.log({ tours: data?.data?.tours });
   if (isSuccess && data?.data?.tours.length == 0) {
     return (
       <div className="container mx-auto mt-32">
@@ -214,23 +224,31 @@ const Cart = () => {
                 </div>
               </div>
               <div className="flex flex-col gap-9 md:mx-0 2xs:mx-2">
-                {cardsDetails.length !== 0 &&
-                  cardsDetails.map((tour, index) => {
-                    totalCartMoney += +tour.money;
-                    fees = (totalCartMoney * 2) / 100;
-                    // console.log({ tour });
-                    {
-                      return (
-                        <TourCardWide 
-                          key={index}
-                          data={tour}
-                          onUpdateTourIncrement={handleUpdateTourIncrement}
-                          onUpdateTourDecrement={handleUpdateTourDecrement}
-                          onDeleteTour={handleDeleteTour}
-                        />
-                      );
-                    }
-                  })}
+                {data?.data?.tours.map((tour, index) => {
+                  const { money, subscriber_number } =
+                    data.data.tour_details.find((t) => t.tour_id == tour._id);
+                  totalCartMoney += +money;
+                  fees = (totalCartMoney * 2) / 100;
+                  {
+                    return (
+                      <TourCardWide
+                        key={tour._id}
+                        id={tour._id}
+                        image={tour.city.home_image}
+                        title={tour.title}
+                        city={tour.city.title}
+                        duration={tour.duration}
+                        startDate={tour.start_date}
+                        pricePerPerson={tour.price_per_person}
+                        totalPrice={money}
+                        peopleCount={subscriber_number}
+                        // onUpdateTourIncrement={handleUpdateTourIncrement}
+                        // onUpdateTourDecrement={handleUpdateTourDecrement}
+                      />
+                    );
+                  }
+                })}
+
               </div>
             </div>
             <div className="border-2 px-4 max-w-[405px] w-full h-full flex flex-col gap-2 justify-center md:p-6 rounded-2xl pb-6 mb-4">
@@ -258,7 +276,7 @@ const Cart = () => {
               </div>
               <div className="mt-8 text-center">
                 <CustomButton
-                  onClick={handleCheckout}
+                  // onClick={handleCheckout}
                   isLoading={checkoutIsLoading}
                   type="secondary"
                   value="Check out"
