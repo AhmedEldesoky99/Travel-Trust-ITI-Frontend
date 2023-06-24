@@ -25,7 +25,7 @@ const About = () => {
   return (
     <section>
       <Breadcrumb
-        className="container mx-auto my-10"
+        className="container mx-auto my-10 text-xl"
         separator=">"
         items={[
           {

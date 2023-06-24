@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import {
@@ -14,15 +14,22 @@ import {
   RightCircleOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
+import { Badge } from "antd";
 
 import Logo from "../../../assets/images/Logo/Logo.svg";
 
-import UserIdContext from "../../../context/UserIdContext";
-
 import { getUserData } from "../../../services/user";
+import { useQuery } from "react-query";
+import { getCart } from "../../../services/Cart";
 
 const Navbar = ({ pathBackgroundIncluded }) => {
+  let cartCount;
   const [isScrolled, setIsScrolled] = useState(false);
+  const { data: cartData, isLoading, isSuccess } = useQuery("cart", getCart);
+  if (isSuccess) {
+    cartCount = cartData?.data?.tours?.length ?? 0;
+  }
+
   const navigate = useNavigate();
 
   const changeNavbarBackground = () => {
@@ -39,7 +46,11 @@ const Navbar = ({ pathBackgroundIncluded }) => {
   // console.log(userId);
 
   const userId = localStorage.getItem("userId");
-  const { data } = getUserData(userId);
+  const {
+    data,
+    isLoading: isLoadingUser,
+    isSuccess: isSuccessUser,
+  } = getUserData(userId);
   // console.log(data);
 
   const logout = () => {
@@ -179,7 +190,7 @@ const Navbar = ({ pathBackgroundIncluded }) => {
         <div className="flex-1 justify-end">
           {/* // Show only from md */}
 
-          {data?.success ? (
+          {data?.success && isSuccessUser ? (
             <>
               <ul className="menu menu-horizontal hidden md:flex lg:text-base 2xl:text-xl">
                 <li className="p-3 hover:text-primary-green">
@@ -192,7 +203,18 @@ const Navbar = ({ pathBackgroundIncluded }) => {
                   </Link>
                 </li>
                 <li className="p-3 hover:text-primary-green">
-                  <ShoppingCartOutlined className="p-1 hover:bg-transparent active:bg-transparent active:text-primary-green" />
+                  <Badge
+                    count={cartCount}
+                    showZero
+                    offset={[-30, 14]}
+                    style={{
+                      boxShadow: "0 0 0 1px #ff4d4f",
+                      textAlign: "center",
+                    }}
+                  >
+                    <ShoppingCartOutlined className="p-1 hover:bg-transparent active:bg-transparent active:text-primary-green text-2xl -mt-2 -mr-4" />
+                  </Badge>
+
                   <Link
                     to="/cart"
                     className="hover:bg-transparent active:bg-transparent  active:text-primary-green p-1"
@@ -369,7 +391,7 @@ const Navbar = ({ pathBackgroundIncluded }) => {
                 </ul>
               </div>
             </>
-          ) : (
+          ) : !userId && (
             <>
               <div className="dropdown dropdown-end 2xs:block sm:hidden">
                 <label

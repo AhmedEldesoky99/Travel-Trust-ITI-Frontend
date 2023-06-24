@@ -1,6 +1,6 @@
 const SubNavBar = () => {
   return (
-    <div className="navbar bg-base-100 hidden md:block ">
+    <div className="navbar  hidden md:block ">
       <div className="navbar-start">
         {/* <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost btn-circle">

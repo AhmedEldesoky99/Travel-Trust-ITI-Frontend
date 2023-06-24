@@ -1,0 +1,11 @@
+.custom_modal_review .ant-modal-content {
+  max-width: 48rem !important;
+  width: max-content !important;
+  padding: 24px !important;
+}
+.custom_modal_review .ant-modal-mask {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

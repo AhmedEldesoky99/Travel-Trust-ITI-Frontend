@@ -22,6 +22,9 @@ import {
   SmileOutlined,
 } from "@ant-design/icons";
 
+import "./style.css";
+import { getUserData } from "../../../services/user";
+
 const items = [
   {
     step: 1,
@@ -66,8 +69,9 @@ const stepMap = new Map([
 const AddTourPage = () => {
   //----------- states -----------
 
-  const { step, publish, setPublish,tourID} = useAddTourFormContext();
+  const { step, publish, setPublish, tourID } = useAddTourFormContext();
   const [stepState, setStepState] = useState(items[0]);
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     const currentStep = items.find((item) => item.step === step);
@@ -97,27 +101,50 @@ const AddTourPage = () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);
+  const localId = localStorage.getItem("localId");
+  // const { data } = getUserData(localId);
+  const { data } = getUserData(2);
 
   const onChange = (checked) => {
     console.log(`switch to ${checked}`);
+    //not verified --> disabled -- draft
+    // data?.user?.verified ? setDisabled(true) :setPublish(checked);
     setPublish(checked);
+    // console.log(data?.user?.verified);
   };
+
+  data?.user?.verified && setDisabled(!disabled);
+
+  // const toggle = () => {
+  //   setDisabled(!disabled);
+  // };
+
+  console.log("data ff", data);
 
   return (
     <>
-      <div className="flex flex-row  ">
+      <div className="flex flex-row bg-[#f5f8f9] ">
         <NavBar />
 
-        <div className="w-full container mx-auto w-">
-          <SubNavBar />
-          {tourID !== "add" && <CustomSteps items={items} stepState={stepState} />}
-          
+        <div className="w-full container mx-auto ">
+          {/* <SubNavBar /> */}
+
+          {/* {tourID !== "add" && ( */}
+            <CustomSteps items={items} stepState={stepState} />
+          {/* )} */}
+        
           {/* {stepMap.get("step-1").component} */}
 
-          <div className="flex justify-end items-center gap-4">
-            <Switch defaultChecked onChange={onChange} />
+          <div className="flex justify-end items-center gap-4 rounded-2xl shadow-md p-6 bg-white">
+            <Switch
+              defaultChecked
+              disabled={disabled}
+              onChange={onChange}
+              className="custom-switch"
+            />
             <p>{publish ? "publish" : "Draft"}</p>
           </div>
+          
           {step === 1 && <AddOverview />}
           {step === 2 && <AddPlan />}
           {step === 3 && <AddGallery />}

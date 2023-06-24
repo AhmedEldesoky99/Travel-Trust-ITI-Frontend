@@ -48,6 +48,7 @@ export const ruleValidation = {
   title: {
     required: "Title is required",
   },
+
   price_per_person: {
     required: "Price is required",
   },

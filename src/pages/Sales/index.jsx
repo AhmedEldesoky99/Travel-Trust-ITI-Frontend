@@ -5,6 +5,7 @@ import Header from "../../containers/Sales/Header";
 import About from "../../containers/Sales/About";
 
 const Sales = () => {
+ 
   return (
     <>
       <Header />

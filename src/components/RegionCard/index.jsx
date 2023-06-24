@@ -13,7 +13,7 @@ const RegionCard = ({ regionsTabs }) => {
 
   return (
     <>
-      <section className="hero w-full md:min-w-[25rem] mb-4 sticky top-4 px-6 xs:px-0">
+      <section className="hero w-full md:min-w-[25rem] mb-4 sticky top-28 px-6 xs:px-0">
         <div className="xs:container">
           <div className="border-[0.4px] border-gray-200 py-10 shadow-md rounded-md">
             {regionsTabs.map(({ name, cities }, index) => (

@@ -19,7 +19,6 @@ const AddMeetingPoint = () => {
     },
   });
 
-
   function validateCoordinates(value) {
     //console.log(value); //{longitude: 30.878, latitude: 31.5147}
     const { longitude, latitude } = value;
@@ -45,27 +44,27 @@ const AddMeetingPoint = () => {
 
   return (
     <>
-      <div className="rounded-2xl shadow-md p-10">
+      <div className="rounded-2xl shadow-md p-10 mt-10 bg-white">
         <h3 className="text-3xl font-medium">Pick the meeting point</h3>
 
         <div className="  flex justify-center items-center flex-col">
           <form onSubmit={handleSubmit(onhandleSubmit)}>
-            <div className=" w-[100vh] h-[60vh] mt-10 rounded-2xl">
+            <div className=" w-full lg:w-[100vh] h-[60vh] mt-10 rounded-2xl">
               {/* <div className=" w-full h-full"> */}
-                <Controller
-                  name="meeting_point"
-                  control={control}
-                  //TO DO :Validate coordinates 90 90
-                  rules={{ validate: validateCoordinates }}
-                  render={({ field }) => (
-                    <>
-                      <CustomMap
-                        coordinates={field.value}
-                        setLocation={field.onChange}
-                      />
-                    </>
-                  )}
-                />
+              <Controller
+                name="meeting_point"
+                control={control}
+                //TO DO :Validate coordinates 90 90
+                rules={{ validate: validateCoordinates }}
+                render={({ field }) => (
+                  <>
+                    <CustomMap
+                      coordinates={field.value}
+                      setLocation={field.onChange}
+                    />
+                  </>
+                )}
+              />
               {/* </div> */}
             </div>
             <p className="mt-4 mb-8 text-center">

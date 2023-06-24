@@ -1,6 +1,7 @@
 import Header from "../../containers/Destinations/Header";
 import Regions from "../../containers/Destinations/Regions";
 const Destinations = () => {
+  
   return (
     <>
       <Header />
