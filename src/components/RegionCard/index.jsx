@@ -7,7 +7,7 @@ const RegionCard = ({ regionsTabs }) => {
     setSelectedIndex(index);
     const section = document.getElementById(regionsTabs[index].name);
     if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+      section.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   };
 

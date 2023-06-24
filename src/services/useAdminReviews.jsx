@@ -9,9 +9,8 @@ export const useAdminReviews = () => {
     console.log("organizerID", organizerID);
 
     return request({
-      url: `/v1/comments`,
+      url: `/v1/comments/?limit=0&id=${organizerID}`,
       method: "GET",
-      organizer: organizerID,
     });
   };
 

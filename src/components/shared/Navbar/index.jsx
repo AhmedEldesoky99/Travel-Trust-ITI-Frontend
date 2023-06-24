@@ -46,7 +46,11 @@ const Navbar = ({ pathBackgroundIncluded }) => {
   // console.log(userId);
 
   const userId = localStorage.getItem("userId");
-  const { data } = getUserData(userId);
+  const {
+    data,
+    isLoading: isLoadingUser,
+    isSuccess: isSuccessUser,
+  } = getUserData(userId);
   // console.log(data);
 
   const logout = () => {
@@ -186,7 +190,7 @@ const Navbar = ({ pathBackgroundIncluded }) => {
         <div className="flex-1 justify-end">
           {/* // Show only from md */}
 
-          {data?.success ? (
+          {data?.success && isSuccessUser ? (
             <>
               <ul className="menu menu-horizontal hidden md:flex lg:text-base 2xl:text-xl">
                 <li className="p-3 hover:text-primary-green">
@@ -387,7 +391,7 @@ const Navbar = ({ pathBackgroundIncluded }) => {
                 </ul>
               </div>
             </>
-          ) : (
+          ) : !userId && (
             <>
               <div className="dropdown dropdown-end 2xs:block sm:hidden">
                 <label

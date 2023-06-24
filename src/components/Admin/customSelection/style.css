@@ -6,6 +6,8 @@
 }
 .custom-select .ant-select-selection-placeholder {
   color: #6b7280;
+  display: flex !important;
+  align-items: center !important;
 }
 
 .custom-select .ant-select-selection-item {
@@ -19,6 +21,14 @@
   .ant-select-selection-search {
   display: flex !important;
   align-items: center !important;
+}
+
+.custom-select
+  .ant-select-single
+  .ant-select-selector
+  .ant-select-selection-search {
+  display: flex;
+  align-items: center;
 }
 
 @media screen and (max-width: 1200px) {

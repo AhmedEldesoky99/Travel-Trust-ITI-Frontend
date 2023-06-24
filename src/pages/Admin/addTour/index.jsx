@@ -22,6 +22,9 @@ import {
   SmileOutlined,
 } from "@ant-design/icons";
 
+import "./style.css";
+import { getUserData } from "../../../services/user";
+
 const items = [
   {
     step: 1,
@@ -66,8 +69,9 @@ const stepMap = new Map([
 const AddTourPage = () => {
   //----------- states -----------
 
-  const { step, publish, setPublish,tourID} = useAddTourFormContext();
+  const { step, publish, setPublish, tourID } = useAddTourFormContext();
   const [stepState, setStepState] = useState(items[0]);
+  const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
     const currentStep = items.find((item) => item.step === step);
@@ -97,27 +101,65 @@ const AddTourPage = () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);
+  const localId = localStorage.getItem("localId");
+  // const { data } = getUserData(localId);
+  const { data } = getUserData(2);
 
   const onChange = (checked) => {
     console.log(`switch to ${checked}`);
     setPublish(checked);
   };
+  useEffect(() => {
+    if (data?.user?.verified) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [data?.user?.verified]);
 
   return (
     <>
-      <div className="flex flex-row  ">
+      <div className="flex flex-row bg-[#f5f8f9] ">
         <NavBar />
 
-        <div className="w-full container mx-auto w-">
-          <SubNavBar />
-          {tourID !== "add" && <CustomSteps items={items} stepState={stepState} />}
-          
+        <div className="w-full container mx-auto ">
+          {/* <SubNavBar /> */}
+
+          {/* {tourID !== "add" && ( */}
+          <CustomSteps items={items} stepState={stepState} />
+          {/* )} */}
+
           {/* {stepMap.get("step-1").component} */}
 
-          <div className="flex justify-end items-center gap-4">
-            <Switch defaultChecked onChange={onChange} />
-            <p>{publish ? "publish" : "Draft"}</p>
+          <div className="flex justify-between rounded-2xl shadow-md p-4 bg-white">
+            <div className="flex p-6">
+              {!data?.user?.verified && (
+                <p>
+                  <span className=" text-tertiary-red font-semibold">
+                    Note:{" "}
+                  </span>
+                  Your acount will be reviewed by the admin before you can
+                  publish.<br></br> In the meantime, you can still create a
+                  draft of your tour, but the 'Publish' button will be disabled
+                  until your account has been verified.
+                </p>
+              )}
+            </div>
+
+            <div className="flex justify-end items-center gap-4 ">
+              <Switch
+                disabled={disabled}
+                onChange={onChange}
+                className="custom-switch"
+              />
+              <p>{publish ? "publish" : "Draft"}</p>
+            </div>
+
+            {/* {!data?.user?.verified && (
+              
+            )} */}
           </div>
+
           {step === 1 && <AddOverview />}
           {step === 2 && <AddPlan />}
           {step === 3 && <AddGallery />}

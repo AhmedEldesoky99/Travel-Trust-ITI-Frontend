@@ -11,6 +11,10 @@ import useSearchDatagrid from "../../../hooks/useSearchDataGrid";
 import DataGrid from "../../../components/shared/Admin/Data-grid";
 import useModal from "../../../hooks/useModal";
 import CustomModal from "../../../components/shared/Admin/CustomModal";
+import CategoryLocalStatistics from "../../../components/Admin/categoryLocalStatistics";
+import { useQuery } from "react-query";
+import { getAllCategories } from "../../../services/Home";
+import { getUserData } from "../../../services/user";
 
 //dynamic data
 // const data = [
@@ -57,7 +61,7 @@ const DashBoard = () => {
   const { getColumnSearchProps } = useSearchDatagrid();
   const { loading, open, showModal, handleOk, handleCancel } = useModal();
 
-  //table structure
+  // table structure
   const columns = [
     Table.SELECTION_COLUMN,
     {
@@ -131,14 +135,26 @@ const DashBoard = () => {
     },
   ];
 
+  // const {
+  //   data: categories,
+  //   isLoading: isCategoriesLoading,
+  //   error,
+  // } = useQuery("categories", getAllCategories);
+
+  // const localId = localStorage.getItem("localId");
+  // const { data } = getUserData(localId);
+
+  const { data: user } = getUserData(2);
+  console.log("user", user);
+
   return (
     <>
-      <div className="flex flex-row  ">
+      <div className="flex flex-row  bg-admin-grey">
         <NavBar />
         <div className="w-full container mx-auto">
           <SubNavBar />
           <div className="grid lg:grid-cols-6 lg:grid-flow-row auto-rows-max w-full  gap-5 h-fill md:mt-8 mt-32 ">
-            <div className="col-span-6 lg:col-span-4  flex justify-between items-center  p-10 rounded-2xl shadow-md">
+            <div className="col-span-6 lg:col-span-4  flex justify-between items-center  p-10 rounded-2xl shadow-md bg-white">
               <div>
                 <h2 className=" text-3xl font-medium">Hi username ! </h2>
                 <p className=" mt-6">Welcome to your Dashboard</p>
@@ -148,7 +164,33 @@ const DashBoard = () => {
               </div>
             </div>
 
-            <div className="2xs:col-span-6 lg:col-span-2 row-span-3 rounded-2xl shadow-md"></div>
+            <div className="2xs:col-span-6 lg:col-span-2 row-span-3 rounded-2xl shadow-md bg-white p-8">
+              <div className="flex justify-center items-center gap-4 mb-8">
+                <div className="flex flex-col justify-center items-center w-full bg-[rgb(0,158,183,0.8)] text-white p-10 rounded-2xl">
+                  <p className=" text-6xl ">{user?.data?.stats?.minPrice}</p>
+                  <p className=" text-center mt-2">Min Price of your Tours</p>
+                </div>
+                <div className="w-full bg-[rgb(219,58,52,0.8)] text-white rounded-2xl p-10">
+                  <p className=" text-6xl ">{user?.data?.stats?.maxPrice}</p>
+                  <p className=" text-center mt-2">Max Price of your Tours</p>
+                </div>
+              </div>
+              <div>
+                <h3 className=" text-2xl font-bold">Tours By Category</h3>
+                {user &&
+                  Object.entries(user?.data?.stats?.categories).map(
+                    ([key, value]) => {
+                      return (
+                        <CategoryLocalStatistics
+                          key={key}
+                          name={key}
+                          tourNum={value}
+                        />
+                      );
+                    }
+                  )}
+              </div>
+            </div>
             <div className="col-span-6 md:col-span-3 lg:col-span-2 ">
               <CardIcon
                 name="suitcase"
@@ -182,7 +224,7 @@ const DashBoard = () => {
               />
             </div>
           </div>
-          <div className="rounded-2xl shadow-md mt-12 p-10">
+          <div className="rounded-2xl shadow-md mt-12 p-10 bg-white">
             <h2 className=" font-semibold text-xl">Latest Transaction</h2>
             <DataGrid data={data} columns={columns} />
           </div>

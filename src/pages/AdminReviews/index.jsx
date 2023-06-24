@@ -1,43 +1,69 @@
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+
 import { Table, Tag } from "antd";
 
 import AdminReviewCard from "../../components/AdminReviewCard/index.jsx";
 import NavBar from "../../components/shared/Admin/Admin-NavBar/index.jsx";
 import DataGrid from "../../components/shared/Admin/Data-grid/index.jsx";
 import SubNavBar from "../../components/shared/Admin/SubNavBar.jsx";
-import useModal from "../../hooks/useModal.jsx";
-import useSearchDatagrid from "../../hooks/useSearchDataGrid.jsx";
+
 import Icon from "../../utils/icons.jsx";
 import Avatar from "../../components/Avatar/index.jsx";
 import AdminReviewModal from "../../components/AdminReviewModal/index.jsx";
-import { useState } from "react";
+
+import useSearchDatagrid from "../../hooks/useSearchDataGrid.jsx";
 import { useAdminReviews } from "../../services/useAdminReviews.jsx";
-import { useParams } from "react-router-dom";
+
+import ReviewPageLoader from "../../components/Admin/localLoaders/reviewPageLoader/index.jsx";
+
+const placeholder =
+  "https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg";
 
 const AdminReviews = () => {
   //-------------- State --------------
+  const [open, setOpen] = useState(false);
+  const [reviewContent, setReviewContetn] = useState(null);
+
   //custom hook
   const { getColumnSearchProps } = useSearchDatagrid();
-  const { loading, open, showModal, handleOk, handleCancel } = useModal();
-
-  const [selected, setSelected] = useState({});
+  // const { loading, open, showModal, handleOk, handleCancel } = useModal();
 
   const { organizerId } = useParams();
-  const { AdminReviewsById } = useAdminReviews();
+  const { AdminReviewsById } = useAdminReviews([0, 1, 2, 3]);
   const { data: reviews, isLoading, isError } = AdminReviewsById(organizerId);
 
-  // console.log({ reviews });
+  console.log({ reviews });
+
+  const showModal = (props) => {
+    setReviewContetn(props);
+    setOpen(true);
+  };
+
+  const hideModal = () => {
+    setOpen(false);
+  };
   //-------------- table row --------------
-  const data = reviews?.data.map((review, index) => {
+  const data = reviews?.data?.map((review, index) => {
     return {
       key: index,
-      tourID: review?.tour._id,
+      tourID: review?.tour?._id,
       UserName: (
         <Avatar
           name={review?.user?.username}
-          image={review?.user?.photo[0].url}
+          image={
+            review?.user?.photo[0]?.url
+              ? review?.user?.photo[0]?.url
+              : placeholder
+          }
         />
       ),
-      Review: review?.content,
+      Review: [
+        review?.tour?.title,
+        review?.content,
+        review?.user?.username,
+        review?.user?.photo[0]?.url,
+      ],
       Rating: review?.rating,
     };
   });
@@ -49,9 +75,10 @@ const AdminReviews = () => {
       title: "Tour ID",
       dataIndex: "tourID",
       key: "tourID",
+      width: "8%",
       //fixed column  NOTE: Do not use percentage
-      width: 150,
-      fixed: "left",
+      // width: 150,
+      // fixed: "left",
       //search
       ...getColumnSearchProps("tourID"),
     },
@@ -67,10 +94,16 @@ const AdminReviews = () => {
       title: "Review",
       dataIndex: "Review",
       key: "Review",
-      width: "40%",
+      width: "50%",
 
       //search
       ...getColumnSearchProps("Review"),
+      render: (props) => (
+        <>
+          {/* {console.log({ props })} */}
+          <p className="max-w-xs truncate capitalize">{props}</p>
+        </>
+      ),
     },
     {
       title: "Rating",
@@ -79,11 +112,11 @@ const AdminReviews = () => {
       //search
       ...getColumnSearchProps("Rating"),
       render: (_, { Rating }) => {
-        let color = "#009EB7";
+        let color = "rgb(0, 158, 183,0.8)";
         if (Rating < 2) {
-          color = "#DB3A34";
+          color = "rgb(219, 58, 52,0.8)";
         } else if (Rating < 4) {
-          color = "#81CCD8";
+          color = "rgb(129, 204, 216,0.8)";
         }
         return (
           <Tag
@@ -92,6 +125,7 @@ const AdminReviews = () => {
               fontSize: "16px",
               padding: "6px",
               textAlign: "center",
+              borderRadius: "50px",
             }}
             color={color}
           >
@@ -107,29 +141,17 @@ const AdminReviews = () => {
       fixed: "right",
       width: 100,
       //action icons
-      render: (props, record) => (
+      render: (props) => (
         <>
-          {/* {console.log({ props })} */}
+          {console.log({ props })}
           <button
             onClick={() => {
-              setSelected(props);
-              showModal();
+              showModal(props);
             }}
             className="flex justify-center items-center "
           >
             <Icon name="eye" />
           </button>
-          <AdminReviewModal
-            open={open}
-            loading={loading}
-            handleOk={handleOk}
-            handleCancel={handleCancel}
-            // title={review?.tour.title}
-            travellerName={props.UserName.props.name}
-            AdminImage={props.UserName.props.image}
-            review={props.Review}
-            rating={props.Rating}
-          />
         </>
       ),
     },
@@ -137,21 +159,41 @@ const AdminReviews = () => {
 
   return (
     <>
-      <div className="flex flex-row">
+      <div className="flex flex-row bg-admin-grey">
         <NavBar />
         <div className="w-full mx-auto ">
           <SubNavBar />
+
           <div className="container mx-auto">
-            <div className="md:grid md:grid-cols-12 gap-4">
-              <div className="col-span-12 2xl:col-span-9 ">
-                <DataGrid data={data} columns={columns} loading={isLoading} />
+            {isLoading ? (
+              <ReviewPageLoader />
+            ) : (
+              <div className="md:grid md:grid-cols-12 gap-4 mt-32 md:mt-8">
+                <div className="col-span-12 2xl:col-span-9 ">
+                  <DataGrid data={data} columns={columns} loading={isLoading} />
+                </div>
+                <div className="col-span-12 2xl:col-span-3 mt-8 md:mt-0">
+                  <AdminReviewCard totalReviews={reviews?.length} />
+                </div>
               </div>
-              <div className="col-span-12 2xl:col-span-3">
-                <AdminReviewCard totalReviews={reviews.length} />
-              </div>
-            </div>
+            )}
           </div>
+          {reviewContent && (
+            <AdminReviewModal
+              open={open}
+              loading={isLoading}
+              btnOk="Close"
+              handleOk={hideModal}
+              handleCancel={hideModal}
+              tourTitle={reviewContent?.Review[0]}
+              travellerName={reviewContent?.Review[2]}
+              AdminImage={reviewContent?.Review[3]}
+              review={reviewContent?.Review[1]}
+              rating={reviewContent?.Rating}
+            />
+          )}
         </div>
+        {console.log({ reviewContent })}
       </div>
     </>
   );

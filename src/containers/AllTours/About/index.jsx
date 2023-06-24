@@ -7,10 +7,13 @@ import TourCard from "./../../../components/shared/TourCard/index";
 import CardLoader from "../../../components/CardLoader";
 import { getAllTours } from "../../../services/AllTours";
 
-
 const About = () => {
+  let total;
+  const pageSize = 8;
   const { isLoading, data, isSuccess } = useQuery("allTours", getAllTours);
-
+  if (isSuccess) {
+    total = data.data.length;
+  }
   const [page, setPage] = useState(1);
 
   return (
@@ -30,11 +33,15 @@ const About = () => {
               },
             ]}
           />
-          
+
           <div className="container mb-10 mx-auto grid gap-4 2xs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-            {data?.data.map((item) => (
-              <TourCard key={item._id} data={item} />
-            ))}
+            {data?.data
+              .slice((page - 1) * pageSize, page * pageSize)
+              .map((item) => (
+                <Link to={`/tour-details/${item._id}`}>
+                  <TourCard key={item._id} data={item} />
+                </Link>
+              ))}
           </div>
 
           <Pagination
@@ -43,8 +50,8 @@ const About = () => {
             onChange={(page) => {
               setPage(page);
             }}
-            pageSize={12}
-            total={50}
+            pageSize={pageSize}
+            total={total}
           />
         </section>
       )}

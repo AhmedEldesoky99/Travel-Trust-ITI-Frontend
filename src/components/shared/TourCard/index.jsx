@@ -22,7 +22,7 @@ const place_holder_avatar =
 const place_holder_tour =
   "https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png";
 
-const TourCard = ({ data, length }) => {
+const TourCard = ({ data, length, title }) => {
   // -------- States --------
   const [checked, setChecked] = useState(false);
 
@@ -74,7 +74,7 @@ const TourCard = ({ data, length }) => {
         </div>
 
         <div className="absolute bottom-0 left-[5%] flex items-center translate-y-[50%]">
-          <a href="">
+          <Link to={`/admin-profile/${data?.organizer?._id}`}>
             <img
               src={data?.organizer.photo[0]?.url ?? place_holder_avatar}
               alt="Tour Creator"
@@ -84,7 +84,7 @@ const TourCard = ({ data, length }) => {
               }}
               className="2xs:w-16 xs:w-20 sm:w-20 md:w-16 md:h-16 bg-cover bg-center object-cover  lg: xl: 2xl: rounded-full relative"
             />
-          </a>
+          </Link>
           <span className="badge 2xs:text-sm 2xl:text-lg p-4 pr-6 -ml-3 bg-tertiary-red border-tertiary-red">
             likely to sellout
           </span>
@@ -121,7 +121,7 @@ const TourCard = ({ data, length }) => {
           </div>
         </div>
 
-        <h2 className="card-title 2xs:text-lg 2xl:text-xl">{data?.title}</h2>
+        <h2 className="card-title 2xs:text-lg 2xl:text-xl">{title}</h2>
 
         <div className="flex items-center space-x-2 ">
           <Rate disabled defaultValue={0} value={data?.rate} />
@@ -132,8 +132,8 @@ const TourCard = ({ data, length }) => {
             <div className="flex items-center justify-end space-x-2">
               <ClockCircleOutlined className="text-base" />
               <span className="text-base text-light-gray h-5">
-                {data?.duration === 1 ? "a" : data?.duration} day{data?.duration === 1 ? "" : "s"}
-
+                {data?.duration === 1 ? "a" : data?.duration} day
+                {data?.duration === 1 ? "" : "s"}
               </span>
             </div>
           </div>

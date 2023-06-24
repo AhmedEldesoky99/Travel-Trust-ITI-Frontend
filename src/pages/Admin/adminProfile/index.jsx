@@ -1,5 +1,9 @@
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+
 import SubNavBar from "../../../components/shared/Admin/SubNavBar.jsx/index.jsx";
 import NavBar from "../../../components/shared/Admin/Admin-NavBar/index.jsx";
+
 import Statistics from "../../../components/AdminProfile/statistics/index.jsx";
 import TopTravelers from "../../../components/AdminProfile/topTravelers/index.jsx";
 import EditProfile from "../../../components/AdminProfile/EditProfile/index.jsx";
@@ -9,215 +13,322 @@ import phone from "../../../assets/images/Admin/AdminProfile/phone.svg";
 import email from "../../../assets/images/Admin/AdminProfile/email.svg";
 import location from "../../../assets/images/Admin/AdminProfile/location.svg";
 import ssn from "../../../assets/images/Admin/AdminProfile/ssn.svg";
-import role from "../../../assets/images/Admin/AdminProfile/role.svg";
-import { Modal } from "antd";
-import { useState } from "react";
-import "./app.css";
-import { useParams } from "react-router-dom";
-import { getUserData, useUser } from "../../../services/user";
 
+import { Badge, Modal } from "antd";
+import "./app.css";
+
+import { getUserData } from "../../../services/user";
+import LocalProfileLoader from "../../../components/Admin/localLoaders/localProfileLoader/index.jsx";
+import Icon from "../../../utils/icons.jsx";
+import VerificationModal from "../../../components/Admin/verificationModal/index.jsx";
+
+const placeholder =
+  "https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg";
 
 const AdminProfile = () => {
   //----------- states -----------
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   //custom hooks
   const { organizerId } = useParams();
-  console.log(organizerId);
+  // console.log(organizerId);
 
   //----------- handlers -----------
-  const showModal = () => {
-    setIsModalOpen(true);
+  const showModal = (display) => {
+    if (display === "edit") {
+      setIsUpdateModalOpen(true);
+    } else {
+      setIsUploadModalOpen(true);
+    }
   };
-  const handleOk = () => {
-    setIsModalOpen(false);
+  const handleOk = (display) => {
+    if (display === "edit") {
+      setIsUpdateModalOpen(false);
+    } else {
+      setIsUploadModalOpen(false);
+    }
   };
-  const handleCancel = () => {
-    setIsModalOpen(false);
+  const handleCancel = (display) => {
+    console.log("clicked cancel");
+
+    if (display === "edit") {
+      setIsUpdateModalOpen(false);
+    } else {
+      setIsUploadModalOpen(false);
+    }
   };
 
   //get user
-  const { data: admin } = getUserData(organizerId);
+  const { data: admin, isLoading } = getUserData(organizerId);
   console.log("admin", admin);
 
+  const showVerificationForm = admin?.data?.user?.civil_photos?.front[0]?.url;
+
+  const showPending =
+    admin?.data?.user?.civil_photos?.front?.length > 0 &&
+    !admin?.data?.user?.verified;
   return (
     <>
-      <div className="flex flex-row">
+      <div className="flex flex-row bg-admin-grey">
         <NavBar />
         <div className="w-full ">
           <SubNavBar />
           <div className="md:container md:mx-auto">
-            <div className="grid lg:grid-cols-6 lg:grid-flow-row auto-rows-max w-full  gap-5 h-fill md:mt-8 mt-32 ">
-              <div className="flex flex-col gap-8">
-                <div className="flex md:flex-row 2xs:flex-col justify-between md:max-h-[283px] max-w-[1558px] rounded-2xl shadow-lg w-screen h-screen">
-                  <div className="flex md:flex-row 2xs:flex-col gap-5 lg:mx-0">
-                    <div className="2xs:mx-auto">
-                      <div className="max-h-[283px] md:max-w-[283px] w-full md:px-4 ">
-                        <img
-                          src={admin?.data?.photo[0]?.url}
-                          className="rounded-2xl object-cover  h-full"
+            {isLoading ? (
+              <LocalProfileLoader />
+            ) : (
+              <div className="grid lg:grid-cols-6 lg:grid-flow-row auto-rows-max w-full  gap-5 h-fill md:mt-8 mt-32 ">
+                <div className="flex flex-col gap-8">
+                  <div className="flex md:flex-row 2xs:flex-col justify-between md:max-h-[283px] max-w-[1558px] rounded-2xl shadow-lg w-screen h-screen overflow-hidden  bg-white">
+                    <div className="flex md:flex-row 2xs:flex-col gap-5 lg:mx-0">
+                      <div className="2xs:mx-auto">
+                        <div className="max-h-[283px] md:max-w-[283px] w-full   ">
+                          <img
+                            src={
+                              admin?.data?.user?.photo?.length === 0
+                                ? placeholder
+                                : admin?.data?.user?.photo[0]?.url
+                            }
+                            className="rounded-2xl object-cover w-full  h-full"
+                          />
+                        </div>
+                      </div>
+                      <div className="flex flex-col justify-between md:px-5 py-6 lg:mx-0 pl-10">
+                        <div className="flex flex-col  gap-4 2xs:mb-8 md:mb-0">
+                          <div className="flex flex-row justify-between">
+                            <div>
+                              <div className="flex items-center gap-4 justify-brtween ">
+                                <h1 className="md:text-3xl 2xs:text-2xl font-medium text-[#585858] capitalize">
+                                  {admin?.data?.user?.username}
+                                </h1>
+                                {admin?.data?.user?.verified && (
+                                  <div>
+                                    <img
+                                      className="w-[24px]"
+                                      src="https://cdn-icons-png.flaticon.com/512/7595/7595571.png"
+                                    />
+                                  </div>
+                                )}
+                              </div>
+                              <h2 className="md:text-2xl 2xs:text-lg font-medium text-[#585858]">
+                                {admin?.data?.user?.job_profile}
+                              </h2>
+                              {console.log(admin?.data?.user?.verified)}
+                              {!showVerificationForm && (
+                                <div className="flex flex-row items-center ">
+                                  <img src={ssn} />
+                                  <button
+                                    className="text-xl underline py-6 md:px-7 text-[#9A9999]"
+                                    onClick={() => showModal("verify")}
+                                  >
+                                    <p className="text-xl text-[#9A9999] no-underline">
+                                      + Identity verification
+                                    </p>
+                                  </button>
+                                  <Modal
+                                    className="custom_modal_profile "
+                                    title="verify Profile"
+                                    open={isUploadModalOpen}
+                                    onOk={handleOk}
+                                    onCancel={() => handleCancel("verify")}
+                                  >
+                                    <VerificationModal
+                                      admin={admin}
+                                      handleCancel={() =>
+                                        handleCancel("verify")
+                                      }
+                                      setIsModalOpen={setIsUploadModalOpen}
+                                    />
+                                  </Modal>
+                                </div>
+                              )}
+                              {showPending ? (
+                                <div className="mt-8">
+                                  <Badge
+                                    count="pending for verification"
+                                    color="#faad14"
+                                  />
+                                </div>
+                              ) : (
+                                ""
+                              )}
+                            </div>
+                            <div className="md:hidden  pr-5">
+                              <button
+                                href=""
+                                className="text-xl underline py-6 md:px-7 pr-4 text-[#9A9999]"
+                                onClick={() => showModal("edit")}
+                              >
+                                Edit
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex md:flex-row 2xs:flex-col md:gap-16 2xs:gap-12">
+                          <div className="flex flex-col md:gap-4 2xs:gap-2">
+                            <div className="flex flex-row items-center gap-7">
+                              <img src={location} />
+                              <p className="text-xl text-[#9A9999]">
+                                {admin?.data?.user?.city?.title}
+                              </p>
+                            </div>
+
+                            <div className="flex flex-row items-center gap-7">
+                              <img src={email} />
+                              <p className="text-xl text-[#9A9999]">
+                                {admin?.data?.user?.email}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex flex-col md:gap-4 2xs:gap-2 justify-end">
+                            <div className="flex flex-row items-center gap-7">
+                              <img src={phone} />
+                              <p className="text-xl text-[#9A9999]">
+                                {admin?.data?.user?.phone}
+                              </p>
+                            </div>
+
+                            <div className="flex flex-row items-center gap-7">
+                              <Icon name="adminProfile" color="#009EB7" />
+                              <p className="text-xl text-[#9A9999] capitalize">
+                                {admin?.data?.user?.role}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="hidden md:flex flex-col  lg:justify-end 2xs:justify-start ">
+                      <button
+                        className="text-xl underline py-6 md:px-7 text-[#9A9999]"
+                        onClick={() => showModal("edit")}
+                      >
+                        Edit profile
+                      </button>
+                      <Modal
+                        className="custom_modal_profile "
+                        title="Edit Profile"
+                        open={isUpdateModalOpen}
+                        onOk={handleOk}
+                        onCancel={() => handleCancel("edit")}
+                      >
+                        <EditProfile
+                          admin={admin}
+                          handleCancel={() => handleCancel("edit")}
+                          setIsModalOpen={setIsUpdateModalOpen}
+                        />
+                      </Modal>
+                    </div>
+                  </div>
+                  <div className="flex md:flex-row 2xs:flex-col  w-screen max-w-[1558px] gap-5 2xs:flex-wrap lg:flex-nowrap">
+                    <div className="flex flex-row lg:flex-col  flex-wrap bg-white justify-between items-center max-h-[515px] lg:max-w-[283px] p-[24px]  shadow-xl rounded-2xl w-screen ">
+                      {/* <h2 className="text-2xl">Insights</h2> */}
+                      <div className="flex flex-col lg:flex-row  gap-12">
+                        <Statistics num="6" stat="Tours Created" />
+                        <Statistics num="50" stat="Tours Favorite" />
+                      </div>
+                      <div className="flex flex-col lg:flex-row gap-12">
+                        <Statistics num="523" stat="Traveler Booked" />
+                        <Statistics num="896" stat="Views" duration={2} />
+                      </div>
+                      <div className="flex flex-col lg:flex-row gap-12">
+                        <Statistics num="480" stat="Reviews" />
+                        <Statistics num="511" stat="Rating" />
+                      </div>
+                    </div>
+                    <div className="flex flex-col justify-between max-w-[830px] bg-white shadow-xl rounded-2xl w-screen md:p-[24px] py-6 gap-4 container flex-wrap px-4">
+                      {/* about + Governorate of expertise tags + Language tags */}
+                      <div>
+                        <h2 className="text-2xl">About :</h2>
+                        <p className="text-xl mb-6 flex flex-wrap">
+                          {admin?.data?.bio === "" ? (
+                            <p>
+                              "Write something about yourself so that the
+                              traveller can know you petter"
+                            </p>
+                          ) : (
+                            admin?.data?.user?.bio
+                          )}
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="text-[#9A9999] font-semibold text-xl">
+                          Governorate of expertise
+                        </h4>
+                        {/* {console.log("gov", admin?.data?.governorate_expertise)} */}
+                        <div className="flex flex-col md:flex-row gap-4">
+                          {admin?.data?.user?.governorate_expertise?.length !==
+                          0 ? (
+                            admin?.data?.user?.governorate_expertise?.map(
+                              (gov, index) => {
+                                return (
+                                  <div
+                                    key={index}
+                                    className="flex  max-h-[42px] mb-4 mt-4"
+                                  >
+                                    <div className="py-3 px-5 bg-[#D9D9D9] rounded-lg flex items-center">
+                                      {gov?.title}
+                                    </div>
+                                  </div>
+                                );
+                              }
+                            )
+                          ) : (
+                            <div>
+                              <p>No Governorate of expertise selected</p>
+                            </div>
+                          )}
+                        </div>
+                        <h4 className="text-[#9A9999] font-semibold text-xl mt-8">
+                          Language
+                        </h4>
+                        <div className="flex flex-col md:flex-row gap-4">
+                          {admin?.data?.user?.languages?.length !== 0 ? (
+                            admin?.data?.user?.languages?.map((lang, index) => {
+                              return (
+                                <div
+                                  key={index}
+                                  className="flex flex-row max-h-[42px] mb-4 mt-4"
+                                >
+                                  <div className="py-3 px-5 bg-[#D9D9D9] rounded-lg flex items-center">
+                                    {lang}
+                                  </div>
+                                </div>
+                              );
+                            })
+                          ) : (
+                            <div>
+                              <p>No languages selected</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex flex-col max-h-[515px] lg:max-w-[405px] bg-white shadow-xl rounded-2xl w-screen py-12 md:p-[24px] 2xs:px-3 gap-5">
+                      {/* Top travelers */}
+                      <h2 className="text-2xl">Top Travelers</h2>
+                      <div className="flex flex-col gap-6">
+                        <TopTravelers
+                          img="https://pbs.twimg.com/profile_images/830302889977344001/kNGk9Hf2.jpg"
+                          name="Magid Mostafa"
+                          mail="magid@gmail.com"
+                        />
+                        <TopTravelers
+                          img="https://i1.rgstatic.net/ii/profile.image/860226119032834-1582105297282_Q512/Ana-Moreno-Lobato-2.jpg"
+                          name="Abeer Ali"
+                          mail="abeer@gmail.com"
+                        />
+                        <TopTravelers
+                          img={profileImg}
+                          name="Ahmed Moamen"
+                          mail="ahmed@gmail.com"
                         />
                       </div>
-                    </div>
-                    <div className="flex flex-col justify-between md:px-5 py-6 lg:mx-0 pl-10">
-                      <div className="flex flex-col  gap-4 2xs:mb-8 md:mb-0">
-                        <div className="flex flex-row justify-between">
-                          <div className="">
-                            <h1 className="md:text-3xl 2xs:text-2xl font-medium text-[#585858] capitalize">
-                              {admin?.data?.username}
-                            </h1>
-                            <h2 className="md:text-2xl 2xs:text-lg font-medium text-[#585858]">
-                              Full-Stack Developer
-                            </h2>
-                          </div>
-                          <div className="md:hidden  pr-5">
-                            <button
-                              href=""
-                              className="text-xl underline py-6 md:px-7 pr-4 text-[#9A9999]"
-                              onClick={showModal}
-                            >
-                              Edit
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex md:flex-row 2xs:flex-col md:gap-16 2xs:gap-12">
-                        <div className="flex flex-col md:gap-4 2xs:gap-2">
-                          <div className="flex flex-row items-center gap-7">
-                            <img src={location} />
-                            <p className="text-xl text-[#9A9999]">
-                              {admin?.data?.city?.title}
-                            </p>
-                          </div>
-                          <div className="flex flex-row items-center gap-7">
-                            <img src={phone} />
-                            <p className="text-xl text-[#9A9999]">
-                              {admin?.data?.phone}
-
-                            </p>
-                          </div>
-                          <div className="flex flex-row items-center gap-7">
-                            <img src={email} />
-                            <p className="text-xl text-[#9A9999]">
-                              {admin?.data?.email}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="flex flex-col md:gap-4 2xs:gap-2 justify-end">
-                          <div className="flex flex-row items-center gap-7">
-                            <img src={ssn} />
-                            <p className="text-xl text-[#9A9999]">
-                              {admin?.data?.ssn}
-
-                            </p>
-                          </div>
-                          <div className="flex flex-row items-center gap-7">
-                            <img src={role} />
-                            <p className="text-xl text-[#9A9999] capitalize">
-                              {admin?.data?.role}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="hidden md:flex flex-col  lg:justify-end 2xs:justify-start ">
-                    <button
-                      href=""
-                      className="text-xl underline py-6 md:px-7 text-[#9A9999]"
-                      onClick={showModal}
-                    >
-                      Edit profile
-                    </button>
-                    <Modal
-
-                      className="ant-modal-content1 ant-modal-footer1 ant-modal-title1 ant-modal-mask1"
-                      title="Edit Profile"
-                      open={isModalOpen}
-                      onOk={handleOk}
-                      onCancel={handleCancel}
-                    >
-                      <EditProfile onOk={handleOk} onCancel={handleCancel} />
-                    </Modal>
-                  </div>
-                </div>
-                <div className="flex md:flex-row 2xs:flex-col  w-screen max-w-[1558px] gap-5 2xs:flex-wrap lg:flex-nowrap">
-                  <div className="flex flex-col flex-wrap bg-white justify-center items-center max-h-[515px] lg:max-w-[283px] py-[100px]  shadow-xl rounded-2xl w-screen gap-10">
-                    <div className="flex flex-row gap-12">
-                      <Statistics num="6" stat="Tours Created" />
-                      <Statistics num="50" stat="Tours Favorite" />
-                    </div>
-                    <div className="flex flex-row gap-12">
-                      <Statistics num="523" stat="Traveler Booked" />
-                      <Statistics num="896" stat="Views" duration={2} />
-
-                    </div>
-                    <div className="flex flex-row gap-12">
-                      <Statistics num="480" stat="Reviews" />
-                      <Statistics num="511" stat="Rating" />
-                    </div>
-                  </div>
-                  <div className="flex flex-col max-w-[830px] bg-white shadow-xl rounded-2xl w-screen md:px-5 py-6 gap-4 container flex-wrap px-4">
-                    {/* about + Governorate of expertise tags + Language tags */}
-                    <h3 className="text-[#9A9999] font-semibold text-xl mb-4">
-                      About
-                    </h3>
-                    <p className="text-xl mb-6 flex flex-wrap">
-                      {/* {admin?.data?.bio} */}
-
-
-                    </p>
-                    <h4 className="text-[#9A9999] font-semibold text-xl">
-                      Governorate of expertise
-                    </h4>
-                    {/* {admin?.data?.governorate_expertise.map((gov) => {
-                      return (
-                        <div className="flex flex-row max-h-[42px] mb-4">
-                          <div className="py-3 px-5 bg-[#D9D9D9] rounded-lg flex items-center">
-                            {gov}
-                          </div>
-                        </div>
-                      );
-                    })} */}
-
-                    <h4 className="text-[#9A9999] font-semibold text-xl">
-                      Language
-                    </h4>
-
-
-                    <div className="flex flex-row gap-2 items-center max-w-[121px]">
-                      {/* {admin?.data?.languages.map((lang) => {
-                        return (
-                          <div className="py-3 px-5 bg-[#D9D9D9] rounded-lg flex items-center">
-                            {lang}
-                          </div>
-                        );
-                      })} */}
-                    </div>
-                  </div>
-                  <div className="flex flex-col max-h-[515px] lg:max-w-[405px] bg-white shadow-xl rounded-2xl w-screen py-12 md:px-12 2xs:px-3 gap-5">
-                    {/* Top travelers */}
-                    <h2 className="text-2xl">Top Travelers</h2>
-                    <div className="flex flex-col gap-6">
-                      <TopTravelers
-                        img={profileImg}
-                        name="Maged Mostafa"
-                        mail="maged@gmail.com"
-                      />
-                      <TopTravelers
-                        img={profileImg}
-                        name="Maged Mostafa"
-                        mail="maged@gmail.com"
-                      />
-                      <TopTravelers
-                        img={profileImg}
-                        name="Maged Mostafa"
-                        mail="maged@gmail.com"
-                      />
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

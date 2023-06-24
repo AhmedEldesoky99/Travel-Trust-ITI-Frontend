@@ -4,6 +4,7 @@ import useAddTourFormContext from "../../../../hooks/useAddTourFormContext";
 import OverviewData from "../../../../containers/Admin/Add tour/Overview";
 import CustomSelection from "../../../../components/Admin/customSelection";
 import { useTour } from "../../../../services/useTour";
+import { useEffect, useState } from "react";
 
 const AddOverview = ({}) => {
   //-------------- state --------------
@@ -13,6 +14,7 @@ const AddOverview = ({}) => {
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors },
     control,
   } = useForm({
@@ -21,15 +23,24 @@ const AddOverview = ({}) => {
     },
   });
 
+  useEffect(() => {
+    reset({ ...formData });
+  }, [formData._id]);
+
+  console.log("render", formData);
+
   return (
     <>
-      <div className="rounded-2xl shadow-md p-10 mt-10">
+      <div className="rounded-2xl shadow-md p-10 mt-10 bg-white">
         <h2 className=" font-semibold text-4xl">
           {tourID === "add" ? "Create your own tour" : "Update tour"}
         </h2>
         {tourID === "add" && (
-          <p className="mt-4 capitalize text-lg">
-            please fill the information below{" "}
+          <p className="mt-4  text-xl">
+            When filling out information for your tour, we've designed a
+            user-friendly multi-step form to guide you through the process.<br></br> Our
+            form is broken down into several easy-to-follow steps, so you can
+            take your time and fill out each section at your own pace.
           </p>
         )}
 

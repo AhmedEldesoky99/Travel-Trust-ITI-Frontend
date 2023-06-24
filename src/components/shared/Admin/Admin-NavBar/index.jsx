@@ -1,78 +1,85 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Icon from "../../../../utils/icons";
-
-const organizerID = 16;
-
-const navLinks = [
-  {
-    name: "adminHome",
-    link: "Home",
-    route: `/admin/${organizerID}`,
-  },
-  {
-    name: "adminProfile",
-    link: "Profile",
-    route: `/admin/profile/${organizerID}`,
-  },
-  {
-    name: "tourFlag",
-    link: "Tours",
-    route: `/admin/alltours/${organizerID}`,
-  },
-  {
-    name: "adminReview",
-    link: "Reviews",
-    route: `/admin/reviews/${organizerID}`,
-  },
-  {
-    name: "add",
-    link: "Tour",
-    route: `/admin/tour/add`,
-  },
-];
+import { getUserData } from "../../../../services/user";
 
 const NavBar = () => {
+  const navigate = useNavigate();
+  const localId = localStorage.getItem("localId");
+  const { data } = getUserData(localId);
+
+  console.log("data from navbar", data);
+
+  const navLinks = [
+    {
+      name: "adminHome",
+      link: "Home",
+      route: `/local/dashboard`,
+    },
+    {
+      name: "adminProfile",
+      link: "Profile",
+      route: `/local/profile/${localId}`,
+    },
+    {
+      name: "tourFlag",
+      link: "Tours",
+      route: `/local/alltours/${localId}`,
+    },
+    {
+      name: "adminReview",
+      link: "Reviews",
+      route: `/local/reviews/${localId}`,
+    },
+    {
+      name: "add",
+      link: "Tour",
+      route: `/local/tour/add`,
+    },
+  ];
+  const placeholder =
+    "https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg";
+
+  const logout = () => {
+    navigate("/local/login");
+    // console.log({ localId });
+    localStorage.removeItem("travelJWT");
+    localStorage.removeItem("localId");
+  };
+
   return (
     <>
-      <div className=" navbar fixed md:sticky md:top-0 md:flex-col md:justify-between md:w-[100px] md:h-[100vh] bg-base-100 rounded-lg shadow-md m-3 p-4 z-20">
+      {/* bg-[#0c768a]  */}
+      <div className=" navbar fixed md:sticky md:top-0 md:flex-col md:justify-between md:w-[100px] md:h-[100vh] bg-[#0c768a]  p-4 z-20">
         <div className="flex-1 md:flex-none">
-          <a className="btn bg-white border-0 hover:bg-transparent normal-case text-xl">
+          <Link
+            to={`/admin/${localId}`}
+            // className="bg-{white} border-0 hover:bg-transparent normal-case text-xl"
+          >
             <Icon name="blackLogo" />
-          </a>
+          </Link>
         </div>
         <div className="flex-none md:flex-col md:justify-start md:hidden">
           <div className="dropdown dropdown-end ">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src="https://media.istockphoto.com/id/108271508/photo/young-gray-cat.jpg?s=612x612&w=0&k=20&c=Cnra41iZ85qkZGDJB3cDNQ41BTg0vgl11Mlgu-OpjwM=" />
+                <Link to={`/local/profile/${localId}`}>
+                  <img
+                    src={
+                      data?.user?.[photo]?.url
+                        ? data?.user?.[photo]?.url
+                        : placeholder
+                    }
+                  />
+                </Link>
               </div>
             </label>
-            {/* <ul
-              tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
-              </li>
-              <li>
-                <a>Settings</a>
-              </li>
-              <li>
-                <a>Logout</a>
-              </li>
-            </ul> */}
           </div>
+          {/* dropdown menu */}
           <div className="dropdown dropdown-end">
-            <label
-              tabIndex={0}
-              className="btn bg-white border-0 hover:bg-transparent "
-            >
+            <label tabIndex={0} className=" border-0 hover:bg-transparent p-4">
               <div className="indicator">
-                <Icon name="burgerIcon" />
+                <Icon name="burgerIcon" color="white" />
               </div>
             </label>
             <div
@@ -99,28 +106,33 @@ const NavBar = () => {
             </div>
           </div>
         </div>
+        {/* -------- side navBar ---------- */}
         <ul className="2xs:hidden  md:flex md:flex-col  md:justify-between md:h-[70vh]">
           <div>
             {navLinks.map(({ name, link, route }, index) => (
               <li
                 key={index}
-                className=" group flex flex-col justify-center items-center my-4 w-[70px] h-[70px] rounded-lg hover:border-2 active:bg-white hover:text-primary-green"
+                className=" group flex flex-col justify-center items-center my-4 w-[70px] h-[70px] rounded-lg "
               >
                 {/* to do change color of the icon when active */}
-                <Icon name={name} />
-                <Link
+                <Icon name={name} color="white" />
+                <NavLink
                   to={route}
-                  className=" text-black text-sm group-hover:text-primary-green active:text-primary-green p-1 pr-0"
+                  className={({ isActive }) =>
+                    isActive
+                      ? " border-b border-white text-white text-sm p-1 pr-0"
+                      : "text-white text-sm p-1 pr-0 hover:border-b hover:border-white"
+                  }
                 >
                   {link}
-                </Link>
+                </NavLink>
               </li>
             ))}
           </div>
           <div>
-            <li className="  flex flex-col justify-center items-center my-4 hover:border-2 active:bg-white hover:text-primary-green">
-              <Icon name="logOut" />
-              <span className="text-sm text-black ">Log Out</span>
+            <li className="  flex flex-col justify-center items-center my-4  text-white text-sm p-1 pr-0 hover:border-b hover:border-white ">
+              <Icon name="logOut" color="white" />
+              Log Out
             </li>
           </div>
         </ul>

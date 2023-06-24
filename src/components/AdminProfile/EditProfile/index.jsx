@@ -1,19 +1,18 @@
 /* eslint-disable no-unused-vars */
-import UploadCoverImg from "./Upload/Cover";
-import UploadProfileImg from "./Upload/Profile";
+import { Controller, useForm } from "react-hook-form";
+
 import CustomButton from "../../shared/CustomButton/index";
 import CustomInput from "../../shared/FormComponents/CustomInput";
-import useUploadImage from "../../../hooks/useUploadImage";
-import { Controller, useForm } from "react-hook-form";
-import { useState } from "react";
-import { Button } from "antd";
-import Icon from "../../../utils/icons";
-import UserImage from "../../../assets/images/UserProfile/userprofile.png";
-import "./style.css";
-import { useQuery } from "react-query";
-import { getTopDestinations } from "../../../services/Home";
 import CustomSelection from "../../Admin/customSelection";
+
+import { useQuery } from "react-query";
+import useUploadImage from "../../../hooks/useUploadImage";
+import { getTopDestinations } from "../../../services/Home";
 import { useUser } from "../../../services/user";
+
+import UserImage from "../../../assets/images/UserProfile/userprofile.png";
+import Icon from "../../../utils/icons";
+import "./style.css";
 const languages = [
   { value: "Arabic", label: "Arabic" },
   { value: "English", label: "English" },
@@ -22,21 +21,10 @@ const languages = [
   { value: "Italy", label: "Italy" },
 ];
 
-
-
-const EditProfile = () => {
-    const [admin, setAdmin] = useState();
-
+const EditProfile = ({ admin, handleCancel, setIsModalOpen }) => {
   // ------- hooks --------
+  console.log("admin jj", admin?.data);
 
-  const {
-    handleSubmit,
-    register,
-    control,
-    formState: { errors },
-  } = useForm();
-
-  
   const {
     userImageUrl,
     userCoverUrl,
@@ -45,53 +33,78 @@ const EditProfile = () => {
     handleButtonClick,
     onImageChange,
   } = useUploadImage();
-  
-  
-    //----------- handlers -----------
-  // const { data: cities } = useQuery("TopDestinations", getTopDestinations);
+  const {
+    handleSubmit,
+    register,
+    control,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      username: admin?.data?.user?.username,
+      job_profile: admin?.data?.user?.job_profile,
+      city: admin?.data?.user?.city?._id,
+      phone: admin?.data?.user?.phone,
+      bio: admin?.data?.user?.bio,
+      languages: admin?.data?.user?.languages,
+      governorate_expertise: admin?.data?.user?.governorate_expertise?.map(
+        (gov) => gov._id
+      ),
+    },
+  });
+
+  //----------- handlers -----------
+  const { data: cities } = useQuery("TopDestinations", getTopDestinations);
+
   const { updateProfileMutation } = useUser();
+  const { mutate, isLoading } = updateProfileMutation();
 
-  const { mutate } = updateProfileMutation;
-
-
-  // --------- States -----------
-  const [openModal, setOpenModal] = useState(false);
-  const [openDeleteModal, setOpenDeleteModal] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  // --------- Handlers -----------
-  const showModal = (type) => {
-    type === "delete" ? setOpenDeleteModal(true) : setOpenModal(true);
-  };
-
-  const handleCancel = () => {
-    setOpenModal(false);
-  };
-
-  const handleDeleteCancel = () => {
-    setOpenDeleteModal(false);
-  };
-
-  const handleOk = () => {
-    setLoading(true);
-    //Call Api
-    // setLoading(false);
-    // setOpenDeleteModal(false);
-  };
-
+  let requestBody = new FormData();
   const editProfileHandler = (data) => {
-    console.log(data);
-    setLoading(true);
+    console.log("data bb", data);
+    const removedKeys = [
+      "languages",
+      "governorate_expertise",
+      "userCover",
+      "userImage",
+      "userCoverUrl",
+      "userImageUrl",
+      !data?.userImage[0] ? "photo" : "",
+      !data?.userCover[0] ? "cover_photo" : "",
+    ];
+
+    let submitData = {
+      ...data,
+      photo: data?.userImage[0],
+      cover_photo: data?.userCover[0],
+    };
+
+    console.log({ submitData });
+    submitData = Object.fromEntries(
+      Object.entries(submitData).filter(
+        ([key, value]) => !removedKeys.includes(key)
+      )
+    );
+    console.log("after", { submitData });
+
+    for (let key in submitData) {
+      requestBody.append(key, submitData[key]);
+    }
+
+    data?.languages?.map((item, index) =>
+      requestBody.append(`languages[${index}]`, item)
+    );
+    data?.governorate_expertise?.map((item, index) =>
+      requestBody.append(`governorate_expertise[${index}]`, item)
+    );
+
     // call Api
-    //update user
-    mutate(data);
-    // setLoading(false);
-    // setOpenModal(false);
+    mutate(requestBody);
+    if (!isLoading) setIsModalOpen(false);
   };
 
-  // const citiesOptions = cities?.data?.map((city) => {
-  //   return { value: city._id, label: city.title };
-  // });
+  const citiesOptions = cities?.data?.map((city) => {
+    return { value: city._id, label: city.title };
+  });
   return (
     <>
       <div className="md:max-w-[973px] md:w-screen flex items-stretch">
@@ -100,24 +113,26 @@ const EditProfile = () => {
           className=" gap-16  flex flex-col max-w-[973px] w-screen"
         >
           <div
-            className={`relative hero place-items-start min-h-[10rem] bg-cover bg-center ${
-              !userCoverUrl ? "bg-lighter-gray" : ""
+            className={`relative hero place-items-start min-h-[10rem] bg-cover bg-center mt-4 ${
+              !admin?.data?.user?.cover_photo[0]?.url ? "bg-lighter-gray" : ""
             }`}
             style={{
-              backgroundImage: `url(${userCoverUrl})`,
+              backgroundImage: `url(${
+                userCoverUrl || admin?.data?.user?.cover_photo[0]?.url
+              })`,
             }}
           >
             <div className="h-full w-full flex justify-center items-center">
               <div>
                 <input
-                  {...register("user-cover", {
+                  {...register("userCover", {
                     onChange: (e) => onImageChange(e, "userCover"),
                   })}
                   id="coverImage"
                   className="hidden"
                   type="file"
                   accept="image/*"
-                  name="user-cover"
+                  name="userCover"
                 />
                 <label
                   htmlFor="coverImage"
@@ -135,18 +150,18 @@ const EditProfile = () => {
               <div className="relative w-24 rounded-full border-2 border-solid border-white">
                 <img
                   className="object-cover"
-                  src={userImageUrl ? userImageUrl : UserImage}
+                  src={userImageUrl || admin?.data?.user?.photo[0]?.url}
                 />
               </div>
               <input
-                {...register("user-image", {
+                {...register("userImage", {
                   onChange: (e) => onImageChange(e, "userImage"),
                 })}
                 id="profileImage"
                 className="hidden"
                 type="file"
                 accept="image/*"
-                name="user-image"
+                name="userImage"
               />
               <label
                 htmlFor="profileImage"
@@ -157,7 +172,7 @@ const EditProfile = () => {
             </div>
           </div>
 
-          <div className="px-20 pb-[60px] flex flex-col gap-4">
+          <div className="px-20 mt-4 pb-[60px] flex flex-col gap-4">
             <div className="flex md:flex-row 2xs:flex-col w-full md:gap-5 justify-between">
               <div className="w-full">
                 <CustomInput
@@ -172,9 +187,9 @@ const EditProfile = () => {
               <div className="w-full">
                 <CustomInput
                   type="text"
-                  name="job"
+                  name="job_profile"
                   label="Job"
-                  rule="job"
+                  rule="job_profile"
                   register={register}
                   errors={errors}
                 />
@@ -182,7 +197,7 @@ const EditProfile = () => {
             </div>
             <div className="flex md:flex-row 2xs:flex-col w-full md:gap-5 justify-between">
               <div className="w-full">
-                {/* <Controller
+                <Controller
                   name="city"
                   control={control}
                   rules={{
@@ -207,63 +222,44 @@ const EditProfile = () => {
                       )}
                     </>
                   )}
-                /> */}
+                />
               </div>
             </div>
 
             <div className="w-full">
               <CustomInput
-                type="text"
+                type="number"
                 name="phone"
                 label="Phone number"
-                rule="firstName"
+                rule="phone_Num"
                 register={register}
                 errors={errors}
               />
-
             </div>
 
             <Controller
               name="bio"
               control={control}
-              rules={{
-                required: {
-                  value: true,
-                  message: "Description is required",
-                },
-              }}
               render={({ field }) => (
                 <>
-                  {/* <label htmlFor="description" className=" block text-lg mb-2 ">
-                    Write description for your tour:
-                  </label> */}
-
+                  <label htmlFor="bio" className=" block text-lg mb-2 ">
+                    Write something about yourself:
+                  </label>
                   <textarea
                     className=" p-4 border-[1px] border-black w-full rounded-lg focus-visible:border-black invalid:border-tertiary-red "
                     {...field}
-                    id="description"
-                    name="description"
-                    placeHolder="write something about yourself"
+                    id="bio"
+                    name="bio"
+                    placeholder="write something about yourself"
                     rows="4"
                     cols="50"
                   ></textarea>
-                  {errors.description && (
-                    <p className="text-tertiary-red mt-1 ">
-                      {errors.description.message}
-                    </p>
-                  )}
                 </>
               )}
             />
             <Controller
               name="languages"
               control={control}
-              // rules={{
-              //   required: {
-              //     value: true,
-              //     message: "Meals is required",
-              //   },
-              // }}
               render={({ field }) => (
                 <>
                   <CustomSelection
@@ -273,52 +269,39 @@ const EditProfile = () => {
                     span="languages  :"
                     {...field}
                   />
-                  {errors.languages && (
-                    <p className="text-tertiary-red mt-1">
-                      {errors.languages.message}
-                    </p>
-                  )}
                 </>
               )}
             />
 
-            {/* <Controller
+            <Controller
               name="governorate_expertise"
               control={control}
-              rules={{
-                required: {
-                  value: true,
-                  message: "Governorate selection is required",
-                },
-              }}
               render={({ field }) => (
                 <>
                   <CustomSelection
                     mode="multiple"
                     options={citiesOptions}
                     placeHolder="Select your governorate expertise"
+                    span="Governorate Expertise  :"
                     {...field}
                   />
-                  {errors.governorate_expertise && (
-                    <p className="text-tertiary-red mt-1">
-                      {errors.governorate_expertise.message}
-                    </p>
-                  )}
                 </>
               )}
-            /> */}
+            />
 
             <div className="w-full flex md:justify-end 2xs:justify-center gap-5 mt-8">
-              <CustomButton
+              {/* <CustomButton
                 value="Cancel"
                 type="quadruple"
                 width="max-w-[142px] w-full h-full"
-              />
+                onClick={handleCancel}
+              /> */}
               <CustomButton
-                value="Submit"
+                value="Save"
+                submit="Submit"
                 type="secondary"
                 width="max-w-[142px] w-full h-full"
-                // onClick={editProfileHandler}
+                isLoading={isLoading}
               />
             </div>
           </div>

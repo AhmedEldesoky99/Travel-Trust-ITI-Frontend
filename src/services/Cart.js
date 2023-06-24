@@ -21,9 +21,10 @@ export const deleteFromCart = (tourId) => {
   return request({
     url: `/v1/cart/${tourId}`,
     method: "DELETE",
-    // successMsg: "deleted from cart successfully",
+    successMsg: "deleted from cart successfully",
   });
 };
+
 
 export const clearCart = (tourId) => {
   return request({
@@ -36,12 +37,13 @@ export const clearCart = (tourId) => {
 export const addToCartMutation = (tourId, data, invalidateCart) => {
   return useMutation(() => addToCart(tourId, data), {
     onSuccess: (res) => {
-      console.log(res.json);
+      console.log(res);
       invalidateCart();
     },
     onError: (err) => console.log(err),
   });
 };
+
 export const deleteFromCartMutation = (tourId, invalidateCart) => {
   return useMutation(() => deleteFromCart(tourId), {
     onSuccess: (res) => {
@@ -51,3 +53,4 @@ export const deleteFromCartMutation = (tourId, invalidateCart) => {
     onError: (err) => console.log(err),
   });
 };
+
