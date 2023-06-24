@@ -1542,6 +1542,31 @@ const Icon = ({ name, color, number }) => {
         />
       </svg>
     ),
+    success: (
+      <svg
+        width="140"
+        height="140"
+        viewBox="0 0 140 140"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="70" cy="70" r="70" fill="#009EB7" />
+        <path
+          d="M61.25 77.5H78.75M61.25 85H70M87.5 45H52.5C51.837 45 51.2011 45.2634 50.7322 45.7322C50.2634 46.2011 50 46.837 50 47.5V92.5C50 93.163 50.2634 93.7989 50.7322 94.2678C51.2011 94.7366 51.837 95 52.5 95H87.5C88.163 95 88.7989 94.7366 89.2678 94.2678C89.7366 93.7989 90 93.163 90 92.5V47.5C90 46.837 89.7366 46.2011 89.2678 45.7322C88.7989 45.2634 88.163 45 87.5 45Z"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M77.5 56.25L67.5 66.25L62.5 61.25"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    ),
   };
 
   return iconsObj[name];
