@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { request } from "./axios";
 

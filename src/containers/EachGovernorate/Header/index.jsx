@@ -5,14 +5,19 @@ import { useParams } from "react-router-dom";
 import { getEachGovernorateTours } from "../../../services/EachGovernorate";
 
 const Header = () => {
-  const {id} = useParams();
-  const {  data } = useQuery(
-    ["GovernorateTours", id],
-    () => getEachGovernorateTours(id)
+  const { id } = useParams();
+  const { data } = useQuery(["GovernorateTours", id], () =>
+    getEachGovernorateTours(id)
   );
-  const full_img = `bg-[url(${data?.data.city.home_image})]`
   return (
-    <header className={`relative hero min-h-[55vh] ${data?` ${full_img}`:`bg-eachGovernorateBG`} `}>
+    <header
+      className={`relative hero min-h-[55vh] ${
+        data ? `` : `bg-eachGovernorateBG`
+      } `}
+      style={{
+        backgroundImage: `url(${data?.data.city.home_image}})`,
+      }}
+    >
       <div className="hero-overlay bg-black/[0.4]"></div>
       <div className="container">
         <div className="hero-content p-0 justify-start text-white mb-2">
@@ -21,7 +26,7 @@ const Header = () => {
               Egypt
             </p>
             <h1 className="2xs:text-3xl sm:text-4xl md:text-4xl xl:text-5xl 2xl:text-6xl font-bold">
-            {data?.data.city.title}
+              {data?.data.city.title}
             </h1>
           </div>
         </div>
