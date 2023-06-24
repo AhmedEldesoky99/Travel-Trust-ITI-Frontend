@@ -182,7 +182,6 @@ const AdminProfile = () => {
                         </div>
                       </div>
                     </div>
-
                     <div className="hidden md:flex flex-col  lg:justify-end 2xs:justify-start ">
                       <button
                         className="text-xl underline py-6 md:px-7 text-[#9A9999]"
@@ -203,25 +202,24 @@ const AdminProfile = () => {
                           setIsModalOpen={setIsUpdateModalOpen}
                         />
                       </Modal>
-
-                </div>
-                <div className="flex md:flex-row 2xs:flex-col  w-screen max-w-[1558px] gap-5 2xs:flex-wrap lg:flex-nowrap">
-                  <div className="flex flex-col flex-wrap bg-white justify-center items-center max-h-[515px] lg:max-w-[283px] py-[100px]  shadow-xl rounded-2xl w-screen gap-10">
-                    <div className="flex flex-row gap-12">
-                      <Statistics num="6" stat="Tours Created" />
-                      <Statistics num="50" stat="Tours Favorite" />
                     </div>
-                    <div className="flex flex-row gap-12">
-                      <Statistics num="523" stat="Traveler Booked" />
-                      <Statistics num="896" stat="Views" duration={2} />
-
+                  </div>
+                  <div className="flex md:flex-row 2xs:flex-col  w-screen max-w-[1558px] gap-5 2xs:flex-wrap lg:flex-nowrap">
+                    <div className="flex flex-row lg:flex-col  flex-wrap bg-white justify-between items-center max-h-[515px] lg:max-w-[283px] p-[24px]  shadow-xl rounded-2xl w-screen ">
+                      {/* <h2 className="text-2xl">Insights</h2> */}
+                      <div className="flex flex-col lg:flex-row  gap-12">
+                        <Statistics num="6" stat="Tours Created" />
+                        <Statistics num="50" stat="Tours Favorite" />
+                      </div>
+                      <div className="flex flex-col lg:flex-row gap-12">
+                        <Statistics num="523" stat="Traveler Booked" />
+                        <Statistics num="896" stat="Views" duration={2} />
+                      </div>
+                      <div className="flex flex-col lg:flex-row gap-12">
+                        <Statistics num="480" stat="Reviews" />
+                        <Statistics num="511" stat="Rating" />
+                      </div>
                     </div>
-                    <div className="flex flex-row gap-12">
-                      <Statistics num="480" stat="Reviews" />
-                      <Statistics num="511" stat="Rating" />
-                    </div>
-
-
                     <div className="flex flex-col justify-between max-w-[830px] bg-white shadow-xl rounded-2xl w-screen md:p-[24px] py-6 gap-4 container flex-wrap px-4">
                       {/* about + Governorate of expertise tags + Language tags */}
                       <div>
