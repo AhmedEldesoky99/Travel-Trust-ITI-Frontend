@@ -36,9 +36,13 @@ const TourCard = ({ data, length, title, sales = 0 }) => {
     mutate({ tourId: data?._id, checked });
   };
 
+
+
+
+
   useEffect(() => {
     length ? setChecked(true) : setChecked(false);
-  }, [length]);
+  }, [length,data.sale]);
 
   return (
     <div className="card card-compact shadow-xl group">
@@ -103,19 +107,19 @@ const TourCard = ({ data, length, title, sales = 0 }) => {
           </button>
         </div>
       </figure>
-        {sales == 0 && (
+        {sales != 0 && (
           <div className="card-body !pt-4 space-y-3 gap-0">
             <div className="flex justify-end">
               <div className="flex justify-center items-center space-x-1">
                 <span className="2xs:text-2xl md:text-xl xl:text-2xl font-bold">
-                  {data?.sale}$
+                  {data?.price_per_person-Math.trunc((data?.price_per_person)* (data?.sale/100) )}$
                 </span>{" "}
               </div>
             </div>
           </div>
             )}
 
-      <div className="card-body !pt-12 space-y-3 gap-0">
+      <div className={`card-body !pt-12 space-y-3 gap-0 ${!sales==0 ?'!pt-2':'!pt-12'}`}>
         <div className="flex justify-between items-center">
           <div className="flex justify-center items-center space-x-2">
             <EnvironmentOutlined className="2xs:text-base 2xl:text-lg" />
@@ -124,7 +128,7 @@ const TourCard = ({ data, length, title, sales = 0 }) => {
             </span>
           </div>
           <div className="flex justify-center items-center space-x-1">
-            <span className="2xs:text-2xl md:text-xl xl:text-2xl font-bold">
+            <span className={`2xs:text-2xl md:text-xl xl:text-2xl ${sales==0 ?' font-bold':'line-through text-gray-500 '}`}>
               {data?.price_per_person}$
             </span>{" "}
             <span className="">/</span>
