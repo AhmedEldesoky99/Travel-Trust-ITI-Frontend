@@ -36,10 +36,10 @@ const MainNavBar = () => {
     "https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg";
 
   const logout = () => {
-    navigate("/local/login");
+    navigate("/admin/login");
     // console.log({ localId });
     localStorage.removeItem("travelJWT");
-    localStorage.removeItem("localId");
+    localStorage.removeItem("adminId");
   };
 
   return (
@@ -125,7 +125,10 @@ const MainNavBar = () => {
             ))}
           </div>
           <div>
-            <li className="  flex flex-col justify-center items-center my-4  text-white text-sm p-1 pr-0 hover:border-b hover:border-white ">
+            <li
+              onClick={logout}
+              className="  flex flex-col justify-center items-center my-4  text-white text-sm p-1 pr-0 hover:border-b hover:border-white "
+            >
               <Icon name="logOut" color="white" />
               Log Out
             </li>

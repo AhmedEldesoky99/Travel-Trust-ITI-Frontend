@@ -102,8 +102,8 @@ const AddTourPage = () => {
     };
   }, []);
   const localId = localStorage.getItem("localId");
-  // const { data } = getUserData(localId);
-  const { data } = getUserData(2);
+
+  const { data } = getUserData(localId);
 
   const onChange = (checked) => {
     console.log(`switch to ${checked}`);

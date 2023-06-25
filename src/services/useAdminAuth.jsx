@@ -27,11 +27,11 @@ const useAdminAuth = () => {
     return useMutation(adminSignup, {
       onSuccess: (res) => {
         console.log(res);
-        if (res.data.success) {
+        if (res?.success) {
           console.log("Navigate", "signup");
-          localStorage.setItem("travelJWT", res.data.access_token);
-          localStorage.setItem("localId", res.data.user._id);
-          navigate(`/local/alltours/${res.data.user._id}`);
+          localStorage.setItem("travelJWT", res?.data.access_token);
+          localStorage.setItem("localId", res?.data.user._id);
+          navigate(`/local/alltours/${res?.data.user._id}`);
         }
       },
 

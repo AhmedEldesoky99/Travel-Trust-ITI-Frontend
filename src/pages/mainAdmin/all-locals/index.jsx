@@ -19,6 +19,7 @@ import {
   verifyOrganizerMutation,
 } from "../../../services/mainAdmin.js";
 import Avatar from "../../../components/Avatar/index.jsx";
+import MainNavBar from "../../../components/mainAdmin/Admin-NavBar/index.jsx";
 
 const placeholder =
   "https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg";
@@ -37,10 +38,8 @@ const MainAdminAllLocals = () => {
   const { data: locals, isLoading, isError } = getAllLocals();
   console.log("locals", locals);
 
-  const {
-    mutate: verifyMutate,
-    isLoading: isVerifyLoading,
-  } = verifyOrganizerMutation(setOpen);
+  const { mutate: verifyMutate, isLoading: isVerifyLoading } =
+    verifyOrganizerMutation(setOpen);
 
   //-------------- table row --------------
 
@@ -188,13 +187,11 @@ const MainAdminAllLocals = () => {
     verifyMutate(localId);
   };
 
-
   return (
     <>
       <div className="flex flex-row">
-        <NavBar />
+        <MainNavBar />
         <div className="w-full container mx-auto ">
-          <SubNavBar />
           {isLoading ? (
             <DataGridLoader />
           ) : (

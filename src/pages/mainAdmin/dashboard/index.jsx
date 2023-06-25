@@ -15,6 +15,13 @@ import MainNavBar from "../../../components/mainAdmin/Admin-NavBar";
 import TopTravelers from "../../../components/AdminProfile/topTravelers";
 import MainCardIcon from "../../../components/Admin/mainAdminCard/cardIcon";
 
+import icon1 from "../../../assets/images/icons/icon1.png";
+import icon2 from "../../../assets/images/icons/icon2.png";
+import icon3 from "../../../assets/images/icons/icon3.png";
+import icon4 from "../../../assets/images/icons/icon4.png";
+import icon5 from "../../../assets/images/icons/icon5.png";
+import icon6 from "../../../assets/images/icons/icon6.png";
+
 const data = [
   {
     key: "1",
@@ -153,7 +160,7 @@ const MainAdminDashBoard = () => {
           <div className="grid lg:grid-cols-12  auto-rows-max w-full  gap-5 h-fill md:mt-8 mt-32 ">
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
               <MainCardIcon
-                src="../../../src/assets/images/icons/icon1.png"
+                src={icon1}
                 title="Total Earnings"
                 generalStatistics="34,123.00 "
                 type="$"
@@ -161,7 +168,7 @@ const MainAdminDashBoard = () => {
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
               <MainCardIcon
-                src="../../../src/assets/images/icons/icon2.png"
+                src={icon2}
                 title="Total Earnings"
                 generalStatistics="34,123.00 "
                 type="$"
@@ -169,7 +176,7 @@ const MainAdminDashBoard = () => {
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
               <MainCardIcon
-                src="../../../src/assets/images/icons/icon3.png"
+                src={icon3}
                 title="Total Earnings"
                 generalStatistics="34,123.00 "
                 type="$"
@@ -177,7 +184,7 @@ const MainAdminDashBoard = () => {
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
               <MainCardIcon
-                src="../../../src/assets/images/icons/icon4.png"
+                src={icon4}
                 title="Total Earnings"
                 generalStatistics="34,123.00 "
                 type="$"
@@ -185,7 +192,7 @@ const MainAdminDashBoard = () => {
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
               <MainCardIcon
-                src="../../../src/assets/images/icons/icon5.png"
+                src={icon5}
                 title="Total Earnings"
                 generalStatistics="34,123.00 "
                 type="$"
@@ -193,7 +200,7 @@ const MainAdminDashBoard = () => {
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
               <MainCardIcon
-                src="../../../src/assets/images/icons/icon6.png"
+                src={icon6}
                 title="Total Earnings"
                 generalStatistics="34,123.00 "
                 type="$"

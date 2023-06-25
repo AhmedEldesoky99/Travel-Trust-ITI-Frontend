@@ -24,7 +24,7 @@ const MainAdminLogin = () => {
   };
 
   const navigate = useNavigate();
-  isSuccess && navigate(`admin/alltours/${data?.data?.userBody?._id}`);
+  isSuccess && navigate(`/admin/dashboard`);
 
   return (
     <div className="flex 2xs:flex-col lg:flex-row ">
