@@ -169,7 +169,7 @@ const DashBoard = () => {
                     <p className=" mt-6">Welcome to your Dashboard</p>
                   </div>
                   <div className="">
-                    <img src={img} />
+                    <img src="https://i.ibb.co/stkSNZg/hi.png" />
                   </div>
                 </div>
 
