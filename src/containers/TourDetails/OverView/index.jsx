@@ -26,7 +26,7 @@ const OverView = ({ data }) => {
       <div className="lg:col-span-8">
         <div>
           <p className="lg:text-2xl font-bold">
-            EGP {data?.data?.price_per_person} /{" "}
+            ${data?.data?.price_per_person} /{" "}
             <span className="lg:text-base xl:text-lg 2xl:text-xl font-normal">
               per person
             </span>

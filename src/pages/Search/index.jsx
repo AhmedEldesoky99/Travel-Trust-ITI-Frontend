@@ -97,7 +97,7 @@ const Search = () => {
                 {/* filter component */}
                 <div className="shadow-lg px-5 py-6 rounded-xl">
                   <h1 className="text-2xl">Price Range</h1>
-                  <p className="text-lg">{`EGP ${statsData?.data?.minPrice} - EGP ${statsData?.data?.maxPrice}`}</p>
+                  <p className="text-lg">{`$${statsData?.data?.minPrice} - $${statsData?.data?.maxPrice}`}</p>
                   <p className="text-sm">{` Average Price ${
                     (statsData?.data?.minPrice + statsData?.data?.maxPrice) / 2
                   }`}</p>

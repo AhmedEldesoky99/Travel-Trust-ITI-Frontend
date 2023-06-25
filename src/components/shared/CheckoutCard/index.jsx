@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
@@ -12,6 +12,7 @@ import {
   getCart,
 } from "../../../services/Cart";
 import { getUserData } from "./../../../services/user";
+import { bookingCheckOut } from "../../../services/Booking";
 
 const CheckoutCard = ({ data }) => {
   const queryClient = useQueryClient();
@@ -19,6 +20,8 @@ const CheckoutCard = ({ data }) => {
   // --------- States ----------
   const [persons, setPersons] = useState(1);
   const personsMax = persons >= data?.person_num;
+  const [checked, setChecked] = useState(false);
+  const [cartId, setCartId] = useState(null);
 
   // ------------- handlers ------------
   const handleIncrement = () => {
@@ -39,6 +42,7 @@ const CheckoutCard = ({ data }) => {
     queryClient.invalidateQueries({ queryKey: ["cart"] });
   };
 
+  //! To add the tour to card
   const { mutate, isLoading, isSuccess } = addToCartMutation(
     data?._id,
     {
@@ -73,7 +77,10 @@ const CheckoutCard = ({ data }) => {
     }
   };
 
+  //! to get the user's tours in card
   const { data: userCartData } = useQuery(["cart"], getCart);
+
+  //! To remove the tour from card
   const {
     mutate: removeMutate,
     isLoading: isRemoveLoading,
@@ -93,7 +100,38 @@ const CheckoutCard = ({ data }) => {
 
   // { id, admin }
   const { id, organizerId } = useParams();
-  console.log("details", organizerId);
+  // console.log("details", organizerId);
+
+  //! To check for tour id
+  const isTourInUserCard = () => {
+    if (userCartData?.data?.tours?.length) {
+      return userCartData?.data?.tours?.some((tour) => tour?._id === data?._id);
+    }
+  };
+  const isInCard = isTourInUserCard();
+
+  //! To Checkout
+  const {
+    data: checkoutData,
+    isSuccess: checkoutIsSuccess,
+    isLoading: checkoutIsLoading,
+  } = useQuery(["checkout", cartId], () => bookingCheckOut(cartId), {
+    enabled: checked,
+    onSuccess: (res) => {
+      const url = res?.data?.url;
+      if (url) {
+        window.open(url, "_blank");
+      }
+    },
+  });
+
+  const handleCheckout = () => {
+    setChecked(true);
+  };
+
+  useEffect(() => {
+    setCartId(userCartData?.data?._id);
+  }, [userCartData]);
 
   return (
     <>
@@ -110,8 +148,8 @@ const CheckoutCard = ({ data }) => {
         </p>
         <p className="2xs:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-bold">
           {" "}
-          <span className="2xs:text-base 2xl:text-xl font-normal">from </span>
-          EGP {data?.price_per_person} /{" "}
+          <span className="2xs:text-base 2xl:text-xl font-normal">from </span>$
+          {data?.price_per_person} /{" "}
           <span className="2xs:text-base 2xl:text-xl font-normal">
             per person
           </span>
@@ -144,32 +182,16 @@ const CheckoutCard = ({ data }) => {
           </div>
         </div>
 
-        {userCartData?.data?.tours.length
-          ? userCartData?.data?.tours?.map((tour) => {
-              return tour._id === data?._id ? (
-                <CustomButton
-                  key={data?._id}
-                  onClick={handleRemoveFromCard}
-                  isLoading={isRemoveLoading}
-                  type="delete"
-                  value="Remove From Cart"
-                  width="w-full"
-                />
-              ) : (
-                tour._id !== data?._id && (
-                  <CustomButton
-                    key={data?._id}
-                    onClick={handleAddToCart}
-                    isLoading={isLoading}
-                    value="Add To Cart"
-                    width="w-full"
-                  />
-                )
-              );
-            })
-          : null}
-
-        {!userCartData?.data?.tours.length && (
+        {isInCard ? (
+          <CustomButton
+            key={data?._id}
+            onClick={handleRemoveFromCard}
+            isLoading={isRemoveLoading}
+            type="delete"
+            value="Remove From Cart"
+            width="w-full"
+          />
+        ) : (
           <CustomButton
             key={data?._id}
             onClick={handleAddToCart}
@@ -179,7 +201,13 @@ const CheckoutCard = ({ data }) => {
           />
         )}
 
-        <CustomButton value="Check out" type="secondary" width="w-full" />
+        <CustomButton
+          onClick={handleCheckout}
+          isLoading={checkoutIsLoading}
+          type="secondary"
+          value="Check out"
+          width="w-full"
+        />
       </div>
     </>
   );

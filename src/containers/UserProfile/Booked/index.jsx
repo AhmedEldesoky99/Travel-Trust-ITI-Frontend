@@ -29,7 +29,7 @@ const Booked = ({ showModal }) => {
           4 <UserOutlined />
         </span>
       ),
-      cost: <span className="font-bold">EGP 1000</span>,
+      cost: <span className="font-bold">$1000</span>,
       admin: "Osama",
       icon: (
         <button onClick={()=>showModal('delete')}>
@@ -48,7 +48,7 @@ const Booked = ({ showModal }) => {
           4 <UserOutlined />
         </span>
       ),
-      cost: <span className="font-bold">EGP 1000</span>,
+      cost: <span className="font-bold">$1000</span>,
       admin: "Osama",
       icon: (
         <button>

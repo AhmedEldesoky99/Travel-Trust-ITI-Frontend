@@ -25,6 +25,12 @@ const Cart = () => {
     isLoading: checkoutIsLoading,
   } = useQuery(["checkout", cartId], () => bookingCheckOut(cartId), {
     enabled: checked,
+    onSuccess: (res) => {
+      const url = res?.data?.url;
+      if (url) {
+        window.open(url, "_blank");
+      }
+    },
   });
 
   const handleCheckout = () => {
@@ -35,14 +41,6 @@ const Cart = () => {
   useEffect(() => {
     setCartId(data?.data?._id);
   }, [data]);
-
-  // navigate to stripe page
-  useEffect(() => {
-    const url = checkoutData?.data?.url;
-    if (url) {
-      window.location.href = url;
-    }
-  }, [checkoutData]);
 
   const emptyCart = useMutation({
     mutationFn: clearCart,
@@ -128,22 +126,21 @@ const Cart = () => {
                     );
                   }
                 })}
-
               </div>
             </div>
             <div className="border-2 px-4 max-w-[405px] w-full h-full flex flex-col gap-2 justify-center md:p-6 rounded-2xl pb-6 mb-4">
               <p className="text-2xl my-6">Order Summary</p>
               <div className="flex justify-between text-base">
                 <p>booking fee</p>
-                <p>EGP {fees} </p>
+                <p>${fees} </p>
               </div>
               <div className="flex justify-between text-base mb-2">
                 <p>subtotal</p>
-                <p>EGP {totalCartMoney} </p>
+                <p>${totalCartMoney} </p>
               </div>
               <div className="flex justify-between text-xl font-bold mt-6 mb-4">
                 <p>Total</p>
-                <p>EGP {totalCartMoney + fees} </p>
+                <p>${totalCartMoney + fees} </p>
               </div>
               <hr className="max-w-[358px] text-gray-500" />
               <div className="flex gap-3 mt-4">

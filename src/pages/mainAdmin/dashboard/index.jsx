@@ -156,7 +156,7 @@ const MainAdminDashBoard = () => {
                 src="../../../src/assets/images/icons/icon1.png"
                 title="Total Earnings"
                 generalStatistics="34,123.00 "
-                type="EGP"
+                type="$"
               />
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
@@ -164,7 +164,7 @@ const MainAdminDashBoard = () => {
                 src="../../../src/assets/images/icons/icon2.png"
                 title="Total Earnings"
                 generalStatistics="34,123.00 "
-                type="EGP"
+                type="$"
               />
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
@@ -172,7 +172,7 @@ const MainAdminDashBoard = () => {
                 src="../../../src/assets/images/icons/icon3.png"
                 title="Total Earnings"
                 generalStatistics="34,123.00 "
-                type="EGP"
+                type="$"
               />
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
@@ -180,7 +180,7 @@ const MainAdminDashBoard = () => {
                 src="../../../src/assets/images/icons/icon4.png"
                 title="Total Earnings"
                 generalStatistics="34,123.00 "
-                type="EGP"
+                type="$"
               />
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
@@ -188,7 +188,7 @@ const MainAdminDashBoard = () => {
                 src="../../../src/assets/images/icons/icon5.png"
                 title="Total Earnings"
                 generalStatistics="34,123.00 "
-                type="EGP"
+                type="$"
               />
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
@@ -196,7 +196,7 @@ const MainAdminDashBoard = () => {
                 src="../../../src/assets/images/icons/icon6.png"
                 title="Total Earnings"
                 generalStatistics="34,123.00 "
-                type="EGP"
+                type="$"
               />
             </div>
           </div>
