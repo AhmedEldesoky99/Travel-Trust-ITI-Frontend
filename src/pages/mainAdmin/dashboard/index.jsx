@@ -15,12 +15,12 @@ import MainNavBar from "../../../components/mainAdmin/Admin-NavBar";
 import TopTravelers from "../../../components/AdminProfile/topTravelers";
 import MainCardIcon from "../../../components/Admin/mainAdminCard/cardIcon";
 
-import icon1 from "../../../assets/images/icons/icon1.png";
-import icon2 from "../../../assets/images/icons/icon2.png";
-import icon3 from "../../../assets/images/icons/icon3.png";
-import icon4 from "../../../assets/images/icons/icon4.png";
-import icon5 from "../../../assets/images/icons/icon5.png";
-import icon6 from "../../../assets/images/icons/icon6.png";
+const icon1 = "https://i.ibb.co/ZgYv8rW/icon1.png";
+const icon2 = "https://i.ibb.co/Br5bLdk/icon2.png";
+const icon3 = "https://i.ibb.co/dtmzZcr/icon3.png";
+const icon4 = "https://i.ibb.co/WK9cZ86/icon4.png";
+const icon5 = "https://i.ibb.co/cwjxRnJ/icon5.png";
+const icon6 = "https://i.ibb.co/b3ZDwqT/icon6.png";
 
 const data = [
   {
@@ -160,7 +160,7 @@ const MainAdminDashBoard = () => {
           <div className="grid lg:grid-cols-12  auto-rows-max w-full  gap-5 h-fill md:mt-8 mt-32 ">
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
               <MainCardIcon
-                src="https://i.ibb.co/ZgYv8rW/icon1.png"
+                src={icon1}
                 title="Total Earnings"
                 generalStatistics="34,123.00 "
                 type="$"
@@ -168,7 +168,7 @@ const MainAdminDashBoard = () => {
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
               <MainCardIcon
-                src="https://i.ibb.co/Br5bLdk/icon2.png"
+                src={icon2}
                 title="Total Tours"
                 generalStatistics="3000"
                 type="tours"
@@ -176,7 +176,7 @@ const MainAdminDashBoard = () => {
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
               <MainCardIcon
-                src="https://i.ibb.co/dtmzZcr/icon3.png"
+                src={icon3}
                 title="Total Flights"
                 generalStatistics="50"
                 type="flights"
@@ -184,7 +184,7 @@ const MainAdminDashBoard = () => {
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
               <MainCardIcon
-                src="https://i.ibb.co/WK9cZ86/icon4.png"
+                src={icon4}
                 title="Total Travelers"
                 generalStatistics="300 "
                 type="Travelers"
@@ -192,7 +192,7 @@ const MainAdminDashBoard = () => {
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
               <MainCardIcon
-                src="https://i.ibb.co/cwjxRnJ/icon5.png"
+                src={icon5}
                 title="Total Expense"
                 generalStatistics="34,123.00 "
                 type="expense"
@@ -200,7 +200,7 @@ const MainAdminDashBoard = () => {
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
               <MainCardIcon
-                src="https://i.ibb.co/b3ZDwqT/icon6.png"
+                src={icon6}
                 title="Total Transactions"
                 generalStatistics="34,000 "
                 type="Transaction"

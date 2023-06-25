@@ -18,7 +18,7 @@ import { getUserData } from "../../../services/user";
 import AdminReviewCard from "../../../components/AdminReviewCard";
 import DashboardLoader from "../../../components/Admin/localLoaders/dashboardLoader";
 
-import img from "../../../assets/images/Admin/hi.png";
+const img = "https://i.ibb.co/stkSNZg/hi.png";
 //dynamic data
 // const data = [
 //   {
@@ -169,7 +169,7 @@ const DashBoard = () => {
                     <p className=" mt-6">Welcome to your Dashboard</p>
                   </div>
                   <div className="">
-                    <img src="https://i.ibb.co/stkSNZg/hi.png" />
+                    <img src={img} />
                   </div>
                 </div>
 

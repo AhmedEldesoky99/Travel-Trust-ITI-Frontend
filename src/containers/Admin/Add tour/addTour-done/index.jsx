@@ -5,6 +5,7 @@ import CustomButton from "../../../../components/shared/CustomButton";
 
 import useAddTourFormContext from "../../../../hooks/useAddTourFormContext";
 
+const photo = "https://i.ibb.co/0QXXmDY/done.png";
 const AddComplete = () => {
   //custom hook
   const {
@@ -18,10 +19,7 @@ const AddComplete = () => {
   return (
     <>
       <div className="rounded-2xl shadow-md h-[80vh] p-10 mt-10 flex justify-center items-center flex-col  mb-10  bg-white">
-        <img
-          src="https://i.ibb.co/0QXXmDY/done.png"
-          alt="add toue complete image"
-        />
+        <img src={photo} alt="add toue complete image" />
 
         <p className="mt-8 capitalize text-center text-xl md:text-3xl font-medium">
           Great, you finished all the steps <br />
