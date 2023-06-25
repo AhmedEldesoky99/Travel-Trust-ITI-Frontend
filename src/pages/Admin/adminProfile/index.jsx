@@ -243,8 +243,8 @@ const AdminProfile = () => {
                         <p className="text-xl mb-6 flex flex-wrap">
                           {admin?.data?.bio === "" ? (
                             <p>
-                              "Write something about yourself so that the
-                              traveller can know you petter"
+                              Write something about yourself so that the
+                              traveller can know you petter
                             </p>
                           ) : (
                             admin?.data?.user?.bio
