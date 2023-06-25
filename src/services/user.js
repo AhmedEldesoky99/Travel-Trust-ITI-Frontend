@@ -24,7 +24,7 @@ export const useUser = () => {
 
   //update user
   const updateProfile = (profile) => {
-    console.log("update");
+    console.log("update",profile);
 
     return request({
       url: `/v1/user/profile`,
@@ -47,5 +47,6 @@ export const useUser = () => {
   };
   return {
     updateProfileMutation,
+    updateProfile
   };
 };

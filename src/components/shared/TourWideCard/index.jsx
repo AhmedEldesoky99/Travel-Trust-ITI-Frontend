@@ -19,7 +19,8 @@ const TourWideCard = ({
   onUpdateTourIncrement,
   onUpdateTourDecrement,
   onDeleteTour,
-  showAction=true
+  showAction=true,
+  showTotal=true
 }) => {
   const {
     city,
@@ -98,7 +99,7 @@ const TourWideCard = ({
             <h2 className="card-title 2xs:text-lg sm:text-xl xl:text-2xl 2xl:text-3xl">
               {title}
             </h2>
-            {showAction&& 
+            {showAction&&
 
             <button
               className="2xs:hidden xs:inline-block"
@@ -171,14 +172,14 @@ const TourWideCard = ({
             </button>
           </div> */}
 
-          <div>
+{ showTotal&&         <div>
             <p className="font-medium">
               Total:
               <span className="2xs:text-lg md:text-xl xl:text-2xl  2xl:text-3xl font-bold">
                 ${money}
               </span>
             </p>
-          </div>
+          </div>}
         </div>
       </div>
     </div>
