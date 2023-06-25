@@ -93,7 +93,9 @@ const ProfileTabs = ({ showModal, userData, userReviews }) => {
         <div className="2xs:col-span-1 lg:col-span-4 -translate-y-16">
           <div className="p-8 rounded-2xl shadow-lg bg-white">
             <div className="flex flex-col justify-center items-center">
-              <img className="w-24" src={userData?.data?.user?.photo[0]?.url} alt="User Profile Image" />
+              <div className="rounded-full overflow-hidden">
+                <img className="w-24 " src={ userData?.data?.user?.photo[0]?.url ||UserImage} alt="User Profile Image" />
+              </div>
               <h3 className="font-bold mt-2 2xs:text-base lg:text-lg 2xl:text-2xl">
                 {userData?.data?.user?.username}
               </h3>

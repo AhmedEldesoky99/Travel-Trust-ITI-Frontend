@@ -24,7 +24,7 @@ const UserProfile = () => {
   // ------- hooks --------
   const [error, setError] = useState();
 
-  const { data, isLoading: userDataLoading } = getUserData(id);
+  const { data, isLoading: userDataLoading ,isSuccess:userSuccess} = getUserData(id);
   const { data: userReviews } = useQuery("userReviews", () =>
     getUserReviews(id)
   );
@@ -69,6 +69,8 @@ const UserProfile = () => {
     handleSubmit,
     register,
     control,
+    reset
+    ,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -81,14 +83,21 @@ const UserProfile = () => {
 
   let requestBody = new FormData();
 
-  
+
+  useEffect(()=>{
+    if(userSuccess){
+      reset({  username: data?.data?.user?.username,
+        city: data?.data?.user?.city?._id,
+        phone: data?.data?.user?.phone,
+        bio: data?.data?.user?.bio})
+    }
+  },[userSuccess])
   const editProfileHandler = (data) => {
     const removedKeys = [
       data[`user-image`][0] ? "" : "photo",
       data[`user-image`][0] ? "" : "cover_photo",
     ];
-    console.log("peep", data[`user-image`][0]);
-    // console.log("pop",data?.userCover[0]);
+
 
     let submitData = {
       ...data,
@@ -102,6 +111,7 @@ const UserProfile = () => {
     );
     // call Api
     updateProfile(submitData);
+    setOpenModal(false)
   };
 
 
