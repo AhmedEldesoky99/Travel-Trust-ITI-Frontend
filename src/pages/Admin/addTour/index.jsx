@@ -138,7 +138,7 @@ const AddTourPage = () => {
                   <span className=" text-tertiary-red font-semibold">
                     Note:{" "}
                   </span>
-                  Your acount will be reviewed by the admin before you can
+                  Your account will be reviewed by the admin before you can
                   publish.<br></br> In the meantime, you can still create a
                   draft of your tour, but the 'Publish' button will be disabled
                   until your account has been verified.

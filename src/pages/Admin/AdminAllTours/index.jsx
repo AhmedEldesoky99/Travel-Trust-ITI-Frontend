@@ -177,7 +177,7 @@ const AdminAllTours = () => {
       <div className="flex flex-row bg-admin-grey ">
         <NavBar />
         <div className="w-full container mx-auto ">
-          <SubNavBar />
+          {/* <SubNavBar /> */}
           {isLoading ? (
             <DataGridLoader />
           ) : (

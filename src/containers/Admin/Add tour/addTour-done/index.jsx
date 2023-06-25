@@ -19,7 +19,7 @@ const AddComplete = () => {
     <>
       <div className="rounded-2xl shadow-md h-[80vh] p-10 mt-10 flex justify-center items-center flex-col  mb-10  bg-white">
         <img
-          src="../../../../src/assets/images/Admin/done.png"
+          src="https://i.ibb.co/0QXXmDY/done.png"
           alt="add toue complete image"
         />
 
