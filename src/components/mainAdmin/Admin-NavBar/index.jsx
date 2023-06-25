@@ -1,40 +1,35 @@
 import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import Icon from "../../../../utils/icons";
-import { getUserData } from "../../../../services/user";
+import Icon from "../../../utils/icons";
 
-const NavBar = () => {
+const MainNavBar = () => {
   const navigate = useNavigate();
-  const localId = localStorage.getItem("localId");
-  const { data } = getUserData(localId);
-
-  console.log("data from navbar", data);
 
   const navLinks = [
     {
       name: "adminHome",
-      link: "Home",
-      route: `/local/dashboard`,
+      link: "Dashboard",
+      route: `/admin/dashboard`,
     },
+    // {
+    //   name: "tourFlag",
+    //   link: "Travellers",
+    //   route: `/admin/travellers`,
+    // },
     {
       name: "adminProfile",
-      link: "Profile",
-      route: `/local/profile/${localId}`,
+      link: "Locals",
+      route: `/admin/locals`,
     },
     {
       name: "tourFlag",
       link: "Tours",
-      route: `/local/alltours/${localId}`,
+      route: `/admin/alltours`,
     },
     {
       name: "adminReview",
       link: "Reviews",
-      route: `/local/reviews/${localId}`,
-    },
-    {
-      name: "add",
-      link: "Tour",
-      route: `/local/tour/add`,
+      route: `/admin/reviews`,
     },
   ];
   const placeholder =
@@ -50,10 +45,10 @@ const NavBar = () => {
   return (
     <>
       {/* bg-[#0c768a]  */}
-      <div className=" navbar fixed md:sticky md:top-0 md:flex-col md:justify-between md:w-[100px] md:h-[100vh] bg-[#0c768a]  p-4 z-20">
+      <div className=" navbar fixed md:sticky md:top-0 md:flex-col md:justify-between md:w-[100px] md:h-[100vh] bg-black  p-4 z-20">
         <div className="flex-1 md:flex-none">
           <Link
-            to={`/admin/${localId}`}
+            to={`/admin/dashBoard`}
             // className="bg-{white} border-0 hover:bg-transparent normal-case text-xl"
           >
             <Icon name="blackLogo" />
@@ -61,7 +56,7 @@ const NavBar = () => {
         </div>
         <div className="flex-none md:flex-col md:justify-start md:hidden">
           <div className="dropdown dropdown-end ">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            {/* <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
                 <Link to={`/local/profile/${localId}`}>
                   <img
@@ -73,7 +68,7 @@ const NavBar = () => {
                   />
                 </Link>
               </div>
-            </label>
+            </label> */}
           </div>
           {/* dropdown menu */}
           <div className="dropdown dropdown-end">
@@ -98,13 +93,9 @@ const NavBar = () => {
                       </Link>
                     </li>
                   ))}
-                  <Link>
-                    <li className="flex flex-col justify-center items-start my-4 p-4 rounded-lg  active:bg-white hover:bg-slate-300 w-full">
-                      <span onClick={logout} className=" text-black p-1">
-                        Log Out
-                      </span>
-                    </li>
-                  </Link>
+                  <li className="flex flex-col justify-center items-start my-4 p-4 rounded-lg  active:bg-white hover:bg-slate-300 w-full">
+                    <span className=" text-black p-1">Log Out</span>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -145,4 +136,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default MainNavBar;

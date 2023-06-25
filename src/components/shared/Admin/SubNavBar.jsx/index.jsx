@@ -1,4 +1,15 @@
+import { Link, useNavigate } from "react-router-dom";
+
 const SubNavBar = () => {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    navigate("/local/login");
+    // console.log({ localId });
+    localStorage.removeItem("travelJWT");
+    localStorage.removeItem("localId");
+  };
+
   return (
     <div className="navbar  hidden md:block ">
       <div className="navbar-start">
@@ -74,9 +85,9 @@ const SubNavBar = () => {
             <li>
               <a>Settings</a>
             </li>
-            <li>
-              <a>Logout</a>
-            </li>
+            <Link onClick={logout}>
+              <li>Logout</li>
+            </Link>
           </ul>
         </div>
       </div>

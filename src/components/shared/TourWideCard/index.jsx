@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 
 import {
@@ -23,6 +24,7 @@ const TourWideCard = ({
   totalPrice,
   id,
   peopleCount,
+  showAction = True,
 }) => {
   const queryClient = useQueryClient();
   const [removed, setRemoved] = useState(false);
@@ -168,14 +170,16 @@ const TourWideCard = ({
                 <h2 className="card-title 2xs:text-lg sm:text-xl xl:text-2xl 2xl:text-3xl">
                   {title}
                 </h2>
-                <button
-                  className="2xs:hidden xs:inline-block"
-                  onClick={handleDelete}
-                >
-                  <div className="shadow-md p-3 rounded-lg">
-                    <Icon name="delete" />
-                  </div>
-                </button>
+                {showAction && (
+                  <button
+                    className="2xs:hidden xs:inline-block"
+                    onClick={handleDelete}
+                  >
+                    <div className="shadow-md p-3 rounded-lg">
+                      <Icon name="delete" />
+                    </div>
+                  </button>
+                )}
               </div>
 
               <div className="flex items-center justify-between w-full my-2  lg:max-w-[85%] xl:max-w-[55%] ">
@@ -214,17 +218,17 @@ const TourWideCard = ({
                 <UserOutlined className="2xs:text-xl md:text-lg" />
               </div>
 
-              <div>
+              {showAction&&<div>
                 <p>Booked for : {peopleCount}</p>
-              </div>
-              <div>
+              </div>}
+{showAction&&              <div>
                 <p className="font-medium">
                   Total :
                   <span className="2xs:text-lg md:text-xl xl:text-2xl  2xl:text-3xl font-bold">
                     {` $${totalPrice}`}
                   </span>
                 </p>
-              </div>
+              </div>}
             </div>
           </div>
         </div>

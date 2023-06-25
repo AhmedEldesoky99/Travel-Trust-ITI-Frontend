@@ -19,14 +19,14 @@ const CustomSearch = ({
   max,
   rate = [],
   category = [],
-  handleResult,
+  handleResult,setSuccess,setLoading
 }) => {
   const [city, setCity] = useState([]);
   const onChangeCities = (value) => {
     setCity(value);
   };
   const navigate = useNavigate();
-  const { data } = useQuery("searchOptions", getSearchOptions);
+  const { data, isLoading, isSuccess } = useQuery("searchOptions", getSearchOptions);
   const handleSearch = async () => {
     let Data = {
       maxPrice: max,
@@ -63,6 +63,8 @@ const CustomSearch = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate("/search");
+    setSuccess(isSuccess);
+    setLoading(isLoading);
     mutation.mutate();
   };
 

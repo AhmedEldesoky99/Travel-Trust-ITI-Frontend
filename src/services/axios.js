@@ -47,7 +47,8 @@ export const request = ({ ...options }) => {
   const onError = (err) => {
     console.log("<<ERROR>>", err);
     if (err)
-      err.response.data.message?.map((error) => {
+      err?.response?.data?.message?.map((error) => {
+
         toast.error(error || "Something went wrong...", {
           position: "top-right",
           autoClose: false,

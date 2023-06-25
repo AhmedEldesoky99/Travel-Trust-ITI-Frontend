@@ -129,7 +129,7 @@ const AdminProfile = () => {
                                     className="custom_modal_profile "
                                     title="verify Profile"
                                     open={isUploadModalOpen}
-                                    onOk={handleOk}
+                                    onOk={() => handleOk("verify")}
                                     onCancel={() => handleCancel("verify")}
                                   >
                                     <VerificationModal
@@ -209,7 +209,7 @@ const AdminProfile = () => {
                         className="custom_modal_profile "
                         title="Edit Profile"
                         open={isUpdateModalOpen}
-                        onOk={handleOk}
+                        onOk={() => handleOk("edit")}
                         onCancel={() => handleCancel("edit")}
                       >
                         <EditProfile
@@ -243,8 +243,8 @@ const AdminProfile = () => {
                         <p className="text-xl mb-6 flex flex-wrap">
                           {admin?.data?.bio === "" ? (
                             <p>
-                              "Write something about yourself so that the
-                              traveller can know you petter"
+                              Write something about yourself so that the
+                              traveller can know you petter
                             </p>
                           ) : (
                             admin?.data?.user?.bio

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { Collapse, Pagination, Slider } from "antd";
+import { Collapse, Pagination, Slider, Spin } from "antd";
 import TourWideCard from "../../components/shared/TourWideCard";
 import FilterCheckbox from "../../components/shared/Checkbox/activity";
 import RatingCheckbox from "../../components/shared/Checkbox/rating";
@@ -12,11 +12,13 @@ import { useQuery } from "react-query";
 import { getAllCategories } from "../../services/Home";
 import { useEffect } from "react";
 import { getStats } from "../../services/TourSats";
+import CartLoader from "../../components/CartLoader/CartLoader";
 
 const { Panel } = Collapse;
 
 const Search = () => {
   const [category, setCategory] = useState([]);
+  const [ tourData, setTourData] = useState([]);
   const [rate, setRate] = useState([]);
   const onChangeCategories = (checkedValues) => {
     if (category.includes(checkedValues)) {
@@ -33,6 +35,24 @@ const Search = () => {
       setRate([...rate, option]);
     }
   };
+
+  const formatDate = (start_date) => {
+    const date = new Date(start_date);
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    const dateString = date.toLocaleDateString("en-US", options);
+    const timeString = date.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+    });
+    return `${dateString} | ${timeString}`;
+  };
+  const [isSuccess,setIsSuccess] = useState(false);
+  const [isLoading,setIsLoading] = useState(false);
 
   const [page, setPage] = useState(1);
   const [min, setMin] = useState(0);
@@ -51,27 +71,49 @@ const Search = () => {
     }
   };
 
-  const handleResult= (value)=>{
-    setResult(value);
-  }
+
 
 
   const tourCards = result?.data?.map((item, index) => (
-    <TourWideCard showAction={false} key={index} data={item} />))
-  const [items] = useState(3);
-  // const { isLoading, toursData, isSuccess } = useQuery(
-  //   ["SearchResults", ],
-  //   () => getSearchResults()
-  // );
- // const tourCards = Array.from({ length: items }, (_, index) => (
-  //  <TourWideCard key={index}/>
-  // ));
+    <TourWideCard showAction={false} key={index}   image={item?.city?.home_image}
+    title={item?.title}
+    city={item?.city?.title}
+    duration={item?.duration}
+    startDate={item?.start_date}
+    pricePerPerson={item?.price_per_person}
+    id={item?._id}
+    showTotal={false} />))
+
+
+  const handleTourData =()=>{
+
+      const allToursDetails = result?.data?.map((tour) => {
+        return {
+          city: tour.city?.home_image,
+          title: tour.title,
+          cityTitle: tour.city?.title,
+          duration: tour.duration,
+          startDate: formatDate(tour.start_date),
+          pricePerPerson: tour.price_per_person,
+          personNum: tour.person_num,
+          id: tour._id,
+        };
+      });
+      setTourData(allToursDetails);
+  }
+  const handleResult= (value)=>{
+    setResult(value);
+    handleTourData();
+  }
 
   useEffect(() => {
     if (statsData?.data.minPrice) {
       setMax(statsData?.data.maxPrice);
+      setMin(statsData?.data.minPrice);
+
     }
   }, []);
+
   return (
     <>
       <div className="my-16">
@@ -86,6 +128,8 @@ const Search = () => {
                   rate={rate}
                   category={category}
                   handleResult={handleResult}
+                  setSuccess={setIsSuccess}
+                  setLoading={setIsLoading}
                 />
               </div>
               <div></div>
@@ -97,7 +141,7 @@ const Search = () => {
                 {/* filter component */}
                 <div className="shadow-lg px-5 py-6 rounded-xl">
                   <h1 className="text-2xl">Price Range</h1>
-                  <p className="text-lg">{`EGP ${statsData?.data?.minPrice} - EGP ${statsData?.data?.maxPrice}`}</p>
+                  <p className="text-lg">{`$${statsData?.data?.minPrice} - $${statsData?.data?.maxPrice}`}</p>
                   <p className="text-sm">{` Average Price ${
                     (statsData?.data?.minPrice + statsData?.data?.maxPrice) / 2
                   }`}</p>
@@ -164,8 +208,8 @@ const Search = () => {
               {/* cards */}
               <div className="flex flex-col max-w-[1255px] gap-4 container">
                 {/* wide cards */}
-                {tourCards}
-                {/* {data?.data.length >= 12 ? ( */}
+  
+                {isLoading?<Spin />:tourCards}
                 <Pagination
                   className="my-custom-pagination text-center mb-10"
                   current={page}

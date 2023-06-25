@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Modal } from "antd";
 
@@ -12,16 +13,21 @@ import useUploadImage from "./../../hooks/useUploadImage";
 
 import Icon from "../../utils/icons";
 import UserImage from "../../assets/images/UserProfile/userprofile.png";
+import { useParams } from "react-router-dom";
+import { getUserData, useUser } from "../../services/user";
+import { useQuery } from "react-query";
+import { getUserReviews } from "../../services/userReviews";
 
 const UserProfile = () => {
-  // ------- hooks --------
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm();
+  const { id } = useParams();
 
-  const { userImageUrl, userCoverUrl, onImageChange } = useUploadImage();
+  // ------- hooks --------
+  const [error, setError] = useState();
+
+  const { data, isLoading: userDataLoading ,isSuccess:userSuccess} = getUserData(id);
+  const { data: userReviews } = useQuery("userReviews", () =>
+    getUserReviews(id)
+  );
 
   // --------- States -----------
   const [openModal, setOpenModal] = useState(false);
@@ -47,19 +53,76 @@ const UserProfile = () => {
     // setLoading(false);
     // setOpenDeleteModal(false);
   };
+  const { updateProfile } = useUser();
 
+  //
+
+  const {
+    userImageUrl,
+    userCoverUrl,
+    userImageRef,
+    userCoverRef,
+    handleButtonClick,
+    onImageChange,
+  } = useUploadImage();
+  const {
+    handleSubmit,
+    register,
+    control,
+    reset
+    ,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      username: data?.data?.user?.username,
+      city: data?.data?.user?.city?._id,
+      phone: data?.data?.user?.phone,
+      bio: data?.data?.user?.bio,
+    },
+  });
+
+  let requestBody = new FormData();
+
+
+  useEffect(()=>{
+    if(userSuccess){
+      reset({  username: data?.data?.user?.username,
+        city: data?.data?.user?.city?._id,
+        phone: data?.data?.user?.phone,
+        bio: data?.data?.user?.bio})
+    }
+  },[userSuccess])
   const editProfileHandler = (data) => {
-    console.log(data);
-    setLoading(true);
+    const removedKeys = [
+      data[`user-image`][0] ? "" : "photo",
+      data[`user-image`][0] ? "" : "cover_photo",
+    ];
+
+
+    let submitData = {
+      ...data,
+      photo: data[`user-image`][0],
+      cover_photo: data[`user-image`][0],
+    };
+    submitData = Object.fromEntries(
+      Object.entries(submitData).filter(
+        ([key, value]) => !removedKeys.includes(key)
+      )
+    );
     // call Api
-    // setLoading(false);
-    // setOpenModal(false);
+    updateProfile(submitData);
+    setOpenModal(false)
   };
+
 
   return (
     <>
-      <Header />
-      <ProfileTabs showModal={showModal} />
+      <Header userData={data} />
+      <ProfileTabs
+        showModal={showModal}
+        userData={data}
+        userReviews={userReviews}
+      />
 
       <Modal
         title="Edit Your Profile"
@@ -72,10 +135,10 @@ const UserProfile = () => {
         <form onSubmit={handleSubmit(editProfileHandler)}>
           <div
             className={`relative hero place-items-start min-h-[10rem] bg-cover bg-center ${
-              !userCoverUrl ? "bg-lighter-gray" : ""
+              data?.data?.user?.cover_photo[0]?.url ? "" : "bg-lighter-gray"
             }`}
             style={{
-              backgroundImage: `url(${userCoverUrl})`,
+              backgroundImage: `url(${data?.data?.user?.cover_photo[0]?.url})`,
             }}
           >
             <div className="h-full w-full flex justify-center items-center">
@@ -106,7 +169,11 @@ const UserProfile = () => {
               <div className="relative w-24 rounded-full border-2 border-solid border-white">
                 <img
                   className="object-cover"
-                  src={userImageUrl ? userImageUrl : UserImage}
+                  src={
+                    data?.data?.user?.photo[0]?.url
+                      ? data?.data?.user?.photo[0]?.url
+                      : UserImage
+                  }
                 />
               </div>
               <input

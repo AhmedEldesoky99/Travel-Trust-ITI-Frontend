@@ -20,7 +20,7 @@ import { toggleFavoriteMutation } from "../../../services/favorites";
 import PlaceHolderImg from "../../../assets/images/Cart/place-holder-card.jpg";
 import PlaceHolderAvatar from "../../../assets/images/UserProfile/userprofile.png";
 
-const TourCard = ({ data, length, title }) => {
+const TourCard = ({ data, length, title, sales = 0 }) => {
   // -------- States --------
   const [checked, setChecked] = useState(false);
 
@@ -34,9 +34,13 @@ const TourCard = ({ data, length, title }) => {
     mutate({ tourId: data?._id, checked });
   };
 
+
+
+
+
   useEffect(() => {
     length ? setChecked(true) : setChecked(false);
-  }, [length]);
+  }, [length,data.sale]);
 
   return (
     <div className="card card-compact shadow-xl group">
@@ -101,8 +105,19 @@ const TourCard = ({ data, length, title }) => {
           </button>
         </div>
       </figure>
+        {sales != 0 && (
+          <div className="card-body !pt-4 space-y-3 gap-0">
+            <div className="flex justify-end">
+              <div className="flex justify-center items-center space-x-1">
+                <span className="2xs:text-2xl md:text-xl xl:text-2xl font-bold">
+                  {data?.price_per_person-Math.trunc((data?.price_per_person)* (data?.sale/100) )}$
+                </span>{" "}
+              </div>
+            </div>
+          </div>
+            )}
 
-      <div className="card-body !pt-12 space-y-3 gap-0">
+      <div className={`card-body !pt-12 space-y-3 gap-0 ${!sales==0 ?'!pt-2':'!pt-12'}`}>
         <div className="flex justify-between items-center">
           <div className="flex justify-center items-center space-x-2">
             <EnvironmentOutlined className="2xs:text-base 2xl:text-lg" />
@@ -118,6 +133,7 @@ const TourCard = ({ data, length, title }) => {
             <UserOutlined className="2xs:text-xl md:text-lg" />
           </div>
         </div>
+
 
         <h2 className="card-title 2xs:text-lg 2xl:text-xl">{title}</h2>
 

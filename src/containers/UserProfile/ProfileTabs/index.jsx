@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { Button, Tabs } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
@@ -11,8 +13,10 @@ import UserReviews from "../UserReviews";
 import UserImage from "../../../assets/images/UserProfile/userprofile.png";
 
 import "./ProfileTabsStyle.css";
+import { useParams } from "react-router-dom";
+import { getUserData } from "../../../services/user";
 
-const ProfileTabs = ({ showModal }) => {
+const ProfileTabs = ({ showModal, userData, userReviews }) => {
   const operations = (
     <Button
       onClick={() => showModal("edit")}
@@ -30,7 +34,7 @@ const ProfileTabs = ({ showModal }) => {
           <span className="2xs:text-sm 2xl:text-xl">Profile Details</span>
         </span>
       ),
-      children: <ProfileDetails />,
+      children: <ProfileDetails userData={userData}/>,
     },
     {
       key: "2",
@@ -38,47 +42,48 @@ const ProfileTabs = ({ showModal }) => {
         <span className="2xs:text-sm sm:text-base flex items-center">
           <span className="2xs:text-sm 2xl:text-xl">Went Before</span>
           <span className="kbd border-b-[1px] bg-white min-h-6 min-w-min ml-2">
-            2
+            {userData?.data?.visited_tour == undefined ? "0":userData?.data?.visited_tour }
           </span>
         </span>
       ),
-      children: <WentBefore />,
+      children: <WentBefore userData={userData}/>,
     },
+    // {
+    //   key: "3",
+    //   label: (
+    //     <span className="2xs:text-sm sm:text-base flex items-center">
+    //       <span className="2xs:text-sm 2xl:text-xl">Booked</span>
+    //       <span className="kbd border-b-[1px] bg-white min-h-6 min-w-min ml-2">
+    //         2
+    //       </span>
+    //     </span>
+    //   ),
+    //   children: <Booked showModal={showModal} />,
+    // },
     {
       key: "3",
+      //key:"4",
       label: (
         <span className="2xs:text-sm sm:text-base flex items-center">
-          <span className="2xs:text-sm 2xl:text-xl">Booked</span>
+          <span className="2xs:text-sm 2xl:text-xl">Favorites</span>
           <span className="kbd border-b-[1px] bg-white min-h-6 min-w-min ml-2">
-            2
+            {userData?.data?.favorite_tour?.length ? userData?.data?.favorite_tour?.length :"0"}
           </span>
         </span>
       ),
-      children: <Booked showModal={showModal} />,
+      children: <Favorites userData={userData}/>,
     },
     {
       key: "4",
       label: (
         <span className="2xs:text-sm sm:text-base flex items-center">
-          <span className="2xs:text-sm 2xl:text-xl">Favorites</span>
-          <span className="kbd border-b-[1px] bg-white min-h-6 min-w-min ml-2">
-            2
-          </span>
-        </span>
-      ),
-      children: <Favorites />,
-    },
-    {
-      key: "5",
-      label: (
-        <span className="2xs:text-sm sm:text-base flex items-center">
           <span className="2xs:text-sm 2xl:text-xl">Reviews</span>
           <span className="kbd border-b-[1px] bg-white min-h-6 min-w-min ml-2">
-            2
+          {userReviews?.data.length}
           </span>
         </span>
       ),
-      children: <UserReviews />,
+      children: <UserReviews userReviews={userReviews}/>,
     },
   ];
 
@@ -88,38 +93,52 @@ const ProfileTabs = ({ showModal }) => {
         <div className="2xs:col-span-1 lg:col-span-4 -translate-y-16">
           <div className="p-8 rounded-2xl shadow-lg bg-white">
             <div className="flex flex-col justify-center items-center">
-              <img className="w-24" src={UserImage} alt="User Profile Image" />
+              <div className="rounded-full overflow-hidden">
+                <img className="w-24 " src={ userData?.data?.user?.photo[0]?.url ||UserImage} alt="User Profile Image" />
+              </div>
               <h3 className="font-bold mt-2 2xs:text-base lg:text-lg 2xl:text-2xl">
-                Osama Sayed
+                {userData?.data?.user?.username}
               </h3>
             </div>
             <div className="mt-7 flex flex-col gap-4">
               <div>
-                <Button
-                  icon={<PlusOutlined />}
-                  onClick={() => showModal("edit")}
-                  className="my-custom-btn flex items-center gap-2 2xs:text-sm sm:text-base 2xl:text-xl border-none shadow-none p-0"
-                >
-                  Add your phone number
-                </Button>
+                {userData?.data?.user?.phone ? (
+                  `${userData?.data?.user?.phone}`
+                ) : (
+                  <Button
+                    icon={<PlusOutlined />}
+                    onClick={() => showModal("edit")}
+                    className="my-custom-btn flex items-center gap-2 2xs:text-sm sm:text-base 2xl:text-xl border-none shadow-none p-0"
+                  >
+                    Add your phone number
+                  </Button>
+                )}
               </div>
               <div>
-                <Button
-                  icon={<PlusOutlined />}
-                  onClick={() => showModal("edit")}
-                  className="my-custom-btn flex items-center gap-2 2xs:text-sm sm:text-base 2xl:text-xl border-none shadow-none p-0"
-                >
-                  Add your current city
-                </Button>
+                {!userData?.data?.user?.governorate_expertise.length == 0 ? (
+                  userData?.data?.user?.governorate_expertise[0].title
+                ) : (
+                  <Button
+                    icon={<PlusOutlined />}
+                    onClick={() => showModal("edit")}
+                    className="my-custom-btn flex items-center gap-2 2xs:text-sm sm:text-base 2xl:text-xl border-none shadow-none p-0"
+                  >
+                    Add your current city
+                  </Button>
+                )}
               </div>
               <div>
-                <Button
-                  icon={<PlusOutlined />}
-                  onClick={() => showModal("edit")}
-                  className="my-custom-btn flex items-center gap-2 2xs:text-sm sm:text-base 2xl:text-xl border-none shadow-none p-0"
-                >
-                  Write some details about yourself
-                </Button>
+                { userData?.data?.user?.bio === "" ? (
+                  <Button
+                    icon={<PlusOutlined />}
+                    onClick={() => showModal("edit")}
+                    className="my-custom-btn flex items-center gap-2 2xs:text-sm sm:text-base 2xl:text-xl border-none shadow-none p-0"
+                  >
+                    Write some details about yourself
+                  </Button>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </div>

@@ -46,7 +46,7 @@ const About = () => {
           <div className="container mb-10 mx-auto grid gap-4 2xs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
             {filteredData.map((item, index) => {
               if (12 * page - 1 <= index <= 12 * page)
-                return <TourCard key={item._id} data={item} />;
+                return <TourCard key={item._id} data={item} sales={item?.sale} />;
             })}
           </div>
           {data?.data?.length >= 12 ? (
