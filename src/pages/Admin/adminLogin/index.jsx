@@ -108,7 +108,7 @@ const AdminLogin = () => {
         <p className="text-md font-medium">
           Don’t have an account?
           <Link
-            to="/admin/signup"
+            to="/local/signup"
             className="text-md font-semibold underline ml-2 text-primary-green"
           >
             Sign up for FREE

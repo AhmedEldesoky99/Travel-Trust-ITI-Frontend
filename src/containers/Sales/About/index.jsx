@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Breadcrumb, Pagination, Spin } from "antd";
+import { Breadcrumb, Pagination} from "antd";
 import { useQuery } from "react-query";
 
 import { getSales } from "../../../services/Sales";
 import TourCard from "../../../components/shared/TourCard";
+import CardLoader from "../../../components/CardLoader";
 
 const About = () => {
   const [page, setPage] = useState(1);
@@ -24,9 +25,15 @@ const About = () => {
     .slice(0, 12);
   return (
     <section>
-      <Breadcrumb
+      {!isSuccess && isLoading ? (
+        <div>
+          <CardLoader />
+        </div>
+      ) : (
+        <>
+         <Breadcrumb
         className="container mx-auto my-10 text-xl"
-        separator=">"
+        separator="/"
         items={[
           {
             title: <Link to="/">Home</Link>,
@@ -36,17 +43,10 @@ const About = () => {
           },
         ]}
       />
-
-      {!isSuccess && isLoading ? (
-        <div className="flex justify-center items-center h-[50vh]">
-          <Spin />
-        </div>
-      ) : (
-        <>
           <div className="container mb-10 mx-auto grid gap-4 2xs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
             {filteredData.map((item, index) => {
               if (12 * page - 1 <= index <= 12 * page)
-                return <TourCard key={item._id} data={item} />;
+                return <Link to={`/tour-details/${item._id}`}><TourCard key={item._id} data={item} /></Link>;
             })}
           </div>
           {data?.data?.length >= 12 ? (

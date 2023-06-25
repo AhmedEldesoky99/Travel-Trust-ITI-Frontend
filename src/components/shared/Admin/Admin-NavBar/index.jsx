@@ -14,7 +14,7 @@ const NavBar = () => {
     {
       name: "adminHome",
       link: "Home",
-      route: `/local`,
+      route: `/local/dashboard`,
     },
     {
       name: "adminProfile",
@@ -98,9 +98,13 @@ const NavBar = () => {
                       </Link>
                     </li>
                   ))}
-                  <li className="flex flex-col justify-center items-start my-4 p-4 rounded-lg  active:bg-white hover:bg-slate-300 w-full">
-                    <span className=" text-black p-1">Log Out</span>
-                  </li>
+                  <Link>
+                    <li className="flex flex-col justify-center items-start my-4 p-4 rounded-lg  active:bg-white hover:bg-slate-300 w-full">
+                      <span onClick={logout} className=" text-black p-1">
+                        Log Out
+                      </span>
+                    </li>
+                  </Link>
                 </ul>
               </div>
             </div>

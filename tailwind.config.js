@@ -53,6 +53,7 @@ export default {
 
         DestinationsBg:
           "url('/src/assets/images/Destinations/Egypt-Felucca-on-the-Nile.jpg')",
+          mainAdminBG:"url('/src/assets/images/TourCard/GizaCover.jpeg')"
       },
       height: {
         inherit: "inherit",

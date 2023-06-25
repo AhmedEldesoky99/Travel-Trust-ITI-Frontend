@@ -11,16 +11,10 @@ const AddComplete = () => {
     handlePrev,
     formData,
     handleSaveTour,
-
     isAddTourLoading,
     isUpdateTourLoading,
   } = useAddTourFormContext();
-  const { progress } = useTour();
 
-  useEffect(() => {
-    console.log("percentCompleted", progress);
-  }, [progress]);
-  // || isUpdateTourLoading
   return (
     <>
       <div className="rounded-2xl shadow-md h-[80vh] p-10 mt-10 flex justify-center items-center flex-col  mb-10  bg-white">

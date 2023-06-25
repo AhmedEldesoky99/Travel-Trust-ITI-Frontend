@@ -2,7 +2,11 @@ import { Button, Modal } from "antd";
 import Icon from "../../../../utils/icons";
 import CustomButton from "../../CustomButton";
 
+const place_holder_avatar =
+  "https://frostbrowntodd.com/app/uploads/2021/10/FBT_NoPhoto-1.jpg";
+
 const CustomModal = ({
+  title,
   open,
   header,
   loading,
@@ -11,12 +15,18 @@ const CustomModal = ({
   handleCancel,
   message1,
   message2,
-  btnOk
+  btnOk,
+  frontPhoto,
+  backPhoto,
+  className,
 }) => {
+  console.log(loading);
+
   return (
     <Modal
+      className={className}
       open={open}
-      // title={title}
+      title={title}
       onOk={handleOk}
       onCancel={handleCancel}
       footer={null}
@@ -25,12 +35,35 @@ const CustomModal = ({
         <div className="mt-4">
           <Icon name={iconName} />
         </div>
-        <p className="text-2xl capitalize text-center mt-6">{header}</p>
+        <p className="font-bold text-2xl normal-case text-center mt-6">
+          {header}
+        </p>
         <div className="mt-4">
           <p className="text-lg text-center capitalize">{message1}</p>
           <p className="text-lg text-center capitalize">{message2}</p>
         </div>
       </div>
+
+      {frontPhoto && backPhoto && (
+        <div className="flex justify-center items-center gap-4 mt-8">
+          <div>
+            <img src={frontPhoto} alt="Organizer front image" />
+          </div>
+          <div>
+            <img src={backPhoto} alt="Organizer back image" />
+          </div>
+        </div>
+      )}
+
+      {!frontPhoto && !backPhoto && (
+        <figure className="w-1/2 mx-auto">
+          <img src={place_holder_avatar} alt="Unknown" />
+          <figcaption className="font-semibold text-red-600 mt-2 text-center 2xs:text-sm sm:text-base lg:text-lg 2xl:text-2xl">
+            There are no photos for this organizer.
+          </figcaption>
+        </figure>
+      )}
+
       <div className="flex justify-end mt-8 gap-4">
         <CustomButton
           type="quadruple"
@@ -39,11 +72,11 @@ const CustomModal = ({
           onClick={handleCancel}
         />
         <CustomButton
-          type="delete"
+          type="primary"
           value={btnOk}
-          width="w-24"
+          width="w-28"
           onClick={handleOk}
-          loading={loading}
+          isLoading={loading}
         />
       </div>
     </Modal>

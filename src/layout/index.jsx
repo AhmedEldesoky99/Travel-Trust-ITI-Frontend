@@ -12,24 +12,32 @@ const Layout = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location.pathname]);
-  
+
   const pathsToHide = [
     "/join",
     "/login",
     "/signup",
-    "/admin/login",
-    "/admin/signup",
-    "/admin/:organizerId",
-    "/admin/alltours/:organizerId",
-    "/admin/reviews/:organizerId",
-    "/admin/profile/:organizerId",
-    "/admin/addTour",
-    "/not-found",
-    "/error"
-  ];
-  const pathsForBackground = ["/favorite", "/cart", "/faq", "/privacy","/history"];
 
-  const pathIncluded = pathsToHide.includes(location.pathname);
+    "/local",
+    "/admin",
+
+    "/not-found",
+    "/error",
+    "/skeleton",
+    "/payment-success",
+    "/payment-failed"
+  ];
+  const pathsForBackground = [
+    "/favorite",
+    "/cart",
+    "/faq",
+    "/privacy",
+    "/history",
+  ];
+
+  const pathIncluded = pathsToHide.some((path) =>
+    location.pathname.startsWith(path)
+  );
   const pathBackgroundIncluded = pathsForBackground.includes(location.pathname);
 
   return (
