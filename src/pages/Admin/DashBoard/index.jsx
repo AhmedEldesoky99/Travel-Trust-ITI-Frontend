@@ -196,7 +196,7 @@ const DashBoard = () => {
                 name="suitcase"
                 title="Total Earnings"
                 generalStatistics="34,123.00 "
-                type="EGP"
+                type="$"
               />
             </div>
             <div className="col-span-6 md:col-span-3 lg:col-span-2 ">
@@ -220,7 +220,7 @@ const DashBoard = () => {
                 name="wallet"
                 title="Today Expense"
                 generalStatistics="22"
-                type="EGP"
+                type="$"
               />
             </div>
           </div>
