@@ -22,7 +22,7 @@ const place_holder_avatar =
 const place_holder_tour =
   "https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png";
 
-const TourCard = ({ data, length, title }) => {
+const TourCard = ({ data, length, title, sales = 0 }) => {
   // -------- States --------
   const [checked, setChecked] = useState(false);
 
@@ -103,6 +103,17 @@ const TourCard = ({ data, length, title }) => {
           </button>
         </div>
       </figure>
+        {sales == 0 && (
+          <div className="card-body !pt-4 space-y-3 gap-0">
+            <div className="flex justify-end">
+              <div className="flex justify-center items-center space-x-1">
+                <span className="2xs:text-2xl md:text-xl xl:text-2xl font-bold">
+                  {data?.sale}$
+                </span>{" "}
+              </div>
+            </div>
+          </div>
+            )}
 
       <div className="card-body !pt-12 space-y-3 gap-0">
         <div className="flex justify-between items-center">
@@ -120,6 +131,7 @@ const TourCard = ({ data, length, title }) => {
             <UserOutlined className="2xs:text-xl md:text-lg" />
           </div>
         </div>
+
 
         <h2 className="card-title 2xs:text-lg 2xl:text-xl">{title}</h2>
 
