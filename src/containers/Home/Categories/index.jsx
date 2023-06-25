@@ -27,7 +27,9 @@ const Categories = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-6 min-[1024px]:max-[1280px]:gap-x-14 grid-rows-2  w-full">
               {data.data.map((item) => (
+                <Link to="/search">
                   <CategoryIcon data={item} key={item._id} />
+                </Link>
               ))}
             </div>
           </div>

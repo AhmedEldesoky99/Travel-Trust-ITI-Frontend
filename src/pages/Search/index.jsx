@@ -120,7 +120,7 @@ const Search = () => {
         <div className="flex flex-col">
           <div className="flex flex-col flex-wrap shadow-lg ">
             <div className=" container mx-auto mb-8">
-              <div className="max-w-[1124px] flex lg:justify-normal 2xs:justify-center">
+              <div className="max-w-[1124px] flex lg:justify-normal 2xs:justify-center mt-8">
                 <CustomSearch
                   data={statsData}
                   min={min}

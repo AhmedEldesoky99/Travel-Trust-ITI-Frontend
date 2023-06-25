@@ -24,7 +24,7 @@ const TourWideCard = ({
   totalPrice,
   id,
   peopleCount,
-  showAction = True,
+  showAction = true,
 }) => {
   const queryClient = useQueryClient();
   const [removed, setRemoved] = useState(false);
@@ -147,7 +147,6 @@ const TourWideCard = ({
     );
   }
 
-
   return (
     <>
       {!removed && (
@@ -218,17 +217,21 @@ const TourWideCard = ({
                 <UserOutlined className="2xs:text-xl md:text-lg" />
               </div>
 
-              {showAction&&<div>
-                <p>Booked for : {peopleCount}</p>
-              </div>}
-{showAction&&              <div>
-                <p className="font-medium">
-                  Total :
-                  <span className="2xs:text-lg md:text-xl xl:text-2xl  2xl:text-3xl font-bold">
-                    {` $${totalPrice}`}
-                  </span>
-                </p>
-              </div>}
+              {showAction && (
+                <div>
+                  <p>Booked for : {peopleCount}</p>
+                </div>
+              )}
+              {showAction && (
+                <div>
+                  <p className="font-medium">
+                    Total :
+                    <span className="2xs:text-lg md:text-xl xl:text-2xl  2xl:text-3xl font-bold">
+                      {` $${totalPrice}`}
+                    </span>
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>

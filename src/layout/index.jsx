@@ -25,7 +25,7 @@ const Layout = () => {
     "/error",
     "/skeleton",
     "/payment-success",
-    "/payment-failed"
+    "/payment-failed",
   ];
   const pathsForBackground = [
     "/favorite",
@@ -33,6 +33,7 @@ const Layout = () => {
     "/faq",
     "/privacy",
     "/history",
+    "/search",
   ];
 
   const pathIncluded = pathsToHide.some((path) =>
