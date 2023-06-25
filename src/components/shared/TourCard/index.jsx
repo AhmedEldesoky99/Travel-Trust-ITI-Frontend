@@ -17,10 +17,8 @@ import CastleIcon from "../../../assets/images/TourCard/castle.svg";
 
 import { toggleFavoriteMutation } from "../../../services/favorites";
 
-const place_holder_avatar =
-  "https://frostbrowntodd.com/app/uploads/2021/10/FBT_NoPhoto-1.jpg";
-const place_holder_tour =
-  "https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png";
+import PlaceHolderImg from "../../../assets/images/Cart/place-holder-card.jpg";
+import PlaceHolderAvatar from "../../../assets/images/UserProfile/userprofile.png";
 
 const TourCard = ({ data, length, title, sales = 0 }) => {
   // -------- States --------
@@ -49,11 +47,11 @@ const TourCard = ({ data, length, title, sales = 0 }) => {
       <figure className="relative overflow-visible">
         <img
           className="w-full object-cover h-[14.7rem] rounded-t-[14px]"
-          src={data?.highlight_photos[0]?.url ?? place_holder_tour}
+          src={data?.highlight_photos[0]?.url ?? PlaceHolderImg}
           alt="Tour Image"
           // Placeholder-Image
           onError={(e) => {
-            e.target.src = place_holder_tour;
+            e.target.src = PlaceHolderImg;
           }}
         />
 
@@ -80,11 +78,11 @@ const TourCard = ({ data, length, title, sales = 0 }) => {
         <div className="absolute bottom-0 left-[5%] flex items-center translate-y-[50%]">
           <Link to={`/admin-profile/${data?.organizer?._id}`}>
             <img
-              src={data?.organizer.photo[0]?.url ?? place_holder_avatar}
+              src={data?.organizer.photo[0]?.url ?? PlaceHolderAvatar}
               alt="Tour Creator"
               // Placeholder-Image
               onError={(e) => {
-                e.target.src = place_holder_avatar;
+                e.target.src = PlaceHolderAvatar;
               }}
               className="2xs:w-16 xs:w-20 sm:w-20 md:w-16 md:h-16 bg-cover bg-center object-cover  lg: xl: 2xl: rounded-full relative"
             />
@@ -128,8 +126,8 @@ const TourCard = ({ data, length, title, sales = 0 }) => {
             </span>
           </div>
           <div className="flex justify-center items-center space-x-1">
-            <span className={`2xs:text-2xl md:text-xl xl:text-2xl ${sales==0 ?' font-bold':'line-through text-gray-500 '}`}>
-              {data?.price_per_person}$
+            <span className="2xs:text-2xl md:text-xl xl:text-2xl font-bold">
+              ${data?.price_per_person}
             </span>{" "}
             <span className="">/</span>
             <UserOutlined className="2xs:text-xl md:text-lg" />

@@ -36,7 +36,6 @@ const DreamTour = () => {
                   console.log({ data: data.data });
                   if (index < 4) {
                     return (
-                      <Link to={`/tour-details/${item._id}`}>
                       <TourCard
                         key={item._id}
                         data={item}
@@ -46,7 +45,6 @@ const DreamTour = () => {
                             : item?.title
                         }
                       />
-                      </Link>
                     );
                   }
                 })}

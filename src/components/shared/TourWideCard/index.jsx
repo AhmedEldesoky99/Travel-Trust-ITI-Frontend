@@ -147,8 +147,6 @@ const TourWideCard = ({
     );
   }
 
-  const place_holder_tour =
-    "https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png";
 
   return (
     <>
