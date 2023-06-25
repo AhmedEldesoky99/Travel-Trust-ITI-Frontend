@@ -3,7 +3,7 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { request } from "./axios";
 
-const getUserById = (userId) => {
+export const getUserById = (userId) => {
   return request({ url: `/v1/user/profile/${userId}`, method: "GET" });
 };
 
