@@ -38,7 +38,7 @@ const AddComplete = () => {
           <CustomButton
             type="secondary"
             onClick={() => handleSaveTour(formData)}
-            value="Save As"
+            value="Save"
             width="w-64"
             isLoading={
               isAddTourLoading ? isAddTourLoading : isUpdateTourLoading
