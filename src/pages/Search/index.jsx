@@ -209,19 +209,8 @@ const Search = () => {
               <div className="flex flex-col max-w-[1255px] gap-4 container">
                 {/* wide cards */}
   
-                {isLoading?<Spin />:tourCards}
-                <Pagination
-                  className="my-custom-pagination text-center mb-10"
-                  current={page}
-                  onChange={(page) => {
-                    setPage(page);
-                  }}
-                  pageSize={12}
-                  total={10}
-                />
-                {/* ) : (
-                  ""
-                )} */}
+                {tourCards}
+                
               </div>
             </div>
           </div>
