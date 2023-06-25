@@ -15,6 +15,13 @@ import MainNavBar from "../../../components/mainAdmin/Admin-NavBar";
 import TopTravelers from "../../../components/AdminProfile/topTravelers";
 import MainCardIcon from "../../../components/Admin/mainAdminCard/cardIcon";
 
+const icon1 = "https://i.ibb.co/ZgYv8rW/icon1.png";
+const icon2 = "https://i.ibb.co/Br5bLdk/icon2.png";
+const icon3 = "https://i.ibb.co/dtmzZcr/icon3.png";
+const icon4 = "https://i.ibb.co/WK9cZ86/icon4.png";
+const icon5 = "https://i.ibb.co/cwjxRnJ/icon5.png";
+const icon6 = "https://i.ibb.co/b3ZDwqT/icon6.png";
+
 const data = [
   {
     key: "1",
@@ -153,7 +160,7 @@ const MainAdminDashBoard = () => {
           <div className="grid lg:grid-cols-12  auto-rows-max w-full  gap-5 h-fill md:mt-8 mt-32 ">
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
               <MainCardIcon
-                src="../../../src/assets/images/icons/icon1.png"
+                src={icon1}
                 title="Total Earnings"
                 generalStatistics="34,123.00 "
                 type="$"
@@ -161,42 +168,42 @@ const MainAdminDashBoard = () => {
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
               <MainCardIcon
-                src="../../../src/assets/images/icons/icon2.png"
-                title="Total Earnings"
-                generalStatistics="34,123.00 "
-                type="$"
+                src={icon2}
+                title="Total Tours"
+                generalStatistics="3000"
+                type="tours"
               />
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
               <MainCardIcon
-                src="../../../src/assets/images/icons/icon3.png"
-                title="Total Earnings"
-                generalStatistics="34,123.00 "
-                type="$"
+                src={icon3}
+                title="Total Flights"
+                generalStatistics="50"
+                type="flights"
               />
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
               <MainCardIcon
-                src="../../../src/assets/images/icons/icon4.png"
-                title="Total Earnings"
-                generalStatistics="34,123.00 "
-                type="$"
+                src={icon4}
+                title="Total Travelers"
+                generalStatistics="300 "
+                type="Travelers"
               />
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
               <MainCardIcon
-                src="../../../src/assets/images/icons/icon5.png"
-                title="Total Earnings"
+                src={icon5}
+                title="Total Expense"
                 generalStatistics="34,123.00 "
-                type="$"
+                type="expense"
               />
             </div>
             <div className="col-span-12 md:col-span-6 lg:col-span-4 ">
               <MainCardIcon
-                src="../../../src/assets/images/icons/icon6.png"
-                title="Total Earnings"
-                generalStatistics="34,123.00 "
-                type="$"
+                src={icon6}
+                title="Total Transactions"
+                generalStatistics="34,000 "
+                type="Transaction"
               />
             </div>
           </div>
@@ -207,7 +214,7 @@ const MainAdminDashBoard = () => {
               <div className="flex flex-col gap-6">
                 <div className="flex flex-row gap-4 items-center">
                   <img
-                    src="https://pbs.twimg.com/profile_images/830302889977344001/kNGk9Hf2.jpg"
+                    src="https://wallpapers.com/images/hd/cool-profile-picture-87h46gcobjl5e4xu.jpg"
                     className="rounded-full max-w-[70px] max-h-[70px]"
                   />
                   <div className="flex flex-col">

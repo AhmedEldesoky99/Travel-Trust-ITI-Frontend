@@ -72,7 +72,7 @@ const AdminProfile = () => {
       <div className="flex flex-row bg-admin-grey">
         <NavBar />
         <div className="w-full ">
-          <SubNavBar />
+      
           <div className="md:container md:mx-auto">
             {isLoading ? (
               <LocalProfileLoader />

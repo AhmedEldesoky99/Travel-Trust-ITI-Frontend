@@ -102,8 +102,8 @@ const AddTourPage = () => {
     };
   }, []);
   const localId = localStorage.getItem("localId");
-  // const { data } = getUserData(localId);
-  const { data } = getUserData(2);
+
+  const { data } = getUserData(localId);
 
   const onChange = (checked) => {
     console.log(`switch to ${checked}`);
@@ -138,7 +138,7 @@ const AddTourPage = () => {
                   <span className=" text-tertiary-red font-semibold">
                     Note:{" "}
                   </span>
-                  Your acount will be reviewed by the admin before you can
+                  Your account will be reviewed by the admin before you can
                   publish.<br></br> In the meantime, you can still create a
                   draft of your tour, but the 'Publish' button will be disabled
                   until your account has been verified.

@@ -40,15 +40,16 @@ export const request = ({ ...options }) => {
         theme: "light",
       });
 
-     
     return response.data;
   };
 
   const onError = (err) => {
     console.log("<<ERROR>>", err);
-    if (err)
-      err?.response?.data?.message?.map((error) => {
+    if (err) {
+      const result =
+        err?.response?.data?.message || err?.response?.data?.response?.message;
 
+      result?.map((error) => {
         toast.error(error || "Something went wrong...", {
           position: "top-right",
           autoClose: false,
@@ -60,6 +61,7 @@ export const request = ({ ...options }) => {
           theme: "light",
         });
       });
+    }
 
     return err;
   };

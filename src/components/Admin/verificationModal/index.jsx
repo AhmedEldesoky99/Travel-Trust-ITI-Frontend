@@ -49,9 +49,9 @@ const VerificationModal = ({ handleCancel }) => {
         <div className="flex flex-col justify-center items-center gap-4 ">
           <h3 className=" text-2xl font-bold">Verification Form</h3>
           <p className=" text-center text-xl w-[80%]">
-            To access our services, we require a
-            <span className=" text-primary-green font-semibold">
-              valid identification card
+            To access our services, we require a 
+            <span className="p-4 text-primary-green font-semibold">
+               valid identification card
             </span>
             for identity verification.
           </p>

@@ -162,7 +162,7 @@ const AdminReviews = () => {
       <div className="flex flex-row bg-admin-grey">
         <NavBar />
         <div className="w-full mx-auto ">
-          <SubNavBar />
+          {/* <SubNavBar /> */}
 
           <div className="container mx-auto">
             {isLoading ? (
