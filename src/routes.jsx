@@ -47,7 +47,7 @@ import MainAdminAllTours from "./pages/mainAdmin/all-tours";
 import MainAdminLogin from "./pages/mainAdmin/log-in";
 import MainAdminAllLocals from "./pages/mainAdmin/all-locals";
 import MainAdminDashBoard from "./pages/mainAdmin/dashboard";
-
+import { Protect } from "./components/auth";
 
 //lazy
 const Sales = React.lazy(() => import("./pages/Sales"));
@@ -60,7 +60,6 @@ const PrivacyPolicy = React.lazy(() => import("./pages/PrivacyPolicy"));
 const AdminProfileForUser = React.lazy(() =>
   import("./pages/AdminProfileForUser")
 );
-
 
 export const router = createBrowserRouter([
   {
@@ -83,11 +82,7 @@ export const router = createBrowserRouter([
 
       {
         path: "signup",
-        element: (
-          <UserIdProvider>
-            <SignUp />
-          </UserIdProvider>
-        ),
+        element: <SignUp />,
       },
       { path: "each-governorate/:id", element: <EachGovernorate /> },
       {
@@ -96,13 +91,27 @@ export const router = createBrowserRouter([
       },
       { path: "admin-profile/:id", element: <AdminProfileForUser /> },
       { path: "tour-details/:id", element: <TourDetails /> },
-      { path: "shared", element: <SharedComponents /> },
+      // { path: "shared", element: <SharedComponents /> },
       { path: "faq", element: <Faq /> },
       { path: "search", element: <Search /> },
       { path: "privacy", element: <PrivacyPolicy /> },
       { path: "Aboutus", element: <AboutUs /> },
-      { path: "cart", element: <Cart /> },
-      { path: "favorite", element: <Favorite /> },
+      {
+        path: "cart",
+        element: (
+          <Protect role="user">
+            <Cart />
+          </Protect>
+        ),
+      },
+      {
+        path: "favorite",
+        element: (
+          <Protect role="user">
+            <Favorite />
+          </Protect>
+        ),
+      },
       { path: "all-tours", element: <AllTours /> },
       { path: "destinations", element: <Destinations /> },
       { path: "user-profile/:id", element: <UserProfile /> },
@@ -111,13 +120,51 @@ export const router = createBrowserRouter([
       { path: "profile/admin/:organizerId", element: <AdminProfileForUser /> },
 
       //local
-      { path: "local/dashboard", element: <DashBoard /> },
-      { path: "local/signup", element: <AdminSignUp /> },
-      { path: "local/login", element: <AdminLogin /> },
-      { path: "local/alltours/:organizerId", element: <AdminAllTours /> },
-      { path: "local/reviews/:organizerId", element: <AdminReviews /> },
-      { path: "local/tour-details/:id/:organizerId", element: <TourDetails /> },
-      { path: "local/profile/:organizerId", element: <AdminProfile /> },
+      {
+        path: "local/dashboard",
+        element: (
+          <Protect role="organizer">
+            {" "}
+            <DashBoard />
+          </Protect>
+        ),
+      },
+      {
+        path: "local/signup",
+        element: <AdminSignUp />,
+      },
+      {
+        path: "local/login",
+        element: <AdminLogin />,
+      },
+      {
+        path: "local/alltours/:organizerId",
+        element: (
+          <Protect role="organizer">
+            <AdminAllTours />
+          </Protect>
+        ),
+      },
+      {
+        path: "local/reviews/:organizerId",
+        element: (
+          <Protect role="organizer">
+            <AdminReviews />
+          </Protect>
+        ),
+      },
+      {
+        path: "local/tour-details/:id/:organizerId",
+        element: <TourDetails />,
+      },
+      {
+        path: "local/profile/:organizerId",
+        element: (
+          <Protect role="organizer">
+            <AdminProfile />
+          </Protect>
+        ),
+      },
 
       {
         path: "local/tour/:tourID",
@@ -129,13 +176,47 @@ export const router = createBrowserRouter([
       },
 
       //admin
-      { path: "admin/dashboard", element: <MainAdminDashBoard /> },
-      { path: "admin/login", element: <MainAdminLogin /> },
-      { path: "admin/alltours", element: <MainAdminAllTours /> },
-      { path: "admin/reviews", element: <MainAdminReviews /> },
-      { path: "admin/tour-details/:id/:adminId", element: <TourDetails /> },
+      {
+        path: "admin/dashboard",
+        element: (
+          <Protect role="admin">
+            <MainAdminDashBoard />
+          </Protect>
+        ),
+      },
+      {
+        path: "admin/login",
+        element: <MainAdminLogin />,
+      },
+      {
+        path: "admin/alltours",
+        element: (
+          <Protect role="admin">
+            <MainAdminAllTours />
+          </Protect>
+        ),
+      },
+      {
+        path: "admin/reviews",
+        element: (
+          <Protect role="admin">
+            <MainAdminReviews />
+          </Protect>
+        ),
+      },
+      {
+        path: "admin/tour-details/:id/:adminId",
+        element: <TourDetails />,
+      },
       // { path: "admin/users/:adminId", element: <MainAdminAllUsers /> },
-      { path: "admin/locals", element: <MainAdminAllLocals /> },
+      {
+        path: "admin/locals",
+        element: (
+          <Protect role="admin">
+            <MainAdminAllLocals />
+          </Protect>
+        ),
+      },
     ],
   },
   {
