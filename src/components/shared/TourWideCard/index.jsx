@@ -145,8 +145,6 @@ const TourWideCard = ({
     );
   }
 
-  const place_holder_tour =
-    "https://www.aluminati.net/wp-content/uploads/2016/03/img-placeholder.png";
 
   return (
     <>
@@ -210,7 +208,7 @@ const TourWideCard = ({
             <div className="card-actions justify-between items-center">
               <div className="flex justify-center items-center space-x-1">
                 <span className="2xs:text-lg md:text-xl xl:text-2xl font-bold">
-                  EGP {pricePerPerson}
+                  ${pricePerPerson}
                 </span>{" "}
                 <span className="">/</span>
                 <UserOutlined className="2xs:text-xl md:text-lg" />
@@ -223,7 +221,7 @@ const TourWideCard = ({
                 <p className="font-medium">
                   Total :
                   <span className="2xs:text-lg md:text-xl xl:text-2xl  2xl:text-3xl font-bold">
-                    {` EGP ${totalPrice}`}
+                    {` $${totalPrice}`}
                   </span>
                 </p>
               </div>

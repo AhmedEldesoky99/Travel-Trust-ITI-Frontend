@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Breadcrumb, Pagination} from "antd";
+import { Breadcrumb, Pagination } from "antd";
 import { useQuery } from "react-query";
 
 import { getSales } from "../../../services/Sales";
@@ -31,22 +31,22 @@ const About = () => {
         </div>
       ) : (
         <>
-         <Breadcrumb
-        className="container mx-auto my-10 text-xl"
-        separator="/"
-        items={[
-          {
-            title: <Link to="/">Home</Link>,
-          },
-          {
-            title: "Sales",
-          },
-        ]}
-      />
+          <Breadcrumb
+            className="container mx-auto my-10 text-xl"
+            separator="/"
+            items={[
+              {
+                title: <Link to="/">Home</Link>,
+              },
+              {
+                title: "Sales",
+              },
+            ]}
+          />
           <div className="container mb-10 mx-auto grid gap-4 2xs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
             {filteredData.map((item, index) => {
               if (12 * page - 1 <= index <= 12 * page)
-                return <Link to={`/tour-details/${item._id}`}><TourCard key={item._id} data={item} /></Link>;
+                return <TourCard key={item._id} data={item} />;
             })}
           </div>
           {data?.data?.length >= 12 ? (

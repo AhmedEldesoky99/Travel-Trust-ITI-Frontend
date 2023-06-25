@@ -38,9 +38,7 @@ const About = () => {
             {data?.data
               .slice((page - 1) * pageSize, page * pageSize)
               .map((item) => (
-                <Link to={`/tour-details/${item._id}`}>
                   <TourCard key={item._id} data={item} />
-                </Link>
               ))}
           </div>
 

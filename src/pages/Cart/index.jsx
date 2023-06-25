@@ -135,15 +135,15 @@ const Cart = () => {
               <p className="text-2xl my-6">Order Summary</p>
               <div className="flex justify-between text-base">
                 <p>booking fee</p>
-                <p>EGP {fees} </p>
+                <p>${fees} </p>
               </div>
               <div className="flex justify-between text-base mb-2">
                 <p>subtotal</p>
-                <p>EGP {totalCartMoney} </p>
+                <p>${totalCartMoney} </p>
               </div>
               <div className="flex justify-between text-xl font-bold mt-6 mb-4">
                 <p>Total</p>
-                <p>EGP {totalCartMoney + fees} </p>
+                <p>${totalCartMoney + fees} </p>
               </div>
               <hr className="max-w-[358px] text-gray-500" />
               <div className="flex gap-3 mt-4">
