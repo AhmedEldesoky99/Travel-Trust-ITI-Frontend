@@ -1,7 +1,7 @@
 // import React from "react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import CustomInput from "../../../components/shared/FormComponents/CustomInput";
 import CustomButton from "../../../components/shared/CustomButton";
@@ -20,14 +20,20 @@ const AdminSignUp = () => {
     getValues,
   } = useForm();
 
-
+  const navigate = useNavigate();
   const { adminSignupMutation } = useAdminAuth();
-  const { mutate, isLoading } = adminSignupMutation();
+  const { mutate, isLoading, isSuccess } = adminSignupMutation();
 
   const registerHandler = (data) => {
     console.log(data);
     mutate(data);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/local");
+    }
+  }, [isSuccess]);
 
   return (
     <div className="flex 2xs:flex-col lg:flex-row ">
@@ -45,7 +51,10 @@ const AdminSignUp = () => {
           Create an account
         </h1>
         <button className="btn btn-wide bg-white text-gray-700 border-gray-500 mb-4 max-w-[547px] 2xs:w-full h-16  hover:text-white hover:bg-black">
-          <img src={Google} className="h-5 pr-2 mb-1" /> <span className="normal-case 2xs:text-sm sm:text-base 2xl:text-xl">Sign up with google</span>
+          <img src={Google} className="h-5 pr-2 mb-1" />{" "}
+          <span className="normal-case 2xs:text-sm sm:text-base 2xl:text-xl">
+            Sign up with google
+          </span>
         </button>
         <div className="flex flex-row items-center mb-4">
           <hr className="h-px bg-gray-600 border-0 w-28" />
@@ -125,7 +134,10 @@ const AdminSignUp = () => {
                   Remember me
                 </label>
               </div>
-              <Link to="/local/signup" className="text-md font-medium text-primary-green">
+              <Link
+                to="/local/signup"
+                className="text-md font-medium text-primary-green"
+              >
                 forgot password ?
               </Link>
             </div>
