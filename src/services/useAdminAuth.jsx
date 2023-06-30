@@ -26,12 +26,11 @@ const useAdminAuth = () => {
   const adminSignupMutation = () => {
     return useMutation(adminSignup, {
       onSuccess: (res) => {
-        console.log(res);
-        if (res.data.success) {
+        if (res?.success) {
           console.log("Navigate", "signup");
           localStorage.setItem("travelJWT", res.data.access_token);
           localStorage.setItem("localId", res.data.user._id);
-          navigate(`/local/alltours/${res.data.user._id}`);
+          navigate(`/admin/alltours/${res.data.user._id}`);
         }
       },
 
@@ -42,8 +41,7 @@ const useAdminAuth = () => {
   const adminLoginMutation = () => {
     return useMutation(adminLogin, {
       onSuccess: (res) => {
-        console.log(res);
-        if (res.success) {
+        if (res?.success) {
           console.log("Navigate login");
           localStorage.setItem("travelJWT", res.data.access_token);
           localStorage.setItem("localId", res.data.userBody._id);

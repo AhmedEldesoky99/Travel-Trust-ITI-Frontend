@@ -22,18 +22,12 @@ const AdminSignUp = () => {
 
   const navigate = useNavigate();
   const { adminSignupMutation } = useAdminAuth();
-  const { mutate, isLoading, isSuccess } = adminSignupMutation();
+  const { mutate, isLoading } = adminSignupMutation();
 
   const registerHandler = (data) => {
     console.log(data);
     mutate(data);
   };
-
-  useEffect(() => {
-    if (isSuccess) {
-      navigate("/local");
-    }
-  }, [isSuccess]);
 
   return (
     <div className="flex 2xs:flex-col lg:flex-row ">
