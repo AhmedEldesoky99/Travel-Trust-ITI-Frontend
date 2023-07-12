@@ -3,6 +3,7 @@ import Icon from "../../utils/icons";
 
 const PaymentSuccess = () => {
   const { money } = useParams();
+
   return (
     <>
       <div
